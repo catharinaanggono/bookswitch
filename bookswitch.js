@@ -23,7 +23,6 @@ function (reviews) {
 
 }
 
-=======
 // 
 function (all_search) {
     //git commit test
@@ -50,5 +49,3 @@ function (my_books) {
 function (reviews) {
 
 }
-
->>>>>>> 75894caab08e9d4dac339d7391f120a2f791afbd
