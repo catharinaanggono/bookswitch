@@ -1,5 +1,7 @@
 // 
 function (all_search) {
+    //git commit test
+    console.log("Git Commit Test");
 
 }
 
