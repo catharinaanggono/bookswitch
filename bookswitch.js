@@ -1,4 +1,4 @@
-// 
+// search page
 function (all_search) {
 
 }
