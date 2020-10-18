@@ -1,0 +1,63 @@
+/* colour scheme */
+/* 
+#000000 black background
+#5d7db8 blue
+#8e89b2 purple
+#bf96ac dull pink
+#f0a3a7 pink
+ */
+
+.bg-black {
+    background-color: #000000;
+}
+
+.bg-blue {
+    background-color: #5d7db8;
+}
+
+.bg-purple {
+    background-color: #8e89b2;
+}
+
+.bg-dullpink {
+    background-color: #bf96ac;
+}
+
+.bg-pink {
+    background-color: #f0a3a7;
+}
+
+
+
+.text-black {
+    color: #000000;
+}
+
+.text-white {
+    color: white;
+}
+
+.blue-k {
+    color: #5d7db8;
+}
+
+.text-purple {
+    color: #8e89b2;
+}
+
+.text-dullpink {
+    color: #bf96ac;
+}
+
+.text-pink {
+    color: #f0a3a7;
+}
+
+/* hover */
+.link:hover {
+    color: #f0a3a7;
+}
+
+
+
+
