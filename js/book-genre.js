@@ -61,6 +61,8 @@ function extract_display_data(xml) {
 
         var isbn_list = volinfo.industryIdentifiers;
         // console.table(isbn_list);
+
+        //put inside url after clicking on book
         for ( isbn of isbn_list) {
             if ( isbn['type'] == 'ISBN_10') {
                 var isbn10 = isbn['identifier'];
@@ -73,6 +75,21 @@ function extract_display_data(xml) {
             }
         }
         // console.log(`isbn: ${isbn10} ${isbn13} ${others}`);
+
+        var node = document.createElement('div');
+        node.setAttribute('class', 'col-lg-3 col-sm-6 col-xs-6 mb-4');
+        node.innerHTML = 
+        `
+        <div class="card border-0 shadow">
+        <img src="https://source.unsplash.com/TMgQMXoglsM/500x350" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title mb-0">Team Member</h5>
+            <div class="card-text text-black-50">Web Developer</div>
+        </div>
+        </div>
+        `;
+
+        document.getElementById('main-content').appendChild(node);
 
     }
 
