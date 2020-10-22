@@ -10086,7 +10086,7 @@
     border-radius: 100%;
   }
   
-  
+  /* Customized CSS Style */
   /* Search Bar */
 .search {
     display: inline-block;
@@ -10180,7 +10180,7 @@
   
   
 
-#mainNav {
+  #mainNav {
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
     background-color: #212529;
