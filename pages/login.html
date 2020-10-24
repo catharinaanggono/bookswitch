@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<style>
+	.panel{
+		border:0;
+		background:rgba(0,0,0,0.5);
+		color:#ffff;
+		text-align:center;
+		padding-top:50px;
+	}
+
+	body {
+    	background-image: url('images/books.jpg'); 
+		background-size: cover;
+		background-repeat:no-repeat;
+		background-attachment:fixed;
+
+	}
+
+	@media only screen and (min-device-width: 500px) {
+    	body { 
+    	margin:0;
+		padding:0; 
+		background-image: url("images/books.jpg");
+		background-size: cover;
+		background-repeat:no-repeat;
+		background-attachment:fixed;
+		font-family:sans-serif;
+    	}
+	}
+
+	.text-danger {
+    	color:#5d7db8;
+    	font-weight: bold;
+	}
+
+	.navbar-default .navbar-nav>li>a {
+    	color: white;
+	}
+
+	.navbar-default {
+    	background-color: #333;
+	}
+
+	.navbar {
+  	overflow: hidden;
+  	background-color: #333;
+	}
+
+	.navbar a {
+  	float: left;
+  	font-size: 16px;
+  	color: white;
+  	text-align: center;
+  	padding: 14px 16px;
+  	text-decoration: none;
+	}
+
+	.navbar a:hover, .dropdown:hover .dropbtn {
+  	background-color: #5d7db8;
+	}
+
+</style>
+
+<body>
+
+	<!-- Display of Navbar -->
+    <div class="bgded overlay" id="example"> 
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+
+    <div class="container">
+
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        	<span class="sr-only">Toggle navigation</span>
+        	<span class="icon-bar"></span>
+        	<span class="icon-bar"></span>
+        	<span class="icon-bar"></span>
+        </button>
+    </div>
+
+	<div class="navbar-collapse collapse">
+		<a href="redemption.php?image="><b></b></a></li>
+		<a href="login.php" onclick="window.open('guide/Atext_guide.pdf')"><b></b></a>
+	</div>
+	
+    </div>
+
+    </div> 
+	
+	<div class="container" style="margin-top:100px;">
+	<div class="row">
+	<div class="col-md-5 col-md-offset-3">
+	<div class="panel panel-default">
+	<img src="">
+	<div class="panel-body">
+
+	<br>
+
+	<!-- Login Form : Retrieve the login email and password -->
+	<form method="post" action = "login.php">		
+		
+		<!-- Email address field -->
+		<div class="form-group input-group">
+		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+		<input type="text" class="form-control" name="userid" placeholder="Username" required> 
+		</div>
+	
+		<!-- Password field -->
+		<div class="form-group input-group">
+		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+		<input type="password" class="form-control" name="password" placeholder="Password" required>
+		</div>
+		<a href="forgetpassword.php" style="color: white">Forget Password?</a>
+		<br>
+		<!-- Login button -->
+		<div class="form-group">
+		<button class="btn btn-primary" style="width:330px;" name="submit">Log In</button>
+		</div>
+					 
+	</form>
+
+<!-- Footer -->
+	 <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    	<div class="container">
+    		<div class="navbar-text pull-left">
+    			<p>&copy; 2020 SMU. BookSwitch Reserved.</p>
+    		</div>
+    	</div> 
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
