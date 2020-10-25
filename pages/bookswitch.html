@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/bookswitch.css">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+        <!--  -->
+        <!-- <script src="../js/book-genre-2.js"></script> -->
+        <script src="../js/bookswitch.js"></script>
+
+        <!-- check if image is white -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+
+        <script>
+            function imgSize(){
+                var myImg = document.querySelector("#sky");
+                var currWidth = myImg.clientWidth;
+                var currHeight = myImg.clientHeight;
+                alert("Current width=" + currWidth + ", " + "Original height=" + currHeight);
+            }
+        </script>
+</head>
+<body onload="">
+
+    <!-- when click on navbar genres -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+
+          <ul class="navbar-nav mr-auto justify-content-center">
+            <li class="nav-item active">
+              <a class="nav-link" href="#romance" onclick="call_api('romance', 0)">Romance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#fantasy" onclick="call_api('fantasy', 0)">Fantasy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#horror" onclick="call_api('horror', 0)">Horror</a>
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+
+    <!-- Pagination -->
+    <div>You have viewed 1/10 pages</div>
+    <nav>
+      <ul class='pagination' id="pagination">
+
+      </ul>
+    </nav>
+
+    <!-- Page Content style="max-width: 90%;" -->
+    <div class="container mt-3" >
+
+      <!-- Header -->
+    <div class=" bg-dullpink text-center py-3 mb-4">
+      <div class="container">
+        <h1 id='genre-header' class="font-weight-light text-white" style="text-transform: uppercase;">Romance</h1>
+        <p class="text-white">description</p>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="container" >
+      <div class="row" id="main-content">
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+
+
+
+    </div>
+    <!-- /.container -->
+    
+</body>
+</html>
