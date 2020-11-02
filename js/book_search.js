@@ -181,56 +181,56 @@ function get_image(selfLink, index){
     return imageLink;
 }
 
-$("#search_book").autocomplete({
-    source: function (request, response) {
-        $.ajax({
-        url: "https://www.googleapis.com/books/v1/volumes?",
-        data: { 
-            q: request.term,
-            startIndex: 1,
-            maxResults: 15
-        },
-        success: function (data) {
-            data = data.items
-            var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
-            var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
+// $("#search_book").autocomplete({
+//     source: function (request, response) {
+//         $.ajax({
+//         url: "https://www.googleapis.com/books/v1/volumes?",
+//         data: { 
+//             q: request.term,
+//             startIndex: 1,
+//             maxResults: 15
+//         },
+//         success: function (data) {
+//             data = data.items
+//             var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+//             var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
 
-            console.log(data);
+//             console.log(data);
 
-            var primary_matches = $.map(data, function (el) {
-            if (matcher1.test(el.volumeInfo.title)){
-                return {
-                value: el.volumeInfo.title
-                };
+//             var primary_matches = $.map(data, function (el) {
+//             if (matcher1.test(el.volumeInfo.title)){
+//                 return {
+//                 value: el.volumeInfo.title
+//                 };
 
-            }
+//             }
                 
-            });
-            var secondary_matches = $.map(data, function (el) {
-            if (matcher2.test(el.volumeInfo.title)){
-                return {
-                value: el.volumeInfo.title
-                };
+//             });
+//             var secondary_matches = $.map(data, function (el) {
+//             if (matcher2.test(el.volumeInfo.title)){
+//                 return {
+//                 value: el.volumeInfo.title
+//                 };
 
-            }
+//             }
                 
-            });
-            console.log(primary_matches);
-            console.log(secondary_matches);
-            response($.merge(primary_matches, secondary_matches));
+//             });
+//             console.log(primary_matches);
+//             console.log(secondary_matches);
+//             response($.merge(primary_matches, secondary_matches));
 
-            // response($.map($.merge(primary_matches, secondary_matches), function(item){
-            //     return {label: __highlight(item.title, request.term) + "(" + item.type + ")", value: item.title}
-            // }));
-        },
+//             // response($.map($.merge(primary_matches, secondary_matches), function(item){
+//             //     return {label: __highlight(item.title, request.term) + "(" + item.type + ")", value: item.title}
+//             // }));
+//         },
 
-        });
-    }}).data("ui-autocomplete")._renderItem = function( ul, item ) {
-    return $( "<li>" )
-    .attr( "data-value", item.value )
-    .append( $( "<div>" ).html( item.label.replace(new RegExp(this.term, 'gi'),"<b>$&</b>") ) )
-    .appendTo( ul );
-    };
+//         });
+//     }}).data("ui-autocomplete")._renderItem = function( ul, item ) {
+//     return $( "<li>" )
+//     .attr( "data-value", item.value )
+//     .append( $( "<div>" ).html( item.label.replace(new RegExp(this.term, 'gi'),"<b>$&</b>") ) )
+//     .appendTo( ul );
+//     };
 
 
 // window.addEventListener("load", function(){
