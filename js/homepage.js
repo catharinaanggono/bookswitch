@@ -64,6 +64,17 @@ var currentScrollPos = window.pageYOffset;
   prevScrollpos = currentScrollPos;
 }
 
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("mainNav2").style.top = "0";
+  } else {
+    document.getElementById("mainNav2").style.top = "-100px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+
 
 
 // Search All Method
