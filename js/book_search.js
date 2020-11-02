@@ -106,7 +106,7 @@ function call_api_test(keyword, start_maybe){
     var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
     start = page_num*max;
 
-    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter&key=${key}&startIndex=${start_maybe}&maxResults=${max}&key=${key}`;
+    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter&key=${key}`;
 
     // if(category == 'all'){
     //     url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
@@ -160,16 +160,17 @@ function get_image(selfLink, index){
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
             var obj = JSON.parse(request.responseText);
-            var small_img = obj.volumeInfo.imageLinks.small;
+            var imageLink = obj.volumeInfo.imageLinks.thumbnail;
+            // var small_img = obj.volumeInfo.imageLinks.small;
 
              // not all image has small size
-            if (small_img == undefined ) {
-                imageLink = obj.volumeInfo.imageLinks.thumbnail;
-                console.log(imageLink);
-            }
-            else{
-                imageLink = obj.volumeInfo.imageLinks.small;
-            }
+            // if (small_img == undefined ) {
+            //     imageLink = obj.volumeInfo.imageLinks.thumbnail;
+            //     console.log(imageLink);
+            // }
+            // else{
+            //     imageLink = obj.volumeInfo.imageLinks.small;
+            // }
             
             document.getElementsByClassName('card-img-top')[index].setAttribute('src', imageLink);
             
