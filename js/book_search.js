@@ -35,6 +35,18 @@
 //     request.send();
 // }
 
+// Show nav bar on scroll up, hide nav bar on scroll down
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("pagination").style.top = "0";
+  } else {
+    document.getElementById("pagination").style.top = "-100px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
     // console.log(xml.responseText);

@@ -1,0 +1,10 @@
+#pagination {
+    margin-top: 770px;
+}
+
+
+@media (min-width: 992px){
+    #pagination{
+        margin-top: 540px;
+    }
+}
