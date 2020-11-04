@@ -1,12 +1,3 @@
-// document.writeln('<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">');
-// document.writeln('<script src="//code.jquery.com/jquery-1.12.4.js"></script>');
-// document.writeln('<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>');
-
-// var script = document.createElement('script'); 
- 
-// script.src = '//code.jquery.com/jquery-1.11.0.min.js'; 
-// document.getElementsByTagName('head')[0].appendChild(script); 
-
 // -----------------------------
 // REAL CALL API FOR SEARCH RESULTS
 // ------------------------------
@@ -115,10 +106,10 @@ function call_api_test(keyword, start_maybe){
 
     var page_num = 0;
     var max = 20;
-    var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
+    // var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
     start = page_num*max;
 
-    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter&key=${key}`;
+    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter`;
 
     // if(category == 'all'){
     //     url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
