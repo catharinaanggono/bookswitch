@@ -7,8 +7,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <!-- Vue.js -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
     <title>Book Details</title>
 
@@ -62,9 +60,9 @@
         opacity: 0;
         position: absolute;
         top: 25%;
-        /* left: 5%; */
-        /* transform: translate(-50%, -50%); */
-        /* -ms-transform: translate(-5%, -5%); */
+        /* left: 5%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-5%, -5%); */
         text-align: center;
       }
       #personal:hover .image {
@@ -87,17 +85,20 @@
       <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <link href="../css/homepage.css" rel="stylesheet" />
-    <!-- Vue.js -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
     
   </head>
 
-  <body onload="getWishlist()">
+  <?php 
+    require_once "../model/common.php";
+  ?>
+  
+  <!-- <body onload="getWishlist()"> -->
+  <body onload="get_wishlist()">
     <!--Jess's Navbar here-->
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container"> <!--Changed href here to link to homepage-->
+            <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch_logo.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
@@ -116,17 +117,10 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Genre</a></li>
                         <li class="nav-item">
                             <div class="search">
-                            <input type="text" placeholder="Search Title, Author, ISBN">
+                                <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
                             </div></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i>user1</a></li>
-                        <!-- <li class="nav-item"><form action="">
-                            <input type="search" placeholder="Search Title, Author, ISBN">
-                            <i class="fa fa-search"></i>
-                          </form></li> -->
-                        <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li> -->
                         
-
                     </ul>
                 </div>
                 
@@ -137,11 +131,11 @@
     <!---->
 
     
-      <div class="jumbotron jumbotron-fluid" id="mybooksHeader">
+    <div class="jumbotron jumbotron-fluid" id="mybooksHeader">
         <h1 class="display-4" style="margin-bottom: 50px;">My Books</h1>
         <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="padding-right: 6%;">
         <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="wishlist_tab" data-toggle="tab" href="#wishlist" role="tab" aria-controls="wishlist" aria-selected="true" onclick="getWishlist()">Wishlist</a>
+          <a class="nav-link active" id="wishlist_tab" data-toggle="tab" href="#wishlist" role="tab" aria-controls="wishlist" aria-selected="true" onclick="get_wishlist()">Wishlist</a>
         </li>
         <li class="nav-item" role="presentation">
           <a class="nav-link" id="listings_tab" data-toggle="tab" href="#listings" role="tab" aria-controls="listings" aria-selected="false" onclick="getListings('ALL')">My Listings</a>
@@ -150,7 +144,31 @@
       
     </div>
 
-    <div class="tab-content" id="myTabContent">
+    <!-- php stuff -->
+    <?php
+
+            $_SESSION["userid"] = "aytt";
+            if (isset($_SESSION["userid"])) {
+              $userid = $_SESSION["userid"];
+
+              // listings
+              $dao = new WishlistDAO();
+              $wishlist = $dao->getWishlist($userid);
+              $_SESSION["wishlist"] = $wishlist;
+              $dao2 = new ListingDAO();
+              $listing = $dao2->getListing($userid);
+              $_SESSION["listing"] = $listing;
+              
+            } else { 
+              //header("Location: login.html");
+            }
+
+
+          ?>
+    <!--Navbar for wishlist and my listings-->
+    
+      <!--Navbar contents-->
+      <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
             
             <!-- Wishlist stuff here -->
@@ -171,19 +189,153 @@
                 <a class="nav-link" id="reserved_tab" data-toggle="tab" href="#reserved" role="tab" aria-controls="reserved" aria-selected="true" onclick="getListings('YES')">Reserved for Exchange</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="exchange_tab" data-toggle="tab" href="#notreserved" role="tab" aria-controls="notreserved" aria-selected="true" onclick="getListings('NO')">Up for Exchange</a>
+                <a class="nav-link" id="exchange_tab" data-toggle="tab" href="#notreserved" role="tab" aria-controls="notreserved" aria-selected="true" onclick="getListings('NO')">Not Reserved</a>
               </li>
             </ul>
             <div id="myListings_cards"></div>
             
         </div>
       </div>
-      
-      
+    
+
+<script> 
+  
+
+  function get_wishlist() {
+    document.getElementById('wishlist_cards').innerHTML = '';
+    var wishlist = <?php echo json_encode($wishlist); ?>;
+
+    for (var isbn of wishlist) {
+
+      get_wishlist_book(isbn);
+    }
+
+  };
+
+function getListings(status) {
+  document.getElementById("myListings_cards").innerHTML = '';
+  var listing = <?php echo json_encode($listing); ?>;
+
+
+  if (status == 'ALL') {
+    for (var book of listing) {
+      var isbn = book[0];
+      get_listings_book(isbn);
+    };
+  } else {
+    
+    for (var book of listing) {
+      var isbn = book[0];
+      var reserve = book[1];
+      if (reserve == status) {
+        get_listings_book(isbn);
+      }
+    }
+  }
+  
+};
 
 
 
-    <script src="mybooks.js"></script>
+function get_wishlist_book(isbn) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var json_obj = JSON.parse(request.responseText);
+            var items = json_obj.items;
+            var html_text = '';
+
+            for (item of items) {
+                var image = item.volumeInfo.imageLinks.thumbnail;
+                var title = item.volumeInfo.title;
+                var desc = item.volumeInfo.description;
+                //var updated = ; // put time updqated 
+
+                html_text += `
+                <div class="container d-inline-block" id="personal">
+                  <img src="${image}" alt="bookimage" class="image" style="width:100%">
+                  <div class="middle">
+                    <div class="text"><b>${title}</b><br>${desc}</div>
+                  </div>
+                </div>
+                `;
+
+                
+
+            }
+
+            document.getElementById('wishlist_cards').innerHTML += html_text;
+
+
+    }
+}
+
+    // var key = 'AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE';
+    // var userid = '105224440927779280831';
+    // var wishlist_shelf = '1001';
+    var url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+
+    
+    request.open("GET", url, true);
+
+    request.send();
+
+  
+};
+
+function get_listings_book(isbn) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var json_obj = JSON.parse(request.responseText);
+            var items = json_obj.items;
+
+            var html_text = "";
+
+            for (item of items) {// incomplete, based on db
+                var image = item.volumeInfo.imageLinks.thumbnail;
+                var title = item.volumeInfo.title;
+                var desc = item.volumeInfo.description;
+                //var updated = ; // put time updqated 
+
+                html_text += `
+                <div class="container d-inline-block" id="personal">
+                  <img src="${image}" alt="bookimage" class="image" style="width:100%">
+                  <div class="middle">
+                    <div class="text"><b>${title}</b><br>${desc}</div>
+                  </div>
+                </div>
+                `;
+
+            }
+
+            document.getElementById("myListings_cards").innerHTML += html_text;
+
+
+    }
+    }
+
+    // var userid = '105224440927779280831';
+    // var listings_shelf = '1002';
+    var url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+
+    request.open("GET", url, true);
+
+    request.send();
+
+
+
+}
+
+
+  
+
+
+
+</script>
+
+    <!-- <script src="mybooks.js"></script>  -->
+
 
 
     <!-- Bootstrap core JS-->

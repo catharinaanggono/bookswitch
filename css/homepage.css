@@ -48,6 +48,7 @@
   }
   
   body {
+    padding-top: 80px;
     margin: 0;
     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 1rem;
@@ -4060,8 +4061,8 @@
     padding: 0.25rem 0.75rem;
     font-size: 1.25rem;
     line-height: 1;
-    color: #f0a3a7;
-    border: 1px solid #f0a3a7;
+    color: #ffff;
+    border: 1px solid #ffff;
     border-radius: 0.25rem;
   }
   .navbar-toggler:hover, .navbar-toggler:focus {
@@ -10091,12 +10092,12 @@
 .search {
     display: inline-block;
     position: relative;
-    filter: drop-shadow(0 1px #0091c2);
+    filter: drop-shadow(0 1px #474E45);
   }
   /* search icon line */
   .search:after {
     content: "";
-    background: white;
+    background: #474E45;
     width: 4px;
     height: 10px;
     position: absolute;
@@ -10106,20 +10107,20 @@
   }
   
   .search > input {
-    color: white;
+    color: #474E45;
     font-size: 16px;
     background: transparent;
     width: 25px;
     height: 25px;
     padding: 10px;
-    border: solid 2px white;
+    border: solid 2px #474E45;
     outline: none;
     border-radius: 35px;
     transition: width 0.5s;
   }
   
   .search > input::placeholder {
-    color: #ffffff;
+    color: #474E45;
     opacity: 0;
     transition: opacity 150ms ease-out;
   }
@@ -10132,7 +10133,39 @@
   .search > input:not(:placeholder-shown) {
     width: 250px;
   }
-  
+
+  #ui-id-1 {z-index: 9999;}
+
+
+  /* Search Tabs */
+  /* .tabs-advanced {
+    display: table;
+    border: none;
+}
+
+.tabs-advanced > li{
+    display: table-cell;
+    float: none;
+}
+
+.tabs-advanced > li > a{
+    margin-right: 0;
+    border-bottom-style: none;
+}
+
+.tabs-advanced > li:not(.active):not(:hover) {
+    border-bottom: 1px solid #ddd;
+}
+
+.tabs-advanced > li.filler{
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabs-advanced > li.in-between-filler{
+    min-width: 2px;
+    border-bottom: 1px solid #ddd;
+} */
 
   /* Steps */
 .steps {
@@ -10183,17 +10216,17 @@
   #mainNav {
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
-    background-color: #212529;
+    background-color: #B5C587;
   }
   /* hamburger styling */
   #mainNav .navbar-toggler {
     padding: 0.70rem;
     font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 0.95rem;
-    color: #f0a3a7;
+    color: #474E45 ;
     text-transform: uppercase;
     background-color: transparent;
-    border: 1px solid #f0a3a7;
+    border: 1px solid #474E45 ;
   }
   
   #bookens {
@@ -10209,28 +10242,28 @@
   } */
   /* height of nav bar brand logo in small / mobile screen size */
   #mainNav .navbar-brand img {
-    height: 2.5rem;
+    height: 2.3rem;
   }
   #mainNav .navbar-nav .nav-item .nav-link {
     font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 0.95rem;
-    color: #fff;
+    color: #474E45;
     letter-spacing: 0.0625em;
   }
   #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-    color: #f0a3a7;
+    color: #ffff;
   }
   
   
   @media (min-width: 992px) {
     #mainNav {
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
+      padding-top: 0.7rem;
+      padding-bottom: 0.7rem;
       border: none;
-      background-color: transparent;
+      background-color: #B5C587;
+      /* background-color: transparent; */
       /* transition: padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out; */
-      transition: top 0.3s;
-  
+      transition: top 0.3s;  
     }
     #mainNav .navbar-brand {
       font-size: 1.5em;
@@ -10238,7 +10271,7 @@
     }
     /* height of nav bar brand logo when scroll to the top */
     #mainNav .navbar-brand img {
-      height: 4rem;
+      height: 3.2rem;
       transition: height 0.3s ease-in-out;
     }
     #mainNav.navbar-shrink {
