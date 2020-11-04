@@ -1,10 +1,19 @@
 #pagination {
-    margin-top: 770px;
+    margin: auto;
+    position: fixed;
+    bottom: 120px;
+    left: 4%;
+    z-index: 1;
 }
 
 
 @media (min-width: 992px){
     #pagination{
-        margin-top: 540px;
+        margin: auto;
+        position: fixed;
+        width: 50%;
+        bottom: 10px;
+        left: 25%;
+        z-index:1;
     }
 }
