@@ -10136,6 +10136,14 @@
 
   #ui-id-1 {z-index: 9999;}
 
+  /* Autocomplete */
+  .ui-autocomplete { 
+    height: 200px;
+    width: 100px;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+  }
+
 
   /* Search Tabs */
   /* .tabs-advanced {
@@ -10277,7 +10285,7 @@
     #mainNav.navbar-shrink {
       padding-top: 1rem;
       padding-bottom: 1rem;
-      background-color: #212529;
+      background-color: #B5C587;
     }
     /* height of nav bar when scroll down */
     #mainNav.navbar-shrink .navbar-brand {
