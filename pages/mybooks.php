@@ -18,29 +18,34 @@
       
       #wishlist_tab, #listings_tab {
         color: #ffffff;
+
       }
       #wishlist_tab.active, #listings_tab.active {
-        color: black;
+        color: #B5C587;
       }
       #mybooksHeader {
-        background-color: black;
-        color: white;
+        background-color: #B5C587;
+        color: #474E45;
         padding-top: 100px;
         padding-bottom: 0px;
         padding-left: 6%;
 
       }
       #all_tab, #reserved_tab, #exchange_tab {
-        color: #5D7DB8;
+        color: #474E45;
       }
       #all_tab.active, #reserved_tab.active, #exchange_tab.active {
-        color: black;
+        color: #B5C587;
       }
 
       .tab-content {
         padding-left: 6%;
       }
-      
+      /* #wishlist_tab {
+        background-image: url("../images/bookspine.png") no-repeat center;
+        background-size: 100%;
+        height: 100px;
+      } */
       
       /*js stuff */
       #personal {
@@ -86,6 +91,7 @@
       <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <link href="../css/homepage.css" rel="stylesheet" />
 
+
     
   </head>
 
@@ -99,11 +105,11 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch_logo.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../images/bookswitch_logo.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <ul class = "navbar-nav">
-                        <li class="nav-item nav-link" id="bookens"><span style="color: white;">50</span><img src="../images/bookens.svg" width="22" height="22"></a></li>
+                        <li class="nav-item nav-link" id="bookens"><span style="color: #474E45;">50</span><img src="../images/bookens.svg" width="22" height="22"></a></li>
                     </ul>
 
                     <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,12 +120,12 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services" style="color: #474E45">Genre</a></li>
                         <li class="nav-item">
                             <div class="search">
                                 <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
                             </div></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i>user1</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio" style="color: #474E45"><i class="far fa-user"></i>user1</a></li>
                         
                     </ul>
                 </div>
@@ -133,14 +139,15 @@
     
     <div class="jumbotron jumbotron-fluid" id="mybooksHeader">
         <h1 class="display-4" style="margin-bottom: 50px;">My Books</h1>
-        <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="padding-right: 6%;">
-        <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="wishlist_tab" data-toggle="tab" href="#wishlist" role="tab" aria-controls="wishlist" aria-selected="true" onclick="get_wishlist()">Wishlist</a>
+        <ul class="nav nav-tabs" id="myTab" role="tablist" style="padding-right: 6%;">
+        <li class="nav-item" role="presentation" style="width: 50%;">
+          <a class="nav-link active" id="wishlist_tab" data-toggle="tab" href="#wishlist" role="tab" aria-controls="wishlist" aria-selected="true" onclick="get_wishlist()" style="text-align: center;"><img src="../images/wishlistbook.png" width="100%" height="50%"></a>
         </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" id="listings_tab" data-toggle="tab" href="#listings" role="tab" aria-controls="listings" aria-selected="false" onclick="getListings('ALL')">My Listings</a>
+        <li class="nav-item" role="presentation" style="width: 50%;">
+          <a class="nav-link" id="listings_tab" data-toggle="tab" href="#listings" role="tab" aria-controls="listings" aria-selected="false" onclick="getListings('ALL')" style="text-align: center;"><img src="../images/listingsbook.png" width="100%" height="50%"></a>
         </li>
       </ul>
+      
       
     </div>
 
