@@ -1,12 +1,3 @@
-// document.writeln('<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">');
-// document.writeln('<script src="//code.jquery.com/jquery-1.12.4.js"></script>');
-// document.writeln('<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>');
-
-// var script = document.createElement('script'); 
- 
-// script.src = '//code.jquery.com/jquery-1.11.0.min.js'; 
-// document.getElementsByTagName('head')[0].appendChild(script); 
-
 // -----------------------------
 // REAL CALL API FOR SEARCH RESULTS
 // ------------------------------
@@ -34,6 +25,18 @@
 //     request.open('GET', url, true);
 //     request.send();
 // }
+
+// Show nav bar on scroll up, hide nav bar on scroll down
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("pagination").style.top = "0";
+  } else {
+    document.getElementById("pagination").style.top = "-100px";
+  }
+  prevScrollpos = currentScrollPos;
+}
 
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
@@ -103,10 +106,10 @@ function call_api_test(keyword, start_maybe){
 
     var page_num = 0;
     var max = 20;
-    var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
+    // var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
     start = page_num*max;
 
-    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter&key=${key}&startIndex=${start_maybe}&maxResults=${max}&key=${key}`;
+    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter`;
 
     // if(category == 'all'){
     //     url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
@@ -160,16 +163,17 @@ function get_image(selfLink, index){
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
             var obj = JSON.parse(request.responseText);
-            var small_img = obj.volumeInfo.imageLinks.small;
+            var imageLink = obj.volumeInfo.imageLinks.thumbnail;
+            // var small_img = obj.volumeInfo.imageLinks.small;
 
              // not all image has small size
-            if (small_img == undefined ) {
-                imageLink = obj.volumeInfo.imageLinks.thumbnail;
-                console.log(imageLink);
-            }
-            else{
-                imageLink = obj.volumeInfo.imageLinks.small;
-            }
+            // if (small_img == undefined ) {
+            //     imageLink = obj.volumeInfo.imageLinks.thumbnail;
+            //     console.log(imageLink);
+            // }
+            // else{
+            //     imageLink = obj.volumeInfo.imageLinks.small;
+            // }
             
             document.getElementsByClassName('card-img-top')[index].setAttribute('src', imageLink);
             
