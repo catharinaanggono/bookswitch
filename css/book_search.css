@@ -17,3 +17,16 @@
         z-index:1;
     }
 }
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #0D3D54;
+    border-color: #0D3D54;
+    color: white;
+    cursor:pointer;
+    z-index:2;
+  }
+
+/* #pagination > li{
+    background-color: #0D3D54;
+    color: white;
+} */
