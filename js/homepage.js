@@ -64,18 +64,6 @@ var currentScrollPos = window.pageYOffset;
   prevScrollpos = currentScrollPos;
 }
 
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    document.getElementById("mainNav2").style.top = "0";
-  } else {
-    document.getElementById("mainNav2").style.top = "-100px";
-  }
-  prevScrollpos = currentScrollPos;
-}
-
-
 
 // Search All Method
 function searchAll(query) {
@@ -141,8 +129,10 @@ $("#autocomplete").autocomplete({
   
           var primary_matches = $.map(data, function (el) {
             let result = el.volumeInfo.title;
+            let img_link = el.volumeInfo.imageLinks.thumbnail;
             if (matcher1.test(result)){
               return {
+                imgLink: img_link,
                 value: result
               };
   
@@ -151,8 +141,10 @@ $("#autocomplete").autocomplete({
           });
           var secondary_matches = $.map(data, function (el) {
             let result = el.volumeInfo.title;
+            let img_link = el.volumeInfo.imageLinks.thumbnail;
             if (matcher2.test(result)){
               return {
+                imgLink: img_link,
                 value: result
               };
   
@@ -170,8 +162,10 @@ $("#autocomplete").autocomplete({
     }
   })
   .data("ui-autocomplete")._renderItem = function( ul, item ) {
-              return $( "<li>" )
-              .attr( "data-value", item.value )
-              .append( $( "<div>" ).html( item.label.replace(new RegExp(this.term, 'gi'),"<b>$&</b>") ) )
+              var inner_html = '<a><div class="list_item_container"><div class="image"><img width="30" height="45" src="' + item.imgLink + '"></div><div class="label"><h3> Reputation:  ' + item.rep + '</h3></div><div class="description">' + item.label + '</div></div></a><hr/>';
+              return $( "<li></li>" )
+              .attr( "data-value", item)
+              // .append("<div>" + "<img width='30' height='45' src='" + item.imgLink + "' />")
+              .append($( "<div>" ).html( item.label.replace(new RegExp(this.term, 'gi'),"<b>$&</b>") ))
               .appendTo( ul );
           };
