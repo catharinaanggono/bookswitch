@@ -16,7 +16,7 @@ function display_default() {
 display_default();
 
 function call_api(genre, start_maybe){
-    var request = new XMLHttpRequest();
+    var request = new XMLHttpRequest;
 
     var max = 28;
     var page_num = 0;

@@ -1,31 +1,3 @@
-// -----------------------------
-// REAL CALL API FOR SEARCH RESULTS
-// ------------------------------
-function call_api_search(keyword){
-    var request = new XMLHttpRequest();
-    
-    request.onreadystatechange = function(){
-        if (request.readyState==4 && request.status==200){
-            extract_display_data(this);
-            
-        }
-    }
-
-    var max = 20;
-    var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
-    var url='';
-
-    if(category == 'all'){
-        url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
-    }
-    else{
-        url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&maxResults=${max}&key=${key}`;
-    }
-
-    request.open('GET', url, true);
-    request.send();
-}
-
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
     // console.log(xml.responseText);
@@ -79,6 +51,12 @@ function extract_display_data(xml) {
 }
 
 
+function display_default() {
+    call_api_test('harry potter', 0);
+}
+
+display_default();
+
 function call_api_test(keyword, start_maybe){
     var request = new XMLHttpRequest();
     
@@ -97,7 +75,7 @@ function call_api_test(keyword, start_maybe){
     // var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
     start = page_num*max;
 
-    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter`;
+    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter&startIndex=20&maxResults=${max}`;
 
     // if(category == 'all'){
     //     url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
@@ -110,7 +88,7 @@ function call_api_test(keyword, start_maybe){
     request.send();
 }
 
-call_api_test('harry potter', 0);
+// call_api_test('harry potter', 0);
 // call_api_search();
 
 function display_pagination_search(xml, start_maybe, max) {
@@ -120,14 +98,14 @@ function display_pagination_search(xml, start_maybe, max) {
     // console.log(total_items);
 
     document.getElementById('pagination').innerHTML = ``;
-    for(i = 0; i < max*10; i+=max){
-        var selected_id = `page${page_num+1}`;
+    for(i = 0; i < max*5; i+=max){
         var page_num = Math.floor(i/max) + 1;
+        var selected_id = `page${page_num+1}`;
         var node = document.createElement('li');
         node.setAttribute('class', 'page-item');
         node.innerHTML = 
         `
-        <a id='page${page_num}' class="page-link" href="#${page_num}" onclick="call_api_test(${keyword}, ${page_num*max}); selected(${selected_id});"> ${page_num} </a>
+        <a id='page${page_num}' class="page-link" href="#${page_num}" onclick="call_api_test(${keyword}, ${page_num*max}); selected(${i});"> ${page_num} </a>
         `;
         document.getElementById('pagination').appendChild(node);
     }
@@ -136,10 +114,10 @@ function display_pagination_search(xml, start_maybe, max) {
     return page_num*max;
 }
 
-function selected(selected_id) {
+function selected(i) {
     // var obj = JSON.parse(xml.responseText);
     console.log(document.getElementById('pagination').innerHTML);
-    var change = document.getElementsByTagName('href')[selected_id].setAttribute('class', 'page-link selected-page');
+    var change = document.getElementsByTagName('href')[i].setAttribute('class', 'page-link selected-page');
     alert(selected_id);
 }
 
@@ -172,54 +150,3 @@ function get_image(selfLink, index){
     request.send();
     return imageLink;
 }
-
-// $("#search_book").autocomplete({
-//     source: function (request, response) {
-//         $.ajax({
-//         url: "https://www.googleapis.com/books/v1/volumes?",
-//         data: { 
-//             q: request.term,
-//             startIndex: 1,
-//             maxResults: 15
-//         },
-//         success: function (data) {
-//             data = data.items
-//             var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
-//             var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
-
-//             console.log(data);
-
-//             var primary_matches = $.map(data, function (el) {
-//             if (matcher1.test(el.volumeInfo.title)){
-//                 return {
-//                 value: el.volumeInfo.title
-//                 };
-
-//             }
-                
-//             });
-//             var secondary_matches = $.map(data, function (el) {
-//             if (matcher2.test(el.volumeInfo.title)){
-//                 return {
-//                 value: el.volumeInfo.title
-//                 };
-
-//             }
-                
-//             });
-//             console.log(primary_matches);
-//             console.log(secondary_matches);
-//             response($.merge(primary_matches, secondary_matches));
-
-//             // response($.map($.merge(primary_matches, secondary_matches), function(item){
-//             //     return {label: __highlight(item.title, request.term) + "(" + item.type + ")", value: item.title}
-//             // }));
-//         },
-
-//         });
-//     }}).data("ui-autocomplete")._renderItem = function( ul, item ) {
-//     return $( "<li>" )
-//     .attr( "data-value", item.value )
-//     .append( $( "<div>" ).html( item.label.replace(new RegExp(this.term, 'gi'),"<b>$&</b>") ) )
-//     .appendTo( ul );
-//     };
