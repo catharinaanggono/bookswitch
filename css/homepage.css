@@ -10371,31 +10371,25 @@
   z-index:2;
 } */
 
-.pagination > li > a
+#pagination > button
 {
+    border-color: white;
     background-color: #0D3D54;
     color: white;
+    width: 40px;
+    text-align: center;
 }
 
-.pagination > li > a:focus,
-.pagination > li > a:hover,
-.pagination > li > span:focus,
-.pagination > li > span:hover
+#pagination > button:hover
 {
     color: white;
-    background-color: #474E45;
+    background-color: #A94241;
     border-color: white;
 }
 
-.pagination > .active > a
+#pagination > button:focus
 {
     color: white;
-    background-color: #5b2fa1 !Important;
-    border: solid 1px #6430b8 !Important;
-}
-
-.pagination > .active > a:hover
-{
-    background-color: #5A4181 !Important;
-    border: solid 1px #5A4181;
+    background-color: red;
+    border: solid 1px #6430b8;
 }

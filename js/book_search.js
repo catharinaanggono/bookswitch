@@ -1,30 +1,30 @@
 // -----------------------------
 // REAL CALL API FOR SEARCH RESULTS
 // ------------------------------
-function call_api_search(keyword){
-    var request = new XMLHttpRequest();
+// function call_api_search(keyword){
+//     var request = new XMLHttpRequest();
     
-    request.onreadystatechange = function(){
-        if (request.readyState==4 && request.status==200){
-            extract_display_data(this);
+//     request.onreadystatechange = function(){
+//         if (request.readyState==4 && request.status==200){
+//             extract_display_data(this);
             
-        }
-    }
+//         }
+//     };
 
-    var max = 20;
-    var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
-    var url='';
+//     var max = 20;
+//     var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
+//     var url='';
 
-    if(category == 'all'){
-        url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
-    }
-    else{
-        url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&maxResults=${max}&key=${key}`;
-    }
+//     if(category == 'all'){
+//         url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
+//     }
+//     else{
+//         url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&maxResults=${max}&key=${key}`;
+//     }
 
-    request.open('GET', url, true);
-    request.send();
-}
+//     request.open('GET', url, true);
+//     request.send();
+// }
 
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
@@ -33,24 +33,33 @@ function extract_display_data(xml) {
     var books_result = obj.items;
     var index = 0;
 
-    // console.log(books_result);
+    console.log(books_result);
     // console.log(document.getElementById('results'));
     for (each_book in books_result){
+        // console.log(each_book);
+        // console.log(books_result[each_book].saleInfo.saleability);
         var str = '';
         var title = books_result[each_book].volumeInfo.title;
         var author = books_result[each_book].volumeInfo.authors;
-        var isbn = books_result[each_book].volumeInfo.industryIdentifiers[0].identifier;
-        var shortDesc = books_result[each_book].volumeInfo.description;
+        var isbn = books_result[each_book].volumeInfo.industryIdentifiers;
+        var short_desc = books_result[each_book].volumeInfo.description;
         var selfLink = books_result[each_book].selfLink;
-        var image = get_image(selfLink, index);
+        var img = books_result[each_book].volumeInfo.imageLinks;
 
-        if (typeof shortDesc !== 'undefined'){
-            if(shortDesc.length > 300){
-                shortDesc = shortDesc.slice(0,300) + '...';
+        if (typeof short_desc !== 'undefined'){
+            if(short_desc.length > 250){
+                short_desc = short_desc.slice(0,250) + '...';
             }
         }
         else{
-            shortDesc='';
+            short_desc='description not available';
+        }
+
+        if (typeof isbn !== 'undefined'){
+            isbn = books_result[each_book].volumeInfo.industryIdentifiers[0].identifier;
+        }
+        else{
+            isbn = '';
         }
 
         // console.log(books_result[each_book]);
@@ -61,43 +70,53 @@ function extract_display_data(xml) {
         // console.log(selfLink);
         // console.log(image);
 
-        str += `
-            <div class="col-lg-3 col-sm-6 col-xs-6 mb-4">
-                <div class="card border-0 shadow">
-                    <img class="card-img-top" src="" alt="..." width='225px' height='322px'>
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-0">${title}</h5>
-                        <div class="card-text text-black-50">${author}</div>
-                        <p>${shortDesc}</p>
-                    </div>
-                </div>
-            </div>`;
-
-        document.getElementById('results').innerHTML += str;
+        var node = document.createElement('div');
+        node.setAttribute('class', ' base');
+        node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
+        node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
+        node.innerHTML = 
+        `
+        <div class="each-book">
+            <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
+            <div class="main-details">
+                <span style='font-size:12px;'><b>${title}</b></span><br>
+                <span style='font-size:10px;'>by ${author}</span>
+            </div>
+        </div>
+        <!-- style="visibility: hidden; -->
+        <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
+            ${short_desc}
+        </div>
+        `;
+        
+        document.getElementById('main-content').appendChild(node);
+        // console.log(node);
+        // console.log(document.getElementById('main-content'));
         index += 1;
     }
 }
 
 
-function call_api_test(keyword, start_maybe){
+function call_api_test(keyword, pg_num){
     var request = new XMLHttpRequest();
-    
+    var max = 39;
+
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
+            document.getElementById('main-content').innerHTML = '';
+            document.getElementById('pagination').innerHTML = '';
+            
             extract_display_data(this);
-            console.log('Inside call_api_test');
-            var start_maybe = display_pagination_search(this, start, max);
-            console.log(start_maybe);
+            extract_page_data(this, pg_num, max);
+            console.log(`page num: ${pg_num}`);
 
         }
     }
 
-    var page_num = 0;
-    var max = 20;
-    // var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
-    start = page_num*max;
+    var start_index = pg_num*max;
+    console.log(start_index);
 
-    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter`;
+    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter&startIndex=${start_index}&maxResults=${max}`;
 
     // if(category == 'all'){
     //     url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
@@ -110,68 +129,45 @@ function call_api_test(keyword, start_maybe){
     request.send();
 }
 
-call_api_test('harry potter', 0);
+call_api_test('harry potter', 1);
 // call_api_search();
 
-function display_pagination_search(xml, start_maybe, max) {
-    var obj = JSON.parse(xml.responseText);
-    var keyword='harry potter';
-    var total_items = obj.totalItems;
-    // console.log(total_items);
 
-    document.getElementById('pagination').innerHTML = ``;
-    for(i = 0; i < max*10; i+=max){
-        var selected_id = `page${page_num+1}`;
-        var page_num = Math.floor(i/max) + 1;
-        var node = document.createElement('li');
-        node.setAttribute('class', 'page-item');
-        node.innerHTML = 
-        `
-        <a id='page${page_num}' class="page-link" href="#${page_num}" onclick="call_api_test(${keyword}, ${page_num*max}); selected(${selected_id});"> ${page_num} </a>
-        `;
+function extract_page_data(xml, pg_num, max) {
+    var obj = JSON.parse(xml.responseText);
+    var book_results = obj.items;
+    var index = 0;
+    var total_items = obj.totalItems;
+    var num_of_pages = Math.ceil(total_items / max);
+    console.log(total_items);
+    console.log(num_of_pages);
+    
+    for ( i = 1; i <= 5; i++ ) {
+        var node = document.createElement('button');
+        node.setAttribute('class', 'btn genre m-1 text-blue');
+        node.setAttribute('onclick', `call_api_test('harry potter', ${i})`);
+        node.innerHTML = `${i}`;
+        
+        // console.log(node);
         document.getElementById('pagination').appendChild(node);
     }
-
     
-    return page_num*max;
+    // for (book of book_results) {
+
+    // }
+
 }
 
-function selected(selected_id) {
-    // var obj = JSON.parse(xml.responseText);
-    console.log(document.getElementById('pagination').innerHTML);
-    var change = document.getElementsByTagName('href')[selected_id].setAttribute('class', 'page-link selected-page');
-    alert(selected_id);
+function show_desc(id) {
+    var node = document.getElementById(id);
+    node.setAttribute('style', 'visibility: visible;');
 }
 
-function get_image(selfLink, index){
-    // console.log(selfLink);
-    var request = new XMLHttpRequest;
-    var imageLink = '';
-    
-    request.onreadystatechange = function(){
-        if (request.readyState==4 && request.status==200){
-            var obj = JSON.parse(request.responseText);
-            var imageLink = obj.volumeInfo.imageLinks.thumbnail;
-            // var small_img = obj.volumeInfo.imageLinks.small;
-
-             // not all image has small size
-            // if (small_img == undefined ) {
-            //     imageLink = obj.volumeInfo.imageLinks.thumbnail;
-            //     console.log(imageLink);
-            // }
-            // else{
-            //     imageLink = obj.volumeInfo.imageLinks.small;
-            // }
-            
-            document.getElementsByClassName('card-img-top')[index].setAttribute('src', imageLink);
-            
-        }
-    }
-    var url = selfLink;
-    request.open('GET', url, true);
-    request.send();
-    return imageLink;
+function hide_desc(id) {
+    var node = document.getElementById(id);
+    node.setAttribute('style', 'visibility: hidden;');
 }
+
 
 // $("#search_book").autocomplete({
 //     source: function (request, response) {
