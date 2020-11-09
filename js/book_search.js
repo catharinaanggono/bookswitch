@@ -55,19 +55,18 @@ function extract_display_data(xml) {
         node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
         node.innerHTML = 
         `
-        <div class="each-book">
-            <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
+        <div class="each-book shadow rounded">
+            <div class="each-img"><a href='homepage.html'><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></a></div>
             <div class="main-details">
-                <span style='font-size:12px;'><b>${title}</b></span><br>
+                <span style='font-size:12px;'><a href='homepage.html'><b>${title}</b></a></span><br>
                 <span style='font-size:10px;'>by ${author}</span>
             </div>
         </div>
         <!-- style="visibility: hidden; -->
-        <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
+        <div class="each-desc shadow rounded" id="each-desc${index}" style="visibility: hidden;"> 
             ${short_desc}
         </div>
         `;
-        
         document.getElementById('main-content').appendChild(node);
         // console.log(node);
         // console.log(document.getElementById('main-content'));
