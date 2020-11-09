@@ -1,3 +1,16 @@
+
+const chk = document.getElementById('chk');
+
+chk.addEventListener('change', () => {
+  document.body.classList.toggle('dark');
+  h4 = document.getElementsByTagName('h4');
+  for (x of h4){
+    x.classList.toggle('dark');
+  }
+
+});
+
+
 (function ($) {
     "use strict"; // Start of use strict
 
@@ -112,6 +125,7 @@ function searchAll(query) {
 
 // Autocomplete
 $("#autocomplete").autocomplete({
+    appendTo: $('#search'),
     source: function (request, response) {
       $.ajax({
         url: "https://www.googleapis.com/books/v1/volumes?",
@@ -155,6 +169,7 @@ $("#autocomplete").autocomplete({
           console.log(secondary_matches);
           response($.merge(primary_matches, secondary_matches));
         },
+        
         // error: function () {
         //   response([]);
         // }
@@ -162,10 +177,14 @@ $("#autocomplete").autocomplete({
     }
   })
   .data("ui-autocomplete")._renderItem = function( ul, item ) {
-              var inner_html = '<a><div class="list_item_container"><div class="image"><img width="30" height="45" src="' + item.imgLink + '"></div><div class="label"><h3> Reputation:  ' + item.rep + '</h3></div><div class="description">' + item.label + '</div></div></a><hr/>';
+              // var inner_html = '<a><div class="list_item_container"><div class="image"><img width="30" height="45" src="' + item.imgLink + '"></div><span id="label">';
+              var newText = String(item.value).replace(
+              new RegExp(this.term, "gi"),
+              "<span class='ui-state-highlight'><b>$&</b></span>");
+
               return $( "<li></li>" )
               .attr( "data-value", item)
-              // .append("<div>" + "<img width='30' height='45' src='" + item.imgLink + "' />")
-              .append($( "<div>" ).html( item.label.replace(new RegExp(this.term, 'gi'),"<b>$&</b>") ))
+              .append("<div class='row'><div class='col-3'><img width='65' height='80' src='" + item.imgLink + "'></div>" + "<div class='col'>" + newText + "</div></div>")
               .appendTo( ul );
           };
+
