@@ -32,40 +32,36 @@ const genre_dataset = {
     ]
 };
 
-function gtags() {
 
-    genres_set = genre_dataset.genres;
-
-    for (genre_details of genres_set) {
-
-        var genre = genre_details.genre;
-        var desc = genre_details.description;
-
-        console.log(genre, desc);
-        document.getElementById('glist').innerHTML += `<button type="button" class="btn genre m-1">${genre}</button>`;
-    }
-}
 
 
 function display_default() {
-    call_api('romance');
+    call_api('romance', 0);
+
 }
 display_default();
 
-function call_api(genre) {
+function call_api(genre, pg_num) {
     var request = new XMLHttpRequest();
-    var max = 10;
+    var max = 4;
 
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
-    
+            document.getElementById('main-content').innerHTML = '';
+            document.getElementById('pagination').innerHTML = '';
+            
             extract_display_data(this);
+            extract_page_data(this, genre, pg_num);
+            console.log(`page num: ${pg_num}`);
 
         }
     }
 
-    var api_key = 'AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE';
-    var url = `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&startIndex=0&maxResults=${max}&key=${api_key}`;
+    // var api_key = 'AIzaSyD3eModiXQP1JF-YgUIpOQ9TjmwQ9NQ3q8';
+    // &key=${api_key}
+    var start_index = pg_num*max;
+    console.log(start_index);
+    var url = `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&startIndex=${start_index}&maxResults=${max}`;
 
     request.open('GET', url, true);
     request.send();
@@ -77,9 +73,9 @@ function extract_display_data(xml) {
     var index = 0;
 
     for (book of book_results) {
-        console.log(book);
+        // console.log(index);
+        // console.log(book);
         var book = book.volumeInfo;
-        var index = 0;
 
         // book information
         var title = book.title;
@@ -91,7 +87,7 @@ function extract_display_data(xml) {
 
         if ( typeof short_desc !== 'undefined' ) {
             if (short_desc.length > 150) {
-                short_desc = short_desc.slice(0,150) + '...';
+                short_desc = short_desc.slice(0,120) + '...';
             }
         }
         else {
@@ -100,19 +96,80 @@ function extract_display_data(xml) {
 
         
         
-        console.log(img);
+        // console.log(img);
         // input each book
         var node = document.createElement('div');
-        node.setAttribute('class', 'col-lg-3 col-sm-6 col-xs-6 mb-4');
+        node.setAttribute('class', ' base');
+        node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
+        node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
         node.innerHTML = 
         `
-        <img class="card-img-top" src="${img}" alt="..." width='42' height='185' >
+        <div class="each-book">
+            <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
+            <div class="main-details">
+                <b>${title}</b><br>
+                by ${author}
+            </div>
+        </div>
+        <!-- style="visibility: hidden; -->
+        <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
+            ${short_desc}
+        </div>
         `;
         
         document.getElementById('main-content').appendChild(node);
-
+        // console.log(node);
+        // console.log(document.getElementById('main-content'));
         index += 1;
 
     }
 
 }
+
+function extract_page_data(xml, genre) {
+    var obj = JSON.parse(xml.responseText);
+    var book_results = obj.items;
+    var index = 0;
+
+    
+    for ( i = 1; i <= 5; i++ ) {
+        var node = document.createElement('button');
+        node.setAttribute('class', 'btn genre m-1 text-blue');
+        node.setAttribute('onclick', `call_api('${genre}', ${i})`);
+        node.innerHTML = `${i}`;
+        
+        // console.log(node);
+        document.getElementById('pagination').appendChild(node);
+    }
+
+    
+    // for (book of book_results) {
+
+    // }
+
+}
+
+function show_desc(id) {
+    var node = document.getElementById(id);
+    node.setAttribute('style', 'visibility: visible;');
+}
+
+function hide_desc(id) {
+    var node = document.getElementById(id);
+    node.setAttribute('style', 'visibility: hidden;');
+}
+
+// function gtags() {
+
+//     genres_set = genre_dataset.genres;
+
+//     for (genre_details of genres_set) {
+
+//         var genre = genre_details.genre;
+//         var desc = genre_details.description;
+
+//         // console.log(genre, desc);
+//         document.getElementById('glist').innerHTML += `<button type="button" class="btn genre m-1" onclick='call_api(${genre})'>${genre}</button>`;
+//     //    console.table( this.call_api(`${genre}`) );
+//     }
+// }

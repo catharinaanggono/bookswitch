@@ -18,25 +18,42 @@
 
     <title>BookSwitch2</title>
 </head>
-<body onload="gtags()">
+<body>
 
     <div id="header"></div><br><br><br><br>
     
     <div class="container text-center" id="glist">
         <h1>hello</h1>
+        <button type="button" class="btn genre m-1" onclick="call_api('Mystery', 0)">Mystery</button>
+        <button type="button" class="btn genre m-1" onclick="call_api('Romance', 0)">Romance</button>
+        <button type="button" class="btn genre m-1" onclick="call_api('Thriller', 0)">Thriller</button>
+        <button type="button" class="btn genre m-1" onclick="call_api('Fantasy', 0)">Fantasy</button>
+        <button type="button" class="btn genre m-1" onclick="call_api('Science Fiction', 0)">Science Fiction</button>
     </div>
 
-    <!-- Page Content -->
-    <div class="container" >
-        <div class="row" id="main-content">
+    <br><br>
+
+    <div class="container">
+        <div class="row">
 
         </div>
-        <!-- /.row -->
 
+    </div>
+    <!-- Page Content -->
+    <div class="container-fluid" style="width: 90%;" >
+        <div class="row" id="main-content">
+            
+        </div>
+        <!-- /.row -->
+    </div>
+
+    <br><br>
+    <div id="pagination" class="container">
+        <a style="text-align: center;">1</a>
     </div>
 
     
-
+    <br><br><br><br><br>
     <!-- jQuery for header/footer -->
     <script
         src="https://code.jquery.com/jquery-3.3.1.js"
