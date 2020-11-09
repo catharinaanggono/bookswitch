@@ -108,6 +108,10 @@ function extract_display_data(xml) {
             short_desc = 'description not available';
         }
 
+<<<<<<< HEAD
+        
+=======
+>>>>>>> e5750c2bb19f3c056addbb7eec7a309b5fdefe9a
         // console.log(img);
         // input each book
         var node = document.createElement('div');

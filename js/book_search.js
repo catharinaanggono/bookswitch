@@ -1,31 +1,3 @@
-// -----------------------------
-// REAL CALL API FOR SEARCH RESULTS
-// ------------------------------
-// function call_api_search(keyword){
-//     var request = new XMLHttpRequest();
-    
-//     request.onreadystatechange = function(){
-//         if (request.readyState==4 && request.status==200){
-//             extract_display_data(this);
-            
-//         }
-//     };
-
-//     var max = 20;
-//     var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
-//     var url='';
-
-//     if(category == 'all'){
-//         url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
-//     }
-//     else{
-//         url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&maxResults=${max}&key=${key}`;
-//     }
-
-//     request.open('GET', url, true);
-//     request.send();
-// }
-
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
     // console.log(xml.responseText);
@@ -62,6 +34,13 @@ function extract_display_data(xml) {
             isbn = '';
         }
 
+        if (typeof img !== 'undefined'){
+            img = books_result[each_book].volumeInfo.imageLinks.thumbnail;
+        }
+        else{
+            img = '../images/no_image-removebg-preview.svg'
+        }
+
         // console.log(books_result[each_book]);
         // console.log(title);
         // console.log(author);
@@ -71,7 +50,7 @@ function extract_display_data(xml) {
         // console.log(image);
 
         var node = document.createElement('div');
-        node.setAttribute('class', ' base');
+        node.setAttribute('class', ' base col-lg-4 col-md-4 col-sm-6 col-6');
         node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
         node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
         node.innerHTML = 
@@ -97,7 +76,7 @@ function extract_display_data(xml) {
 }
 
 
-function call_api_test(keyword, pg_num){
+function call_api_search(category, keyword, pg_num){
     var request = new XMLHttpRequest();
     var max = 39;
 
@@ -116,45 +95,40 @@ function call_api_test(keyword, pg_num){
     var start_index = pg_num*max;
     console.log(start_index);
 
-    var url=`https://www.googleapis.com/books/v1/volumes?q=harry%potter&startIndex=${start_index}&maxResults=${max}`;
+    // var url=`https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
 
-    // if(category == 'all'){
-    //     url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
-    // }
-    // else{
-    //     url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&maxResults=${max}&key=${key}`;
-    // }
+    if(category == 'all'){
+        url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
+    }
+    else{
+        url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&startIndex=${start_index}&maxResults=${max}`;
+    }
 
     request.open('GET', url, true);
     request.send();
 }
 
-call_api_test('harry potter', 1);
-// call_api_search();
+call_api_search('all', 'harry potter', 1);
 
 
 function extract_page_data(xml, pg_num, max) {
     var obj = JSON.parse(xml.responseText);
     var book_results = obj.items;
     var index = 0;
-    var total_items = obj.totalItems;
-    var num_of_pages = Math.ceil(total_items / max);
-    console.log(total_items);
-    console.log(num_of_pages);
+    // var total_items = obj.totalItems;
+    // var num_of_pages = Math.ceil(total_items / max);
+    // console.log(total_items);
+    // console.log(num_of_pages);
     
     for ( i = 1; i <= 5; i++ ) {
         var node = document.createElement('button');
         node.setAttribute('class', 'btn genre m-1 text-blue');
-        node.setAttribute('onclick', `call_api_test('harry potter', ${i})`);
+        node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i})`);
         node.innerHTML = `${i}`;
         
         // console.log(node);
         document.getElementById('pagination').appendChild(node);
     }
-    
-    // for (book of book_results) {
-
-    // }
 
 }
 
@@ -167,55 +141,3 @@ function hide_desc(id) {
     var node = document.getElementById(id);
     node.setAttribute('style', 'visibility: hidden;');
 }
-
-
-// $("#search_book").autocomplete({
-//     source: function (request, response) {
-//         $.ajax({
-//         url: "https://www.googleapis.com/books/v1/volumes?",
-//         data: { 
-//             q: request.term,
-//             startIndex: 1,
-//             maxResults: 15
-//         },
-//         success: function (data) {
-//             data = data.items
-//             var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
-//             var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
-
-//             console.log(data);
-
-//             var primary_matches = $.map(data, function (el) {
-//             if (matcher1.test(el.volumeInfo.title)){
-//                 return {
-//                 value: el.volumeInfo.title
-//                 };
-
-//             }
-                
-//             });
-//             var secondary_matches = $.map(data, function (el) {
-//             if (matcher2.test(el.volumeInfo.title)){
-//                 return {
-//                 value: el.volumeInfo.title
-//                 };
-
-//             }
-                
-//             });
-//             console.log(primary_matches);
-//             console.log(secondary_matches);
-//             response($.merge(primary_matches, secondary_matches));
-
-//             // response($.map($.merge(primary_matches, secondary_matches), function(item){
-//             //     return {label: __highlight(item.title, request.term) + "(" + item.type + ")", value: item.title}
-//             // }));
-//         },
-
-//         });
-//     }}).data("ui-autocomplete")._renderItem = function( ul, item ) {
-//     return $( "<li>" )
-//     .attr( "data-value", item.value )
-//     .append( $( "<div>" ).html( item.label.replace(new RegExp(this.term, 'gi'),"<b>$&</b>") ) )
-//     .appendTo( ul );
-//     };
