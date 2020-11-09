@@ -9,6 +9,12 @@ const genre_dataset = [
 
 ];
 
+function update_header(genre) {
+    document.getElementById('genre-header').innerText = 'hellu';
+    // console.log(genre);
+}
+
+
 function display_default() {
     call_api('romance', 0);
 }

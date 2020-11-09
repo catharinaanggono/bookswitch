@@ -2,6 +2,22 @@ function display_default() { //default
     call_book("9781760553128");
 }
 
+function myFunction() {
+    var dots = document.getElementById("dots");
+    var moreText = document.getElementById("more");
+    var btnText = document.getElementById("myBtn");
+  
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "Read more"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less"; 
+      moreText.style.display = "inline";
+    }
+}
+
 function call_book(id){
     var request = new XMLHttpRequest();
     
@@ -51,7 +67,7 @@ function call_book(id){
                 }
             }
             document.getElementById("bk_description").innerHTML= desc + "<span id='dots'></span>" +
-            "<span id='more'>" + secondDesc + "</span> <br><button onclick='myFunction()' class='btn btn-outline-primary' id='myBtn'>Read more</button>";
+            "<span id='more' style = 'padding-top: 10px;'>" + secondDesc + "</span> <button onclick='myFunction()' class='btn black-background white' id='myBtn'>Read more</button>";
             
         }
 
@@ -62,5 +78,7 @@ function call_book(id){
 
     request.open("GET", url, true);
     request.send();
+
+
 }
 

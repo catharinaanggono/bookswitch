@@ -32,8 +32,18 @@ const genre_dataset = {
     ]
 };
 
+function update_header(genre) {
+    var genre_btns = document.getElementsByClassName('btn');
+
+    for ( i = 0; i < genre_btns.length; i++ ) {
+        genre_btns[i].setAttribute('class', 'btn genre m-1');
+    }
+    console.log(selected_genre);
+    
+}
+
 function display_default() {
-    call_api_genre ('romance', 0);
+    call_api_genre('romance', 0);
 
 }
 display_default();
@@ -44,6 +54,8 @@ display_default();
 function call_api_genre(genre, pg_num) {
     var request = new XMLHttpRequest();
     var max = 8;
+
+
 
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
@@ -82,10 +94,10 @@ function extract_display_data(xml) {
         // book information
         var title = book.title;
         var author = book.authors;
-        // var isbn = book.industryIdentifiers[0].identifier;
+        var isbn = book.industryIdentifiers[0].identifier;
         var short_desc = book.description;
         var img = book.imageLinks.thumbnail;
-
+        // console.log(isbn);
 
         if ( typeof short_desc !== 'undefined' ) {
             if (short_desc.length > 150) {
@@ -106,6 +118,7 @@ function extract_display_data(xml) {
         node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
         node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
         node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
+        node.setAttribute('onclick', `redirect(${isbn})`);
         node.innerHTML = 
         `
         <div class="each-book">
@@ -135,6 +148,10 @@ function extract_display_data(xml) {
 
 }
 
+function redirect(isbn) {
+    location.href = `bookdetails.php?isbn=${isbn}`;
+}
+
 function extract_page_data(xml, genre) {
     var obj = JSON.parse(xml.responseText);
     var book_results = obj.items;
@@ -144,7 +161,7 @@ function extract_page_data(xml, genre) {
     for ( i = 1; i <= 5; i++ ) {
         var node = document.createElement('button');
         node.setAttribute('class', 'btn genre m-1 text-blue');
-        node.setAttribute('onclick', `call_api('${genre}', ${i})`);
+        node.setAttribute('onclick', `call_api_genre('${genre}', ${i})`);
         node.innerHTML = `${i}`;
         
         // console.log(node);

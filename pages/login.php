@@ -44,7 +44,7 @@
 				$_SESSION["userid"] = $userid;
 				// $_SESSION["userid"] = $userid;
 				// $_SESSION["name"] = $name;
-                header("location:bookdetails.html");
+                header("location:bookdetails.php");
 			}
 		}
 
