@@ -11,7 +11,14 @@
     position:relative;
 
 */
+.active {
+    background-color: teal;
 
+}
+
+.selected {
+    background: teal;
+}
 .genre {
     border: 2px solid grey;
     color: grey;
@@ -116,50 +123,3 @@
 }
 
 
-
-
-/* colour scheme */
-.bg-white {
-    background-color: white;
-
-}
-
-.bg-blue {
-    background-color: #5d7db8;
-}
-
-.bg-purple {
-    background-color: #8e89b2;
-}
-
-.bg-dullpink {
-    background-color: #bf96ac;
-}
-
-.bg-pink {
-    background-color: #f0a3a7;
-}
-
-.text-black {
-    color: #000000;
-}
-
-.text-white {
-    color: white;
-}
-
-.text-blue {
-    color: #5d7db8;
-}
-
-.text-purple {
-    color: #8e89b2;
-}
-
-.text-dullpink {
-    color: #bf96ac;
-}
-
-.text-pink {
-    color: #f0a3a7;
-}
