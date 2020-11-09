@@ -135,7 +135,7 @@ $("#autocomplete").autocomplete({
           maxResults: 15
         },
         success: function (data) {
-          data = data.items
+          data = data.items;
           var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
           var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
   
@@ -144,10 +144,12 @@ $("#autocomplete").autocomplete({
           var primary_matches = $.map(data, function (el) {
             let result = el.volumeInfo.title;
             let img_link = el.volumeInfo.imageLinks.thumbnail;
-            if (matcher1.test(result)){
+            let authors = el.volumeInfo.authors;
+            if (matcher1.test(result) || matcher1.test(authors)){
               return {
                 imgLink: img_link,
-                value: result
+                value: result,
+                author: authors
               };
   
             }
@@ -156,10 +158,12 @@ $("#autocomplete").autocomplete({
           var secondary_matches = $.map(data, function (el) {
             let result = el.volumeInfo.title;
             let img_link = el.volumeInfo.imageLinks.thumbnail;
-            if (matcher2.test(result)){
+            let authors = el.volumeInfo.authors;
+            if (matcher2.test(result) || matcher2.test(authors)){
               return {
                 imgLink: img_link,
-                value: result
+                value: result,
+                author: authors
               };
   
             }
@@ -177,14 +181,16 @@ $("#autocomplete").autocomplete({
     }
   })
   .data("ui-autocomplete")._renderItem = function( ul, item ) {
-              // var inner_html = '<a><div class="list_item_container"><div class="image"><img width="30" height="45" src="' + item.imgLink + '"></div><span id="label">';
-              var newText = String(item.value).replace(
+              var titleText = String(item.value).replace(
               new RegExp(this.term, "gi"),
               "<span class='ui-state-highlight'><b>$&</b></span>");
+              var authorText = String(item.author).replace(
+                new RegExp(this.term, "gi"),
+                "<span class='ui-state-highlight'><b>$&</b></span>");
 
               return $( "<li></li>" )
               .attr( "data-value", item)
-              .append("<div class='row'><div class='col-3'><img width='65' height='80' src='" + item.imgLink + "'></div>" + "<div class='col'>" + newText + "</div></div>")
+              .append("<div class='row'><div class='col-3'><img width='62' height='85' src='" + item.imgLink + "'></div>" + "<div class='col'><div class='row'><div class='col'><p style='font-size:15px'>" + titleText + "</p></div></div>" + "<div class='row'><div class='col'><p style='font-size:10px'>" + authorText + "</p></div></div></div>")
               .appendTo( ul );
           };
 
