@@ -6,29 +6,79 @@
 #bf96ac dull pink
 #f0a3a7 pink
  */
+ /* #container {
+    min-height:100%;
+    position:relative;
 
-.bg-black {
-    background-color: #000000;
+*/
+.active {
+    background-color: teal;
+
 }
 
-.bg-blue {
-    background-color: #5d7db8;
+.selected {
+    background: teal;
+}
+.genre {
+    border: 2px solid grey;
+    color: grey;
+    font-weight: 600;
+    border-radius: 22px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-.bg-purple {
-    background-color: #8e89b2;
+.genre:hover { 
+    border: 2px solid #267055; 
+    /* border-radius: 15px; */
+    color:  #267055;
+    /* font-weight: bold; */
+    bottom: 3px;
+    
+    /* background-color: #f0a3a7; */
 }
 
-.bg-dullpink {
-    background-color: #bf96ac;
-}
-
-.bg-pink {
+.footer-box {
+    display: block;
+    text-align: center;
+    font-size: 0.75em;
+    bottom:0;
+    width: 100%;
+    height: 30px;
+    /* position: fixed; */
     background-color: #f0a3a7;
 }
 
-.text-black {
-    color: #000000;
+/* phone */
+/* @media (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+
+} */
+
+/* each book: base, top->norm, btm->desc */
+.base {
+    width: 33%;
+    height: 200px;
+    /* border: 2px dotted blueviolet; */
+    margin: auto;
+    position: relative;
+    /* border: #8e89b2 dotted 2     px; */
+}
+
+.each-book {
+    width: 90%;
+    height: 160px;
+    /* border: 2px solid #D3D3D3; */
+    background-image: linear-gradient(rgb(70, 138, 107), rgb(71, 147, 190));
+    margin: auto;
+    position: absolute;
+    border-radius: 5px;
+
+    top: 0;
+    right: 6%;
+    /* background-color: #8e89b2; */
 }
 
 .each-desc {
@@ -50,29 +100,26 @@
     left: 0;
 }
 
-.text-white {
-    color: white;
+.each-img {
+    width: 30%;
+    height: 100%;
+    position: absolute ;
 }
 
-.text-blue {
-    color: #5d7db8;
-}
+.main-details {
+    background-color: white;
+    /* background-image: linear-gradient(pink yellow); */
+    opacity: 80%;
 
-.text-purple {
-    color: #8e89b2;
-}
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 70%;
+    word-wrap: break-word;
 
-.text-dullpink {
-    color: #bf96ac;
-}
+    padding: 10px;
+    font-size: 18px;
 
-.text-pink {
-    color: #f0a3a7;
-}
-
-/* hover */
-.link:hover {
-    color: #f0a3a7;
 }
 
 /* dark version */
@@ -89,7 +136,7 @@
 h2.dark{
     color: #D5D3BF;
 }
-/* end of dark version */
+
 
 /* colour scheme */
 .bg-white {
