@@ -32,16 +32,16 @@ const genre_dataset = {
     ]
 };
 
-
-
-
 function display_default() {
-    call_api('romance', 0);
+    call_api_genre ('romance', 0);
 
 }
 display_default();
 
-function call_api(genre, pg_num) {
+// search
+
+// genre
+function call_api_genre(genre, pg_num) {
     var request = new XMLHttpRequest();
     var max = 4;
 
@@ -66,6 +66,8 @@ function call_api(genre, pg_num) {
     request.open('GET', url, true);
     request.send();
 }
+
+
 
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
@@ -95,7 +97,7 @@ function extract_display_data(xml) {
         }
 
         
-        
+        print(index)
         // console.log(img);
         // input each book
         var node = document.createElement('div');
@@ -141,11 +143,6 @@ function extract_page_data(xml, genre) {
         // console.log(node);
         document.getElementById('pagination').appendChild(node);
     }
-
-    
-    // for (book of book_results) {
-
-    // }
 
 }
 
