@@ -45,6 +45,8 @@ function call_api_genre(genre, pg_num) {
     var request = new XMLHttpRequest();
     var max = 8;
 
+    active_genre();
+
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
             document.getElementById('main-content').innerHTML = '';
