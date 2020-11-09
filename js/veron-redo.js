@@ -97,7 +97,6 @@ function extract_display_data(xml) {
         }
 
         
-        print(index)
         // console.log(img);
         // input each book
         var node = document.createElement('div');
