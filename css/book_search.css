@@ -28,14 +28,6 @@
         z-index:1;
     }
 
-    .base {
-        width: 33%;
-        height: 180px;
-        /* border: 2px dotted blueviolet; */
-        /* margin: auto; */
-        position: relative;
-        
-    }
 }
 
 
