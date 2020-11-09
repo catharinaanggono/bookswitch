@@ -11,12 +11,6 @@
     position:relative;
 
 */
-body {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 400;
-}
-
-
 .genre {
     border: 2px solid grey;
     color: grey;
@@ -47,45 +41,59 @@ body {
     background-color: #f0a3a7;
 }
 
+/* phone */
+/* @media (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+
+} */
+
 /* each book: base, top->norm, btm->desc */
 .base {
-    width: 25%;
-    height: 180px;
+    width: 33%;
+    height: 200px;
     /* border: 2px dotted blueviolet; */
     margin: auto;
     position: relative;
+    /* border: #8e89b2 dotted 2px; */
 }
 
 .each-book {
-    width: 80%;
-    height: 150px;
+    width: 90%;
+    height: 160px;
     /* border: 2px solid #D3D3D3; */
-    background-image: linear-gradient(red, yellow);
+    background-image: linear-gradient(rgb(70, 138, 107), rgb(71, 147, 190));
     margin: auto;
     position: absolute;
+    border-radius: 5px;
 
     top: 0;
-    right: 0;
+    right: 6%;
+    /* background-color: #8e89b2; */
 }
 
 .each-desc {
     position: absolute;
-    height: 150px;
-    width: 80%;
-    background-color: white;
-    background-image: linear-gradient(pink yellow);
-    opacity: 80%;
+    height: 155px;
+    width: 88%;
+    /* background-image: linear-gradient(#DAE8E3, #DAE9F0); */
+    background-image: linear-gradient(#DAE9F0, #DAE8E3);
+    background-color: #DAE8E3;
+    /* border: #267055 solid 2px; */ 
+    /* opacity: 80%; */
     border-radius: 5px;
 
     word-wrap: break-word;
-    padding: 10px;
-    font-size: 12px;
+    padding: 2%;
+    font-size: 16px;
 
-    bottom: 0;
+    bottom: 10px;
+    left: 0;
 }
 
 .each-img {
-    width: 40%;
+    width: 30%;
     height: 100%;
     position: absolute ;
 }
@@ -98,7 +106,7 @@ body {
     position: absolute;
     right: 0px;
     height: 100%;
-    width: 60%;
+    width: 70%;
     word-wrap: break-word;
 
     padding: 10px;
@@ -106,31 +114,13 @@ body {
 
 }
 
-/* .main-details:hover {
-    display: none;
-    transition: width 2s;
-    width: 0%;
-} */
 
-.desc {
-    background-color: cornflowerblue;
-
-    position: absolute;
-    right: 0px;
-    height: 100%;
-    width: 70%;
-    word-wrap: break-word;
-    padding: 10px;
-    font-size: 12px;
-    
-
-    z-index: -1;
-}
 
 
 /* colour scheme */
-.bg-black {
-    background-color: #000000;
+.bg-white {
+    background-color: white;
+
 }
 
 .bg-blue {

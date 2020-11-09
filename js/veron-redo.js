@@ -43,7 +43,7 @@ display_default();
 // genre
 function call_api_genre(genre, pg_num) {
     var request = new XMLHttpRequest();
-    var max = 4;
+    var max = 8;
 
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
@@ -96,11 +96,14 @@ function extract_display_data(xml) {
             short_desc = 'description not available';
         }
 
+<<<<<<< HEAD
         
+=======
+>>>>>>> e5750c2bb19f3c056addbb7eec7a309b5fdefe9a
         // console.log(img);
         // input each book
         var node = document.createElement('div');
-        node.setAttribute('class', ' base');
+        node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
         node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
         node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
         node.innerHTML = 
@@ -114,8 +117,10 @@ function extract_display_data(xml) {
         </div>
         <!-- style="visibility: hidden; -->
         <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
+            <b>Description</b><br>
             ${short_desc}
         </div>
+
         `;
         
         document.getElementById('main-content').appendChild(node);
@@ -123,7 +128,10 @@ function extract_display_data(xml) {
         // console.log(document.getElementById('main-content'));
         index += 1;
 
+        
     }
+    // console.log(document.getElementsByClassName('hehe')[0].innerHTML);
+
 
 }
 

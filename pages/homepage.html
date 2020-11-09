@@ -38,7 +38,7 @@
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Genre</a></li>
                         <li class="nav-item">
-                          <div class="search">
+                          <div class="search" id="search">
                             <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
                           </div></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i>user1</a></li>
@@ -52,29 +52,21 @@
 
                     </ul>
                 </div>
-                
+                <div>
+                  <input type="checkbox" class="checkbox" id="chk" />
+                  <label class="label" for="chk">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <div class="ball"></div>
+                  </label>
+                </div>   
                         
             </div>
         </nav>
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <!-- <div class="masthead-subheading">Welcome To Our Studio!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a> -->
-                <!-- <div class="input-group" style="margin-top: 180px;">
-                    <div class="input-group-prepend">
-                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" onclick="searchAll('test')">All</a>
-                        <a class="dropdown-item" href="#">Title</a>
-                        <a class="dropdown-item" href="#">Author</a>
-                        <a class="dropdown-item" href="#">ISBN</a>
-                      </div>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                  </div>
-            </div> -->
+              
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Title</a>
