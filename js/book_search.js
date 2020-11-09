@@ -5,7 +5,7 @@ function extract_display_data(xml) {
     var books_result = obj.items;
     var index = 0;
 
-    console.log(books_result);
+    // console.log(books_result);
     // console.log(document.getElementById('results'));
     for (each_book in books_result){
         // console.log(each_book);
@@ -107,7 +107,7 @@ function call_api_search(category, keyword, pg_num){
     request.send();
 }
 
-call_api_search('all', 'harry potter', 1);
+call_api_search('all', 'harry potter', 0);
 
 
 function extract_page_data(xml, pg_num, max) {
@@ -121,14 +121,34 @@ function extract_page_data(xml, pg_num, max) {
     
     for ( i = 1; i <= 5; i++ ) {
         var node = document.createElement('button');
-        node.setAttribute('class', 'btn genre m-1 text-blue');
-        node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i})`);
+        node.setAttribute('class', 'btn genre m-1');
+        node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i}); reset_button(${i}); select_button(${i})`);
         node.innerHTML = `${i}`;
         
         // console.log(node);
         document.getElementById('pagination').appendChild(node);
     }
 
+}
+
+function reset_button(i){
+    // var buttons = document.getElementsByTagName('button');
+    // for (index = 1; index < buttons.length; index++){
+    // //     if (index == i){
+    // //         buttons[index].setAttribute('class', 'btn genre m-1 active');
+    // //     }
+    // //     else{
+    //         buttons[index].setAttribute('class', 'btn genre m-1');
+    //     // }
+    //     // console.log(i);
+    //     // console.log(buttons[i]);
+    // }
+}
+
+function select_button(i){
+    // var index = i - 1
+    // var buttons = document.getElementsByTagName('button');
+    // buttons[index].setAttribute('class', 'btn genre m-1 active');
 }
 
 function show_desc(id) {
