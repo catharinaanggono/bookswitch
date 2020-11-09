@@ -9,14 +9,16 @@
             if(isset($_POST['getCopy'])) { 
                 $dao = new listingDAO(); 
                 $status = $dao->addCopy($userid,$isbn);
-                // bring to which webpage next? 
-                // header("location:login.html");
+                $_SESSION["button"] = "getCopy"; 
+                header("location:bookdetails.php?isbn=$isbn");
+                echo "<script>$('#exampleModal').modal('show')</script>";
                 
             } else { 
                 $dao = new wishlistDAO(); 
                 $status = $dao->addWishlist($userid,$isbn);
-                // bring to which webpage next? 
-                // header("location:login.html");
+                $_SESSION["button"] = "getWishlist"; 
+                header("location:bookdetails.php?isbn=$isbn");
+                echo "<script>$('#exampleModal').modal('show')</script>";
             }
 	} else { 
         header("location:login.html");
