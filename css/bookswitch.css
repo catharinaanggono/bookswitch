@@ -11,6 +11,14 @@
     position:relative;
 
 */
+.active {
+    background-color: teal;
+
+}
+
+.selected {
+    background: teal;
+}
 .genre {
     border: 2px solid grey;
     color: grey;
@@ -56,7 +64,7 @@
     /* border: 2px dotted blueviolet; */
     margin: auto;
     position: relative;
-    /* border: #8e89b2 dotted 2px; */
+    /* border: #8e89b2 dotted 2     px; */
 }
 
 .each-book {
@@ -123,10 +131,6 @@
     margin: auto;
     position: absolute;
     border-radius: 5px;
-
-    top: 0;
-    right: 6%;
-    /* background-color: #8e89b2; */
 }
 
 h2.dark{
@@ -179,3 +183,5 @@ h2.dark{
 .text-pink {
     color: #f0a3a7;
 }
+=======
+>>>>>>> 07f29367ce41e63c62db8962f5ec76b46d5df261
