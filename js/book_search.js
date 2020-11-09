@@ -34,6 +34,13 @@ function extract_display_data(xml) {
             isbn = '';
         }
 
+        if (typeof img !== 'undefined'){
+            img = books_result[each_book].volumeInfo.imageLinks.thumbnail;
+        }
+        else{
+            img = '../images/no_image-removebg-preview.svg'
+        }
+
         // console.log(books_result[each_book]);
         // console.log(title);
         // console.log(author);
@@ -108,15 +115,15 @@ function extract_page_data(xml, pg_num, max) {
     var obj = JSON.parse(xml.responseText);
     var book_results = obj.items;
     var index = 0;
-    var total_items = obj.totalItems;
-    var num_of_pages = Math.ceil(total_items / max);
-    console.log(total_items);
-    console.log(num_of_pages);
+    // var total_items = obj.totalItems;
+    // var num_of_pages = Math.ceil(total_items / max);
+    // console.log(total_items);
+    // console.log(num_of_pages);
     
     for ( i = 1; i <= 5; i++ ) {
         var node = document.createElement('button');
         node.setAttribute('class', 'btn genre m-1 text-blue');
-        node.setAttribute('onclick', `call_api_search('harry potter', ${i})`);
+        node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i})`);
         node.innerHTML = `${i}`;
         
         // console.log(node);

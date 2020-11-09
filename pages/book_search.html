@@ -22,7 +22,7 @@
     <!-- BookSwitch CSS -->
     <link href="../css/homepage.css" rel="stylesheet" />
     <link href="../css/bookswitch.css" rel="stylesheet" />
-    <link href="../css/book_search.css" rel="stylesheet" />
+    <!-- <link href="../css/book_search.css" rel="stylesheet" /> -->
     
 
     <title>BookSwitch</title>
@@ -30,38 +30,7 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../images/bookswitch.svg" alt="" /></a>
-            <div class="d-flex flex-row order-2 order-lg-3">
-
-                <ul class = "navbar-nav">
-                    <li class="nav-item nav-link" id="bookens"><span style="color:#474E45;">50</span><img src="../images/bookens_circle.svg" width="22" height="22"></li>
-                </ul>
-
-                <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <!-- Menu -->
-                    <i class="fas fa-bars ml-1"></i>
-                </button>
-            </div>
-            
-            <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
-                <ul class="navbar-nav text-uppercase ml-auto">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Genre</a></li>
-                    <li class="nav-item">
-                        <div class="search">
-                            <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i>user1</a></li>
-                    
-                </ul>
-            </div>
-            
-                    
-        </div>
-        
-    </nav>
+    <div id="header"></div>
 
     <!-- Pagination -->
     <ul class="pagination justify-content-center" id='pagination'>
@@ -81,7 +50,7 @@
     <!-- /.container -->
 
     <!-- jQuery for header/footer -->
-    <!-- <script
+    <script
         src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
@@ -91,7 +60,7 @@
             $("#header").load("../reuse/header.html"); 
             $("#footer").load("../reuse/footer.html"); 
         });
-    </script>  -->
+    </script> 
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
