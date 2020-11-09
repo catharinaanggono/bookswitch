@@ -10464,7 +10464,7 @@
     border-color: white;
 }
 
-#pagination > button:focus
+#pagination > button > .active
 {
     color: white;
     background-color: red;

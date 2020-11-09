@@ -69,7 +69,7 @@ function extract_display_data(xml) {
 }
 
 
-function call_api_search(keyword, pg_num){
+function call_api_search(category, keyword, pg_num){
     var request = new XMLHttpRequest();
     var max = 39;
 
@@ -88,21 +88,20 @@ function call_api_search(keyword, pg_num){
     var start_index = pg_num*max;
     console.log(start_index);
 
-    var url=`https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
+    // var url=`https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
 
-    // if(category == 'all'){
-    //     url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&maxResults=${max}&key=${key}`;
-    // }
-    // else{
-    //     url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&maxResults=${max}&key=${key}`;
-    // }
+    if(category == 'all'){
+        url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
+    }
+    else{
+        url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&startIndex=${start_index}&maxResults=${max}`;
+    }
 
     request.open('GET', url, true);
     request.send();
 }
 
-call_api_search('harry potter', 1);
-// call_api_search();
+call_api_search('all', 'harry potter', 1);
 
 
 function extract_page_data(xml, pg_num, max) {
@@ -123,10 +122,6 @@ function extract_page_data(xml, pg_num, max) {
         // console.log(node);
         document.getElementById('pagination').appendChild(node);
     }
-    
-    // for (book of book_results) {
-
-    // }
 
 }
 
