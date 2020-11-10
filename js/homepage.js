@@ -7,7 +7,11 @@ chk.addEventListener('change', () => {
   for (x of h4){
     x.classList.toggle('dark');
   }
-
+  books = document.getElementsByClassName('each-book');
+  for (x of books){
+    x.classList.toggle('dark');
+  }
+  search_result = document.getElementsByTagName('h2')[0].classList.toggle('dark');
 });
 
 
