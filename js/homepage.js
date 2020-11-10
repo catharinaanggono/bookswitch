@@ -1,17 +1,31 @@
-
 const chk = document.getElementById('chk');
 
-chk.addEventListener('change', () => {
-  document.body.classList.toggle('dark');
+chk.addEventListener('click', () => {
+  chk.checked?document.body.classList.add("dark"):document.body.classList.remove("dark");
   h4 = document.getElementsByTagName('h4');
   for (x of h4){
-    x.classList.toggle('dark');
+    chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
   books = document.getElementsByClassName('each-book');
   for (x of books){
-    x.classList.toggle('dark');
+    chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
-  search_result = document.getElementsByTagName('h2')[0].classList.toggle('dark');
+  localStorage.setItem('darkModeStatus', chk.checked);
+});
+
+window.addEventListener('load', (event) => {
+  if(localStorage.getItem('darkModeStatus')=="true"){
+    document.body.classList.add("dark"); 
+    h4 = document.getElementsByTagName('h4');
+    for (x of h4){
+      x.classList.add("dark");
+    }
+    books = document.getElementsByClassName('each-book');
+    for (x of books){
+      x.classList.add("dark");
+    }
+    document.getElementById('chk').checked = true;
+  }
 });
 
 
@@ -147,8 +161,18 @@ $("#autocomplete").autocomplete({
   
           var primary_matches = $.map(data, function (el) {
             let result = el.volumeInfo.title;
-            let img_link = el.volumeInfo.imageLinks.thumbnail;
+            let img_link = el.volumeInfo.imageLinks;
             let authors = el.volumeInfo.authors;
+            console.log(authors);
+            if (typeof img_link !== 'undefined'){
+              img_link = el.volumeInfo.imageLinks.thumbnail;
+            }
+            else{
+              img_link = '../images/no_image-removebg-preview.svg'
+            }
+            if (typeof authors == 'undefined'){
+              authors = "AUTHOR UNKNOWN";
+            }            
             if (matcher1.test(result) || matcher1.test(authors)){
               return {
                 imgLink: img_link,
@@ -161,8 +185,19 @@ $("#autocomplete").autocomplete({
           });
           var secondary_matches = $.map(data, function (el) {
             let result = el.volumeInfo.title;
-            let img_link = el.volumeInfo.imageLinks.thumbnail;
+            let img_link = el.volumeInfo.imageLinks;
             let authors = el.volumeInfo.authors;
+            console.log("2" + authors);
+
+            if (typeof img_link !== 'undefined'){
+              img_link = el.volumeInfo.imageLinks.thumbnail;
+            }
+            else{
+              img_link = '../images/no_image-removebg-preview.svg'
+            }
+            if (typeof authors == 'undefined'){
+              authors = "AUTHOR UNKNOWN";
+            }       
             if (matcher2.test(result) || matcher2.test(authors)){
               return {
                 imgLink: img_link,
