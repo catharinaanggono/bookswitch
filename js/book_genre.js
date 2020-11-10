@@ -32,15 +32,15 @@ const genre_dataset = {
     ]
 };
 
-function update_header(genre) {
-    var genre_btns = document.getElementsByClassName('btn');
+// function update_header(genre) {
+//     var genre_btns = document.getElementsByClassName('btn');
 
-    for ( i = 0; i < genre_btns.length; i++ ) {
-        genre_btns[i].setAttribute('class', 'btn genre m-1');
-    }
-    console.log(selected_genre);
+//     for ( i = 0; i < genre_btns.length; i++ ) {
+//         genre_btns[i].setAttribute('class', 'btn genre m-1');
+//     }
+//     console.log(selected_genre);
     
-}
+// }
 
 function display_default() {
     call_api_genre('romance', 0);
@@ -55,7 +55,7 @@ function call_api_genre(genre, pg_num) {
     var request = new XMLHttpRequest();
     var max = 8;
 
-
+    // console.log( document.getElementById('glist').innerText );
 
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
@@ -108,10 +108,6 @@ function extract_display_data(xml) {
             short_desc = 'description not available';
         }
 
-<<<<<<< HEAD
-        
-=======
->>>>>>> e5750c2bb19f3c056addbb7eec7a309b5fdefe9a
         // console.log(img);
         // input each book
         var node = document.createElement('div');

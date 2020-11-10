@@ -10,7 +10,7 @@
     
     <!-- Custom CSS -->
     <link href="../css/homepage.css" rel="stylesheet" />
-    <link href="../css/bookswitch.css" rel="stylesheet" href="">
+    <link href="../css/book_genre.css" rel="stylesheet" href="">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Custom JavaScript -->
@@ -21,22 +21,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
     <title>BookSwitch2</title>
+
+    <style>
+        .clicked {
+            background-color: yellowgreen
+        }
+    </style>
 </head>
 <body>
     <!-- jQuery for header/footer -->
-    <script
+    <!-- <script
         src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
-    </script>
+    </script> -->
     <script> 
-        $(function(){
-            $("#header").load("../reuse/header.html"); 
-            $("#footer").load("../reuse/footer.html"); 
+
+        (".btn").click(function() {
+            // Instead of directly editing CSS, toggle a class
+            $(this).removeClass('Active');//removes classes everywhere
+            $(this).addClass('Active');//adds the class at the right button
+            
         });
     </script> 
 
-    <div id="header"></div><br><br><br><br>
+    <!-- <div id="header"></div><br> -->
 
     <div id='genre-header' class="jumbotron jumbotron-fluid mx-auto" style="width: 93%; border-radius: 5px;">
         <div class="container">
@@ -46,11 +55,11 @@
       </div>
     
     <div class="container text-center" id="glist">
-        <button type="button" class="btn genre m-1" id='mystery' onclick="call_api_genre('Mystery', 0); update_header(id);" selected>Mystery</button>
-        <button type="button" class="btn genre m-1" id='romance' onclick="call_api_genre('Romance', 0); update_header(id);">Romance</button>
-        <button type="button" class="btn genre m-1" id='thriller' onclick="call_api_genre('Thriller', 0); update_header(id);">Thriller</button>
-        <button type="button" class="btn genre m-1" id='fantasy' onclick="call_api_genre('Fantasy', 0); update_header(id);">Fantasy</button>
-        <button type="button" class="btn genre m-1" id='sf' onclick="call_api_genre('Science Fiction', 0); update_header(id);">Science Fiction</button>
+        <button type="button" class="btn genre m-1" id='mystery' onclick="call_api_genre('Mystery', 0);" selected>Mystery</button>
+        <button type="button" class="btn genre m-1" id='romance' onclick="call_api_genre('Romance', 0); ">Romance</button>
+        <button type="button" class="btn genre m-1" id='thriller' onclick="call_api_genre('Thriller', 0);">Thriller</button>
+        <button type="button" class="btn genre m-1" id='fantasy' onclick="call_api_genre('Fantasy', 0); ">Fantasy</button>
+        <button type="button" class="btn genre m-1" id='sf' onclick="call_api_genre('Science Fiction', 0);">Science Fiction</button>
     </div>
 
     <br><br>
@@ -77,7 +86,12 @@
     
     <br><br><br><br><br>
 
-
+    <script>
+        $(function(){
+            $("#header").load("../reuse/header.html"); 
+            $("#footer").load("../reuse/footer.html"); 
+        });
+    </script>
 
 
 
