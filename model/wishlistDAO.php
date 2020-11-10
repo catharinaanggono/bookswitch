@@ -20,7 +20,24 @@
             return $status;
 
         }
-  
+        
+        public function getWishlist($userid) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            $sql = 'SELECT isbn FROM wishlist WHERE userid=:userid';
+            $stmt = $pdo->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':userid', $userid, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = null;
+            $wishlistRecords = []; 
+            while ($row = $stmt->fetch()) {
+                $wishlistRecords[] = $row['isbn'];
+            }
+            $stmt->closeCursor();
+            $pdo = null;
+            return $wishlistRecords;
+        }
 
 
     }   
