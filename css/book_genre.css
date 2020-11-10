@@ -1,16 +1,3 @@
-/* colour scheme */
-/* 
-#000000 black background
-#5d7db8 blue
-#8e89b2 purple
-#bf96ac dull pink
-#f0a3a7 pink
- */
- /* #container {
-    min-height:100%;
-    position:relative;
-
-*/
 .active {
     background-color: teal;
 
@@ -49,14 +36,6 @@
     background-color: #f0a3a7;
 }
 
-/* phone */
-/* @media (max-width: 600px) {
-    body {
-      background-color: lightblue;
-    }
-
-} */
-
 /* each book: base, top->norm, btm->desc */
 .base {
     width: 33%;
@@ -86,9 +65,9 @@
     height: 155px;
     width: 88%;
     /* background-image: linear-gradient(#DAE8E3, #DAE9F0); */
-    background-image: linear-gradient(#CDB9A5, #CDB9A5);
-    background-color: #d6c8b9;
-    border: #aaaaaa solid 1.5px; 
+    background-image: linear-gradient(#DAE9F0, #DAE8E3);
+    background-color: #DAE8E3;
+    /* border: #267055 solid 2px; */ 
     /* opacity: 80%; */
     border-radius: 5px;
 
@@ -119,67 +98,6 @@
 
     padding: 10px;
     font-size: 18px;
-
-}
-
-/* dark version */
-.base .dark{
-    width: 90%;
-    height: 160px;
-    /* border: 2px solid #D3D3D3; */
-    background-image: linear-gradient(rgb(42, 82, 64), rgb(41, 84, 109));
-    margin: auto;
-    position: absolute;
-    border-radius: 5px;
-}
-
-h2.dark{
-    color: #D5D3BF;
 }
 
 
-/* colour scheme */
-.bg-white {
-    background-color: white;
-
-}
-
-.bg-blue {
-    background-color: #5d7db8;
-}
-
-.bg-purple {
-    background-color: #8e89b2;
-}
-
-.bg-dullpink {
-    background-color: #bf96ac;
-}
-
-.bg-pink {
-    background-color: #f0a3a7;
-}
-
-.text-black {
-    color: #000000;
-}
-
-.text-white {
-    color: white;
-}
-
-.text-blue {
-    color: #5d7db8;
-}
-
-.text-purple {
-    color: #8e89b2;
-}
-
-.text-dullpink {
-    color: #bf96ac;
-}
-
-.text-pink {
-    color: #f0a3a7;
-}

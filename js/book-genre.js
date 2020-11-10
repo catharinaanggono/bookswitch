@@ -1,175 +1,113 @@
-// genre description
-const genre_dataset = [
-
-    {"Fantasy": "Fantasy is a genre that uses magic and other supernatural forms as a primary element of plot, theme, and/or setting. Fantasy is generally distinguished from science fiction and horror by the expectation that it steers clear of technological and macabre themes, respectively, though there is a great deal of overlap between the three (collectively known as speculative fiction or science fiction/fantasy) In its broadest sense, fantasy comprises works by many writers, artists, filmmakers, and musicians, from ancient myths and legends to many recent works embraced by a wide audience today, including young adults, most of whom are represented by the works below."},
-
-    {"Romance": "According to the Romance Writers of America, 'Two basic elements comprise every romance novel: a central love story and an emotionally-satisfying and optimistic ending.' Both the conflict and the climax of the novel should be directly related to that core theme of developing a romantic relationship, although the novel can also contain subplots that do not specifically relate to the main characters' romantic love. Other definitions of a romance novel may be broader, including other plots and endings or more than two people, or narrower, restricting the types of romances or conflicts."},
-
-    {"Horror": "Horror fiction is fiction in any medium intended to scare, unsettle, or horrify the audience. Historically, the cause of the 'horror' experience has often been the intrusion of a supernatural element into everyday human experience. Since the 1960s, any work of fiction with a morbid, gruesome, surreal, or exceptionally suspenseful or frightening theme has come to be called 'horror'. Horror fiction often overlaps science fiction or fantasy, all three of which categories are sometimes placed under the umbrella classification speculative fiction."}
-
-];
-
-function display_default() {
-    call_api('romance', 0);
+// 
+function display_default() { //default
+    call_api('a');
 }
 
-display_default();
+function show_books(selected_genre) { //romance, fantasy, horror
+    call_api(selected_genre);
+}
 
-function call_api(genre, start_maybe){
-    var request = new XMLHttpRequest;
+function call_api(selected_genre) {
+    var request = new XMLHttpRequest();
 
-    var max = 28;
-    var page_num = 0;
+    request.onreadystatechange = function() {
 
-    // var genre_header = document.getElementById('genre-header').innerText = `${genre}`;
-    // var desc_dataset = genre_dataset['fantasy'];
-    // alert(desc_dataset);
-
-
-    
-    
-    request.onreadystatechange = function(){
-        if (request.readyState==4 && request.status==200){
-            
-            extract_display_data(this);
-
-            var click = 0;
-            var start_maybe = display_pagination(this, start, max, genre);
-            // console.log(start_maybe);
-            
+        if( this.readyState == 4 && this.status == 200 ) {
+            //document.getElementById("api_call_result").innerHTML = this.responseText;
+            extract_display_data(this); // This is called only after API returns a result
+            //console.log(this.responseText);
         }
+
+    }; // End-of-function
+
+    var start_index = 1;
+    var max_result = 40;
+    var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
+    var url = 'https://www.googleapis.com/books/v1/volumes?q=' + selected_genre + "&";
+
+    var url = `https://www.googleapis.com/books/v1/volumes?q=${selected_genre}&startIndex=${start_index}&maxResults=${max_result}&key=${key}`;
+
+    if( selected_genre == 'all' ) {
+        selected_genre = "a"; // retrieve ALL heroes
     }
 
-    var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
-    
-    start = page_num*max;
-    
-    var url = `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&startIndex=${start_maybe}&maxResults=${max}&key=${key}`;
 
     console.log(url);
 
-    request.open('GET', url, true);
+    request.open("GET", url, true);
     request.send();
 }
 
 function extract_display_data(xml) {
+    //console.log(xml.responseText);
+    var output = JSON.parse(xml.responseText);
+    //console.log(output);
 
-    // console.log(request.responseText);
-    var obj = JSON.parse(xml.responseText);
+    var hero_cards_str = '';
+    var total_items = output.totalItems;
+    // console.log(total_items);
+    var items = output.items;
+    
+    console.log(items);
+    for ( i = 0; i < items.length; i++ ) {
+        var volinfo = items[i].volumeInfo;
+        // console.log(volumeinfo);
+        var title = volinfo.title;
+        var author = volinfo.authors;
+        var description = volinfo.description;
+        var published_date = volinfo.publishedDate;
+        var img_url = volinfo.imageLinks.thumbnail;
+        // console.log(img_url);
 
-    var books_result = obj.items;
+        var isbn_list = volinfo.industryIdentifiers;
+        // console.table(isbn_list);
 
-    var index = 0;
-
-    // console.log(books_result);
-    // console.log(document.getElementById('results'));
-    for (each_book in books_result){
-        var str = '';
-        var title = books_result[each_book].volumeInfo.title;
-        var author = books_result[each_book].volumeInfo.authors;
-        var isbn = books_result[each_book].volumeInfo.industryIdentifiers[0].identifier;
-        var shortDesc = books_result[each_book].volumeInfo.description;
-        var selfLink = books_result[each_book].selfLink;
-        var image = get_image(selfLink, index);
-
-        if (typeof shortDesc !== 'undefined'){
-            if(shortDesc.length > 300){
-                shortDesc = shortDesc.slice(0,3) + '...';
+        //put inside url after clicking on book
+        for ( isbn of isbn_list) {
+            if ( isbn['type'] == 'ISBN_10') {
+                var isbn10 = isbn['identifier'];
+            }
+            else if ( isbn['type'] == 'ISBN_13') {
+                var isbn13 = isbn['identifier'];
+            }
+            else {
+                var others = isbn['identifier'];
             }
         }
-        else{
-            shortDesc='';
-        }
+        // console.log(`isbn: ${isbn10} ${isbn13} ${others}`);
 
-        // console.log(books_result[each_book]);
-        // console.log(title);
-        // console.log(isbn);
-        // console.log(shortDesc);
-        // console.log(selfLink);
-        // console.log(image);
-
-        // each book
         var node = document.createElement('div');
         node.setAttribute('class', 'col-lg-3 col-sm-6 col-xs-6 mb-4');
         node.innerHTML = 
         `
         <div class="card border-0 shadow">
-        <img class="card-img-top" src="" alt="..." width='225px' height='322px'>
+        <img src="https://source.unsplash.com/TMgQMXoglsM/500x350" class="card-img-top" alt="...">
         <div class="card-body text-center">
-            <h5 class="card-title mb-0">${title}</h5>
-            <div class="card-text text-black-50">${author}</div>
-            <p>${shortDesc}</p>
+            <h5 class="card-title mb-0">Team Member</h5>
+            <div class="card-text text-black-50">Web Developer</div>
         </div>
         </div>
         `;
+
         document.getElementById('main-content').appendChild(node);
 
-        index += 1;
     }
 
+
+
 }
 
-function display_pagination(xml, start_maybe, max, genre) {
-    var obj = JSON.parse(xml.responseText);
+// // 
+// function (display_book_details) {
 
-    var total_items = obj.totalItems;
-    // console.log(total_items);
+// }
 
-    document.getElementById('pagination').innerHTML = ``;
-    for(i = 0; i < max*10; i+=max){
+// // page 7
+// function (my_books) {
 
-        var selected_id = `page${page_num+1}`;
-        var page_num = Math.floor(i/max) + 1;
-        var node = document.createElement('li');
-        node.setAttribute('class', 'page-item');
-        node.innerHTML = 
-        `
-        <a id='page${page_num}' class="page-link" href="#${page_num}" onclick="call_api('${genre}', ${page_num*max}); selected(${selected_id});"> ${page_num} </a>
-        `;
-        document.getElementById('pagination').appendChild(node);
-    }
+// }
 
-    
-    return page_num*max;
-}
+// // page 5
+// function (reviews) {
 
-function selected(selected_id) {
-    // var obj = JSON.parse(xml.responseText);
-    console.log(document.getElementById('pagination').innerHTML);
-    var change = document.getElementsByTagName('href')[selected_id].setAttribute('class', 'page-link selected-page');
-    alert(selected_id);
-}
-
-
-function get_image(selfLink, index){
-    // console.log(selfLink);
-    var request = new XMLHttpRequest;
-    var imageLink = '';
-    
-    request.onreadystatechange = function(){
-        if (request.readyState==4 && request.status==200){
-
-            var obj = JSON.parse(request.responseText);
-            var small_img = obj.volumeInfo.imageLinks.small;
-            
-            // not all image has small size
-            if (small_img == undefined ) {
-                imageLink = obj.volumeInfo.imageLinks.thumbnail;
-                // console.log(imageLink);
-            }
-            else{
-                imageLink = obj.volumeInfo.imageLinks.small;
-            }
-            
-            document.getElementsByClassName('card-img-top')[index].setAttribute('src', imageLink);
-            // console.log(imageLink);
-
-        }
-    }
-
-    var url = selfLink;
-    request.open('GET', url, true);
-    request.send();
-
-    return imageLink;
-}
+// }

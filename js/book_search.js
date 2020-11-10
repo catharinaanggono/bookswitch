@@ -5,7 +5,7 @@ function extract_display_data(xml) {
     var books_result = obj.items;
     var index = 0;
 
-    console.log(books_result);
+    // console.log(books_result);
     // console.log(document.getElementById('results'));
     for (each_book in books_result){
         // console.log(each_book);
@@ -55,19 +55,18 @@ function extract_display_data(xml) {
         node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
         node.innerHTML = 
         `
-        <div class="each-book">
-            <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
+        <div class="each-book shadow rounded">
+            <div class="each-img"><a href='homepage.html'><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></a></div>
             <div class="main-details">
-                <span style='font-size:12px;'><b>${title}</b></span><br>
+                <span style='font-size:12px;'><a href='homepage.html'><b>${title}</b></a></span><br>
                 <span style='font-size:10px;'>by ${author}</span>
             </div>
         </div>
         <!-- style="visibility: hidden; -->
-        <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
+        <div class="each-desc shadow rounded" id="each-desc${index}" style="visibility: hidden;"> 
             ${short_desc}
         </div>
         `;
-        
         document.getElementById('main-content').appendChild(node);
         // console.log(node);
         // console.log(document.getElementById('main-content'));
@@ -108,7 +107,7 @@ function call_api_search(category, keyword, pg_num){
     request.send();
 }
 
-call_api_search('all', 'harry potter', 1);
+call_api_search('all', 'harry potter', 0);
 
 
 function extract_page_data(xml, pg_num, max) {
@@ -122,14 +121,34 @@ function extract_page_data(xml, pg_num, max) {
     
     for ( i = 1; i <= 5; i++ ) {
         var node = document.createElement('button');
-        node.setAttribute('class', 'btn genre m-1 text-blue');
-        node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i})`);
+        node.setAttribute('class', 'btn genre m-1');
+        node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i}); reset_button(${i}); select_button(${i})`);
         node.innerHTML = `${i}`;
         
         // console.log(node);
         document.getElementById('pagination').appendChild(node);
     }
 
+}
+
+function reset_button(i){
+    // var buttons = document.getElementsByTagName('button');
+    // for (index = 1; index < buttons.length; index++){
+    // //     if (index == i){
+    // //         buttons[index].setAttribute('class', 'btn genre m-1 active');
+    // //     }
+    // //     else{
+    //         buttons[index].setAttribute('class', 'btn genre m-1');
+    //     // }
+    //     // console.log(i);
+    //     // console.log(buttons[i]);
+    // }
+}
+
+function select_button(i){
+    // var index = i - 1
+    // var buttons = document.getElementsByTagName('button');
+    // buttons[index].setAttribute('class', 'btn genre m-1 active');
 }
 
 function show_desc(id) {
