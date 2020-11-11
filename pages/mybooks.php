@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <link href="../css/homepage.css" rel="stylesheet" />
-    <link href="../css/bookswitch.css" rel="stylesheet" />
+    <!-- <link href="../css/bookswitch.css" rel="stylesheet" /> -->
     <link href="../css/book_genre.css" rel="stylesheet" />
 
     <title>My Books</title>
@@ -327,14 +327,15 @@ function get_listings_book(isbn) {
             var items = json_obj.items;
 
             var html_text = "";
+            var index = 0;
 
             for (item of items) {
-                var image = item.volumeInfo.imageLinks.thumbnail;
+              var image = item.volumeInfo.imageLinks.thumbnail;
                 var title = item.volumeInfo.title;
                 var desc = item.volumeInfo.description;
                 var author = item.volumeInfo.authors;
-
-
+                //var updated = ; // put time updqated 
+                
                 if ( typeof desc !== 'undefined' ) {
                   if (desc.length > 150) {
                     desc = desc.slice(0,120) + '...';
@@ -344,18 +345,33 @@ function get_listings_book(isbn) {
                   desc = 'description not available';
                 }
 
-                html_text += `
-                <div class="container d-inline-block each-book" id="personal">
-                  <img src="${image}" alt="bookimage" class="image" style="width:100%">
-                  <div class="middle">
-                    <div class="text"><b>${title}</b><br>${desc}</div>
-                  </div>
+
+                var node = document.createElement('div');
+                node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
+                node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
+                node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
+                node.setAttribute('onclick', `redirect(${isbn})`);
+                node.innerHTML += `
+                <div class="each-book">
+                    <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
+                    <div class="main-details">
+                        <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
+                        <span style='font-size:13px;'>by ${author}</span>
+                    </div>
+                </div>
+                <!-- style="visibility: hidden; -->
+                <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
+                    <b>Description</b><br>
+                    ${desc}
                 </div>
                 `;
 
+                index += 1
+                console.log(index);
+
             }
 
-            document.getElementById("myListings_cards").innerHTML += html_text;
+            document.getElementById('myListings_cards').appendChild(node);
 
 
     }
