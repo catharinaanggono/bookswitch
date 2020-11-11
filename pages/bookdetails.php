@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
     <!-- Bootstrap CSS --> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,8 +18,20 @@
     <script src="./bookdetails.js"></script>
 
     <style>
-        h5.dark{
-            color:white;
+        #bookTitle.dark{
+            color:#B5C587;
+        }   
+
+        #published_date.dark{
+            color:#B5C587;
+        }   
+
+        #bk_description.dark{
+            color:#B5C587;
+        }   
+
+        #author.dark{
+            color:#B5C587;
         }   
 
         .cm-btn{
@@ -104,14 +116,10 @@
                                                 
                     </ul>
 
-                   
-                    
-
                     <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <!-- Menu -->
                         <i class="fas fa-bars ml-1"></i>
                     </button>
-                    
                 </div>
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
