@@ -79,42 +79,44 @@
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                 <!-- <form role="search" method="get" class="search-form form" action=""> -->
+                <div class="home_searchbar">
                   <label>
                       <span class="screen-reader-text">Search for...</span>
                       <input id="all_autocomplete" type="search" class="search-field" placeholder="Search all..." value="" name="s" title="" />
                   </label>
-                  <input type="submit" class="search-submit button" value="&#xf002" onclick="general_search('all')"/>
+                  <input type="submit" class="search-submit button" value="&#xf002" onclick="all_search('all')"/>
+                </div>
                 <!-- </form>  -->
               </div>
 
               <div class="tab-pane fade" id="title" role="tabpanel" aria-labelledby="title-tab">
-                <form role="search" method="get" class="search-form form" action="">
+                <div class="home_searchbar">
                   <label>
                       <span class="screen-reader-text">Search for...</span>
                       <input id="title_autocomplete" type="search" class="search-field" placeholder="Search title..." value="" name="s" title="" />
                   </label>
-                  <input type="submit" class="search-submit button" value="&#xf002" />
-                </form> 
+                  <input type="submit" class="search-submit button" value="&#xf002" onclick="title_search('intitle:')"/>
+                </div>
               </div>
 
               <div class="tab-pane fade" id="author" role="tabpanel" aria-labelledby="author-tab">
-                <form role="search" method="get" class="search-form form" action="">
+                <div class="home_searchbar">
                   <label>
                       <span class="screen-reader-text">Search for...</span>
-                      <input type="search" class="search-field" placeholder="Search author..." value="" name="s" title="" />
+                      <input id="author_autocomplete" type="search" class="search-field" placeholder="Search author..." value="" name="s" title="" />
                   </label>
-                  <input type="submit" class="search-submit button" value="&#xf002" />
-                </form> 
+                  <input type="submit" class="search-submit button" value="&#xf002" onclick="author_search('inauthor:')"/>
+                </div> 
               </div>
 
               <div class="tab-pane fade" id="isbn" role="tabpanel" aria-labelledby="isbn-tab">
-                <form role="search" method="get" class="search-form form" action="">
+                <div class="home_searchbar">
                   <label>
                       <span class="screen-reader-text">Search for...</span>
-                      <input type="search" class="search-field" placeholder="Search ISBN..." value="" name="s" title="" />
+                      <input id="isbn_autocomplete" type="search" class="search-field" placeholder="Search ISBN..." value="" name="s" title="" />
                   </label>
-                  <input type="submit" class="search-submit button" value="&#xf002" />
-                </form> 
+                  <input type="submit" class="search-submit button" value="&#xf002" onclick="isbn_search('isbn:')"/>
+                </div> 
               </div>
               
             </div>

@@ -178,7 +178,7 @@
         <h1 class="display-4" style="margin-bottom: 50px; margin-top:50px;">My Books</h1>
     
 
-          <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center border-0 rounded-nav" style="margin-right: 6%;">
+          <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills text-center border-0 rounded-nav" style="width:50%">
             <li class="nav-item " style="width: 50%">
               <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_wishlist()" onclick="openLink(event, 'Left')" class="nav-link border-0 text-uppercase font-weight-bold active"><img src="../images/wishlistbook.png" width="50%" height="auto"></a>
             </li>
