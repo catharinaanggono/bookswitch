@@ -18,7 +18,9 @@ chk.addEventListener('click', () => {
   for (x of genre){
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
+  chk.checked?document.getElementById('bookTitle').classList.add("dark"):document.getElementById('bookTitle').classList.remove("dark");
 
+ 
   localStorage.setItem('darkModeStatus', chk.checked);
 });
 
@@ -41,6 +43,8 @@ window.addEventListener('load', (event) => {
     for (x of genre){
       x.classList.add("dark");
     }
+    document.getElementById('bookTitle').classList.add("dark");
+   
     document.getElementById('chk').checked = true;
   }
 });
