@@ -1,3 +1,4 @@
+  
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,8 +11,9 @@
 
     <link href="../css/homepage.css" rel="stylesheet" />
     <link href="../css/bookswitch.css" rel="stylesheet" />
+    <!-- <link href="../css/book_genre.css" rel="stylesheet" /> -->
 
-    <title>Book Details</title>
+    <title>My Books</title>
 
 
     <title>BookSwitch</title>
@@ -89,9 +91,6 @@
         opacity: 0;
         position: absolute;
         top: 25%;
-        /* left: 5%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-5%, -5%); */
         text-align: center;
       }
       #personal:hover .image {
@@ -129,7 +128,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../images/bookswitch_logo.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch_logo.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <ul class = "navbar-nav">
@@ -167,7 +166,7 @@
 
           <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center border-0 rounded-nav" style="margin-right: 6%;">
             <li class="nav-item flex-sm-fill" style="width: 50%">
-              <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_wishlist()" class="nav-link border-0 text-uppercase font-weight-bold active"><img src="../images/wishlistbook.png" width="50%" height="50%"></a>
+              <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_wishlist()" onclick="openLink(event, 'Left')" class="nav-link border-0 text-uppercase font-weight-bold active"><img src="../images/wishlistbook.png" width="50%" height="50%"></a>
             </li>
             <li class="nav-item flex-sm-fill"style="width: 50%">
               <a data-toggle="tab" id="listings_tab" href="#listings" role="tab" aria-controls="profile" onclick="getListings('ALL')" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><img src="../images/listingsbook.png" width="50%" height="50%"></a>
@@ -241,7 +240,7 @@
         </div>
       </div>
     
-
+<!-- JAVASCRIPT PART -->
 <script> 
   
 
@@ -293,10 +292,20 @@ function get_wishlist_book(isbn) {
                 var image = item.volumeInfo.imageLinks.thumbnail;
                 var title = item.volumeInfo.title;
                 var desc = item.volumeInfo.description;
+                var author = item.volumeInfo.authors;
                 //var updated = ; // put time updqated 
+                
+                if ( typeof desc !== 'undefined' ) {
+                  if (desc.length > 150) {
+                    desc = desc.slice(0,120) + '...';
+                  }
+                }
+                else {
+                  desc = 'description not available';
+                }
 
                 html_text += `
-                <div class="container d-inline-block" id="personal">
+                <div class="container d-inline-block each-book" id="personal">
                   <img src="${image}" alt="bookimage" class="image" style="width:100%">
                   <div class="middle">
                     <div class="text"><b>${title}</b><br>${desc}</div>
@@ -304,7 +313,17 @@ function get_wishlist_book(isbn) {
                 </div>
                 `;
 
-                
+                // html_text += `
+                // <div>
+                //   <div><img src="${image}" width="100%" height="100%" style="border-radius:2%"></div>
+                //   <div>
+                //     <b>${title}</b><br>
+                //     by ${author}
+                //   </div>
+                // </div>
+                // <div style="visibility:hidden">${desc}</div>
+                // `;
+
 
             }
 
@@ -314,9 +333,7 @@ function get_wishlist_book(isbn) {
     }
 }
 
-    // var key = 'AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE';
-    // var userid = '105224440927779280831';
-    // var wishlist_shelf = '1001';
+
     var url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
 
     
@@ -336,14 +353,24 @@ function get_listings_book(isbn) {
 
             var html_text = "";
 
-            for (item of items) {// incomplete, based on db
+            for (item of items) {
                 var image = item.volumeInfo.imageLinks.thumbnail;
                 var title = item.volumeInfo.title;
                 var desc = item.volumeInfo.description;
-                //var updated = ; // put time updqated 
+                var author = item.volumeInfo.authors;
+
+
+                if ( typeof desc !== 'undefined' ) {
+                  if (desc.length > 150) {
+                    desc = desc.slice(0,120) + '...';
+                  }
+                }
+                else {
+                  desc = 'description not available';
+                }
 
                 html_text += `
-                <div class="container d-inline-block" id="personal">
+                <div class="container d-inline-block each-book" id="personal">
                   <img src="${image}" alt="bookimage" class="image" style="width:100%">
                   <div class="middle">
                     <div class="text"><b>${title}</b><br>${desc}</div>
@@ -359,8 +386,7 @@ function get_listings_book(isbn) {
     }
     }
 
-    // var userid = '105224440927779280831';
-    // var listings_shelf = '1002';
+
     var url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
 
     request.open("GET", url, true);
@@ -378,7 +404,6 @@ function get_listings_book(isbn) {
 
 </script>
 
-    <!-- <script src="mybooks.js"></script>  -->
 
 
 
