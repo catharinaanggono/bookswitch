@@ -1,11 +1,40 @@
-var category = getUrlParam('category', 'empty');
-var query = getUrlParam('query', 'empty');
-var first_start = 0;
+// Get the value of query and category passed from homepage
+// var category = decodeURI(getUrlParam('&category', 'empty'));
+// var query = decodeURI(getUrlParam('?query', 'empty'));
+// var first_start = 0;
 // alert(`category  = ${category} query = ${query}  firstStart=${first_start}`);
+
+// function getUrlParam(parameter, defaultvalue){
+//     var urlparameter = defaultvalue;
+//     if(location.href.indexOf(parameter) > -1){
+//         urlparameter = getUrlVars()[parameter];
+//         // console.log(getUrlVars()[parameter]);
+//         }
+//     return urlparameter;
+// }
+
+// function getUrlVars() {
+//     var vars = {};
+//     var parts = location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key,value) {
+//         vars[key] = value;
+//     });
+//     // console.log(parts);
+//     // console.log(vars);
+//     return vars;
+// }
+
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+console.log(urlParams);
+const query = urlParams.get('query');
+console.log(page_type);
+console.log('HI');
+const category = urlParams.get('category');
+console.log(category);
 
 // call_api_search('all', 'harry potter', 0);
 call_api_search(category, query, first_start);
-
 
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
@@ -68,12 +97,13 @@ function extract_display_data(xml) {
         <div class="each-book shadow rounded">
             <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
             <div class="main-details">
-                <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
+                <span id ='title' style='font-size:15px;'><a href=''><b>${title}</b></a></span><br>
                 <span style='font-size:13px;'>by ${author}</span>
             </div>
         </div>
         <!-- style="visibility: hidden; -->
         <div class="each-desc shadow rounded" id="each-desc${index}" style="visibility: hidden;"> 
+            <b>Description</b><br>
             <span style='font-size:15px;'>${short_desc}</span>
         </div>
         `;
@@ -81,9 +111,11 @@ function extract_display_data(xml) {
         // console.log(node);
         // console.log(document.getElementById('main-content'));
         index += 1;
+        console.log(index);
     }
 }
 
+// to redirect to book details page
 function redirect(isbn){
     location.href = `bookdetails.php?isbn=${isbn}`;
     document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
@@ -91,7 +123,7 @@ function redirect(isbn){
 
 function call_api_search(category, keyword, pg_num){
     var request = new XMLHttpRequest();
-    var max = 39;
+    var max = 30;
 
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
@@ -112,16 +144,16 @@ function call_api_search(category, keyword, pg_num){
 
     if(category == 'all'){
         url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
+        console.log(url);
     }
     else{
         url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&startIndex=${start_index}&maxResults=${max}`;
+        console.log(url);
     }
 
     request.open('GET', url, true);
     request.send();
 }
-
-
 
 function extract_page_data(xml, pg_num, max) {
     var obj = JSON.parse(xml.responseText);
@@ -164,28 +196,15 @@ function select_button(i){
     // buttons[index].setAttribute('class', 'btn genre m-1 active');
 }
 
+// to show the book description box
 function show_desc(id) {
     var node = document.getElementById(id);
     node.setAttribute('style', 'visibility: visible;');
 }
 
+// to hide the book description box
 function hide_desc(id) {
     var node = document.getElementById(id);
     node.setAttribute('style', 'visibility: hidden;');
 }
 
-function getUrlParam(parameter, defaultvalue){
-    var urlparameter = defaultvalue;
-    if(window.location.href.indexOf(parameter) > -1){
-        urlparameter = getUrlVars()[parameter];
-        }
-    return urlparameter;
-}
-
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
