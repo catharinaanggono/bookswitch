@@ -1,3 +1,30 @@
+/* Fonts */
+nav, h2, body{
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+h2{
+    font-weight: 500;
+}
+
+#main-content{
+    font-family: 'Cormorant Garamond', serif;
+}
+
+/* Autocomplete */
+.ui-autocomplete { 
+    height: 400px;
+    width: 300px;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Pagination Position */
 #pagination {
     margin: auto;
     position: fixed;
@@ -5,7 +32,6 @@
     left: 20%;
     z-index: 1;
 }
-
 
 @media (min-width: 600px){
     #pagination{
@@ -19,7 +45,31 @@
 
 }
 
-/* dark version */
+/* Pagination colors */
+#pagination > button
+{
+    border-color: white;
+    background-color: #0D3D54;
+    color: white;
+    width: 40px;
+    text-align: center;
+}
+
+#pagination > button:hover
+{
+    color: white;
+    background-color: #A94241;
+    border-color: white;
+}
+
+#pagination > button:focus
+{
+    color: white;
+    background-color: red;
+    border: solid 1px #6430b8;
+} 
+
+/* Dark version */
 .base .dark{
     width: 90%;
     height: 160px;
@@ -99,30 +149,6 @@ h2.dark{
     font-size: 18px;
 
 }
-
-#pagination > button
-{
-    border-color: white;
-    background-color: #0D3D54;
-    color: white;
-    width: 40px;
-    text-align: center;
-}
-
-#pagination > button:hover
-{
-    color: white;
-    background-color: #A94241;
-    border-color: white;
-}
-
-#pagination > button:focus
-{
-    color: white;
-    background-color: red;
-    border: solid 1px #6430b8;
-} 
-
 
 
 /* body {
