@@ -12,7 +12,7 @@
 
     <link href="../css/homepage.css" rel="stylesheet" />
     <link href="../css/bookswitch.css" rel="stylesheet" />
-    <!-- <link href="../css/book_genre.css" rel="stylesheet" /> -->
+    <link href="../css/book_genre.css" rel="stylesheet" />
 
     <title>My Books</title>
 
@@ -75,7 +75,7 @@
       } */
       
       /*js stuff */
-      #personal {
+      /* #personal {
         position: relative;
         width: 20%;
       }
@@ -105,7 +105,7 @@
         color: black;
         font-size: 10px;
         padding: 8px 16px;
-      }
+      } */
     </style>
 
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
