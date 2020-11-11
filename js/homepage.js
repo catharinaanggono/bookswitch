@@ -6,6 +6,10 @@ chk.addEventListener('click', () => {
   for (x of h4){
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
+  h2 = document.getElementsByTagName('h2');
+  for (x of h2){
+    chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+  }
   books = document.getElementsByClassName('each-book');
   for (x of books){
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
@@ -18,6 +22,10 @@ window.addEventListener('load', (event) => {
     document.body.classList.add("dark"); 
     h4 = document.getElementsByTagName('h4');
     for (x of h4){
+      x.classList.add("dark");
+    }
+    h2 = document.getElementsByTagName('h2');
+    for (x of h2){
       x.classList.add("dark");
     }
     books = document.getElementsByClassName('each-book');
