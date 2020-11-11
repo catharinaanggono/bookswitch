@@ -1,7 +1,7 @@
   
 <!doctype html>
 <html lang="en">
-<!-- hi -->
+
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
