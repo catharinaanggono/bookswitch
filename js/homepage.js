@@ -361,71 +361,71 @@ $("#title_autocomplete").autocomplete({
         };
 
 // Search by Author Method
-// $("#author_autocomplete").autocomplete({
-//   appendTo: $('#author'),
-//   source: function (request, response) {
-//     $.ajax({
-//       url: "https://www.googleapis.com/books/v1/volumes?",
-//       data: { 
-//         q: "inauthor:" + request.term,
-//         startIndex: 1,
-//         maxResults: 15
-//       },
-//       success: function (data) {
-//         data = data.items;
-//         var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
-//         var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
+$("#author_autocomplete").autocomplete({
+  appendTo: $('#author'),
+  source: function (request, response) {
+    $.ajax({
+      url: "https://www.googleapis.com/books/v1/volumes?",
+      data: { 
+        q: "inauthor:" + request.term,
+        startIndex: 1,
+        maxResults: 15
+      },
+      success: function (data) {
+        data = data.items;
+        var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+        var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
 
-//         console.log(data);
+        console.log(data);
 
-//         var primary_matches = $.map(data, function (el) {
-//           let result = el.volumeInfo.authors;
-//           console.log(result);
-//           if (typeof result == 'undefined'){
-//             result = "AUTHOR UNKNOWN";
-//           }            
-//           if (matcher1.test(result)){
-//             return {
-//               value: result
-//             };
+        var primary_matches = $.map(data, function (el) {
+          let result = el.volumeInfo.authors;
+          console.log(result);
+          if (typeof result == 'undefined'){
+            result = "AUTHOR UNKNOWN";
+          }            
+          if (matcher1.test(result)){
+            return {
+              value: result
+            };
 
-//           }
+          }
             
-//         });
-//         var secondary_matches = $.map(data, function (el) {
-//           let authors = el.volumeInfo.authors;
-//           if (typeof result == 'undefined'){
-//             result = "AUTHOR UNKNOWN";
-//           }       
-//           if (matcher2.test(result)){
-//             return {
-//               value: result
-//             };
+        });
+        var secondary_matches = $.map(data, function (el) {
+          let authors = el.volumeInfo.authors;
+          if (typeof result == 'undefined'){
+            result = "AUTHOR UNKNOWN";
+          }       
+          if (matcher2.test(result)){
+            return {
+              value: result
+            };
 
-//           }
+          }
             
-//         });
-//         console.log(primary_matches);
-//         console.log(secondary_matches);
-//         response($.merge(primary_matches, secondary_matches));
-//       },
+        });
+        console.log(primary_matches);
+        console.log(secondary_matches);
+        response($.merge(primary_matches, secondary_matches));
+      },
       
-//       // error: function () {
-//       //   response([]);
-//       // }
-//     });
-//   }
-// })
-// .data("ui-autocomplete")._renderItem = function( ul, item ) {
-//             var authorText = String(item.value).replace(
-//               new RegExp(this.term, "gi"),
-//               "<span class='ui-state-highlight'><b>$&</b></span>");
+      // error: function () {
+      //   response([]);
+      // }
+    });
+  }
+})
+.data("ui-autocomplete")._renderItem = function( ul, item ) {
+            var authorText = String(item.value).replace(
+              new RegExp(this.term, "gi"),
+              "<span class='ui-state-highlight'><b>$&</b></span>");
 
-//             return $( "<li></li>" )
-//             .attr( "data-value", item)
-//             .append("<div><a>" + authorText + "</a></div>")
-//             .appendTo( ul );
-//         };
+            return $( "<li></li>" )
+            .attr( "data-value", item)
+            .append("<div><a>" + authorText + "</a></div>")
+            .appendTo( ul );
+        };
 
 
 // Search by ISBN Method
@@ -629,9 +629,22 @@ function redirect_to_book_search(query, category){
   location.href = `book_search.html?query=${query}&category=${category}`;
 }
 
-function general_search(category){
+function all_search(category){
   var query = document.getElementById("all_autocomplete").value;
   location.href = `book_search.html?query=${query}&category=${category}`;
-  console.log("HI");
-  console.log(query);
+}
+
+function title_search(category){
+  var query = document.getElementById("title_autocomplete").value;
+  location.href = `book_search.html?query=${query}&category=${category}`;
+}
+
+function author_search(category){
+  var query = document.getElementById("author_autocomplete").value;
+  location.href = `book_search.html?query=${query}&category=${category}`;
+}
+
+function isbn_search(category){
+  var query = document.getElementById("isbn_autocomplete").value;
+  location.href = `book_search.html?query=${query}&category=${category}`;
 }

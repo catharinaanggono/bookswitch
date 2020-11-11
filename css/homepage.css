@@ -10296,7 +10296,7 @@
     outline: none;
   }
   
-  form.search-form {
+  .home_searchbar {
     display: flex;
     justify-content: center;
   }
