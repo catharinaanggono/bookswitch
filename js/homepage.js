@@ -19,6 +19,9 @@ chk.addEventListener('click', () => {
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
   chk.checked?document.getElementById('bookTitle').classList.add("dark"):document.getElementById('bookTitle').classList.remove("dark");
+  chk.checked?document.getElementById('published_date').classList.add("dark"):document.getElementById('published_date').classList.remove("dark");
+  chk.checked?document.getElementById('author').classList.add("dark"):document.getElementById('author').classList.remove("dark");
+  chk.checked?document.getElementById('bk_description').classList.add("dark"):document.getElementById('bk_description').classList.remove("dark");
 
  
   localStorage.setItem('darkModeStatus', chk.checked);
@@ -44,6 +47,9 @@ window.addEventListener('load', (event) => {
       x.classList.add("dark");
     }
     document.getElementById('bookTitle').classList.add("dark");
+    document.getElementById('author').classList.add("author");
+    document.getElementById('published_date').classList.add("published_date");
+    document.getElementById('bk_description').classList.add("bk_description");
    
     document.getElementById('chk').checked = true;
   }
