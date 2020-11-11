@@ -59,7 +59,7 @@ function extract_display_data(xml) {
         <div class="each-book shadow rounded">
             <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
             <div class="main-details">
-                <span id ='title' style='font-size:15px;'><a href='#any'>${title}</a></span><br>
+                <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
                 <span style='font-size:13px;'>by ${author}</span>
             </div>
         </div>
