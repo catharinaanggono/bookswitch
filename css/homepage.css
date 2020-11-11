@@ -83,8 +83,8 @@
     justify-content: space-between;
     padding: 3px;
     position: relative;
-    height: 22px;
-    width: 46px;
+    height: 21px;
+    width: 40px;
     transform: scale(1.5);
   }
   
@@ -94,23 +94,27 @@
     position: absolute;
     top: 2px;
     left: 2px;
-    height: 18px;
-    width: 18px;
+    height: 16px;
+    width: 16px;
     transform: translateX(0px);
     transition: transform 0.2s linear;
   }
   
   .checkbox:checked + .label .ball {
-    transform: translateX(24px);
+    transform: translateX(20px);
   }
   
   
   .fa-moon {
     color: #f1c40f;
+    height: 12px;
+    width: 12px;
   }
   
   .fa-sun {
     color: #f39c12;
+    height: 12px;
+    width: 12px;
   }
   
 

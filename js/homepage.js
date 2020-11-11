@@ -18,7 +18,9 @@ chk.addEventListener('click', () => {
   for (x of genre){
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
+  chk.checked?document.getElementById('bookTitle').classList.add("dark"):document.getElementById('bookTitle').classList.remove("dark");
 
+ 
   localStorage.setItem('darkModeStatus', chk.checked);
 });
 
@@ -41,6 +43,8 @@ window.addEventListener('load', (event) => {
     for (x of genre){
       x.classList.add("dark");
     }
+    document.getElementById('bookTitle').classList.add("dark");
+   
     document.getElementById('chk').checked = true;
   }
 });
@@ -149,10 +153,254 @@ function searchAll(query) {
 }
 
 
-// Search by Title Method
+// Search All Method
+$("#all_autocomplete").autocomplete({
+  appendTo: $('#all'),
+  source: function (request, response) {
+    $.ajax({
+      url: "https://www.googleapis.com/books/v1/volumes?",
+      data: { 
+        q: request.term,
+        startIndex: 1,
+        maxResults: 15
+      },
+      success: function (data) {
+        data = data.items;
+        var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+        var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
 
+        console.log(data);
+
+        var primary_matches = $.map(data, function (el) {
+          let result = el.volumeInfo.title;
+          let img_link = el.volumeInfo.imageLinks;
+          let authors = el.volumeInfo.authors;
+          console.log(authors);
+          if (typeof img_link !== 'undefined'){
+            img_link = el.volumeInfo.imageLinks.thumbnail;
+          }
+          else{
+            img_link = '../images/no_image-removebg-preview.svg'
+          }
+          if (typeof authors == 'undefined'){
+            authors = "AUTHOR UNKNOWN";
+          }            
+          if (matcher1.test(result) || matcher1.test(authors)){
+            return {
+              imgLink: img_link,
+              value: result,
+              author: authors
+            };
+
+          }
+            
+        });
+        var secondary_matches = $.map(data, function (el) {
+          let result = el.volumeInfo.title;
+          let img_link = el.volumeInfo.imageLinks;
+          let authors = el.volumeInfo.authors;
+          console.log("2" + authors);
+
+          if (typeof img_link !== 'undefined'){
+            img_link = el.volumeInfo.imageLinks.thumbnail;
+          }
+          else{
+            img_link = '../images/no_image-removebg-preview.svg'
+          }
+          if (typeof authors == 'undefined'){
+            authors = "AUTHOR UNKNOWN";
+          }       
+          if (matcher2.test(result) || matcher2.test(authors)){
+            return {
+              imgLink: img_link,
+              value: result,
+              author: authors
+            };
+
+          }
+            
+        });
+        console.log(primary_matches);
+        console.log(secondary_matches);
+        response($.merge(primary_matches, secondary_matches));
+      },
+      
+      // error: function () {
+      //   response([]);
+      // }
+    });
+  }
+})
+.data("ui-autocomplete")._renderItem = function( ul, item ) {
+            var titleText = String(item.value).replace(
+            new RegExp(this.term, "gi"),
+            "<span class='ui-state-highlight'><b>$&</b></span>");
+            var authorText = String(item.author).replace(
+              new RegExp(this.term, "gi"),
+              "<span class='ui-state-highlight'><b>$&</b></span>");
+
+            return $( "<li></li>" )
+            .attr( "data-value", item)
+            .append("<div class='row'><div class='col-3'><img width='62' height='85' src='" + item.imgLink + "'></div>" + "<div class='col'><div class='row'><div class='col'><p style='font-size:15px'>" + titleText + "</p></div></div>" + "<div class='row'><div class='col'><p style='font-size:10px'>" + authorText + "</p></div></div></div>")
+            .appendTo( ul );
+        };
+
+// Search Title Method
+$("#title_autocomplete").autocomplete({
+  appendTo: $('#title'),
+  source: function (request, response) {
+    $.ajax({
+      url: "https://www.googleapis.com/books/v1/volumes?",
+      data: { 
+        q: "intitle:" + request.term,
+        startIndex: 1,
+        maxResults: 15
+      },
+      success: function (data) {
+        data = data.items;
+        var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+        var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
+
+        console.log(data);
+
+        var primary_matches = $.map(data, function (el) {
+          let result = el.volumeInfo.title;
+          let img_link = el.volumeInfo.imageLinks;
+          let authors = el.volumeInfo.authors;
+          console.log(authors);
+          if (typeof img_link !== 'undefined'){
+            img_link = el.volumeInfo.imageLinks.thumbnail;
+          }
+          else{
+            img_link = '../images/no_image-removebg-preview.svg'
+          }
+          if (typeof authors == 'undefined'){
+            authors = "AUTHOR UNKNOWN";
+          }            
+          if (matcher1.test(result)){
+            return {
+              imgLink: img_link,
+              value: result,
+              author: authors
+            };
+
+          }
+            
+        });
+        var secondary_matches = $.map(data, function (el) {
+          let result = el.volumeInfo.title;
+          let img_link = el.volumeInfo.imageLinks;
+          let authors = el.volumeInfo.authors;
+          if (typeof img_link !== 'undefined'){
+            img_link = el.volumeInfo.imageLinks.thumbnail;
+          }
+          else{
+            img_link = '../images/no_image-removebg-preview.svg'
+          }
+          if (typeof authors == 'undefined'){
+            authors = "AUTHOR UNKNOWN";
+          }       
+          if (matcher2.test(result)){
+            return {
+              imgLink: img_link,
+              value: result,
+              author: authors
+            };
+
+          }
+            
+        });
+        console.log(primary_matches);
+        console.log(secondary_matches);
+        response($.merge(primary_matches, secondary_matches));
+      },
+      
+      // error: function () {
+      //   response([]);
+      // }
+    });
+  }
+})
+.data("ui-autocomplete")._renderItem = function( ul, item ) {
+            var titleText = String(item.value).replace(
+            new RegExp(this.term, "gi"),
+            "<span class='ui-state-highlight'><b>$&</b></span>");
+            var authorText = String(item.author).replace(
+              new RegExp(this.term, "gi"),
+              "<span class='ui-state-highlight'><b>$&</b></span>");
+
+            return $( "<li></li>" )
+            .attr( "data-value", item)
+            .append("<div class='row'><div class='col-3'><img width='62' height='85' src='" + item.imgLink + "'></div>" + "<div class='col'><div class='row'><div class='col'><p style='font-size:15px'>" + titleText + "</p></div></div>" + "<div class='row'><div class='col'><p style='font-size:10px'>" + authorText + "</p></div></div></div>")
+            .appendTo( ul );
+        };
 
 // Search by Author Method
+// $("#author_autocomplete").autocomplete({
+//   appendTo: $('#author'),
+//   source: function (request, response) {
+//     $.ajax({
+//       url: "https://www.googleapis.com/books/v1/volumes?",
+//       data: { 
+//         q: "inauthor:" + request.term,
+//         startIndex: 1,
+//         maxResults: 15
+//       },
+//       success: function (data) {
+//         data = data.items;
+//         var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+//         var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
+
+//         console.log(data);
+
+//         var primary_matches = $.map(data, function (el) {
+//           let result = el.volumeInfo.authors;
+//           console.log(result);
+//           if (typeof result == 'undefined'){
+//             result = "AUTHOR UNKNOWN";
+//           }            
+//           if (matcher1.test(result)){
+//             return {
+//               value: result
+//             };
+
+//           }
+            
+//         });
+//         var secondary_matches = $.map(data, function (el) {
+//           let authors = el.volumeInfo.authors;
+//           if (typeof result == 'undefined'){
+//             result = "AUTHOR UNKNOWN";
+//           }       
+//           if (matcher2.test(result)){
+//             return {
+//               value: result
+//             };
+
+//           }
+            
+//         });
+//         console.log(primary_matches);
+//         console.log(secondary_matches);
+//         response($.merge(primary_matches, secondary_matches));
+//       },
+      
+//       // error: function () {
+//       //   response([]);
+//       // }
+//     });
+//   }
+// })
+// .data("ui-autocomplete")._renderItem = function( ul, item ) {
+//             var authorText = String(item.value).replace(
+//               new RegExp(this.term, "gi"),
+//               "<span class='ui-state-highlight'><b>$&</b></span>");
+
+//             return $( "<li></li>" )
+//             .attr( "data-value", item)
+//             .append("<div><a>" + authorText + "</a></div>")
+//             .appendTo( ul );
+//         };
 
 
 // Search by ISBN Method
@@ -249,4 +497,7 @@ $("#autocomplete").autocomplete({
               .append("<div class='row'><div class='col-3'><img width='62' height='85' src='" + item.imgLink + "'></div>" + "<div class='col'><div class='row'><div class='col'><p style='font-size:15px'>" + titleText + "</p></div></div>" + "<div class='row'><div class='col'><p style='font-size:10px'>" + authorText + "</p></div></div></div>")
               .appendTo( ul );
           };
+
+
+
 

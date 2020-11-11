@@ -1,6 +1,7 @@
   
 <!doctype html>
 <html lang="en">
+
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -74,7 +75,7 @@
       } */
       
       /*js stuff */
-      #personal {
+      /* #personal {
         position: relative;
         width: 20%;
       }
@@ -104,7 +105,7 @@
         color: black;
         font-size: 10px;
         padding: 8px 16px;
-      }
+      } */
     </style>
 
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>

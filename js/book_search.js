@@ -53,7 +53,7 @@ function extract_display_data(xml) {
         node.setAttribute('class', ' base col-lg-4 col-md-4 col-sm-6 col-6');
         node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
         node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
-        node.setAttribute('onclick', `redirect('${isbn}', '${index}')`);
+        node.setAttribute('onclick', `redirect('${isbn}')`);
         node.innerHTML = 
         `
         <div class="each-book shadow rounded">
@@ -75,9 +75,8 @@ function extract_display_data(xml) {
     }
 }
 
-function redirect(isbn, index){
+function redirect(isbn){
     location.href = `bookdetails.php?isbn=${isbn}`;
-    console.log(index);
     document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
 }
 
