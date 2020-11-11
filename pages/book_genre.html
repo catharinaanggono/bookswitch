@@ -4,21 +4,24 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- jQuery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     
     <!-- Custom CSS -->
     <link href="../css/homepage.css" rel="stylesheet" />
-    <link href="../css/book_genre.css" rel="stylesheet" href="">
+    <link href="../css/bookswitch.css" rel="stylesheet" href="">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Custom JavaScript -->
     <script src="../js/book_genre.js"></script>
-    <script src="../js/homepage.js"></script>
+    <!-- <script src="../js/homepage.js"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-    <!-- Third party plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
 
     <title>BookSwitch2</title>
 
@@ -35,17 +38,49 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
     </script> -->
-    <script> 
-
-        (".btn").click(function() {
-            // Instead of directly editing CSS, toggle a class
-            $(this).removeClass('Active');//removes classes everywhere
-            $(this).addClass('Active');//adds the class at the right button
-            
-        });
-    </script> 
 
     <!-- <div id="header"></div><br> -->
+       <!-- Navigation-->
+       <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../images/bookswitch.svg" alt="" /></a>
+            <div class="d-flex flex-row order-2 order-lg-3">
+
+                <ul class = "navbar-nav">
+                    <li class="nav-item nav-link" id="bookens"><span style="color:#474E45;">50</span><img src="../images/bookens_circle.svg" width="17" height="17"></a></li>
+                </ul>
+
+                <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- Menu -->
+                    <i class="fas fa-bars ml-1"></i>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
+                    <li class="nav-item">
+                      <div class="search" id="search">
+                        <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
+                      </div></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i>user1</a></li>
+                </ul>
+            </div>
+            <div>
+              <input type="checkbox" class="checkbox" id="chk" />
+              <label class="label" for="chk">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <div class="ball"></div>
+              </label>
+            </div>   
+                    
+        </div>
+    </nav>
+    
+        <!-- try out -->
+        <button class="btn genre m-1 text-blue" onclick="call_api_genre('romance', 1)">1</button>
+        <button class="btn genre m-1 text-blue" onclick="call_api_genre('romance', 2)">2</button>
 
     <div id='genre-header' class="jumbotron jumbotron-fluid mx-auto" style="width: 93%; border-radius: 5px;">
         <div class="container">
@@ -86,12 +121,16 @@
     
     <br><br><br><br><br>
 
-    <script>
+    <!-- <script>
         $(function(){
             $("#header").load("../reuse/header.html"); 
             $("#footer").load("../reuse/footer.html"); 
         });
-    </script>
+    </script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="../js/homepage.js"></script>
 
 
 

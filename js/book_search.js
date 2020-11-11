@@ -19,8 +19,8 @@ function extract_display_data(xml) {
         var img = books_result[each_book].volumeInfo.imageLinks;
 
         if (typeof short_desc !== 'undefined'){
-            if(short_desc.length > 250){
-                short_desc = short_desc.slice(0,250) + '...';
+            if(short_desc.length > 230){
+                short_desc = short_desc.slice(0,230) + '...';
             }
         }
         else{
@@ -53,18 +53,19 @@ function extract_display_data(xml) {
         node.setAttribute('class', ' base col-lg-4 col-md-4 col-sm-6 col-6');
         node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
         node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
+        node.setAttribute('onclick', `redirect('${isbn}')`);
         node.innerHTML = 
         `
         <div class="each-book shadow rounded">
-            <div class="each-img"><a href='homepage.html'><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></a></div>
+            <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
             <div class="main-details">
-                <span style='font-size:12px;'><a href='homepage.html'><b>${title}</b></a></span><br>
-                <span style='font-size:10px;'>by ${author}</span>
+                <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
+                <span style='font-size:13px;'>by ${author}</span>
             </div>
         </div>
         <!-- style="visibility: hidden; -->
         <div class="each-desc shadow rounded" id="each-desc${index}" style="visibility: hidden;"> 
-            ${short_desc}
+            <span style='font-size:15px;'>${short_desc}</span>
         </div>
         `;
         document.getElementById('main-content').appendChild(node);
@@ -74,6 +75,10 @@ function extract_display_data(xml) {
     }
 }
 
+function redirect(isbn){
+    location.href = `bookdetails.php?isbn=${isbn}`;
+    document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
+}
 
 function call_api_search(category, keyword, pg_num){
     var request = new XMLHttpRequest();

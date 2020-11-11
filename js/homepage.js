@@ -14,6 +14,11 @@ chk.addEventListener('click', () => {
   for (x of books){
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
+  genre = document.getElementsByClassName('genre');
+  for (x of genre){
+    chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+  }
+
   localStorage.setItem('darkModeStatus', chk.checked);
 });
 
@@ -30,6 +35,10 @@ window.addEventListener('load', (event) => {
     }
     books = document.getElementsByClassName('each-book');
     for (x of books){
+      x.classList.add("dark");
+    }
+    genre = document.getElementsByClassName('genre');
+    for (x of genre){
       x.classList.add("dark");
     }
     document.getElementById('chk').checked = true;
