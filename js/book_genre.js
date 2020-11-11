@@ -156,6 +156,7 @@ function redirect(isbn) {
     location.href = `bookdetails.php?isbn=${isbn}`;
     console.log(index);
     document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
+    console.log(isbn);
 }
 
 function extract_page_data(xml, genre) {
