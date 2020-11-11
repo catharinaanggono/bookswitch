@@ -8,7 +8,6 @@
         $userid = $_SESSION["userid"];
             if(isset($_POST['getCopy'])) { 
                 $dao = new listingDAO(); 
-                ### delete one record with "NO" 
                 $nStatus = "NO";
                 $deleteStatus = $dao->deleteCopy($isbn,$nStatus);
                 $status = "YES";
@@ -19,8 +18,15 @@
                 
             } else { 
                 $dao = new bookmarkDAO(); 
-                $status = $dao->addBookmark($userid,$isbn);
-                $_SESSION["button"] = "getWishlist"; 
+                $checkBookmark = $dao->checkBookmark($userid,$isbn);
+
+                if ($checkBookmark == []) {
+                    $status = $dao->addBookmark($userid,$isbn);
+                } else { 
+                    $status = $dao->deleteBookmark($userid,$isbn);
+                }
+    
+                $_SESSION["button"] = "getBookmark";
                 header("location:bookdetails.php?isbn=$isbn");
                 echo "<script>$('#exampleModal').modal('show')</script>";
             }

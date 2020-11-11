@@ -276,15 +276,14 @@
             ### No quantity available 
             echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
             <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
-            <button type='submit' class='btn black-background white'>
-                <i class='far fa-bookmark'></i> Bookmark
-            </button>
+            <button name='bk' type='submit' value='bk' class ='btn black-background white' >
+            <i class='far fa-bookmark'></i> Bookmark</button>
           
             </form>";
         } else { 
             echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
             <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white'>
-            <button type='submit' class='btn black-background white'>
+            <button type='submit'  name = 'bookmark' class='btn black-background white'>
                 <i class='far fa-bookmark'></i> Bookmark
             </button>
             </form>";
