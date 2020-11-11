@@ -1,10 +1,9 @@
-.active {
-    background-color: teal;
-
-}
-
-.selected {
-    background: teal;
+#pagination {
+    margin: auto;
+    position: fixed;
+    bottom: 10px;
+    left: 20%;
+    z-index: 1;
 }
 
 /* day */

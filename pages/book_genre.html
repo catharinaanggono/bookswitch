@@ -24,16 +24,6 @@
 
     <title>BookSwitch2</title>
 
-    <style>
-        /* .clicked {
-            background-color: yellowgreen
-        } */
-        .btn.active {
-            background: #cecece;
-            text-decoration: none;
-            background-color: blue;
-        }
-    </style>
 </head>
 <body>
     <!-- jQuery for header/footer -->
@@ -88,8 +78,11 @@
     </nav>
     
         <!-- try out -->
-        <button class="btn genre m-1 text-blue" onclick="call_api_genre('romance', 1)">1</button>
-        <button class="btn genre m-1 text-blue" onclick="call_api_genre('romance', 2)">2</button>
+        <div class="pagination" id="pagination">
+            <button class="btn genre m-1 text-blue" id="1" onclick="call_api_genre('romance', 1); set_active(id);">1</button>
+            <button class="btn genre m-1 text-blue" id="2" onclick="call_api_genre('romance', 2); set_active(id);">2</button>
+        </div>
+
 
     <div id='genre-header' class="jumbotron jumbotron-fluid mx-auto" style="width: 93%; border-radius: 5px;">
         <div class="container">
@@ -98,7 +91,7 @@
         </div>
       </div>
     
-    <div class="container text-center" id="glist">
+    <div class="container text-center" id="glist" class='glist'>
         <button type="button" class="btn genre m-1" id='mystery' onclick="call_api_genre('Mystery', 0);" selected>Mystery</button>
         <button type="button" class="btn genre m-1" id='romance' onclick="call_api_genre('Romance', 0); ">Romance</button>
         <button type="button" class="btn genre m-1" id='thriller' onclick="call_api_genre('Thriller', 0);">Thriller</button>
@@ -123,9 +116,11 @@
     </div>
 
     <br><br>
-    <div id="pagination" class="container">
+    <div id="pagination" class="justify-content-center">
         <a style="text-align: center;">1</a>
     </div>
+
+    
 
     
     <br><br><br><br><br>
