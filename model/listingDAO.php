@@ -39,6 +39,38 @@
             return $listingsRecords;
         }
 
+        public function checkAvailQty($isbn) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            $status = "NO";
+            $sql = 'SELECT * FROM listings WHERE isbn=:isbn and status = :status';
+            $stmt = $pdo->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':isbn', $isbn, PDO::PARAM_STR);
+            $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = null;
+            $Qty_Avail = []; 
+            while ($row = $stmt->fetch()) {
+                $Qty_Avail[] = $row['isbn'];
+            }
+            $stmt->closeCursor();
+            $pdo = null;
+            return $Qty_Avail;
+        }
+
+        public function deleteCopy($isbn,$nStatus) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            $sql = 'DELETE FROM listings WHERE isbn=:isbn and status = :nStatus';
+            $stmt = $pdo->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':isbn', $isbn, PDO::PARAM_STR);
+            $stmt->bindParam(':nStatus', $nStatus, PDO::PARAM_STR);
+            $stmt->execute();
+            $stmt->closeCursor();
+            $pdo = null;
+        }
 
     }   
 

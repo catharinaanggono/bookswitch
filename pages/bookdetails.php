@@ -102,7 +102,7 @@
             background-color:#B5C587;
         }
 
-
+        
     </style>
 
     <?php 
@@ -264,35 +264,61 @@
         }else { 
             $userid = null; 
         }
-        $dao = new userDAO(); 
-        $checkWishlist = $dao->checkWishlist($userid,$isbn);
-        $checkListings = $dao->checkListings($userid,$isbn);
 
-        if ($checkWishlist == False && $checkListings == False ) {
-            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
-            <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
-            class='btn black-background white'>
-        </form>";
-        } else if ($checkWishlist == False && $checkListings == True ) {
+        ### Check the quantity in listings that are not reserved
+        $dao = new listingDAO(); 
+        $checkAvailQty = $dao->checkAvailQty($isbn);
+
+        // <input type='submit' name = 'addBookmark' value = 'Add to Bookmark' 
+        // class='btn black-background white'>
+        
+        if ($checkAvailQty == []) {
+            ### No quantity available 
             echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
             <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
-            <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
-            class='btn black-background white'>
-        </form>";
-        } else if ($checkWishlist == True && $checkListings == False) {
-            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
-            <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
-            class='btn black-background white' disabled>
-        </form>"; 
+            <button type='submit' class='btn black-background white'>
+                <i class='far fa-bookmark'></i> Bookmark
+            </button>
+          
+            </form>";
         } else { 
             echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
-            <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
-            class='btn black-background white' disabled>
-        </form>"; 
+            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white'>
+            <button type='submit' class='btn black-background white'>
+                <i class='far fa-bookmark'></i> Bookmark
+            </button>
+            </form>";
         }
+
+        // $dao = new userDAO(); 
+        // $checkWishlist = $dao->checkWishlist($userid,$isbn);
+        // $checkListings = $dao->checkListings($userid,$isbn);
+
+        // if ($checkWishlist == False && $checkListings == False ) {
+        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
+        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
+        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
+        //     class='btn black-background white'>
+        // </form>";
+        // } else if ($checkWishlist == False && $checkListings == True ) {
+        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
+        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
+        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
+        //     class='btn black-background white'>
+        // </form>";
+        // } else if ($checkWishlist == True && $checkListings == False) {
+        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
+        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
+        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
+        //     class='btn black-background white' disabled>
+        // </form>"; 
+        // } else { 
+        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
+        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
+        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
+        //     class='btn black-background white' disabled>
+        // </form>"; 
+        // }
     ?>
 
             
