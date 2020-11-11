@@ -31,7 +31,7 @@
 }
 
 h2.dark{
-    color: #D5D3BF;
+    color: #B5C587;
 }
 
 /* each book: base, top->norm, btm->desc */
@@ -98,6 +98,10 @@ h2.dark{
     padding: 10px;
     font-size: 18px;
 
+}
+
+a:hover{
+    text-decoration: none;
 }
 /* body {
     font-family: 'Quicksand', sans-serif;

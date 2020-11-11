@@ -78,13 +78,13 @@
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-                <form role="search" method="get" class="search-form form" action="">
+                <!-- <form role="search" method="get" class="search-form form" action=""> -->
                   <label>
                       <span class="screen-reader-text">Search for...</span>
                       <input id="all_autocomplete" type="search" class="search-field" placeholder="Search all..." value="" name="s" title="" />
                   </label>
-                  <input type="submit" class="search-submit button" value="&#xf002" />
-                </form> 
+                  <input type="submit" class="search-submit button" value="&#xf002" onclick="general_search('all')"/>
+                <!-- </form>  -->
               </div>
 
               <div class="tab-pane fade" id="title" role="tabpanel" aria-labelledby="title-tab">
