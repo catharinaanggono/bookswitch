@@ -40,7 +40,7 @@
 
     <!-- <div id="header"></div><br> -->
        <!-- Navigation-->
-       <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch.svg" alt="" /></a>
             <div class="d-flex flex-row order-2 order-lg-3">
@@ -78,28 +78,26 @@
     </nav>
     
         <!-- try out -->
-        <div class="pagination" id="pagination">
-            <button class="btn genre m-1 text-blue" id="1" onclick="call_api_genre('romance', 1); set_active(id);">1</button>
-            <button class="btn genre m-1 text-blue" id="2" onclick="call_api_genre('romance', 2); set_active(id);">2</button>
+        <div class="pagination justify-content-center" id="pagination">
+
         </div>
 
-
-    <div id='genre-header' class="jumbotron jumbotron-fluid mx-auto" style="width: 93%; border-radius: 5px;">
-        <div class="container">
-          <h1 class="display-4">Fluid jumbotron</h1>
-          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-        </div>
-      </div>
-    
     <div class="container text-center" id="glist" class='glist'>
-        <button type="button" class="btn genre m-1" id='mystery' onclick="call_api_genre('Mystery', 0);" selected>Mystery</button>
-        <button type="button" class="btn genre m-1" id='romance' onclick="call_api_genre('Romance', 0); ">Romance</button>
-        <button type="button" class="btn genre m-1" id='thriller' onclick="call_api_genre('Thriller', 0);">Thriller</button>
-        <button type="button" class="btn genre m-1" id='fantasy' onclick="call_api_genre('Fantasy', 0); ">Fantasy</button>
-        <button type="button" class="btn genre m-1" id='sf' onclick="call_api_genre('Science Fiction', 0);">Science Fiction</button>
+        <button type="button" class="btn genre m-1" id='Mystery' onclick="call_api_genre('Mystery', 0); update_header(id);">Mystery</button>
+        <button type="button" class="btn genre m-1" id='Romance' onclick="call_api_genre('Romance', 0); update_header(id); ">Romance</button>
+        <button type="button" class="btn genre m-1" id='Thriller' onclick="call_api_genre('Thriller', 0); update_header(id);">Thriller</button>
+        <button type="button" class="btn genre m-1" id='Fantasy' onclick="call_api_genre('Fantasy', 0); update_header(id);">Fantasy</button>
+        <button type="button" class="btn genre m-1" id='Science Fiction' onclick="call_api_genre('Science Fiction', 0); update_header(id);">Science Fiction</button>
     </div>
 
-    <br><br>
+    <br>
+    <div id='genre-header' class="jumbotron jumbotron-fluid mx-auto" style="width: 93%; border-radius: 5px;">
+        <div class="container">
+          <h1 id="gtitle" class="display-4">Romance</h1>
+          <p id="gdesc" class="lead">The primary focus of romance fiction is on the relationship and romantic love between two people. These books have an emotionally satisfying and optimistic ending.</p>
+        </div>
+    </div>
+    
 
     <div class="container">
         <div class="row">
@@ -114,16 +112,7 @@
         </div>
         <!-- /.row -->
     </div>
-
-    <br><br>
-    <div id="pagination" class="justify-content-center">
-        <a style="text-align: center;">1</a>
-    </div>
-
-    
-
-    
-    <br><br><br><br><br>
+    <br>
 
     <!-- <script>
         $(function(){

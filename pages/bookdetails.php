@@ -269,25 +269,25 @@
         $checkListings = $dao->checkListings($userid,$isbn);
 
         if ($checkWishlist == False && $checkListings == False ) {
-            echo "    <form method='POST' action= 'addBook.php?isbn=9781760553128'> 
+            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
             <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
             <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
             class='btn black-background white'>
         </form>";
         } else if ($checkWishlist == False && $checkListings == True ) {
-            echo "    <form method='POST' action= 'addBook.php?isbn=9781760553128'> 
+            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
             <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
             <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
             class='btn black-background white'>
         </form>";
         } else if ($checkWishlist == True && $checkListings == False) {
-            echo "    <form method='POST' action= 'addBook.php?isbn=9781760553128'> 
+            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
             <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
             <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
             class='btn black-background white' disabled>
         </form>"; 
         } else { 
-            echo "    <form method='POST' action= 'addBook.php?isbn=9781760553128'> 
+            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
             <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
             <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
             class='btn black-background white' disabled>

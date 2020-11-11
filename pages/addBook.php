@@ -14,8 +14,8 @@
                 echo "<script>$('#exampleModal').modal('show')</script>";
                 
             } else { 
-                $dao = new wishlistDAO(); 
-                $status = $dao->addWishlist($userid,$isbn);
+                $dao = new bookmarkDAO(); 
+                $status = $dao->addBookmark($userid,$isbn);
                 $_SESSION["button"] = "getWishlist"; 
                 header("location:bookdetails.php?isbn=$isbn");
                 echo "<script>$('#exampleModal').modal('show')</script>";

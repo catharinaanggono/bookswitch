@@ -33,13 +33,22 @@ const genre_dataset = {
 };
 
 
-function update_header(genre) {
-    var genre_btns = document.getElementsByClassName('btn');
+function update_header(id) {
+    // var genre_btns = document.getElementsByClassName('btn');
 
-    for ( i = 0; i < genre_btns.length; i++ ) {
-        genre_btns[i].setAttribute('class', 'btn genre m-1');
+    // for ( i = 0; i < genre_btns.length; i++ ) {
+    //     genre_btns[i].setAttribute('class', 'btn genre m-1');
+    // }
+    // console.log(selected_genre);
+
+    for (genre of genre_dataset.genres) {
+        // console.log(genre.genre);
+        if (genre.genre == id){
+            document.getElementById('gtitle').innerText = id;
+            document.getElementById('gdesc').innerText = genre.description;
+        }
+            
     }
-    console.log(selected_genre);
     
 }
 
@@ -54,7 +63,7 @@ display_default();
 // genre
 function call_api_genre(genre, pg_num) {
     var request = new XMLHttpRequest();
-    var max = 8;
+    var max = 30;
 
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
@@ -99,9 +108,9 @@ function extract_display_data(xml) {
         // console.log(isbn);
 
         if ( typeof short_desc !== 'undefined' ) {
-            if (short_desc.length > 150) {
-                short_desc = short_desc.slice(0,120) + '...';
-            }
+            // if (short_desc.length > 150) {
+            //     short_desc = short_desc.slice(0,120) + '...';
+            // }
         }
         else {
             short_desc = 'description not available';
@@ -132,9 +141,11 @@ function extract_display_data(xml) {
             </div>
         </div>
         <!-- style="visibility: hidden; -->
-        <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
-            <b>Description</b><br>
-            ${short_desc}
+        <div class="each-desc" id="each-desc${index}" style='visibility: hidden; text-overflow: ellipsis; '> 
+            <div>
+                <b>Description</b><br>
+                <span style='display: flex; height: 100px; overflow: hidden; text-overflow: ellipsis;'> ${short_desc}</span>
+            </div>
         </div>
 
         `;
@@ -166,7 +177,7 @@ function extract_page_data(xml, genre) {
     
     for ( i = 1; i <= 5; i++ ) {
         var node = document.createElement('button');
-        node.setAttribute('class', 'btn genre m-1 text-blue');
+        node.setAttribute('class', 'btn page m-1');
         node.setAttribute('onclick', `call_api_genre('${genre}', ${i})`);
         node.innerHTML = `${i}`;
         
@@ -178,12 +189,12 @@ function extract_page_data(xml, genre) {
 
 function show_desc(id) {
     var node = document.getElementById(id);
-    node.setAttribute('style', 'visibility: visible;');
+    node.setAttribute('style', 'visibility: visible; overflow: hidden; text-overflow: ellipsis; ');
 }
 
 function hide_desc(id) {
     var node = document.getElementById(id);
-    node.setAttribute('style', 'visibility: hidden;');
+    node.setAttribute('style', 'visibility: hidden; overflow: hidden; text-overflow: ellipsis; ');
 }
 
 // function gtags() {
