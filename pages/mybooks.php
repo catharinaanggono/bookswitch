@@ -1,7 +1,7 @@
   
 <!doctype html>
 <html lang="en">
-<!-- hi -->
+
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
 
     <link href="../css/homepage.css" rel="stylesheet" />
     <link href="../css/bookswitch.css" rel="stylesheet" />
-    <!-- <link href="../css/book_genre.css" rel="stylesheet" /> -->
+    <link href="../css/book_genre.css" rel="stylesheet" />
 
     <title>My Books</title>
 
@@ -75,7 +75,7 @@
       } */
       
       /*js stuff */
-      #personal {
+      /* #personal {
         position: relative;
         width: 20%;
       }
@@ -105,7 +105,7 @@
         color: black;
         font-size: 10px;
         padding: 8px 16px;
-      }
+      } */
     </style>
 
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -127,37 +127,6 @@
   <body onload="get_wishlist()">
     <!--Jess's Navbar here-->
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch_logo.svg" alt="" /></a>
-                <div class="d-flex flex-row order-2 order-lg-3">
-
-                    <ul class = "navbar-nav">
-                        <li class="nav-item nav-link" id="bookens"><span style="color: #474E45;">50</span><img src="../images/bookens.svg" width="22" height="22"></a></li>
-                    </ul>
-
-                    <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <!-- Menu -->
-                        <i class="fas fa-bars ml-1"></i>
-                    </button>
-                </div>
-                
-                <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services" style="color: #474E45">Genre</a></li>
-                        <li class="nav-item">
-                            <div class="search">
-                                <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
-                            </div></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio" style="color: #474E45"><i class="far fa-user"></i>user1</a></li>
-                        
-                    </ul>
-                </div>
-                
-                        
-            </div>
-            
-        </nav>
     <!---->
 
     
@@ -288,6 +257,7 @@ function get_wishlist_book(isbn) {
             var json_obj = JSON.parse(request.responseText);
             var items = json_obj.items;
             var html_text = '';
+            var index = 0;
 
             for (item of items) {
                 var image = item.volumeInfo.imageLinks.thumbnail;
@@ -305,12 +275,24 @@ function get_wishlist_book(isbn) {
                   desc = 'description not available';
                 }
 
-                html_text += `
-                <div class="container d-inline-block each-book" id="personal">
-                  <img src="${image}" alt="bookimage" class="image" style="width:100%">
-                  <div class="middle">
-                    <div class="text"><b>${title}</b><br>${desc}</div>
-                  </div>
+
+                var node = document.createElement('div');
+                node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
+                node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
+                node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
+                node.setAttribute('onclick', `redirect(${isbn})`);
+                node.innerHTML += `
+                <div class="each-book">
+                    <div class="each-img"><img src="${iamge}" width="100%" height="100%" style="border-radius: 2%;"></div>
+                    <div class="main-details">
+                        <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
+                        <span style='font-size:13px;'>by ${author}</span>
+                    </div>
+                </div>
+                <!-- style="visibility: hidden; -->
+                <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
+                    <b>Description</b><br>
+                    ${desc}
                 </div>
                 `;
 
@@ -325,10 +307,13 @@ function get_wishlist_book(isbn) {
                 // <div style="visibility:hidden">${desc}</div>
                 // `;
 
+                index += 1
+                console.log(index);
+
 
             }
 
-            document.getElementById('wishlist_cards').innerHTML += html_text;
+            document.getElementById('wishlist_cards').appendChild(node);
 
 
     }
