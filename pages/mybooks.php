@@ -209,7 +209,7 @@
               $userid = $_SESSION["userid"];
 
               // listings
-              $dao = new WishlistDAO();
+              $dao = new bookmarkDAO();
               $wishlist = $dao->getWishlist($userid);
               $_SESSION["wishlist"] = $wishlist;
               $dao2 = new ListingDAO();
@@ -273,189 +273,186 @@
 
   };
 
-function getListings(status) {
-  document.getElementById("myListings_cards").innerHTML = '';
-  var listing = <?php echo json_encode($listing); ?>;
+  function getListings(status) {
+    document.getElementById("myListings_cards").innerHTML = '';
+    var listing = <?php echo json_encode($listing); ?>;
 
 
-  if (status == 'ALL') {
-    for (var book of listing) {
-      var isbn = book[0];
-      get_listings_book(isbn);
-    };
-  } else {
-    
-    for (var book of listing) {
-      var isbn = book[0];
-      var reserve = book[1];
-      if (reserve == status) {
+    if (status == 'ALL') {
+      for (var book of listing) {
+        var isbn = book[0];
         get_listings_book(isbn);
+      };
+    } else {
+      
+      for (var book of listing) {
+        var isbn = book[0];
+        var reserve = book[1];
+        if (reserve == status) {
+          get_listings_book(isbn);
+        }
       }
     }
+    
+  };
+
+
+
+  function get_wishlist_book(isbn) {
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function () {
+          if (request.readyState == 4 && request.status == 200) {
+              var json_obj = JSON.parse(request.responseText);
+              var items = json_obj.items;
+              var html_text = '';
+              var index = 0;
+
+              for (item of items) {
+                  var image = item.volumeInfo.imageLinks.thumbnail;
+                  var title = item.volumeInfo.title;
+                  var desc = item.volumeInfo.description;
+                  var author = item.volumeInfo.authors;
+
+                  
+                  if ( typeof desc !== 'undefined' ) {
+                    if (desc.length > 150) {
+                      desc = desc.slice(0,120) + '...';
+                    }
+                  }
+                  else {
+                    desc = 'description not available';
+                  }
+
+
+                  var node = document.createElement('div');
+                  node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
+                  node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
+                  node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
+                  node.setAttribute('onclick', `redirect(${isbn})`);
+                  node.innerHTML += `
+                  <div class="each-book">
+                      <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
+                      <div class="main-details">
+                          <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
+                          <span style='font-size:13px;'>by ${author}</span>
+                      </div>
+                  </div>
+                  <!-- style="visibility: hidden; -->
+                  <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
+                      <b>Description</b><br>
+                      ${desc}
+                  </div>
+                  `;
+
+                  index += 1
+                  console.log(index);
+
+
+              }
+
+              document.getElementById('wishlist_cards').appendChild(node);
+
+
+      }
   }
-  
-};
 
 
+      var url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
 
-function get_wishlist_book(isbn) {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            var json_obj = JSON.parse(request.responseText);
-            var items = json_obj.items;
-            var html_text = '';
-            var index = 0;
+      
+      request.open("GET", url, true);
 
-            for (item of items) {
-                var image = item.volumeInfo.imageLinks.thumbnail;
-                var title = item.volumeInfo.title;
-                var desc = item.volumeInfo.description;
-                var author = item.volumeInfo.authors;
-
-                
-                if ( typeof desc !== 'undefined' ) {
-                  if (desc.length > 150) {
-                    desc = desc.slice(0,120) + '...';
-                  }
-                }
-                else {
-                  desc = 'description not available';
-                }
-
-
-                var node = document.createElement('div');
-                node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
-                node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
-                node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
-                node.setAttribute('onclick', `redirect(${isbn})`);
-                node.innerHTML += `
-                <div class="each-book">
-                    <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
-                    <div class="main-details">
-                        <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
-                        <span style='font-size:13px;'>by ${author}</span>
-                    </div>
-                </div>
-                <!-- style="visibility: hidden; -->
-                <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
-                    <b>Description</b><br>
-                    ${desc}
-                </div>
-                `;
-
-                index += 1
-                console.log(index);
-
-
-            }
-
-            document.getElementById('wishlist_cards').appendChild(node);
-
-
-    }
-}
-
-
-    var url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+      request.send();
 
     
-    request.open("GET", url, true);
+  };
 
-    request.send();
+  function get_listings_book(isbn) {
+      var request = new XMLHttpRequest();
+      
+      request.onreadystatechange = function () {
+          if (request.readyState == 4 && request.status == 200) {
+              var json_obj = JSON.parse(request.responseText);
+              var items = json_obj.items;
+              var x = 0;
+              var html_text = "";
+              
 
-  
-};
+              for (item of items) {
+                  var image = item.volumeInfo.imageLinks.thumbnail;
+                  var title = item.volumeInfo.title;
+                  var desc = item.volumeInfo.description;
+                  var author = item.volumeInfo.authors;
 
-function get_listings_book(isbn) {
-    var request = new XMLHttpRequest();
-    
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            var json_obj = JSON.parse(request.responseText);
-            var items = json_obj.items;
-            var x = 0;
-            var html_text = "";
-            
-
-            for (item of items) {
-                var image = item.volumeInfo.imageLinks.thumbnail;
-                var title = item.volumeInfo.title;
-                var desc = item.volumeInfo.description;
-                var author = item.volumeInfo.authors;
-
-                
-                if ( typeof desc !== 'undefined' ) {
-                  if (desc.length > 150) {
-                    desc = desc.slice(0,120) + '...';
+                  
+                  if ( typeof desc !== 'undefined' ) {
+                    if (desc.length > 150) {
+                      desc = desc.slice(0,120) + '...';
+                    }
                   }
-                }
-                else {
-                  desc = 'description not available';
-                }
+                  else {
+                    desc = 'description not available';
+                  }
 
 
-                var node = document.createElement('div');
-                node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
-                node.setAttribute('onmouseout', `hide_desc('each-${x}')`);
-                node.setAttribute('onmouseover', `show_desc('each-${x}')`);
-                node.setAttribute('onclick', `redirect(${isbn})`);
-                node.innerHTML += `
-                <div class="each-book">
-                    <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
-                    <div class="main-details">
-                        <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
-                        <span style='font-size:13px;'>by ${author}</span>
-                    </div>
-                </div>
-                <!-- style="visibility: hidden; -->
-                <div class="each-desc" id="each-${x}" style="visibility: hidden;"> 
-                    <b>Description</b><br>
-                    ${desc}
-                </div>
-                `;
+                  var node = document.createElement('div');
+                  node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
+                  node.setAttribute('onmouseout', `hide_desc('each-${x}')`);
+                  node.setAttribute('onmouseover', `show_desc('each-${x}')`);
+                  node.setAttribute('onclick', `redirect(${isbn})`);
+                  node.innerHTML += `
+                  <div class="each-book">
+                      <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
+                      <div class="main-details">
+                          <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
+                          <span style='font-size:13px;'>by ${author}</span>
+                      </div>
+                  </div>
+                  <!-- style="visibility: hidden; -->
+                  <div class="each-desc" id="each-${x}" style="visibility: hidden;"> 
+                      <b>Description</b><br>
+                      ${desc}
+                  </div>
+                  `;
 
-                x += 1
-                alert(x);
+                  x += 1
+                  alert(x);
 
-            }
+              }
 
-            document.getElementById('myListings_cards').appendChild(node);
-
-
-    }
-    }
+              document.getElementById('myListings_cards').appendChild(node);
 
 
-    var url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
-
-    request.open("GET", url, true);
-
-    request.send();
+      }
+      }
 
 
+      var url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
 
-}
+      request.open("GET", url, true);
 
-
-function redirect(isbn) {
-    location.href = `bookdetails.php?isbn=${isbn}`;
-    console.log(index);
-    document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
-}
-
-function show_desc(id) {
-    var node = document.getElementById(id);
-    node.setAttribute('style', 'visibility: visible;');
-}
-
-function hide_desc(id) {
-    var node = document.getElementById(id);
-    node.setAttribute(('style', 'visibility: hidden;');
-}
+      request.send();
 
 
 
+  }
+
+
+  function redirect(isbn) {
+      location.href = `bookdetails.php?isbn=${isbn}`;
+      console.log(index);
+      document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
+  }
+
+  function show_desc(id) {
+      var node = document.getElementById(id);
+      node.setAttribute('style', 'visibility: visible;');
+  }
+
+  function hide_desc(id) {
+      var node = document.getElementById(id);
+      node.setAttribute(('style', 'visibility: hidden;');
+  }
 
 </script>
 
