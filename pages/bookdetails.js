@@ -43,8 +43,8 @@ function call_book(id){
                 var imageLink = info.imageLinks.small;
             }
 
-            document.getElementById("author").innerText= "Author: " + author;
-            document.getElementById("published_date").innerText= "Published Date: " + published_date;
+            document.getElementById("author").innerHTML= author;
+            document.getElementById("published_date").innerHTML= published_date;
             document.getElementById("BkImg").src = imageLink;
             document.getElementById("BkImg").src = imageLink;
             document.getElementById("bookTitle").innerText= title;
