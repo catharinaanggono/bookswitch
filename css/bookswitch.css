@@ -9,7 +9,7 @@
 
 /* day */
 .genre {
-    /* border: 2px solid #0D3D54; */
+    border: 2px solid #0D3D54;
     color:  #0D3D54;
     font-weight: 600;
     border-radius: 22px;
@@ -72,7 +72,7 @@ button.dark:hover {
     width: 90%;
     height: 160px;
     /* border: 2px solid #D3D3D3; */
-    background-image: linear-gradient(rgb(70, 138, 107), rgb(71, 147, 190));
+    background-image: linear-gradient(rgb(70, 138, 107), rgb(162, 205, 230)); 
     margin: auto;
     position: absolute;
     border-radius: 5px;
@@ -86,10 +86,11 @@ button.dark:hover {
     position: absolute;
     height: 155px;
     width: 88%;
+    /* background-image: ;  */
     /* background-image: linear-gradient(#DAE8E3, #DAE9F0); */
-    background-image: linear-gradient(#CDB9A5, #CDB9A5);
-    background-color: #d6c8b9;
-    border: #aaaaaa solid 1.5px; 
+    /* background-image: linear-gradient(#CDB9A5, #CDB9A5); */
+    background-color: #ecd8bf;
+    /* border: #aaaaaa solid 1.5px;  */
     /* opacity: 80%; */
     border-radius: 5px;
 

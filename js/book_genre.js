@@ -108,6 +108,13 @@ function extract_display_data(xml) {
             short_desc = 'description not available';
         }
 
+        if (typeof isbn !== 'undefined'){
+            isbn = books_result[each_book].volumeInfo.industryIdentifiers[0].identifier;
+        }
+        else{
+            isbn = '';
+        }
+
         
         // console.log(img);
         // input each book
