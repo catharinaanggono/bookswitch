@@ -10458,7 +10458,7 @@
     text-align: center;
     color: #fff;
     /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 75%, #000000 100%), url("../images/home_bg.png"); */
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%);
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
