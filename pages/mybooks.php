@@ -312,7 +312,7 @@ function get_wishlist_book(isbn) {
                 var title = item.volumeInfo.title;
                 var desc = item.volumeInfo.description;
                 var author = item.volumeInfo.authors;
-                //var updated = ; // put time updqated 
+
                 
                 if ( typeof desc !== 'undefined' ) {
                   if (desc.length > 150) {
@@ -369,20 +369,21 @@ function get_wishlist_book(isbn) {
 
 function get_listings_book(isbn) {
     var request = new XMLHttpRequest();
+    
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             var json_obj = JSON.parse(request.responseText);
             var items = json_obj.items;
-
+            var x = 0;
             var html_text = "";
-            var index = 0;
+            
 
             for (item of items) {
-              var image = item.volumeInfo.imageLinks.thumbnail;
+                var image = item.volumeInfo.imageLinks.thumbnail;
                 var title = item.volumeInfo.title;
                 var desc = item.volumeInfo.description;
                 var author = item.volumeInfo.authors;
-                //var updated = ; // put time updqated 
+
                 
                 if ( typeof desc !== 'undefined' ) {
                   if (desc.length > 150) {
@@ -396,8 +397,8 @@ function get_listings_book(isbn) {
 
                 var node = document.createElement('div');
                 node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
-                node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
-                node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
+                node.setAttribute('onmouseout', `hide_desc('each-${x}')`);
+                node.setAttribute('onmouseover', `show_desc('each-${x}')`);
                 node.setAttribute('onclick', `redirect(${isbn})`);
                 node.innerHTML += `
                 <div class="each-book">
@@ -408,14 +409,14 @@ function get_listings_book(isbn) {
                     </div>
                 </div>
                 <!-- style="visibility: hidden; -->
-                <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
+                <div class="each-desc" id="each-${x}" style="visibility: hidden;"> 
                     <b>Description</b><br>
                     ${desc}
                 </div>
                 `;
 
-                index += 1
-                console.log(index);
+                x += 1
+                alert(x);
 
             }
 
@@ -450,8 +451,9 @@ function show_desc(id) {
 
 function hide_desc(id) {
     var node = document.getElementById(id);
-    node.setAttribute('style', 'visibility: hidden;');
+    node.setAttribute(('style', 'visibility: hidden;');
 }
+
 
 
 
