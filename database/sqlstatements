@@ -1,6 +1,9 @@
 (1) Creation of database in MySQL 
 
+    drop database if exists bookswitch;
     CREATE DATABASE bookswitch;
+
+    use bookswitch;
 
 (2) Creation of User Table 
 
@@ -26,5 +29,17 @@
 (5) Creation of Listings Table 
     CREATE TABLE listings
     (       userID VARCHAR(255) NOT NULL, 
-            isbn VARCHAR(100) NOT NULL
+            isbn VARCHAR(100) NOT NULL,
+            status VARCHAR(20) NOT NULL
     );
+
+(6) Insertion of records (Wishlist)
+    INSERT INTO wishlist(userID, isbn) VALUES 
+    ("aytt", "0141346809");
+
+(7) Insertion of records (listings)
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("aytt", "1408135752", "YES");
+
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("aytt", "1107604664", "NO");
