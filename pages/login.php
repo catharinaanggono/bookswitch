@@ -33,18 +33,18 @@
 				echo "Incorrect password";
 				echo "<br>";
 				echo "Please try again";
-		
+
 			### Correct password. Hence, session stored.  
-			} else { 
-				// $role = $object->getRole(); 
-				// $dao2 = new RoleDAO(); 
-				// $role = $dao2->getRole($role);
-				// $name = $object->getName();
-				// $userid = $object->getUserid();
+			} else {
 				$_SESSION["userid"] = $userid;
-				// $_SESSION["userid"] = $userid;
-				// $_SESSION["name"] = $name;
-                header("location:bookdetails.php");
+
+				if (isset($_SESSION["isbn"])) { 
+					$isbn = $_SESSION["isbn"];
+					header("location:bookdetails.php?isbn="+$isbn);
+				}
+				echo($isbn);
+				
+				
 			}
 		}
 

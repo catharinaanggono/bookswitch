@@ -39,6 +39,39 @@
             return $wishlistRecords;
         }
 
+        public function checkBookmark($userid,$isbn) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            $sql = 'SELECT * FROM bookmark WHERE userid=:userid and isbn=:isbn';
+            $stmt = $pdo->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':userid', $userid, PDO::PARAM_STR);
+            $stmt->bindParam(':isbn', $isbn, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = null;
+            $bookmark = []; 
+            if ($row = $stmt->fetch()) {
+                $bookmark[] = $row['isbn'];
+            }
+            $stmt->closeCursor();
+            $pdo = null;
+            return $bookmark;
+        }
+
+        public function deleteBookmark($userid,$isbn) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            $sql = 'DELETE FROM bookmark WHERE userid=:userid and isbn=:isbn';
+            $stmt = $pdo->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':userid', $userid, PDO::PARAM_STR);
+            $stmt->bindParam(':isbn', $isbn, PDO::PARAM_STR);
+            $stmt->execute();
+        
+            $stmt->closeCursor();
+            $pdo = null; 
+        }
+
 
     }   
 
