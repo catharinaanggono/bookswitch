@@ -81,10 +81,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 3px;
+    padding: 1px;
     position: relative;
-    height: 21px;
-    width: 40px;
+    height: 15px;
+    width: 32px;
     transform: scale(1.5);
   }
   
@@ -94,27 +94,26 @@
     position: absolute;
     top: 2px;
     left: 2px;
-    height: 16px;
-    width: 16px;
+    height: 11px;
+    width: 11px;
     transform: translateX(0px);
     transition: transform 0.2s linear;
   }
   
   .checkbox:checked + .label .ball {
-    transform: translateX(20px);
+    transform: translateX(17px);
   }
-  
   
   .fa-moon {
     color: #f1c40f;
-    height: 12px;
-    width: 12px;
+    height: 8.5px;
+    width: 8.5px;
   }
   
   .fa-sun {
     color: #f39c12;
-    height: 12px;
-    width: 12px;
+    height: 9px;
+    width: 9px;
   }
   
 
@@ -223,13 +222,12 @@
   }
   
   a {
-    color: #fed136;
+    color: #0D3D54;
     text-decoration: none;
     background-color: transparent;
   }
   a:hover {
-    color: #e6b301;
-    text-decoration: underline;
+    color: #A94241;
   }
   
   a:not([href]) {
@@ -10347,8 +10345,8 @@
     line-height: 1.15;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
-    background: #f9d342;
-    color: #292826;
+    background: #0D3D54;
+    color: #ffff;
     border: 1px solid transparent;
     vertical-align: middle;
     text-shadow: none;
@@ -10361,8 +10359,8 @@
   .button:active,
   .button:focus {
     cursor: pointer;
-    background: #d4b743;
-    color: #292826;
+    background: #A94241;
+    color: #ffff;
     outline: 0;
   }
 
@@ -10459,7 +10457,8 @@
     padding-bottom: 6rem;
     text-align: center;
     color: #fff;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 75%, #000000 100%), url("../images/home_bg.png");
+    /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 75%, #000000 100%), url("../images/home_bg.png"); */
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%);
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
