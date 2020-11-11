@@ -18,8 +18,20 @@
     <script src="./bookdetails.js"></script>
 
     <style>
-        h5.dark{
-            color:white;
+        #bookTitle.dark{
+            color:#B5C587;
+        }   
+
+        #published_date.dark{
+            color:#B5C587;
+        }   
+
+        #bk_description.dark{
+            color:#B5C587;
+        }   
+
+        #author.dark{
+            color:#B5C587;
         }   
 
         .cm-btn{
@@ -104,14 +116,10 @@
                                                 
                     </ul>
 
-                   
-                    
-
                     <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <!-- Menu -->
                         <i class="fas fa-bars ml-1"></i>
                     </button>
-                    
                 </div>
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">

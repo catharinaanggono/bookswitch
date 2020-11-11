@@ -109,7 +109,7 @@ function extract_display_data(xml) {
         }
 
         if (typeof isbn !== 'undefined'){
-            isbn = books_result[each_book].volumeInfo.industryIdentifiers[0].identifier;
+            isbn = book.industryIdentifiers[0].identifier;
         }
         else{
             isbn = '';
@@ -128,8 +128,8 @@ function extract_display_data(xml) {
         <div class="each-book">
             <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
             <div class="main-details">
-                <b>${title}</b><br>
-                by ${author}
+                <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
+                <span style='font-size:13px;'>by ${author}</span>
             </div>
         </div>
         <!-- style="visibility: hidden; -->
@@ -154,6 +154,9 @@ function extract_display_data(xml) {
 
 function redirect(isbn) {
     location.href = `bookdetails.php?isbn=${isbn}`;
+    console.log(index);
+    document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
+    console.log(isbn);
 }
 
 function extract_page_data(xml, genre) {
