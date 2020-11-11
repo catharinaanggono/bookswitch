@@ -6,7 +6,6 @@
     class listingDAO { 
 
         public function addCopy($userid, $isbn, $status) { 
-
             $conn = new ConnectionManager(); 
             $pdo = $conn->getConnection(); 
             $sql = "INSERT INTO listings (userID,isbn,status) 
@@ -19,7 +18,6 @@
             $stmt->closeCursor(); 
             $pdo = null; 
             return $return;
-
         }
 
         public function getListing($userid) {

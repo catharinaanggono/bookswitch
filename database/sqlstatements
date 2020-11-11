@@ -20,8 +20,8 @@
     INSERT INTO person(userID,name,password,email) VALUES
    ("aytt","Au Yong Ting Ting","aytt123", "auyongtingting@gmail.com");
   
-(4) Creation of Wishlist Table 
-    CREATE TABLE wishlist
+(4) Creation of Bookmark Table 
+    CREATE TABLE bookmark
     (       userID VARCHAR(255) NOT NULL, 
             isbn VARCHAR(100) NOT NULL
     );
@@ -33,8 +33,8 @@
             status VARCHAR(20) NOT NULL
     );
 
-(6) Insertion of records (Wishlist)
-    INSERT INTO wishlist(userID, isbn) VALUES 
+(6) Insertion of records (Bookmark)
+    INSERT INTO bookmark(userID, isbn) VALUES 
     ("aytt", "0141346809");
 
 (7) Insertion of records (listings)
