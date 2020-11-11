@@ -18,10 +18,18 @@ chk.addEventListener('click', () => {
   for (x of genre){
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
-  chk.checked?document.getElementById('bookTitle').classList.add("dark"):document.getElementById('bookTitle').classList.remove("dark");
-  chk.checked?document.getElementById('published_date').classList.add("dark"):document.getElementById('published_date').classList.remove("dark");
-  chk.checked?document.getElementById('author').classList.add("dark"):document.getElementById('author').classList.remove("dark");
-  chk.checked?document.getElementById('bk_description').classList.add("dark"):document.getElementById('bk_description').classList.remove("dark");
+  bookDetails = document.getElementsByClassName('bookDetails');
+  for (x of bookDetails){
+    chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+  }
+  headerNames = document.getElementsByClassName('headerNames');
+  for (x of headerNames){
+    chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+  }
+  // chk.checked?document.getElementById('headerNames').classList.add("dark"):document.getElementById('headerNames').classList.remove("dark");
+  // chk.checked?document.getElementById('published_date').classList.add("dark"):document.getElementById('published_date').classList.remove("dark");
+  // chk.checked?document.getElementById('author').classList.add("dark"):document.getElementById('author').classList.remove("dark");
+  // chk.checked?document.getElementById('bk_description').classList.add("dark"):document.getElementById('bk_description').classList.remove("dark");
 
  
   localStorage.setItem('darkModeStatus', chk.checked);
@@ -46,10 +54,21 @@ window.addEventListener('load', (event) => {
     for (x of genre){
       x.classList.add("dark");
     }
-    document.getElementById('bookTitle').classList.add("dark");
-    document.getElementById('author').classList.add("author");
-    document.getElementById('published_date').classList.add("published_date");
-    document.getElementById('bk_description').classList.add("bk_description");
+
+    bookDetails = document.getElementsByClassName('bookDetails');
+    for (x of bookDetails){
+      x.classList.add("dark");
+    }
+    headerNames = document.getElementsByClassName('headerNames');
+    for (x of headerNames){
+      x.classList.add("dark");
+    }
+
+    // document.getElementById('headerNames').classList.add("dark");
+    // document.getElementById('bookTitle').classList.add("dark");
+    // document.getElementById('author').classList.add("author");
+    // document.getElementById('published_date').classList.add("published_date");
+    // document.getElementById('bk_description').classList.add("bk_description");
    
     document.getElementById('chk').checked = true;
   }

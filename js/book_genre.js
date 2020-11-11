@@ -32,6 +32,7 @@ const genre_dataset = {
     ]
 };
 
+
 function update_header(genre) {
     var genre_btns = document.getElementsByClassName('btn');
 
@@ -54,8 +55,6 @@ display_default();
 function call_api_genre(genre, pg_num) {
     var request = new XMLHttpRequest();
     var max = 8;
-
-
 
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
@@ -156,7 +155,7 @@ function redirect(isbn) {
     location.href = `bookdetails.php?isbn=${isbn}`;
     console.log(index);
     document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
-    console.log(isbn);
+    console.log();
 }
 
 function extract_page_data(xml, genre) {

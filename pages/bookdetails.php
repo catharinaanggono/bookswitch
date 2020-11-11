@@ -22,16 +22,24 @@
             color:#B5C587;
         }   
 
-        #published_date.dark{
+        .headerNames.dark{
             color:#B5C587;
+        }   
+
+        h5.dark{
+            color:#B5C587;
+        }   
+
+        #published_date.dark{
+            color:#D5D3BF ;
         }   
 
         #bk_description.dark{
-            color:#B5C587;
+            color:#D5D3BF;
         }   
 
         #author.dark{
-            color:#B5C587;
+            color:#D5D3BF;
         }   
 
         .cm-btn{
@@ -97,13 +105,22 @@
 
     </style>
 
+    <?php 
+
+            if (isset($_GET["isbn"])) {
+                $isbn = $_GET["isbn"]; 
+                $_SESSION["isbn"] = $isbn; 
+            }
+
+    ?>
+
 </head>
 
 <?php 
 	require_once "../model/common.php";
 ?>
 
-<body onload="display_default()" >
+<body onload="display_default('<?php echo $_GET['isbn']; ?>')" >
     
      <!-- Navigation-->
      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -190,11 +207,10 @@
                         <img id = "BkImg" class="card-img-top justify-content-center" src="???" alt="Card image cap">
                         <div class="card-body">
                           <!-- Book Title -->
-                          <h5 class="card-title" id = "bookTitle">Percy Jackson & the Olympians: The 
-                              Lightning Thief</h5>
+                          <h5 class="card-title bookDetails" id = "bookTitle"></h5>
                           <p class="card-text" style = "padding-top: 5px;"> 
-                            <span id = "author" style = "font-size: 15px;"></span> <br>
-                            <span id = "published_date" style = "font-size: 15px;"></span> <br>
+                            <span class='headerNames'>Author: </span><span id = "author" class = "bookDetails" style = "font-size: 15px;"></span> <br>
+                            <span class='headerNames'>Published Date: </span><span id = "published_date" class = "bookDetails" style = "font-size: 15px;"></span> <br>
                             <span style = "font-size: 15px;"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
@@ -211,9 +227,9 @@
             <div class="col-md-6">
                 <div class ="card-group">
                     <div class="card-transparent">
-                        <div class="card-body">
-                          <h5 class="card-title">Book Description</h5>
-                          <p id = "bk_description" class="card-text">
+                        <div class="card-body" >
+                          <h5 class="card-title bookDetails">Book Description</h5>
+                          <p id = "bk_description" class="card-text bookDetails">
                         </p>
                         </div>
                       </div>
@@ -242,15 +258,6 @@
     ?>
 
     <?php
-
-        if (isset($_GET["isbn"])) {
-            $isbn = $_GET["isbn"]; 
-            $_SESSION["isbn"] = $isbn; 
-        }
-
-        if (isset($_SESSION["isbn"])) {
-            $isbn = $_SESSION["isbn"];
-        }
         
         if (isset($_SESSION["userid"])) { 
             $userid = $_SESSION["userid"]; 
