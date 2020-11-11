@@ -283,7 +283,7 @@ function get_wishlist_book(isbn) {
                 node.setAttribute('onclick', `redirect(${isbn})`);
                 node.innerHTML += `
                 <div class="each-book">
-                    <div class="each-img"><img src="${iamge}" width="100%" height="100%" style="border-radius: 2%;"></div>
+                    <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
                     <div class="main-details">
                         <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
                         <span style='font-size:13px;'>by ${author}</span>
@@ -295,17 +295,6 @@ function get_wishlist_book(isbn) {
                     ${desc}
                 </div>
                 `;
-
-                // html_text += `
-                // <div>
-                //   <div><img src="${image}" width="100%" height="100%" style="border-radius:2%"></div>
-                //   <div>
-                //     <b>${title}</b><br>
-                //     by ${author}
-                //   </div>
-                // </div>
-                // <div style="visibility:hidden">${desc}</div>
-                // `;
 
                 index += 1
                 console.log(index);
@@ -384,14 +373,28 @@ function get_listings_book(isbn) {
 }
 
 
-  
+function redirect(isbn) {
+    location.href = `bookdetails.php?isbn=${isbn}`;
+    console.log(index);
+    document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
+}
+
+function show_desc(id) {
+    var node = document.getElementById(id);
+    node.setAttribute('style', 'visibility: visible;');
+}
+
+function hide_desc(id) {
+    var node = document.getElementById(id);
+    node.setAttribute('style', 'visibility: hidden;');
+}
 
 
 
 </script>
 
 
-
+  
 
     <!-- Bootstrap core JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
