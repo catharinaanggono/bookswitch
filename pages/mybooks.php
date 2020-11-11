@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <link href="../css/homepage.css" rel="stylesheet" />
-    <!-- <link href="../css/bookswitch.css" rel="stylesheet" /> -->
+    <link href="../css/bookswitch.css" rel="stylesheet" />
     <link href="../css/book_genre.css" rel="stylesheet" />
 
     <title>My Books</title>
@@ -21,7 +21,9 @@
     
 
     <style>
-
+      body {
+        padding-top: 0px;
+      }
           /* Rounded tabs */
 
         @media (min-width: 576px) {
@@ -47,7 +49,7 @@
       #mybooksHeader {
         background-color: #B5C587;
         color: #474E45;
-        padding-top: 100px;
+        /* padding-top: 100px; */
         padding-bottom: 0px;
         padding-left: 6%;
 
@@ -126,12 +128,54 @@
   <!-- <body onload="getWishlist()"> -->
   <body onload="get_wishlist()">
     <!--Jess's Navbar here-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../images/bookswitch.svg" alt="" /></a>
+                <div class="d-flex flex-row order-2 order-lg-3">
 
+                    <ul class = "navbar-nav">
+                        <li class="nav-item nav-link" id="bookens"><span style="color:#474E45;">50</span><img src="../images/bookens_circle.svg" width="17" height="17"></a></li>
+                                                
+                    </ul>
+
+                   
+                    
+
+                    <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <!-- Menu -->
+                        <i class="fas fa-bars ml-1"></i>
+                    </button>
+                    
+                </div>
+                
+                <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Genre</a></li>
+                        <li class="nav-item">
+                            <div class="search" id="search">
+                                <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
+                            </div></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i>user1</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div>
+                  <input type="checkbox" class="checkbox" id="chk" />
+                  <label class="label" for="chk">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <div class="ball"></div>
+                  </label>
+                </div>        
+            </div>
+            
+        </nav>
     <!---->
 
     
     <div class="jumbotron jumbotron-fluid" id="mybooksHeader" style="padding-bottom: 30px;">
-        <h1 class="display-4" style="margin-bottom: 50px;">My Books</h1>
+        <h1 class="display-4" style="margin-bottom: 50px; margin-top:50px;">My Books</h1>
     
 
           <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center border-0 rounded-nav" style="margin-right: 6%;">
@@ -185,9 +229,9 @@
         <div class="tab-pane fade show active" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
             
             <!-- Wishlist stuff here -->
-           
-            <div id="wishlist_cards"></div>
-              
+
+              <div id="wishlist_cards" class="row"></div>
+
         
         </div>
         <div class="tab-pane fade" id="listings" role="tabpanel" aria-labelledby="listings-tab">
@@ -205,7 +249,11 @@
                 <a class="nav-link" id="exchange_tab" data-toggle="tab" href="#notreserved" role="tab" aria-controls="notreserved" aria-selected="true" onclick="getListings('NO')">Not Reserved</a>
               </li>
             </ul>
-            <div id="myListings_cards"></div>
+
+
+              <div id="myListings_cards" class="row"></div>
+
+            
             
         </div>
       </div>
