@@ -1,37 +1,39 @@
-#pagination {
-    margin: auto;
-    position: fixed;
-    bottom: 10px;
-    left: 20%;
-    z-index: 1;
-}
-
-
-@media (min-width: 600px){
-    #pagination{
-        margin: auto;
-        position: fixed;
-        width: 50%;
-        bottom: 10px;
-        left: 25%;
-        z-index:1;
-    }
+/* .active {
+    background-color: teal;
 
 }
 
-/* dark version */
-.base .dark{
-    width: 90%;
-    height: 160px;
-    /* border: 2px solid #D3D3D3; */
-    background-image: linear-gradient(rgb(42, 82, 64), rgb(41, 84, 109));
-    margin: auto;
-    position: absolute;
-    border-radius: 5px;
+.selected {
+    background: teal;
+} */
+.genre {
+    border: 2px solid grey;
+    color: grey;
+    font-weight: 600;
+    border-radius: 22px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-h2.dark{
-    color: #D5D3BF;
+.genre:hover { 
+    border: 2px solid #267055; 
+    /* border-radius: 15px; */
+    color:  #267055;
+    /* font-weight: bold; */
+    bottom: 3px;
+    
+    /* background-color: #f0a3a7; */
+}
+
+.footer-box {
+    display: block;
+    text-align: center;
+    font-size: 0.75em;
+    bottom:0;
+    width: 100%;
+    height: 30px;
+    /* position: fixed; */
+    background-color: #f0a3a7;
 }
 
 /* each book: base, top->norm, btm->desc */
@@ -48,7 +50,7 @@ h2.dark{
     width: 90%;
     height: 160px;
     /* border: 2px solid #D3D3D3; */
-    background-image: linear-gradient(rgb(70, 138, 107), rgb(162, 205, 230)); 
+    /* background-image: linear-gradient(rgb(70, 138, 107), rgb(71, 147, 190)); */
     margin: auto;
     position: absolute;
     border-radius: 5px;
@@ -62,11 +64,10 @@ h2.dark{
     position: absolute;
     height: 155px;
     width: 88%;
-    /* background-image: ;  */
     /* background-image: linear-gradient(#DAE8E3, #DAE9F0); */
-    /* background-image: linear-gradient(#CDB9A5, #CDB9A5); */
-    background-color: #ecd8bf;
-    /* border: #aaaaaa solid 1.5px;  */
+    background-image: linear-gradient(#DAE9F0, #DAE8E3);
+    background-color: #DAE8E3;
+    /* border: #267055 solid 2px; */ 
     /* opacity: 80%; */
     border-radius: 5px;
 
@@ -97,10 +98,6 @@ h2.dark{
 
     padding: 10px;
     font-size: 18px;
-
 }
-/* body {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 400;
-    color: #474E45;
-} */
+
+

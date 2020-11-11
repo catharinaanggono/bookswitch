@@ -507,3 +507,16 @@ $("#autocomplete").autocomplete({
 
 
 
+
+document.getElementById("autocomplete").onkeypress = function(event){
+  if (event.keycode == 13 || event.which == 13){
+    var query = document.getElementById("autocomplete").value;
+    var category = 'all';
+    redirect_to_book_search(query, category);
+  }
+};
+
+
+function redirect_to_book_search(query, category){
+  location.href = `book_search.html?query=${query}&category=${category}`;
+}

@@ -1,5 +1,5 @@
-function display_default() { //default
-    call_book("9781760553128");
+function display_default(isbn) { //default
+    call_book(isbn);
 }
 
 function myFunction() {
@@ -75,7 +75,9 @@ function call_book(id){
     }
     
     var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
-    var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:9781760553128';
+    var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:'+id;
+    console.log("check id");
+    console.log(id);
 
     request.open("GET", url, true);
     request.send();

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
     <!-- Bootstrap CSS --> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -97,13 +97,25 @@
 
     </style>
 
+    <?php 
+
+            if (isset($_SESSION["isbn"])) {
+                unset($_SESSION["isbn"]);
+            }
+            if (isset($_GET["isbn"])) {
+                $isbn = $_GET["isbn"]; 
+                $_SESSION["isbn"] = $isbn; 
+            }
+
+    ?>
+
 </head>
 
 <?php 
 	require_once "../model/common.php";
 ?>
 
-<body onload="display_default()" >
+<body onload="display_default('<?php echo $_GET['isbn']; ?>')" >
     
      <!-- Navigation-->
      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -190,8 +202,7 @@
                         <img id = "BkImg" class="card-img-top justify-content-center" src="???" alt="Card image cap">
                         <div class="card-body">
                           <!-- Book Title -->
-                          <h5 class="card-title" id = "bookTitle">Percy Jackson & the Olympians: The 
-                              Lightning Thief</h5>
+                          <h5 class="card-title" id = "bookTitle"></h5>
                           <p class="card-text" style = "padding-top: 5px;"> 
                             <span id = "author" style = "font-size: 15px;"></span> <br>
                             <span id = "published_date" style = "font-size: 15px;"></span> <br>
@@ -242,15 +253,6 @@
     ?>
 
     <?php
-
-        if (isset($_GET["isbn"])) {
-            $isbn = $_GET["isbn"]; 
-            $_SESSION["isbn"] = $isbn; 
-        }
-
-        if (isset($_SESSION["isbn"])) {
-            $isbn = $_SESSION["isbn"];
-        }
         
         if (isset($_SESSION["userid"])) { 
             $userid = $_SESSION["userid"]; 
