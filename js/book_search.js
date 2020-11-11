@@ -1,3 +1,12 @@
+var category = getUrlParam('category', 'empty');
+var query = getUrlParam('query', 'empty');
+var first_start = 0;
+// alert(`category  = ${category} query = ${query}  firstStart=${first_start}`);
+
+// call_api_search('all', 'harry potter', 0);
+call_api_search(category, query, first_start);
+
+
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
     // console.log(xml.responseText);
@@ -112,7 +121,6 @@ function call_api_search(category, keyword, pg_num){
     request.send();
 }
 
-call_api_search('all', 'harry potter', 0);
 
 
 function extract_page_data(xml, pg_num, max) {
@@ -164,4 +172,20 @@ function show_desc(id) {
 function hide_desc(id) {
     var node = document.getElementById(id);
     node.setAttribute('style', 'visibility: hidden;');
+}
+
+function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return urlparameter;
+}
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
 }
