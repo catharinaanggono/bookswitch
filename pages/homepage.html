@@ -18,6 +18,7 @@
     <!--Search Icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
     <link href="../css/homepage.css" rel="stylesheet" />
+    
   </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -41,7 +42,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
                         <li class="nav-item">
                           <div class="search" id="search">
-                            <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
+                            <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN" onkeypress="javascript:doit_onkeypress(event);">
                           </div></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i>user1</a></li>
                     </ul>
