@@ -95,17 +95,20 @@ function extract_display_data(xml) {
         node.setAttribute('onclick', `redirect('${isbn}')`);
         node.innerHTML = 
         `
-        <div class="each-book shadow rounded">
+        <div class="each-book">
             <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
-            <div class="main-details">
-                <span id ='title' style='font-size:18px;'><a href=''><b>${title}</b></a></span><br>
-                <span style='font-size:15px;'>by ${author}</span>
+            <div class="main-details" style='overflow: hidden;'>
+                <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
+                
+                <span style='font-size:13px; overflow: hidden;'>by ${author}</span>
             </div>
         </div>
         <!-- style="visibility: hidden; -->
-        <div class="each-desc shadow rounded" id="each-desc${index}" style="visibility: hidden;"> 
-            <b>Description</b><br>
-            <span style='font-size:16px;'>${short_desc}</span>
+        <div class="each-desc" id="each-desc${index}" style='visibility: hidden; text-overflow: ellipsis; '> 
+            <div>
+                <b>Description</b><br>
+                <span style='display: flex; height: 100px; overflow: hidden; text-overflow: ellipsis;'> ${short_desc}</span>
+            </div>
         </div>
         `;
         document.getElementById('main-content').appendChild(node);
