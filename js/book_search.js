@@ -32,10 +32,15 @@ const query = urlParams.get('query');
 // console.log('HI');
 const category = urlParams.get('category');
 // console.log(category);
-var first_start = 0;
+var first_start = 1;
 
-// call_api_search('all', 'harry potter', 0);
-call_api_search(category, query, first_start);
+show_page_button();
+first_load();
+
+function first_load(){
+  // call_api_search('all', 'harry potter', 1);
+  call_api_search(category, query, first_start);
+}
 
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
@@ -112,7 +117,7 @@ function extract_display_data(xml) {
         // console.log(node);
         // console.log(document.getElementById('main-content'));
         index += 1;
-        console.log(index);
+        // console.log(index);
     }
 }
 
@@ -129,16 +134,25 @@ function call_api_search(category, keyword, pg_num){
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
             document.getElementById('main-content').innerHTML = '';
-            document.getElementById('pagination').innerHTML = '';
-            
+            // document.getElementById('pagination').innerHTML = '';
+            pages = document.getElementById('pagination').getElementsByTagName('button');
+            for (let i = 0; i < pages.length; i++){
+              console.log(pages[i]);
+              if (i+1 == pg_num){
+                pages[i].setAttribute('class', 'btn m-1 active');
+              }
+              else{
+                pages[i].setAttribute('class', 'btn m-1');
+              }
+            }
+            console.log(pages);
             extract_display_data(this);
-            extract_page_data(this, pg_num, max);
             console.log(`page num: ${pg_num}`);
 
         }
     }
 
-    var start_index = pg_num*max;
+    var start_index = (pg_num-1)*max;
     console.log(start_index);
 
     // var url=`https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
@@ -156,26 +170,40 @@ function call_api_search(category, keyword, pg_num){
     request.send();
 }
 
-function extract_page_data(xml, pg_num, max) {
-    var obj = JSON.parse(xml.responseText);
-    var book_results = obj.items;
-    var index = 0;
-    // var total_items = obj.totalItems;
-    // var num_of_pages = Math.ceil(total_items / max);
-    // console.log(total_items);
-    // console.log(num_of_pages);
-    
-    for ( i = 1; i <= 5; i++ ) {
-        var node = document.createElement('button');
-        node.setAttribute('class', 'btn genre m-1');
-        node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i}); reset_button(${i}); select_button(${i})`);
-        node.innerHTML = `${i}`;
-        
-        // console.log(node);
-        document.getElementById('pagination').appendChild(node);
-    }
+function show_page_button() {
+  for ( i = 1; i <= 5; i++ ) {
+      var node = document.createElement('button');
+      node.setAttribute('class', 'btn m-1');
+      node.setAttribute('id', `page${i}`);
+      node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i})`);
+      node.innerHTML = `${i}`;
+      
+      // console.log(node);
+      document.getElementById('pagination').appendChild(node);
+  }
 
 }
+
+// function extract_page_data(xml, pg_num, max) {
+//     var obj = JSON.parse(xml.responseText);
+//     var book_results = obj.items;
+//     var index = 0;
+//     // var total_items = obj.totalItems;
+//     // var num_of_pages = Math.ceil(total_items / max);
+//     // console.log(total_items);
+//     // console.log(num_of_pages);
+    
+//     for ( i = 1; i <= 5; i++ ) {
+//         var node = document.createElement('button');
+//         node.setAttribute('class', 'btn genre m-1');
+//         node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i}); reset_button(${i}); select_button(${i})`);
+//         node.innerHTML = `${i}`;
+        
+//         // console.log(node);
+//         document.getElementById('pagination').appendChild(node);
+//     }
+
+// }
 
 function reset_button(i){
     // var buttons = document.getElementsByTagName('button');
