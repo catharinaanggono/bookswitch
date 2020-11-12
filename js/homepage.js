@@ -10,6 +10,10 @@ chk.addEventListener('click', () => {
   for (x of h2){
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
+  a = document.getElementsByTagName('a');
+  for (x of a){
+    chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+  }
   books = document.getElementsByClassName('each-book');
   for (x of books){
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
@@ -26,10 +30,6 @@ chk.addEventListener('click', () => {
   for (x of headerNames){
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
-  // chk.checked?document.getElementById('headerNames').classList.add("dark"):document.getElementById('headerNames').classList.remove("dark");
-  // chk.checked?document.getElementById('published_date').classList.add("dark"):document.getElementById('published_date').classList.remove("dark");
-  // chk.checked?document.getElementById('author').classList.add("dark"):document.getElementById('author').classList.remove("dark");
-  // chk.checked?document.getElementById('bk_description').classList.add("dark"):document.getElementById('bk_description').classList.remove("dark");
 
  
   localStorage.setItem('darkModeStatus', chk.checked);
@@ -44,6 +44,10 @@ window.addEventListener('load', (event) => {
     }
     h2 = document.getElementsByTagName('h2');
     for (x of h2){
+      x.classList.add("dark");
+    }
+    a = document.getElementsByTagName('a');
+    for (x of a){
       x.classList.add("dark");
     }
     books = document.getElementsByClassName('each-book');
@@ -312,32 +316,32 @@ $("#title_autocomplete").autocomplete({
           }
             
         });
-        var secondary_matches = $.map(data, function (el) {
-          let result = el.volumeInfo.title;
-          let img_link = el.volumeInfo.imageLinks;
-          let authors = el.volumeInfo.authors;
-          if (typeof img_link !== 'undefined'){
-            img_link = el.volumeInfo.imageLinks.thumbnail;
-          }
-          else{
-            img_link = '../images/no_image-removebg-preview.svg'
-          }
-          if (typeof authors == 'undefined'){
-            authors = "AUTHOR UNKNOWN";
-          }       
-          if (matcher2.test(result)){
-            return {
-              imgLink: img_link,
-              value: result,
-              author: authors
-            };
+        // var secondary_matches = $.map(data, function (el) {
+        //   let result = el.volumeInfo.title;
+        //   let img_link = el.volumeInfo.imageLinks;
+        //   let authors = el.volumeInfo.authors;
+        //   if (typeof img_link !== 'undefined'){
+        //     img_link = el.volumeInfo.imageLinks.thumbnail;
+        //   }
+        //   else{
+        //     img_link = '../images/no_image-removebg-preview.svg'
+        //   }
+        //   if (typeof authors == 'undefined'){
+        //     authors = "AUTHOR UNKNOWN";
+        //   }       
+        //   if (matcher2.test(result)){
+        //     return {
+        //       imgLink: img_link,
+        //       value: result,
+        //       author: authors
+        //     };
 
-          }
+        //   }
             
-        });
+        // });
         console.log(primary_matches);
-        console.log(secondary_matches);
-        response($.merge(primary_matches, secondary_matches));
+        // console.log(secondary_matches);
+        // response($.merge(primary_matches, secondary_matches));
       },
       
       // error: function () {
@@ -360,7 +364,7 @@ $("#title_autocomplete").autocomplete({
             .appendTo( ul );
         };
 
-// Search by Author Method
+//Search by Author Method
 $("#author_autocomplete").autocomplete({
   appendTo: $('#author'),
   source: function (request, response) {
@@ -376,15 +380,20 @@ $("#author_autocomplete").autocomplete({
         var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
         var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
 
-        console.log(data);
+        console.log("data", data);
 
         var primary_matches = $.map(data, function (el) {
+
           let result = el.volumeInfo.authors;
-          console.log(result);
+          let temp = [];
+          
+          console.log("result", result);
           if (typeof result == 'undefined'){
             result = "AUTHOR UNKNOWN";
-          }            
-          if (matcher1.test(result)){
+          }
+
+          
+          if (matcher1.test(result) && jQuery.inArray(result[0], temp) === -1){
             return {
               value: result
             };
@@ -392,22 +401,24 @@ $("#author_autocomplete").autocomplete({
           }
             
         });
-        var secondary_matches = $.map(data, function (el) {
-          let authors = el.volumeInfo.authors;
-          if (typeof result == 'undefined'){
-            result = "AUTHOR UNKNOWN";
-          }       
-          if (matcher2.test(result)){
-            return {
-              value: result
-            };
+        // var secondary_matches = $.map(data, function (el) {
+        //   let authors = el.volumeInfo.authors;
+        //   if (typeof result == 'undefined'){
+        //     result = "AUTHOR UNKNOWN";
+        //   }       
+        //   if (matcher2.test(result)){
+        //     return {
+        //       value: result
+        //     };
 
-          }
+        //   }
             
-        });
+        // });
+        // primary_matches = unique(primary_matches);
+        // secondary_matches = unique(secondary_matches);
         console.log(primary_matches);
-        console.log(secondary_matches);
-        response($.merge(primary_matches, secondary_matches));
+        // console.log(secondary_matches);
+        // response($.merge(primary_matches, secondary_matches));
       },
       
       // error: function () {
@@ -428,97 +439,7 @@ $("#author_autocomplete").autocomplete({
         };
 
 
-// Search by ISBN Method
-// $("#isbn_autocomplete").autocomplete({
-//   appendTo: $('#isbn'),
-//   source: function (request, response) {
-//     $.ajax({
-//       url: "https://www.googleapis.com/books/v1/volumes?",
-//       data: { 
-//         q: "isbn:" + request.term,
-//         startIndex: 1,
-//         maxResults: 15
-//       },
-//       success: function (data) {
-//         data = data.items;
-//         var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
-//         var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
 
-//         console.log(data);
-
-//         var primary_matches = $.map(data, function (el) {
-//           let result = el.volumeInfo.title;
-//           let img_link = el.volumeInfo.imageLinks;
-//           let authors = el.volumeInfo.authors;
-//           console.log(authors);
-//           if (typeof img_link !== 'undefined'){
-//             img_link = el.volumeInfo.industryIdentifiers;
-//           }
-//           else{
-//             img_link = '../images/no_image-removebg-preview.svg'
-//           }
-//           if (typeof authors == 'undefined'){
-//             authors = "AUTHOR UNKNOWN";
-//           }            
-//           if (matcher1.test(result) || matcher1.test(authors)){
-//             return {
-//               imgLink: img_link,
-//               value: result,
-//               author: authors
-//             };
-
-//           }
-            
-//         });
-//         var secondary_matches = $.map(data, function (el) {
-//           let result = el.volumeInfo.title;
-//           let img_link = el.volumeInfo.imageLinks;
-//           let authors = el.volumeInfo.authors;
-//           console.log("2" + authors);
-
-//           if (typeof img_link !== 'undefined'){
-//             img_link = el.volumeInfo.imageLinks.thumbnail;
-//           }
-//           else{
-//             img_link = '../images/no_image-removebg-preview.svg'
-//           }
-//           if (typeof authors == 'undefined'){
-//             authors = "AUTHOR UNKNOWN";
-//           }       
-//           if (matcher2.test(result) || matcher2.test(authors)){
-//             return {
-//               imgLink: img_link,
-//               value: result,
-//               author: authors
-//             };
-
-//           }
-            
-//         });
-//         console.log(primary_matches);
-//         console.log(secondary_matches);
-//         response($.merge(primary_matches, secondary_matches));
-//       },
-      
-//       // error: function () {
-//       //   response([]);
-//       // }
-//     });
-//   }
-// })
-// .data("ui-autocomplete")._renderItem = function( ul, item ) {
-//             var titleText = String(item.value).replace(
-//             new RegExp(this.term, "gi"),
-//             "<span class='ui-state-highlight'><b>$&</b></span>");
-//             var authorText = String(item.author).replace(
-//               new RegExp(this.term, "gi"),
-//               "<span class='ui-state-highlight'><b>$&</b></span>");
-
-//             return $( "<li></li>" )
-//             .attr( "data-value", item)
-//             .append("<div class='row'><div class='col-3'><img width='62' height='85' src='" + item.imgLink + "'></div>" + "<div class='col'><div class='row'><div class='col'><p style='font-size:15px'>" + titleText + "</p></div></div>" + "<div class='row'><div class='col'><p style='font-size:10px'>" + authorText + "</p></div></div></div>")
-//             .appendTo( ul );
-//         };
 
 // Autocomplete
 $("#autocomplete").autocomplete({
@@ -623,6 +544,50 @@ $("#autocomplete").autocomplete({
 //     redirect_to_book_search(query, category);
 //   }
 // };
+
+// remove duplicates from array
+// function unique(list) {
+//   var result = [];
+//   $.each(list, function(i, e) {
+//     if ($.inArray(e, result) == -1) result.push(e);
+//   });
+//   return result;
+// }
+// function unique($ar) {
+//   $finalAr = [];
+//   for($i=0;$i<$ar.length;$i++){
+// 	  $currentPair = $ar[$i];
+//     $pos = null;
+//     if($finalAr[$i] == $currentPair[0]){
+//       $pos = $i;
+//     }
+//     if($pos == null){
+//   	  $finalAr.push($currentPair);
+//     }
+//   }
+//   return $finalAr
+// }
+// function unique(list) {
+//   var temp = [];
+//   $.each(list, function (key, value) {
+//    if($.inArray(value.value, temp) === -1) {
+//         temp.push(value);
+//     }
+//   });
+//   return temp;
+// }
+function unique(list) {
+  var result = [];
+  $.each(list, function (i, e) {
+    var matchingItems = $.grep(result, function (item) {
+       return item.value[0] === e.value[0];
+    });
+    if (matchingItems.length === 0){
+        result.push(e);
+    }
+  });
+  return result;
+}
 
 
 function redirect_to_book_search(query, category){
