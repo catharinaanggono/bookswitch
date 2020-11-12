@@ -24,9 +24,7 @@
 
                 if ($checkBookmark == []) {
                     $status = $dao->addBookmark($userid,$isbn);
-                    if ($status == true) {
-                        $_SESSION["bookmark"] = "redBk";
-                    }
+                    $_SESSION["bookmark"] = "redBk";
                 } else { 
                     $status = $dao->deleteBookmark($userid,$isbn);
                 }

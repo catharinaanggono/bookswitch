@@ -183,12 +183,13 @@
                     Please proceed to your profile to view your listings.";
                 }
                 
-                if ($_SESSION["bookmark"] == "redBk") { 
-                    echo " Your selection has removed from your bookmarks."; 
-                } else {
+                if (isset($_SESSION["bookmark"])) { 
                     echo " Your selection has been bookmarked. <br> 
                     Please proceed to your profile to view your bookmarks.";
+                } else {
+                    echo " Your selection has removed from your bookmarks."; 
                 }
+
             ?>
         </div>
         <div class="modal-footer">
@@ -263,12 +264,24 @@
             })
         }
 
+    var $bookmark = "<?php echo isset($_SESSION["bookmark"]); ?>";
+
+    if ($chosenBtn == true) {
+        $(document).ready(function(){ 
+        $('#exampleModal').modal('show');
+        })
+    }
+
 
     </script>
 
     <?php 
         if (isset($_SESSION['button'])) {
             unset($_SESSION['button']);
+        }
+
+        if (isset($_SESSION['bookmark'])) {
+            unset($_SESSION['bookmark']);
         }
     ?>
 
