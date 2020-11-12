@@ -40,10 +40,9 @@
 
 				if (isset($_SESSION["isbn"])) { 
 					$isbn = $_SESSION["isbn"];
-					header("location:bookdetails.php?isbn="+$isbn);
 				}
-				echo($isbn);
-				
+
+				header("location:bookdetails.php?isbn=$isbn");
 				
 			}
 		}

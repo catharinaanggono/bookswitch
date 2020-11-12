@@ -12,7 +12,9 @@
                 $deleteStatus = $dao->deleteCopy($isbn,$nStatus);
                 $status = "YES";
                 $status = $dao->addCopy($userid,$isbn,$status);
-                $_SESSION["button"] = "getCopy"; 
+                if ($status == true) {
+                    $_SESSION["button"] = "getCopy"; 
+                }
                 header("location:bookdetails.php?isbn=$isbn");
                 echo "<script>$('#exampleModal').modal('show')</script>";
                 
@@ -22,6 +24,7 @@
 
                 if ($checkBookmark == []) {
                     $status = $dao->addBookmark($userid,$isbn);
+                    $_SESSION["bookmark"] = "redBk";
                 } else { 
                     $status = $dao->deleteBookmark($userid,$isbn);
                 }
@@ -31,6 +34,8 @@
                 echo "<script>$('#exampleModal').modal('show')</script>";
             }
 	} else { 
+        $_SESSION["isbn"] = $_GET["isbn"];
         header("location:login.html");
+
     }
 ?>
