@@ -215,11 +215,20 @@
                             <span class='headerNames'>Author: </span><span id = "author" class = "bookDetails" style = "font-size: 15px;"></span> <br>
                             <span class='headerNames'>Published Date: </span><span id = "published_date" class = "bookDetails" style = "font-size: 15px;"></span> <br>
                             <span style = "font-size: 15px;"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                            <!-- Ratings --> 
+                            <?php
+                                $dao3 = new ratingsDAO(); 
+                                $getRatings = $dao3->getRatings($isbn);
+
+                                for ($i=0;$i<$getRatings;$i++) {
+                                    echo "<span class='fa fa-star checked'></span>";
+                                } 
+
+                                $noStars = 5 - $getRatings; 
+                                if ($noStars > 0) {
+                                    echo "<span class='fa fa-star'></span>";
+                                }
+                            ?>
                           </p>
                           <!-- <a href="#" class="btn btn-outline-primary">Go somewhere</a> -->
                         </div>
