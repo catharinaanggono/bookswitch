@@ -212,8 +212,8 @@
                           <!-- Book Title -->
                           <h5 class="card-title bookDetails" id = "bookTitle"></h5>
                           <p class="card-text" style = "padding-top: 5px;"> 
-                            <span class='headerNames'>Author: </span><span id = "author" class = "bookDetails" style = "font-size: 15px;"></span> <br>
-                            <span class='headerNames'>Published Date: </span><span id = "published_date" class = "bookDetails" style = "font-size: 15px;"></span> <br>
+                            <span class='headerNames'><b>Author:</b> </span><span id = "author" class = "bookDetails" style = "font-size: 15px;"></span> <br>
+                            <span class='headerNames'><b>Published Date:</b> </span><span id = "published_date" class = "bookDetails" style = "font-size: 15px;"></span> <br>
                             <span style = "font-size: 15px;"></span>
                             <!-- Ratings --> 
                             <?php
