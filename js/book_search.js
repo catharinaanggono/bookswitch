@@ -1,11 +1,41 @@
-var category = getUrlParam('category', 'empty');
-var query = getUrlParam('query', 'empty');
-var first_start = 0;
+// var category = decodeURI(getUrlParam('&category', 'empty'));
+// var query = decodeURI(getUrlParam('?query', 'empty'));
+// var first_start = 0;
 // alert(`category  = ${category} query = ${query}  firstStart=${first_start}`);
+
+// function getUrlParam(parameter, defaultvalue){
+//     var urlparameter = defaultvalue;
+//     if(location.href.indexOf(parameter) > -1){
+//         urlparameter = getUrlVars()[parameter];
+//         // console.log(getUrlVars()[parameter]);
+//         }
+//     return urlparameter;
+// }
+
+// function getUrlVars() {
+//     var vars = {};
+//     var parts = location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key,value) {
+//         vars[key] = value;
+//     });
+//     // console.log(parts);
+//     // console.log(vars);
+//     return vars;
+// }
+
+// Get the value of query and category passed from homepage
+const queryString = window.location.search;
+// console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+// console.log(urlParams);
+const query = urlParams.get('query');
+// console.log(query);
+// console.log('HI');
+const category = urlParams.get('category');
+// console.log(category);
+var first_start = 0;
 
 // call_api_search('all', 'harry potter', 0);
 call_api_search(category, query, first_start);
-
 
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
@@ -68,22 +98,25 @@ function extract_display_data(xml) {
         <div class="each-book shadow rounded">
             <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
             <div class="main-details">
-                <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
-                <span style='font-size:13px;'>by ${author}</span>
+                <span id ='title' style='font-size:18px;'><a href=''><b>${title}</b></a></span><br>
+                <span style='font-size:15px;'>by ${author}</span>
             </div>
         </div>
         <!-- style="visibility: hidden; -->
         <div class="each-desc shadow rounded" id="each-desc${index}" style="visibility: hidden;"> 
-            <span style='font-size:15px;'>${short_desc}</span>
+            <b>Description</b><br>
+            <span style='font-size:16px;'>${short_desc}</span>
         </div>
         `;
         document.getElementById('main-content').appendChild(node);
         // console.log(node);
         // console.log(document.getElementById('main-content'));
         index += 1;
+        console.log(index);
     }
 }
 
+// to redirect to book details page
 function redirect(isbn){
     location.href = `bookdetails.php?isbn=${isbn}`;
     document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
@@ -91,7 +124,7 @@ function redirect(isbn){
 
 function call_api_search(category, keyword, pg_num){
     var request = new XMLHttpRequest();
-    var max = 39;
+    var max = 30;
 
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
@@ -112,16 +145,16 @@ function call_api_search(category, keyword, pg_num){
 
     if(category == 'all'){
         url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
+        console.log(url);
     }
     else{
         url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&startIndex=${start_index}&maxResults=${max}`;
+        console.log(url);
     }
 
     request.open('GET', url, true);
     request.send();
 }
-
-
 
 function extract_page_data(xml, pg_num, max) {
     var obj = JSON.parse(xml.responseText);
@@ -164,28 +197,119 @@ function select_button(i){
     // buttons[index].setAttribute('class', 'btn genre m-1 active');
 }
 
+// to show the book description box
 function show_desc(id) {
     var node = document.getElementById(id);
     node.setAttribute('style', 'visibility: visible;');
 }
 
+// to hide the book description box
 function hide_desc(id) {
     var node = document.getElementById(id);
     node.setAttribute('style', 'visibility: hidden;');
 }
 
-function getUrlParam(parameter, defaultvalue){
-    var urlparameter = defaultvalue;
-    if(window.location.href.indexOf(parameter) > -1){
-        urlparameter = getUrlVars()[parameter];
-        }
-    return urlparameter;
-}
+// Autocomplete
+$("#autocomplete").autocomplete({
+    appendTo: $('#search'),
+    source: function (request, response) {
+      $.ajax({
+        url: "https://www.googleapis.com/books/v1/volumes?",
+        data: { 
+          q: request.term,
+          startIndex: 1,
+          maxResults: 15
+        },
+        success: function (data) {
+          data = data.items;
+          var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+          var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
+  
+          console.log(data);
+  
+          var primary_matches = $.map(data, function (el) {
+            let result = el.volumeInfo.title;
+            let img_link = el.volumeInfo.imageLinks;
+            let authors = el.volumeInfo.authors;
+            console.log(authors);
+            if (typeof img_link !== 'undefined'){
+              img_link = el.volumeInfo.imageLinks.thumbnail;
+            }
+            else{
+              img_link = '../images/no_image-removebg-preview.svg'
+            }
+            if (typeof authors == 'undefined'){
+              authors = "AUTHOR UNKNOWN";
+            }            
+            if (matcher1.test(result) || matcher1.test(authors)){
+              return {
+                imgLink: img_link,
+                value: result,
+                author: authors
+              };
+  
+            }
+              
+          });
+          var secondary_matches = $.map(data, function (el) {
+            let result = el.volumeInfo.title;
+            let img_link = el.volumeInfo.imageLinks;
+            let authors = el.volumeInfo.authors;
+            console.log("2" + authors);
 
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
+            if (typeof img_link !== 'undefined'){
+              img_link = el.volumeInfo.imageLinks.thumbnail;
+            }
+            else{
+              img_link = '../images/no_image-removebg-preview.svg'
+            }
+            if (typeof authors == 'undefined'){
+              authors = "AUTHOR UNKNOWN";
+            }       
+            if (matcher2.test(result) || matcher2.test(authors)){
+              return {
+                imgLink: img_link,
+                value: result,
+                author: authors
+              };
+  
+            }
+              
+          });
+          console.log(primary_matches);
+          console.log(secondary_matches);
+          response($.merge(primary_matches, secondary_matches));
+        },
+        
+        // error: function () {
+        //   response([]);
+        // }
+      });
+    }
+  })
+  .data("ui-autocomplete")._renderItem = function( ul, item ) {
+        var titleText = String(item.value).replace(
+        new RegExp(this.term, "gi"),
+        "<span class='ui-state-highlight'><b>$&</b></span>");
+        var authorText = String(item.author).replace(
+        new RegExp(this.term, "gi"),
+        "<span class='ui-state-highlight'><b>$&</b></span>");
+
+        return $( "<li></li>" )
+        .attr( "data-value", item)
+        .append("<div class='row'><div class='col-3'><img width='62' height='85' src='" + item.imgLink + "'></div>" + "<div class='col'><div class='row'><div class='col'><p style='font-size:15px'>" + titleText + "</p></div></div>" + "<div class='row'><div class='col'><p style='font-size:10px'>" + authorText + "</p></div></div></div>")
+        .appendTo( ul );
+    };
+
+document.getElementById("autocomplete").onkeypress = function(event){
+  if (event.keycode == 13 || event.which == 13){
+    var query = document.getElementById("autocomplete").value;
+    var category = 'all';
+    redirect_to_book_search(query, category);
+  }
+};
+
+
+function redirect_to_book_search(query, category){
+    location.href = `book_search.html?query=${query}&category=${category}`;
+  }
