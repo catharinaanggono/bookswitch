@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- jQuery and JS bundle w/ Popper.js -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-     -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
@@ -181,12 +181,15 @@
                 if ($_SESSION["button"] == "getCopy") { 
                     echo " Your selection has been personally added into your listings. <br> 
                     Please proceed to your profile to view your listings.";
-                } else { 
-                    echo " Your selection has been personally added into your wishlist. <br> 
-                    Please proceed to your profile to view your wishlist.";
+                }
+                
+                if ($_SESSION["bookmark"] == "redBk") { 
+                    echo " Your selection has removed from your bookmarks."; 
+                } else {
+                    echo " Your selection has been bookmarked. <br> 
+                    Please proceed to your profile to view your bookmarks.";
                 }
             ?>
-          
         </div>
         <div class="modal-footer">
             <button type="button" class="btn black-background white" data-dismiss="modal">Close</button>
@@ -283,22 +286,28 @@
         $dao1 = new BookmarkDAO(); 
         $checkBookmark = $dao1->checkBookmark($userid,$isbn);
         
-        if ($checkAvailQty == []) {
-            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>";
-        } else { 
-            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white'>";
-        }
+        echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> ";
 
         if ($checkBookmark == []) {
             echo "   <button type='submit'  name = 'bookmark' class='btn black-background white'>
-            <i class='far fa-bookmark'></i> Bookmark
+            <i class='far fa-bookmark'></i>
             </button>";
+            
         } else { 
             echo "   <button name='bk' type='submit' value='bk' class ='btn black-background white' >
-            <i class='far fa-bookmark red'></i> Bookmark</button>";
+            <i class='far fa-bookmark red'></i></button>";
         }
+
+        if ($checkAvailQty == []) {
+            echo "    
+            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>";
+        } else { 
+            echo "    
+            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white'>";
+        }
+
+
+        
         
         echo "</form>";
 
