@@ -430,12 +430,12 @@ $("#author_autocomplete").autocomplete({
 
 // Search by ISBN Method
 // $("#isbn_autocomplete").autocomplete({
-//   appendTo: $('#search'),
+//   appendTo: $('#isbn'),
 //   source: function (request, response) {
 //     $.ajax({
 //       url: "https://www.googleapis.com/books/v1/volumes?",
 //       data: { 
-//         q: "isbn:" request.term,
+//         q: "isbn:" + request.term,
 //         startIndex: 1,
 //         maxResults: 15
 //       },

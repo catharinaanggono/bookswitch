@@ -26,18 +26,16 @@
             isbn VARCHAR(100) NOT NULL
     );
 
-(5) Creation of Listings Table 
+(5) Insertion of records (Bookmark)
+    INSERT INTO bookmark(userID, isbn) VALUES 
+    ("aytt", "0141346809");
+
+(6) Creation of Listings Table 
     CREATE TABLE listings
     (       userID VARCHAR(255) NOT NULL, 
             isbn VARCHAR(100) NOT NULL,
             status VARCHAR(20) NOT NULL
     );
-
-(6) Insertion of records (Bookmark)
-    INSERT INTO bookmark(userID, isbn) VALUES 
-    ("aytt", "0141346809");
-
-    
 
 (7) Insertion of records (listings)
     INSERT INTO listings(userid, isbn, status) VALUES
@@ -45,3 +43,15 @@
 
     INSERT INTO listings(userid, isbn, status) VALUES
     ("aytt", "1107604664", "NO");
+
+(8) Creation of Ratings Table 
+    CREATE TABLE ratings
+    (
+            isbn VARCHAR(100) NOT NULL,
+            totalRate INT(100) NOT NULL,
+            noPpl INT(100) NOT NULL,
+    );
+
+(9) Insertion of records (Ratings)
+    INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
+    ("9780989311298", 20, 5);

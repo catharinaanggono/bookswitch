@@ -32,39 +32,60 @@ const genre_dataset = {
     ]
 };
 
+function update_header(id) {
+    // var genre_btns = document.getElementsByClassName('btn');
 
-function update_header(genre) {
-    var genre_btns = document.getElementsByClassName('btn');
+    // for ( i = 0; i < genre_btns.length; i++ ) {
+    //     genre_btns[i].setAttribute('class', 'btn genre m-1');
+    // }
+    // console.log(selected_genre);
 
-    for ( i = 0; i < genre_btns.length; i++ ) {
-        genre_btns[i].setAttribute('class', 'btn genre m-1');
+    for (genre of genre_dataset.genres) {
+        // console.log(genre.genre);
+        document.getElementById(`${genre.genre}`).setAttribute('style', '');
+        if (genre.genre == id){
+            document.getElementById('gtitle').innerText = id;
+            document.getElementById('gdesc').innerText = genre.description;
+        }
+    
+
+        if (genre.genre == id) {  
+            console.log(id);
+            document.getElementById(`${id}`).setAttribute('style', 'background-color:red');
+        }   
+            
     }
-    console.log(selected_genre);
     
 }
 
-function display_default() {
-    call_api_genre('romance', 0);
 
+function display_default() {
+    call_api_genre('Mystery', 0);
 }
 display_default();
 
-// search
+
 
 // genre
 function call_api_genre(genre, pg_num) {
     var request = new XMLHttpRequest();
-    var max = 8;
+    var max = 30;
 
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
             document.getElementById('main-content').innerHTML = '';
             document.getElementById('pagination').innerHTML = '';
+
             
             extract_display_data(this);
             extract_page_data(this, genre, pg_num);
             console.log(`page num: ${pg_num}`);
 
+            document.getElementById(`page${pg_num}`).setAttribute('style', 'background-color:red');
+            // for (i = 0; i <= 5; i++) {
+            //     document.getElementById(`page${i}`).setAttribute('style', '');
+            // }
+            
         }
     }
 
@@ -99,9 +120,9 @@ function extract_display_data(xml) {
         // console.log(isbn);
 
         if ( typeof short_desc !== 'undefined' ) {
-            if (short_desc.length > 150) {
-                short_desc = short_desc.slice(0,120) + '...';
-            }
+            // if (short_desc.length > 150) {
+            //     short_desc = short_desc.slice(0,120) + '...';
+            // }
         }
         else {
             short_desc = 'Description not available';
@@ -132,9 +153,11 @@ function extract_display_data(xml) {
             </div>
         </div>
         <!-- style="visibility: hidden; -->
-        <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
-            <b>Description</b><br>
-            ${short_desc}
+        <div class="each-desc" id="each-desc${index}" style='visibility: hidden; '> 
+            <div>
+                <b>Description</b><br>
+                <span style='display: flex; height: 100px; overflow: hidden;'> ${short_desc}</span>
+            </div>
         </div>
 
         `;
@@ -166,8 +189,9 @@ function extract_page_data(xml, genre) {
     
     for ( i = 1; i <= 5; i++ ) {
         var node = document.createElement('button');
-        node.setAttribute('class', 'btn genre m-1 text-blue');
-        node.setAttribute('onclick', `call_api_genre('${genre}', ${i})`);
+        node.setAttribute('class', 'btn page m-1');
+        node.setAttribute('id', `page${i}`);
+        node.setAttribute('onclick', `call_api_genre('${genre}', ${i});`);
         node.innerHTML = `${i}`;
         
         // console.log(node);
@@ -175,6 +199,7 @@ function extract_page_data(xml, genre) {
     }
 
 }
+
 
 function show_desc(id) {
     var node = document.getElementById(id);

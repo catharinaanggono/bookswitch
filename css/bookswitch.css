@@ -1,9 +1,62 @@
+#pagination > button
+{
+    border-color: white;
+    background-color: #0D3D54;
+    color: white;
+    width: 40px;
+    text-align: center;
+}
+
+#pagination > button.dark
+{
+    border-color: white;
+    background-color: #B5C587;
+    color: white;
+    width: 40px;
+    text-align: center;
+}
+
+
+#pagination > button:hover
+{
+    color: white;
+    background-color: #A94241;
+    border-color: white;
+}
+
+#pagination > button.dark:hover
+{
+    color: white;
+    background-color: #267055;
+    border-color: white;
+}
+
+#pagination > button:focus
+{
+    color: white;
+    background-color: red;
+    border: solid 1px #6430b8;
+}
+
 #pagination {
     margin: auto;
     position: fixed;
     bottom: 10px;
     left: 20%;
     z-index: 1;
+}
+
+
+@media (min-width: 600px){
+    #pagination{
+        margin: auto;
+        position: fixed;
+        width: 50%;
+        bottom: 10px;
+        left: 25%;
+        z-index:1;
+    }
+
 }
 
 /* day */
@@ -26,7 +79,8 @@
     /* background-color: #f0a3a7; */
 }
 
- button.dark {
+
+#glist > button.dark {
     border: 2px solid #B5C587;
     color: #B5C587;
     font-weight: 600;
@@ -35,7 +89,7 @@
     padding-right: 20px;
 }
 
-button.dark:hover { 
+#glist > button.dark:hover { 
     border: 2px solid #267055; 
     /* border-radius: 15px; */
     color:  #267055;
@@ -44,6 +98,8 @@ button.dark:hover {
     
     /* background-color: #f0a3a7; */
 }
+
+
 
 .footer-box {
     display: block;
@@ -94,7 +150,9 @@ button.dark:hover {
     border-radius: 5px;
 
     word-wrap: break-word;
-    padding: 2%;
+    padding: 4%;
+    /* padding-top: 2%; */
+    /* padding-bottom: 1%; */
     font-size: 16px;
 
     bottom: 10px;

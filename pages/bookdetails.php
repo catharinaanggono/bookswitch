@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- jQuery and JS bundle w/ Popper.js -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-     -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
@@ -102,7 +102,10 @@
             background-color:#B5C587;
         }
 
-
+        .red {
+            color:red;
+        }
+        
     </style>
 
     <?php 
@@ -178,12 +181,16 @@
                 if ($_SESSION["button"] == "getCopy") { 
                     echo " Your selection has been personally added into your listings. <br> 
                     Please proceed to your profile to view your listings.";
-                } else { 
-                    echo " Your selection has been personally added into your wishlist. <br> 
-                    Please proceed to your profile to view your wishlist.";
                 }
+                
+                if (isset($_SESSION["bookmark"])) { 
+                    echo " Your selection has been bookmarked. <br> 
+                    Please proceed to your profile to view your bookmarks.";
+                } else {
+                    echo " Your selection has removed from your bookmarks."; 
+                }
+
             ?>
-          
         </div>
         <div class="modal-footer">
             <button type="button" class="btn black-background white" data-dismiss="modal">Close</button>
@@ -209,14 +216,23 @@
                           <!-- Book Title -->
                           <h5 class="card-title bookDetails" id = "bookTitle"></h5>
                           <p class="card-text" style = "padding-top: 5px;"> 
-                            <span class='headerNames'>Author: </span><span id = "author" class = "bookDetails" style = "font-size: 15px;"></span> <br>
-                            <span class='headerNames'>Published Date: </span><span id = "published_date" class = "bookDetails" style = "font-size: 15px;"></span> <br>
+                            <span class='headerNames'><b>Author:</b> </span><span id = "author" class = "bookDetails" style = "font-size: 15px;"></span> <br>
+                            <span class='headerNames'><b>Published Date:</b> </span><span id = "published_date" class = "bookDetails" style = "font-size: 15px;"></span> <br>
                             <span style = "font-size: 15px;"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                            <!-- Ratings --> 
+                            <?php
+                                $dao3 = new ratingsDAO(); 
+                                $getRatings = $dao3->getRatings($isbn);
+
+                                for ($i=0;$i<$getRatings;$i++) {
+                                    echo "<span class='fa fa-star checked'></span>";
+                                } 
+
+                                $noStars = 5 - $getRatings; 
+                                if ($noStars > 0) {
+                                    echo "<span class='fa fa-star'></span>";
+                                }
+                            ?>
                           </p>
                           <!-- <a href="#" class="btn btn-outline-primary">Go somewhere</a> -->
                         </div>
@@ -248,12 +264,24 @@
             })
         }
 
+    var $bookmark = "<?php echo isset($_SESSION["bookmark"]); ?>";
+
+    if ($chosenBtn == true) {
+        $(document).ready(function(){ 
+        $('#exampleModal').modal('show');
+        })
+    }
+
 
     </script>
 
     <?php 
         if (isset($_SESSION['button'])) {
             unset($_SESSION['button']);
+        }
+
+        if (isset($_SESSION['bookmark'])) {
+            unset($_SESSION['bookmark']);
         }
     ?>
 
@@ -264,35 +292,67 @@
         }else { 
             $userid = null; 
         }
-        $dao = new userDAO(); 
-        $checkWishlist = $dao->checkWishlist($userid,$isbn);
-        $checkListings = $dao->checkListings($userid,$isbn);
 
-        if ($checkWishlist == False && $checkListings == False ) {
-            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
-            <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
-            class='btn black-background white'>
-        </form>";
-        } else if ($checkWishlist == False && $checkListings == True ) {
-            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
-            <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
-            class='btn black-background white'>
-        </form>";
-        } else if ($checkWishlist == True && $checkListings == False) {
-            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
-            <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
-            class='btn black-background white' disabled>
-        </form>"; 
+        ### Check the quantity in listings that are not reserved
+        $dao = new listingDAO(); 
+        $checkAvailQty = $dao->checkAvailQty($isbn);
+        $dao1 = new BookmarkDAO(); 
+        $checkBookmark = $dao1->checkBookmark($userid,$isbn);
+        
+        echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> ";
+
+        if ($checkBookmark == []) {
+            echo "   <button type='submit'  name = 'bookmark' class='btn black-background white'>
+            <i class='far fa-bookmark'></i>
+            </button>";
+            
         } else { 
-            echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
-            <input type='submit' name = 'addWishlist' value = 'Add to Wishlist' 
-            class='btn black-background white' disabled>
-        </form>"; 
+            echo "   <button name='bk' type='submit' value='bk' class ='btn black-background white' >
+            <i class='far fa-bookmark red'></i></button>";
         }
+
+        if ($checkAvailQty == []) {
+            echo "    
+            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>";
+        } else { 
+            echo "    
+            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white'>";
+        }
+
+
+        
+        
+        echo "</form>";
+
+        // $dao = new userDAO(); 
+        // $checkWishlist = $dao->checkWishlist($userid,$isbn);
+        // $checkListings = $dao->checkListings($userid,$isbn);
+
+        // if ($checkWishlist == False && $checkListings == False ) {
+        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
+        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
+        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
+        //     class='btn black-background white'>
+        // </form>";
+        // } else if ($checkWishlist == False && $checkListings == True ) {
+        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
+        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
+        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
+        //     class='btn black-background white'>
+        // </form>";
+        // } else if ($checkWishlist == True && $checkListings == False) {
+        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
+        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
+        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
+        //     class='btn black-background white' disabled>
+        // </form>"; 
+        // } else { 
+        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
+        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
+        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
+        //     class='btn black-background white' disabled>
+        // </form>"; 
+        // }
     ?>
 
             
