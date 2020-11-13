@@ -58,7 +58,7 @@
         color: #474E45;
       }
       #all_tab.active, #reserved_tab.active, #exchange_tab.active {
-        color: #B5C587;
+        color: #474E45;
       }
 
       .tab-content {
@@ -142,8 +142,8 @@
     require_once "../model/common.php";
   ?>
   
-  <!-- <body onload="getWishlist()"> -->
-  <body onload="get_wishlist()">
+  <!-- <body onload="getBookmark()"> -->
+  <body onload="get_Bookmark()">
     <!--Jess's Navbar here-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
@@ -191,16 +191,16 @@
     <!---->
 
     
-    <div class="jumbotron jumbotron-fluid" id="mybooksHeader" style="padding-bottom: 30px;">
+    <div class="jumbotron jumbotron-fluid" id="mybooksHeader" style="padding-bottom: 20px;">
     <div class="row">
       <h1 class="display-4 col-4" style="margin-bottom: 50px; margin-top:50px;">My Books</h1>
       <div class="col-8" style="display:flex; justify-content: center; align-items: center;">
         <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills text-center border-0 rounded-nav" style="width: 70%;">
               <li class="nav-item " style="width: 50%">
-                <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_wishlist()" onclick="openLink(event, 'Left')" class="nav-link border-0 text-uppercase font-weight-bold active"><img src="../images/bookmarks_nobg.png" width="50%" height="auto"></a>
+                <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_Bookmark()" onclick="openLink(event, 'Left')" class="nav-link border-0 text-uppercase font-weight-bold active" style="margin-bottom:0px;"><img src="../images/bookmarks_nobg.png" width="50%" height="auto"></a>
               </li>
               <li class="nav-item" style="width: 50%">
-                <a data-toggle="tab" id="listings_tab" href="#listings" role="tab" aria-controls="profile" onclick="getListings('ALL')" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><img src="../images/listingsbook.png" width="50%" height="auto"></a>
+                <a data-toggle="tab" id="listings_tab" href="#listings" role="tab" aria-controls="profile" onclick="getListings('ALL')" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><img src="../images/listings_nobg.png" width="50%" height="auto"></a>
               </li>
         </ul>
         <!-- <div class="wrapper">
@@ -232,11 +232,13 @@
 
               // listings
               $dao = new bookmarkDAO();
-              $wishlist = $dao->getWishlist($userid);
-              $_SESSION["wishlist"] = $wishlist;
+              $bookmark = $dao->getBookmark($userid);
+              $_SESSION["bookmark"] = $bookmark;
+              // $delete = $dao->deleteBookmark($userid,$isbn);
               $dao2 = new ListingDAO();
               $listing = $dao2->getListing($userid);
               $_SESSION["listing"] = $listing;
+              
               
             } else { 
               //header("Location: login.html");
@@ -244,13 +246,13 @@
 
 
           ?>
-    <!--Navbar for wishlist and my listings-->
+    <!--Navbar for Bookmarks and my listings-->
     
       <!--Navbar contents-->
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
             
-            <!-- Wishlist stuff here -->
+            <!-- Bookmark stuff here -->
 
               <div id="wishlist_cards" class="row"></div>
 
@@ -303,13 +305,13 @@
 
   var index = 0;
   var x = 0;
-  function get_wishlist() {
+  function get_Bookmark() {
     document.getElementById('wishlist_cards').innerHTML = '';
-    var wishlist = <?php echo json_encode($wishlist); ?>;
+    var bookmark = <?php echo json_encode($bookmark); ?>;
 
-    for (var isbn of wishlist) {
+    for (var isbn of bookmark) {
 
-      get_wishlist_book(isbn);
+      get_bookmark_book(isbn);
     }
 
   };
@@ -340,7 +342,7 @@
 
 
 
-  function get_wishlist_book(isbn) {
+  function get_bookmark_book(isbn) {
       var request = new XMLHttpRequest();
       request.onreadystatechange = function () {
           if (request.readyState == 4 && request.status == 200) {
@@ -376,7 +378,7 @@
                       <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
                       <div class="main-details">
                           <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span>
-                          <button class="btn btn-danger" onclick="deleteBook()"  style="float: right">Delete</button>
+                          <button class="btn btn-danger" onclick="deleteBook()" id='${isbn}' style="float: right">Delete</button>
                           <br>
                           <span style='font-size:13px;'>by ${author}</span>
                           
@@ -453,7 +455,7 @@
                       <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
                       <div class="main-details">
                           <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span>
-                          <button class="btn btn-danger" onclick="deleteBook()" style="float: right">Delete</button>
+                          <button class="btn btn-danger" onclick="deleteBook()" id='${isbn}' style="float:right">Delete</button>
                           <br>
                           <span style='font-size:13px;'>by ${author}</span>
                       </div>
@@ -463,6 +465,7 @@
                       <b>Description</b><br>
                       ${desc}
                   </div>
+                  
                   `;
 
                   x += 1;
@@ -487,30 +490,14 @@
 
   }
 
-  function deleteBook() {
+  function deleteBook($isbn) {
     if (confirm("Are you sure you want to delete this book?")) {
       alert("ya");
+      location.reload();
+      
     }
 
   }
-
-
-  // taeb-switch js
-//   function taebSwitch() {
-//   var taeb = $(".taeb-switch");
-//   taeb.find(".taeb").on("click", function() {
-//     var $this = $(this);
-
-//     if ($this.hasClass("active")) return;
-
-//     var direction = $this.attr("taeb-direction");
-
-//     taeb.removeClass("left right").addClass(direction);
-//     taeb.find(".taeb.active").removeClass("active");
-//     $this.addClass("active");
-//   });
-// }
-
 
 </script>
 

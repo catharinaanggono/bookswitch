@@ -8,7 +8,12 @@
     <title>Book Switch</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-1.12.4.min.js"></script> -->
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -18,6 +23,7 @@
     <!--Search Icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
     <link href="../css/homepage.css" rel="stylesheet" />
+  
     
   </head>
     <body id="page-top">
@@ -40,10 +46,9 @@
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
-                        <li class="nav-item">
-                          <div class="search" id="search">
+                          <!-- <div class="search" id="search">
                             <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN" onkeypress="javascript:doit_onkeypress(event);">
-                          </div></li>
+                          </div></li> -->
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i>user1</a></li>
                     </ul>
                 </div>
@@ -59,10 +64,15 @@
             </div>
         </nav>
         <!-- Masthead-->
+
         <header class="masthead">
             <div class="container">
-              
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <!-- <canvas id="canvas"></canvas> -->
+
+              <h1 class="animate__animated animate__bounce animate__delay-1s	 animate__slow" style="color: #0D3D54;">Switch Your Book</h1>
+              <h1 class="animate__animated animate__bounce animate__delay-3s animate__slow" style="color: #A94241 ;">Discover More Books</h1>
+
+            <ul style="position: relative; z-index: 5555;" class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
               </li>
@@ -78,24 +88,22 @@
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-                <!-- <form role="search" method="get" class="search-form form" action=""> -->
                 <div class="home_searchbar">
                   <label>
                       <span class="screen-reader-text">Search for...</span>
-                      <input id="all_autocomplete" type="search" class="search-field" placeholder="Search all..." value="" name="s" title="" />
+                      <input style="position: relative; z-index: 5555;" id="all_autocomplete" type="search" class="search-field" placeholder="Search all..." value="" name="s" title="" />
                   </label>
-                  <input type="submit" class="search-submit button" value="&#xf002" onclick="all_search('all')"/>
+                  <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="all_search('all')"/>
                 </div>
-                <!-- </form>  -->
               </div>
 
               <div class="tab-pane fade" id="title" role="tabpanel" aria-labelledby="title-tab">
                 <div class="home_searchbar">
                   <label>
                       <span class="screen-reader-text">Search for...</span>
-                      <input id="title_autocomplete" type="search" class="search-field" placeholder="Search title..." value="" name="s" title="" />
+                      <input  style="position: relative; z-index: 5555;" id="title_autocomplete" type="search" class="search-field" placeholder="Search title..." value="" name="s" title="" />
                   </label>
-                  <input type="submit" class="search-submit button" value="&#xf002" onclick="title_search('intitle')"/>
+                  <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="title_search('intitle')"/>
                 </div>
               </div>
 
@@ -103,24 +111,58 @@
                 <div class="home_searchbar">
                   <label>
                       <span class="screen-reader-text">Search for...</span>
-                      <input id="author_autocomplete" type="search" class="search-field" placeholder="Search author..." value="" name="s" title="" />
+                      <input style="position: relative; z-index: 5555;" id="author_autocomplete" type="search" class="search-field" placeholder="Search author..." value="" name="s" title="" />
                   </label>
-                  <input type="submit" class="search-submit button" value="&#xf002" onclick="author_search('inauthor')"/>
-                </div> 
+                  <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="author_search('inauthor')"/>
+                </div>
               </div>
 
               <div class="tab-pane fade" id="isbn" role="tabpanel" aria-labelledby="isbn-tab">
                 <div class="home_searchbar">
                   <label>
                       <span class="screen-reader-text">Search for...</span>
-                      <input id="isbn_autocomplete" type="search" class="search-field" placeholder="Search ISBN..." value="" name="s" title="" />
+                      <input style="position: relative; z-index: 5555;" id="isbn_autocomplete" type="search" class="search-field" placeholder="Search ISBN..." value="" name="s" title="" />
                   </label>
-                  <input type="submit" class="search-submit button" value="&#xf002" onclick="isbn_search('isbn')"/>
+                  <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="isbn_search('isbn')"/>
                 </div> 
               </div>
               
             </div>
+            <div class="leaf">
+              <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+                <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
+                     
+              </div>
+              
+              <div class="leaf leaf1">
+              <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+                <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
+                     
+              </div>
+              
+              <div class="leaf leaf2">
+              <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+         
+                <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
+                     
+              </div>
             </div>
+
         </header>
         <!-- ======= Steps Section ======= -->
     <section id="steps" class="steps section-bg">
@@ -165,10 +207,14 @@
             </div>
   
           </div>
-  
+          
         </div>
-      </section><!-- End Steps Section -->
 
+      
+        </section><!-- End Steps Section -->
+
+           
+        
         <!-- Bootstrap core JS-->
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
@@ -178,5 +224,6 @@
         <!-- <script src="assets/mail/jqBootstrapValidation.js"></script>
         <script src="assets/mail/contact_me.js"></script> -->
         <script src="../js/homepage.js"></script>
+
     </body>
 </html>
