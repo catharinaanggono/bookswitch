@@ -175,17 +175,23 @@
 
     
     <div class="jumbotron jumbotron-fluid" id="mybooksHeader" style="padding-bottom: 30px;">
-        <h1 class="display-4" style="margin-bottom: 50px; margin-top:50px;">My Books</h1>
+    <div class="row">
+      <h1 class="display-4 col" style="margin-bottom: 50px; margin-top:50px;">My Books</h1>
+      <div class="col" style="display:flex; justify-content: center; align-items: center;">
+        <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills text-center border-0 rounded-nav" style="width: 70%;">
+              <li class="nav-item " style="width: 50%">
+                <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_wishlist()" onclick="openLink(event, 'Left')" class="nav-link border-0 text-uppercase font-weight-bold active"><img src="../images/wishlistbook.png" width="50%" height="auto"></a>
+              </li>
+              <li class="nav-item" style="width: 50%">
+                <a data-toggle="tab" id="listings_tab" href="#listings" role="tab" aria-controls="profile" onclick="getListings('ALL')" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><img src="../images/listingsbook.png" width="50%" height="auto"></a>
+              </li>
+        </ul>
+      </div>
+    </div>
+        
     
 
-          <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills text-center border-0 rounded-nav" style="width:50%">
-            <li class="nav-item " style="width: 50%">
-              <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_wishlist()" onclick="openLink(event, 'Left')" class="nav-link border-0 text-uppercase font-weight-bold active"><img src="../images/wishlistbook.png" width="50%" height="auto"></a>
-            </li>
-            <li class="nav-item" style="width: 50%">
-              <a data-toggle="tab" id="listings_tab" href="#listings" role="tab" aria-controls="profile" onclick="getListings('ALL')" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><img src="../images/listingsbook.png" width="50%" height="auto"></a>
-            </li>
-          </ul>
+          
 
 
 
