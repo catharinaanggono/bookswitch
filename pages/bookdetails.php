@@ -20,8 +20,7 @@
     <title>Book Details</title>
     <link href="../css/homepage.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
-    <script src="./bookdetails.js"></script>
-
+    <script src='./bookdetails.js'></script>
 
 
 
