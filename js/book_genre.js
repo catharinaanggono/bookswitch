@@ -58,12 +58,15 @@ function display_default() {
     show_page_button('Adventure', 0);
     update_header('Adventure');
 }
+display_default();
+
 
 // pagination
 function show_page_button(genre, first_start) {
   for ( i = 1; i <= 5; i++ ) {
     var node = document.createElement('button');
     node.setAttribute('class', 'btn m-1');
+    node.setAttribute('id', `page${i}`);
     node.setAttribute('onclick', `call_api_genre('${genre}', ${i})`);
     node.innerHTML = `${i}`;
     
