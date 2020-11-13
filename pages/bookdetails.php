@@ -127,6 +127,18 @@
             padding-top: 50px;
         }
 
+        footer{
+            background-color: #6b7269;
+            color: white;
+        }
+
+        footer a{
+            color: #B5C587;
+        }
+
+        footer a:hover{
+            color: #B5C587;
+        }
        
     </style>
 
@@ -376,8 +388,57 @@
 
 </body>
 
-<footer>
+<!-- FOOTER -->
+<footer class="page-footer font-small blue px-4 py-5">
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+      <!-- Grid row -->
+      <div class="row">
+        <!-- First column -->
+        <div class="col-md-6 mb-md-0 mb-3">
+          <!-- Links -->
+          <h5 class="text-uppercase">Support</h5>
+          <ul class="list-unstyled">
+            <li>
+              <a href="#">Contact Us</a>
+            </li>
+            <li>
+              <a href="#">FAQ</a>
+            </li>
+            <li>
+              <a href="#">About Us</a>
+            </li>
+          </ul>
+        </div>
 
-</footer>
+        <!-- Second column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+          <div class='container'>
+            <!-- Content -->
+            <img src='../images/bookswitch_footer.svg' style='width: 200px; height: 80px;'>
+          </div>
+
+          <div class='container pl-4'>
+            <i class="fab fa-facebook-square" style="font-size:24px"> </i>
+            <i class="fab fa-twitter-square" style="font-size:24px"> </i>
+            <i class="fab fa-google-plus-square" style="font-size:24px"> </i>
+            <i class="fab fa-instagram-square" style="font-size:24px"> </i>
+            <i class="fas fa-envelope-square" style="font-size:24px"> </i>    
+          </div>        
+        </div>
+        <!-- <hr class="clearfix w-100 d-md-none pb-3"> -->
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright - BookSwitch
+    </div>
+    <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
 
 </html>
