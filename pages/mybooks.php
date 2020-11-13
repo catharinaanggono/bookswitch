@@ -335,9 +335,7 @@
                         <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
                   </div>
                       
-                      <button name='bk' type='submit' value='bk' class ='btn black-background white' >
-                        <i class='far fa-bookmark red'></i>
-                      </button>
+                      <button class="btn btn-danger" style="margin-bottom:0px;">Temporary</button>
                   </div>
         
                   
@@ -357,7 +355,7 @@
                   // </div>
 
                   index += 1;
-                  console.log(index);
+                  // console.log(index);
 
 
               }
@@ -408,23 +406,27 @@
                   }
 
 
+                  // referenced from: https://jsfiddle.net/bootstrapious/b69yeLzj
                   var node = document.createElement('div');
                   node.setAttribute('class', 'col-xl-3 col-sm-4 mb-5 my-2');
-                  node.setAttribute('onclick', `redirect(${isbn})`);
+                  // node.setAttribute('onclick', `redirect(${isbn})`);
                   node.setAttribute('style', 'display:flex; justify-content: center; align-items: center; text-align: center;')
                   node.innerHTML += `
                   
                   <div class="mybooks rounded shadow-sm">
-                      <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
-                      <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
-                      <button class="btn btn-danger">Hi</button>
+                  <div onclick="redirect(${isbn})">
+                    <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
+                        <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
+                  </div>
+                      
+                      <button class="btn btn-danger" style="margin-bottom:0px;">Temporary</button>
                   </div>
 
                   
                   `;
 
                   x += 1;
-                  console.log(x);
+                  // console.log(x);
 
               }
 
