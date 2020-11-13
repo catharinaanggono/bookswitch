@@ -46,7 +46,7 @@
     ("amy", "9788804584377", "NO");
 
     INSERT INTO listings(userid, isbn, status) VALUES
-    ("amy", "9781416907121", "NO");
+    ("amy", "9781416938156", "NO");
 
     INSERT INTO listings(userid, isbn, status) VALUES
     ("amy", "9788482600307", "NO");
@@ -73,7 +73,7 @@
     ("9788804584377", 10, 5);
 
     INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
-    ("9781416907121", 30, 5);
+    ("9781416938156", 30, 5);
 
     INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
     ("9788482600307", 25, 5);

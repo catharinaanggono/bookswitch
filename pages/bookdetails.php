@@ -250,6 +250,9 @@
                             <?php
                                 $dao3 = new ratingsDAO(); 
                                 $Ratings = $dao3->getRatings($isbn);
+                                if ($Ratings>5) {
+                                    $Ratings = 5;
+                                }
                                 if ($Ratings != "Nothing") {
                                     
                                     for ($i=0;$i<$Ratings;$i++) {
