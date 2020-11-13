@@ -24,7 +24,7 @@ const genre_dataset = {
             // "tags" : ["superhero", "fairytale", "fables", "magic"]
         },
         { 
-            "genre" : "Science Fiction",
+            "genre" : "Adventure",
             "description": "Science Fiction typically deals with imaginative and futuristic concepts such as advanced science and technology, time travel, extraterrestrial life, etc. The stories are often set in the future or on other planets."
             // "tags" : []
         }
