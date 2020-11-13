@@ -53,7 +53,11 @@ function update_header(id) {
 
         if (genre.genre == id) {  
             console.log(id);
+<<<<<<< Updated upstream
             document.getElementById(`${id}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055; ');
+=======
+            document.getElementById(`${id}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055;');
+>>>>>>> Stashed changes
         }   
             
     }
