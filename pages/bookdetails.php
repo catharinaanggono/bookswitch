@@ -240,7 +240,7 @@
     <br><br>
     <div style = "padding-left:10px;"><button class="btn black-background white chevron-left" onclick="history.go(-1);"><i class="fas fa-chevron-left"></i></button></div>
 
-    <div class = "container-fluid" style = "padding-top: 30px;">
+    <div class = "container-fluid" style = "padding-top: 30px; padding-bottom: 5%;">
         <div class="row">
             
             <div class="col-sm-2">
