@@ -7,7 +7,10 @@
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Courgette|Open+Sans&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Courgette|Open+Sans&display=swap" rel="stylesheet"> 
+	<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 </head>
 
 <style>
@@ -177,6 +180,22 @@
 		
 	}
 
+	.backButton {
+		padding-left:50px;
+		padding-top:50px;
+		font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+		"Helvetica Neue", Arial, sans-serif, 
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+		width: 50px;
+		height: 50px;
+		background-color: Transparent;
+    }
+
+	.enlarge {
+		font-size: 30px;
+		color: #D5D3BF; 
+	}
+
 </style>
 
 <body>
@@ -216,6 +235,7 @@
 	  </div>
 
 
+	<div style = "padding-left:10px;"><button class="btn black-background white chevron-left backButton" onclick="history.go(-1);"><i class="fas fa-chevron-left enlarge"></i></button></div>
 
 	<!-- Display of Navbar -->
     <div class="bgded overlay" id="example"> 
@@ -238,16 +258,15 @@
 		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 		<input type="text" class="form-control" name="userid" placeholder="Username" required> 
 		</div>
-	
+
+		
 		<!-- Password field -->
 		<div class="form-group input-group">
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
 		<input type="password" class="form-control" name="password" placeholder="Password" required>
 		</div>
-		<?php
-
-		<input type="hidden" name="page_dest" value="<?php echo '$_GET['redirect_to']';?>"/>
-
+		
+		<input type="hidden" name="page_dest" value="<?php echo $_GET['redirect_to'];?>"/>
 
 		<?php
 
