@@ -19,11 +19,17 @@
                 $totalRatings = $row['totalRate'];
                 $numberPeople = $row['noPpl'];
             }
-
-            $avgRate = floor($totalRatings/$numberPeople);
+            
             $stmt->closeCursor();
             $pdo = null;
-            return $avgRate;
+
+            if ($listingsRecords == []) {
+                return "None";
+            } else { 
+                $avgRate = floor($totalRatings/$numberPeople);
+                return $avgRate;
+            }
+            
         }
 
     }   
