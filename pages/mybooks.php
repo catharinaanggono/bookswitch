@@ -35,7 +35,7 @@
     <style>
       body {
         padding-top: 0px;
-
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
       }
           /* Rounded tabs */
 
@@ -84,7 +84,7 @@
       }
 
       .mybooks {
-        background-image: linear-gradient(#DAE9F0, #DAE8E3);
+        background-color: #d4dde0;
         padding: 20px;
         height: 325px;
         width: 300px;
@@ -95,11 +95,6 @@
     </style>
 
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-      <!-- Google fonts-->
-      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-      <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-      <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-
 
 
     
@@ -332,7 +327,7 @@
                   <div class="mybooks rounded shadow-sm">
                   <div onclick="redirect(${isbn})">
                       <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
-                        <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
+                        <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
                   </div>
                       
                       <button class="btn btn-danger" style="margin-bottom:0px;" onclick="deleteBook(${isbn})">Temporary</button>
@@ -416,7 +411,7 @@
                   <div class="mybooks rounded shadow-sm">
                   <div onclick="redirect(${isbn})">
                     <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
-                        <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
+                        <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
                   </div>
                       
                       <button class="btn btn-danger" style="margin-bottom:0px;">Temporary</button>
