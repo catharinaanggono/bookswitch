@@ -4,18 +4,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    <!-- jQuery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Bootstrap CSS --> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- jQuery and JS bundle w/ Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+     -->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <title>Book Details</title>
     <link href="../css/homepage.css" rel="stylesheet" />
-    <script src="./bookdetails.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+    <script src='./bookdetails.js'></script>
+
+
 
     <style>
         #bookTitle.dark{
@@ -105,7 +112,16 @@
         .red {
             color:red;
         }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+        }
         
+        button,input {
+            font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+            "Helvetica Neue", Arial, sans-serif, 
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
     </style>
 
     <?php 
@@ -214,9 +230,10 @@
                         <img id = "BkImg" class="card-img-top justify-content-center" src="???" alt="Card image cap">
                         <div class="card-body">
                           <!-- Book Title -->
-                          <h5 class="card-title bookDetails" id = "bookTitle"></h5>
+                          <h5 class="card-title bookDetails" style = "font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                            'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 27px;"  id = "bookTitle"></h5>
                           <p class="card-text" style = "padding-top: 5px;"> 
-                            <span class='headerNames'><b>Author:</b> </span><span id = "author" class = "bookDetails" style = "font-size: 15px;"></span> <br>
+                            <span class='headerNames'><b>Author: </b> </span><span id = "author" class = "bookDetails" style = "font-size: 15px;"></span> <br>
                             <span class='headerNames'><b>Published Date:</b> </span><span id = "published_date" class = "bookDetails" style = "font-size: 15px;"></span> <br>
                             <span style = "font-size: 15px;"></span>
                             <!-- Ratings --> 
@@ -244,7 +261,9 @@
                 <div class ="card-group">
                     <div class="card-transparent">
                         <div class="card-body" >
-                          <h5 class="card-title bookDetails">Book Description</h5>
+                          <h5 class="card-title bookDetails" style = "font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                            'Helvetica Neue', Arial, sans-serif, 
+                            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 27px;">Book Description</h5>
                           <p id = "bk_description" class="card-text bookDetails">
                         </p>
                         </div>
@@ -364,7 +383,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="../js/homepage.js"></script>
+    <!-- BookSwitch JS -->
+    <script src='../js/homepage.js'></script>
+
 
 </body>
 
