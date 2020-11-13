@@ -112,11 +112,11 @@
         .red {
             color:red;
         }
-/* 
+
         body {
-            font-family: 'Cormorant Garamond', serif;
+            color: #474E45;
         }
-         */
+        
         button,input {
             font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
             "Helvetica Neue", Arial, sans-serif, 
@@ -222,6 +222,9 @@
     
 
     </div>
+    
+    <br><br><br><br>
+    <button onclick="history.go(-1);">Back </button>
 
     <div class = "container-fluid" style = "padding-top: 50px;">
         <div class="row">
