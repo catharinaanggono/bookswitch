@@ -34,7 +34,7 @@ const category = urlParams.get('category');
 // console.log(category);
 var first_start = 1;
 
-show_page_button();
+show_page_button(category, query, first_start);
 first_load();
 
 function first_load(){
@@ -173,12 +173,12 @@ function call_api_search(category, keyword, pg_num){
     request.send();
 }
 
-function show_page_button() {
+function show_page_button(category, query, first_start) {
   for ( i = 1; i <= 5; i++ ) {
       var node = document.createElement('button');
       node.setAttribute('class', 'btn m-1');
       node.setAttribute('id', `page${i}`);
-      node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i})`);
+      node.setAttribute('onclick', `call_api_search('${category}', '${query}', ${i})`);
       node.innerHTML = `${i}`;
       
       // console.log(node);

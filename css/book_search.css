@@ -65,7 +65,7 @@ h2{
 #pagination > button.active
 {
     color: white;
-    background-color: red;
+    background-color: #A94241;
     border: solid 1px #6430b8;
 } 
 
