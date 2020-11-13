@@ -25,6 +25,12 @@
 
 
     <title>BookSwitch2</title>
+    <style>
+        body {
+            font-family: 'Segoe UI';
+            padding-top: 100px;
+        }
+    </style>
 
 </head>
 <body>
@@ -66,17 +72,21 @@
         </div>
     </nav>
     
-    <br><br>
+    
     <!-- Pagination -->
     <div class="pagination justify-content-center" id="pagination"> </div>
 
     <!-- genre -->
+    <!-- adv, children, fantasy,mystery, romance -->
     <div class="container text-center" id="glist" class='glist'>
+        <button type="button" class="btn genre m-1" id='Adventure' onclick="call_api_genre('Adventure', 0); update_header(id);">Adventure</button>
+        <button type="button" class="btn genre m-1" id='Children' onclick="call_api_genre('Children', 0); update_header(id);">Children</button>
+        <button type="button" class="btn genre m-1" id='Fantasy' onclick="call_api_genre('Fantasy', 0); update_header(id);">Fantasy</button>
         <button type="button" class="btn genre m-1" id='Mystery' onclick="call_api_genre('Mystery', 0); update_header(id);">Mystery</button>
         <button type="button" class="btn genre m-1" id='Romance' onclick="call_api_genre('Romance', 0); update_header(id); ">Romance</button>
-        <button type="button" class="btn genre m-1" id='Thriller' onclick="call_api_genre('Thriller', 0); update_header(id);">Thriller</button>
-        <button type="button" class="btn genre m-1" id='Fantasy' onclick="call_api_genre('Fantasy', 0); update_header(id);">Fantasy</button>
-        <button type="button" class="btn genre m-1" id='Adventure' onclick="call_api_genre('Adventure', 0); update_header(id);">Adventure</button>
+
+
+
     </div>
 
 
@@ -115,7 +125,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>]
     <!-- <script src="../js/book_search.js"></script> -->
     <script src="../js/homepage.js"></script>
-    <script src="../js/book_search.js"></script>
+    <!-- <script src="../js/book_search.js"></script> -->
     <script src="../js/book_genre.js"></script>
     
     
