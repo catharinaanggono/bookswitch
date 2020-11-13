@@ -37,6 +37,8 @@
     INSERT INTO bookmark(userID, isbn) VALUES 
     ("aytt", "0141346809");
 
+    
+
 (7) Insertion of records (listings)
     INSERT INTO listings(userid, isbn, status) VALUES
     ("aytt", "1408135752", "YES");
