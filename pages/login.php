@@ -1,8 +1,8 @@
-
-	<?php
+<?php
 	
 	### Connecting to the file which consists codes to connect to the database (Essential for PDOStatements), start session, etc
-	require_once "../model/common.php";
+ 	require_once "../model/common.php";
+
 
 	### When the form is filled and the login button is clicked
 	if (isset($_POST["submit"])) { 
@@ -30,19 +30,19 @@
 
 			### Incorrect password  
 			if ($password != $correct_pwd) {
-				echo "Incorrect password";
-				echo "<br>";
-				echo "Please try again";
-
+                $_SESSION["error"] = "Incorrect password";
+				header("location:login.html");
 			### Correct password. Hence, session stored.  
 			} else {
+
 				$_SESSION["userid"] = $userid;
 
 				if (isset($_SESSION["isbn"])) { 
 					$isbn = $_SESSION["isbn"];
+					header("location:bookdetails.php?isbn=$isbn");
 				}
 
-				header("location:bookdetails.php?isbn=$isbn");
+				
 				
 			}
 		}

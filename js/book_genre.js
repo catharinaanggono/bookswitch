@@ -3,34 +3,42 @@
 const genre_dataset = {
 
     "genres" : [
-        { 
-            "genre" : "Mystery",
-            "description": "Mystery books have a suspenseful plot that often involves a mysterious crime. Suspects and motives are considered and clues throughout the story lead to a solution to the problem."
-            // "tags" : ["police procedural", "detective"]
-        },
-        {
-            "genre" : "Romance",
-            "description": "The primary focus of romance fiction is on the relationship and romantic love between two people. These books have an emotionally satisfying and optimistic ending."
-            // "tags" : ["contemporary romance", "historical romance", "inspirational romance"]
-        },
-        { 
-            "genre" : "Thriller",
-            "description": "This genre of book is characterized and defined by the moods they evoke among the readers, giving them heightened feelings of suspense, excitement, thrill, surprise, anticipation, and anxiety. Literary devices such as plot twists and cliffhangers are extensively used in this genre."
-            // "tags" : ["crime thriller", "action thriller", "mystery thriller", "science fiction thriller"]
-        },
-        { 
-            "genre" : "Fantasy",
-            "description": "A Book under this genre contains a story set in a fantasy world – a world that is not real and often includes magic, magical creatures, and supernatural events."
-            // "tags" : ["superhero", "fairytale", "fables", "magic"]
-        },
-        { 
-            "genre" : "Adventure",
-            "description": "Science Fiction typically deals with imaginative and futuristic concepts such as advanced science and technology, time travel, extraterrestrial life, etc. The stories are often set in the future or on other planets."
-            // "tags" : []
-        }
+      { 
+        "genre" : "Adventure",
+        "description": "Science Fiction typically deals with imaginative and futuristic concepts such as advanced science and technology, time travel, extraterrestrial life, etc. The stories are often set in the future or on other planets."
+        // "tags" : []
+      },
+      { 
+        "genre" : "Children",
+        "description": "This genre of book is characterized and defined by the moods they evoke among the readers, giving them heightened feelings of suspense, excitement, thrill, surprise, anticipation, and anxiety. Literary devices such as plot twists and cliffhangers are extensively used in this genre."
+        // "tags" : ["crime thriller", "action thriller", "mystery thriller", "science fiction thriller"]
+      },
+      { 
+        "genre" : "Fantasy",
+        "description": "A Book under this genre contains a story set in a fantasy world – a world that is not real and often includes magic, magical creatures, and supernatural events."
+        // "tags" : ["superhero", "fairytale", "fables", "magic"]
+      },
+      { 
+        "genre" : "Mystery",
+        "description": "Mystery books have a suspenseful plot that often involves a mysterious crime. Suspects and motives are considered and clues throughout the story lead to a solution to the problem."
+        // "tags" : ["police procedural", "detective"]
+      },
+      {
+        "genre" : "Romance",
+        "description": "The primary focus of romance fiction is on the relationship and romantic love between two people. These books have an emotionally satisfying and optimistic ending."
+        // "tags" : ["contemporary romance", "historical romance", "inspirational romance"]
+      }
+
+
+
 
     ]
 };
+
+// pagination
+show_page_button(category, query, first_start);
+first_load();
+
 
 function update_header(id) {
 
@@ -47,6 +55,7 @@ function update_header(id) {
         if (genre.genre == id) {  
             console.log(id);
             document.getElementById(`${id}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055; ');
+            
         }   
             
     }
@@ -55,7 +64,7 @@ function update_header(id) {
 
 
 function display_default() {
-    call_api_genre('Mystery', 0);
+    call_api_genre('Adventure', 0);
 }
 display_default();
 
@@ -68,18 +77,36 @@ function call_api_genre(genre, pg_num) {
 
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
-            document.getElementById('main-content').innerHTML = '';
-            document.getElementById('pagination').innerHTML = '';
+          document.getElementById('main-content').innerHTML = '';
+          document.getElementById('pagination').innerHTML = '';
+          // document.getElementById(`page1`).setAttribute('style', '');
 
+          // set pg1 as active
+          pages = document.getElementById('pagination').getElementsByTagName('button');
+          for (let i = 0; i < pages.length; i++){
+            console.log(pages[i]);
+            if (i+1 == pg_num){
+              pages[i].setAttribute('class', 'btn m-1 active');
+            }
+            else{
+              pages[i].setAttribute('class', 'btn m-1');
+            }
+          }
+          console.log(pages);
+          extract_display_data(this);
+          console.log(`page num: ${pg_num}`);
+
+      
+
+          document.getElementById(`${genre}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055; ');
+              
+                  
+          // }
             
             extract_display_data(this);
-            extract_page_data(this, genre, pg_num);
+            // extract_page_data(this, genre, pg_num);
             console.log(`page num: ${pg_num}`);
 
-            document.getElementById(`page${pg_num}`).setAttribute('style', 'background-color: #A94241;');
-            // for (i = 0; i <= 5; i++) {
-            //     document.getElementById(`page${i}`).setAttribute('style', '');
-            // }
             
         }
     }
@@ -89,7 +116,7 @@ function call_api_genre(genre, pg_num) {
     var start_index = pg_num*max;
     console.log(start_index);
     var url = `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&startIndex=${start_index}&maxResults=${max}`;
-
+    console.log(url);
     request.open('GET', url, true);
     request.send();
 }
@@ -180,6 +207,7 @@ function extract_page_data(xml, genre) {
     var obj = JSON.parse(xml.responseText);
     var book_results = obj.items;
     var index = 0;
+    
 
     
     for ( i = 1; i <= 5; i++ ) {

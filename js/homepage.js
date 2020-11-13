@@ -159,42 +159,6 @@ var currentScrollPos = window.pageYOffset;
 
 
 // Search All Method
-function searchAll(query) {
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function() {
-
-        if( this.readyState == 4 && this.status == 200 ) {
-            var response_json = JSON.parse(this.responseText);
-            console.log(response_json.items);
-            response_json = response_json.items;
-            var objkeys = Object.keys(response_json);
-
-            for(var i of objkeys){
-
-                // var node = document.getElementById("winners_list");
-                // node.innerHTML += '<div class="card"><img src="../api/images/' + response_json[i].others.image + '" class="card-img-top"><div class="card-body"><h5 class="card-title">' + response_json[i].bio.name + '</h5><p id="movie-title">' + response_json[i].movie.title + ' (' + response_json[i].movie.year + ')' + '</p><p id="details">' + response_json[i].movie.description + '</p></div>';
-
-                
-
-            }
-        }
-
-    }; // End-of-function
-
-
-    var key = "AIzaSyBJzLG1vPJaSlyl0bJ2xXI7uTz5Xx97jUE";
-    var url = 'https://www.googleapis.com/books/v1/volumes?q=' + query;
-
-
-    console.log(url);
-
-    request.open("GET", url, true);
-    request.send();
-}
-
-
-// Search All Method
 $("#all_autocomplete").autocomplete({
   appendTo: $('#all'),
   source: function (request, response) {
@@ -205,6 +169,7 @@ $("#all_autocomplete").autocomplete({
         startIndex: 1,
         maxResults: 15
       },
+      autoFocus: true,
       success: function (data) {
         data = data.items;
         var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
@@ -450,144 +415,6 @@ $("#author_autocomplete").autocomplete({
             .appendTo( ul );
         };
 
-
-
-
-// Autocomplete
-$("#autocomplete").autocomplete({
-    appendTo: $('#search'),
-    source: function (request, response) {
-      $.ajax({
-        url: "https://www.googleapis.com/books/v1/volumes?",
-        data: { 
-          q: request.term,
-          startIndex: 1,
-          maxResults: 15
-        },
-        success: function (data) {
-          data = data.items;
-          var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
-          var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
-  
-          console.log(data);
-  
-          var primary_matches = $.map(data, function (el) {
-            let result = el.volumeInfo.title;
-            let img_link = el.volumeInfo.imageLinks;
-            let authors = el.volumeInfo.authors;
-            console.log(authors);
-            if (typeof img_link !== 'undefined'){
-              img_link = el.volumeInfo.imageLinks.thumbnail;
-            }
-            else{
-              img_link = '../images/no_image-removebg-preview.svg'
-            }
-            if (typeof authors == 'undefined'){
-              authors = "AUTHOR UNKNOWN";
-            }            
-            if (matcher1.test(result) || matcher1.test(authors)){
-              return {
-                imgLink: img_link,
-                value: result,
-                author: authors
-              };
-  
-            }
-              
-          });
-          var secondary_matches = $.map(data, function (el) {
-            let result = el.volumeInfo.title;
-            let img_link = el.volumeInfo.imageLinks;
-            let authors = el.volumeInfo.authors;
-            console.log("2" + authors);
-
-            if (typeof img_link !== 'undefined'){
-              img_link = el.volumeInfo.imageLinks.thumbnail;
-            }
-            else{
-              img_link = '../images/no_image-removebg-preview.svg'
-            }
-            if (typeof authors == 'undefined'){
-              authors = "AUTHOR UNKNOWN";
-            }       
-            if (matcher2.test(result) || matcher2.test(authors)){
-              return {
-                imgLink: img_link,
-                value: result,
-                author: authors
-              };
-  
-            }
-              
-          });
-          console.log(primary_matches);
-          console.log(secondary_matches);
-          response($.merge(primary_matches, secondary_matches));
-        },
-        
-        // error: function () {
-        //   response([]);
-        // }
-      });
-    }
-  })
-  .data("ui-autocomplete")._renderItem = function( ul, item ) {
-              var titleText = String(item.value).replace(
-              new RegExp(this.term, "gi"),
-              "<span class='ui-state-highlight'><b>$&</b></span>");
-              var authorText = String(item.author).replace(
-                new RegExp(this.term, "gi"),
-                "<span class='ui-state-highlight'><b>$&</b></span>");
-
-              return $( "<li></li>" )
-              .attr( "data-value", item)
-              .append("<div class='row'><div class='col-3'><img width='62' height='85' src='" + item.imgLink + "'></div>" + "<div class='col'><div class='row'><div class='col'><p style='font-size:15px'>" + titleText + "</p></div></div>" + "<div class='row'><div class='col'><p style='font-size:10px'>" + authorText + "</p></div></div></div>")
-              .appendTo( ul );
-          };
-
-
-
-
-
-// document.getElementById("autocomplete").onkeypress = function(event){
-//   if (event.keycode == 13 || event.which == 13){
-//     var query = document.getElementById("autocomplete").value;
-//     var category = 'all';
-//     redirect_to_book_search(query, category);
-//   }
-// };
-
-// remove duplicates from array
-// function unique(list) {
-//   var result = [];
-//   $.each(list, function(i, e) {
-//     if ($.inArray(e, result) == -1) result.push(e);
-//   });
-//   return result;
-// }
-// function unique($ar) {
-//   $finalAr = [];
-//   for($i=0;$i<$ar.length;$i++){
-// 	  $currentPair = $ar[$i];
-//     $pos = null;
-//     if($finalAr[$i] == $currentPair[0]){
-//       $pos = $i;
-//     }
-//     if($pos == null){
-//   	  $finalAr.push($currentPair);
-//     }
-//   }
-//   return $finalAr
-// }
-// function unique(list) {
-//   var temp = [];
-//   $.each(list, function (key, value) {
-//    if($.inArray(value.value, temp) === -1) {
-//         temp.push(value);
-//     }
-//   });
-//   return temp;
-// }
 function unique(list) {
   var result = [];
   $.each(list, function (i, e) {
@@ -601,10 +428,42 @@ function unique(list) {
   return result;
 }
 
+document.getElementById("all_autocomplete").onkeypress = function(event){
+  if (event.keycode == 13 || event.which == 13){
+    var query = document.getElementById("all_autocomplete").value;
+    var category = 'all';
+    redirect_to_book_search(query, category);
+  }
+};
+
+document.getElementById("title_autocomplete").onkeypress = function(event){
+  if (event.keycode == 13 || event.which == 13){
+    var query = document.getElementById("title_autocomplete").value;
+    var category = 'intitle';
+    redirect_to_book_search(query, category);
+  }
+};
+
+document.getElementById("author_autocomplete").onkeypress = function(event){
+  if (event.keycode == 13 || event.which == 13){
+    var query = document.getElementById("author_autocomplete").value;
+    var category = 'inauthor';
+    redirect_to_book_search(query, category);
+  }
+};
+
+document.getElementById("isbn_autocomplete").onkeypress = function(event){
+  if (event.keycode == 13 || event.which == 13){
+    var query = document.getElementById("isbn_autocomplete").value;
+    var category = 'isbn';
+    redirect_to_book_search(query, category);
+  }
+};
+
 
 function redirect_to_book_search(query, category){
-  location.href = `book_search.html?query=${query}&category=${category}`;
-}
+    location.href = `book_search.html?query=${query}&category=${category}`;
+  }
 
 function all_search(category){
   var query = document.getElementById("all_autocomplete").value;
