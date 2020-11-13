@@ -244,6 +244,9 @@
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
 		<input type="password" class="form-control" name="password" placeholder="Password" required>
 		</div>
+		<?php
+
+		<input type="hidden" name="page_dest" value="<?php echo '$_GET['redirect_to']';?>"/>
 
 
 		<?php
