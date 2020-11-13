@@ -103,7 +103,7 @@ function extract_display_data(xml) {
         <div class="each-book">
             <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
             <div class="main-details" style='overflow: hidden;'>
-                <span id ='title' style='font-size:15px;'><b><a href='bookdetails.php?isbn=${isbn}'>${title}</a></b></span><br>
+                <span id ='title' style='font-size:15px;'><b><a class='title_link ' href='bookdetails.php?isbn=${isbn}'>${title}</a></b></span><br>
                 
                 <span style='font-size:13px; overflow: hidden;'>by ${author}</span>
             </div>
