@@ -98,7 +98,35 @@
 
         }
 
+        public function getBookens($userid) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            $sql = 'SELECT bookens FROM person WHERE userID = :userID';
+            $stmt = $pdo->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':userID', $userid, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = null;
+            $bookens = []; 
+            if ($row = $stmt->fetch()) {
+                $bookens = $row['bookens'];
+            }
+            $stmt->closeCursor();
+            $pdo = null;
+            return $bookens;
+        }
 
+        public function updateBookens($updatedBookens,$userid) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            $sql = 'UPDATE person set bookens=:bookens WHERE userID=:userID';
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':userID', $userid, PDO::PARAM_STR);
+            $stmt->bindParam(':bookens', $updatedBookens, PDO::PARAM_STR);
+            $stmt->execute();
+            $stmt->closeCursor();
+            $pdo = null;
+        }
 
 
     }   

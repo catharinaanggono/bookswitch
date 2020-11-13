@@ -12,13 +12,14 @@
             name VARCHAR(100) NOT NULL,
             password VARCHAR(20) NOT NULL,
             email VARCHAR(100) NULL, 
+            bookens VARCHAR(255) NULL, 
             CONSTRAINT userID_pk PRIMARY KEY (userID)
     );
 
 (3) Insertion of records (User) 
 
-    INSERT INTO person(userID,name,password,email) VALUES
-   ("aytt","Au Yong Ting Ting","aytt123", "auyongtingting@gmail.com");
+    INSERT INTO person(userID,name,password,email,bookens) VALUES
+   ("aytt","Au Yong Ting Ting","aytt123", "auyongtingting@gmail.com","5000");
   
 (4) Creation of Bookmark Table 
     CREATE TABLE bookmark
@@ -39,10 +40,10 @@
 
 (7) Insertion of records (listings)
     INSERT INTO listings(userid, isbn, status) VALUES
-    ("aytt", "1408135752", "YES");
+    ("aytt", "9780989311298", "NO");
 
     INSERT INTO listings(userid, isbn, status) VALUES
-    ("aytt", "1107604664", "NO");
+    ("aytt", "1107604664", "YES");
 
 (8) Creation of Ratings Table 
     CREATE TABLE ratings
@@ -55,3 +56,10 @@
 (9) Insertion of records (Ratings)
     INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
     ("9780989311298", 20, 5);
+
+(10) Creation of  Table 
+    CREATE TABLE listings
+    (       userID VARCHAR(255) NOT NULL, 
+            isbn VARCHAR(100) NOT NULL,
+            status VARCHAR(20) NOT NULL
+    );

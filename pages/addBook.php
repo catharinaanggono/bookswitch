@@ -13,11 +13,16 @@
                 $status = "YES";
                 $status = $dao->addCopy($userid,$isbn,$status);
                 if ($status == true) {
-                    $_SESSION["button"] = "getCopy"; 
+                    $_SESSION["button"] = "getCopy";
+                    $dao3 = new userDAO();
+                    $bookens = $dao3->getBookens($userid);
+                    // print($bookens);
+                    // alert($bookens);
+                    $remainBookens = $bookens - 50;
+                    $updateStatus = $dao3->updateBookens($remainBookens,$userid);
                 }
                 header("location:bookdetails.php?isbn=$isbn");
                 echo "<script>$('#exampleModal').modal('show')</script>";
-                
             } else { 
                 $dao = new bookmarkDAO(); 
                 $checkBookmark = $dao->checkBookmark($userid,$isbn);
