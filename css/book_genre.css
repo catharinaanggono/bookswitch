@@ -1,3 +1,48 @@
+/* Pagination Position */
+#pagination {
+    margin: auto;
+    position: fixed;
+    bottom: 10px;
+    left: 20%;
+    z-index: 1;
+}
+
+@media (min-width: 600px){
+    #pagination{
+        margin: auto;
+        position: fixed;
+        width: 50%;
+        bottom: 10px;
+        left: 25%;
+        z-index:1;
+    }
+
+}
+
+/* Pagination colors */
+#pagination > button
+{
+    border-color: white;
+    background-color: #0D3D54;
+    color: white;
+    width: 40px;
+    text-align: center;
+}
+
+#pagination > button:hover
+{
+    color: white;
+    background-color: #A94241;
+    border-color: white;
+}
+
+#pagination > button.active
+{
+    color: white;
+    background-color: #A94241;
+    border: solid 1px #6430b8;
+} 
+
 .genre {
     border: 2px solid grey;
     color: grey;
@@ -27,6 +72,8 @@
     /* position: fixed; */
     background-color: #f0a3a7;
 }
+
+
 
 /* each book: base, top->norm, btm->desc */
 .base {
@@ -90,6 +137,26 @@
 
     padding: 10px;
     font-size: 18px;
+}
+
+/* light mode: button */
+.genre {
+    border: 2px solid #0D3D54;
+    color:  #0D3D54;
+    font-weight: 600;
+    border-radius: 22px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.genre:hover { 
+    border: 2px solid #A94241; 
+    /* border-radius: 15px; */
+    color:  #A94241;
+    /* font-weight: bold; */
+    bottom: 3px;
+    
+    /* background-color: #f0a3a7; */
 }
 
 

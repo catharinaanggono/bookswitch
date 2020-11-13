@@ -16,10 +16,10 @@
     <!-- Custom CSS -->
     <link href="../css/homepage.css" rel="stylesheet" />
     <link href="../css/bookswitch.css" rel="stylesheet" href="">
+    <link href="../css/book_genre.css" rel="stylesheet" href="">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Custom JavaScript -->
-    <script src="../js/book_genre.js"></script>
     
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script> -->
 
@@ -28,21 +28,8 @@
 
 </head>
 <body>
-    <!-- jQuery for header/footer -->
-    <!-- <script
-        src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous">
-    </script> -->
-    <!-- <script>
-        $('.btn').click(function() {
-            $(this).toggleClass('active');
-        });
-    </script> -->
-
-    <!-- <div id="header"></div><br> -->
-       <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+     <!-- Navigation-->
+     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch.svg" alt="" /></a>
             <div class="d-flex flex-row order-2 order-lg-3">
@@ -62,7 +49,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
                     <li class="nav-item">
                       <div class="search" id="search">
-                        <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
+                        <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN" onkeypress="javascript:doit_onkeypress(event);">
                       </div></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i>user1</a></li>
                 </ul>
@@ -79,7 +66,8 @@
         </div>
     </nav>
     
-    <!-- pagination -->
+    <br><br>
+    <!-- Pagination -->
     <div class="pagination justify-content-center" id="pagination"> </div>
 
     <!-- genre -->
@@ -88,7 +76,7 @@
         <button type="button" class="btn genre m-1" id='Romance' onclick="call_api_genre('Romance', 0); update_header(id); ">Romance</button>
         <button type="button" class="btn genre m-1" id='Thriller' onclick="call_api_genre('Thriller', 0); update_header(id);">Thriller</button>
         <button type="button" class="btn genre m-1" id='Fantasy' onclick="call_api_genre('Fantasy', 0); update_header(id);">Fantasy</button>
-        <button type="button" class="btn genre m-1" id='Science Fiction' onclick="call_api_genre('Science Fiction', 0); update_header(id);">Science Fiction</button>
+        <button type="button" class="btn genre m-1" id='Adventure' onclick="call_api_genre('Adventure', 0); update_header(id);">Adventure</button>
     </div>
 
 
@@ -127,6 +115,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>]
     <!-- <script src="../js/book_search.js"></script> -->
     <script src="../js/homepage.js"></script>
+    <script src="../js/book_search.js"></script>
+    <script src="../js/book_genre.js"></script>
+    
+    
 
 
 
