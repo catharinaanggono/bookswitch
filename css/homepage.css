@@ -10380,6 +10380,7 @@
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
     background-color: #B5C587;
+    z-index: 9999;
   }
   /* hamburger styling */
   #mainNav .navbar-toggler {
@@ -10414,7 +10415,7 @@
     letter-spacing: 0.0625em;
   }
   #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-    color: #ffff;
+    color: #fff;
   }
   
   
