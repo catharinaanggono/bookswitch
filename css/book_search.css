@@ -1,3 +1,8 @@
+/* body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 100px;
+} */
+
 /* Pagination Position */
 #pagination {
     margin: auto;
@@ -114,8 +119,17 @@ h2.dark{
 a:hover{
     text-decoration: none;
 }
-/* body {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 400;
-    color: #474E45;
-} */
+
+footer{
+    background-color: #6b7269;
+    color: white;
+}
+
+footer a{
+    color: #B5C587;
+}
+
+footer a:hover{
+    color: #B5C587;
+    /* color: #267055; */
+}
