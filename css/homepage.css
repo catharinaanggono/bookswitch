@@ -10723,6 +10723,7 @@ display:block ;
   cursor:pointer;
   z-index:2;
 } */
+<<<<<<< HEAD
 
 #pagination > button
 {
@@ -10746,3 +10747,5 @@ display:block ;
     background-color: red;
     border: solid 1px #6430b8;
 }
+=======
+>>>>>>> ae3f1cddadc11b6e002ed675615af68247ca0a90

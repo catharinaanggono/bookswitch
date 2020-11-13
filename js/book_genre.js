@@ -32,7 +32,6 @@ const genre_dataset = {
     ]
 };
 
-
 function update_header(id) {
     // var genre_btns = document.getElementsByClassName('btn');
 
@@ -43,22 +42,29 @@ function update_header(id) {
 
     for (genre of genre_dataset.genres) {
         // console.log(genre.genre);
+        document.getElementById(`${genre.genre}`).setAttribute('style', '');
         if (genre.genre == id){
             document.getElementById('gtitle').innerText = id;
             document.getElementById('gdesc').innerText = genre.description;
         }
+    
+
+        if (genre.genre == id) {  
+            console.log(id);
+            document.getElementById(`${id}`).setAttribute('style', 'background-color:red');
+        }   
             
     }
     
 }
 
-function display_default() {
-    call_api_genre('romance', 0);
 
+function display_default() {
+    call_api_genre('Mystery', 0);
 }
 display_default();
 
-// search
+
 
 // genre
 function call_api_genre(genre, pg_num) {
@@ -69,11 +75,17 @@ function call_api_genre(genre, pg_num) {
         if (request.readyState==4 && request.status==200){
             document.getElementById('main-content').innerHTML = '';
             document.getElementById('pagination').innerHTML = '';
+
             
             extract_display_data(this);
             extract_page_data(this, genre, pg_num);
             console.log(`page num: ${pg_num}`);
 
+            document.getElementById(`page${pg_num}`).setAttribute('style', 'background-color:red');
+            // for (i = 0; i <= 5; i++) {
+            //     document.getElementById(`page${i}`).setAttribute('style', '');
+            // }
+            
         }
     }
 
@@ -113,7 +125,7 @@ function extract_display_data(xml) {
             // }
         }
         else {
-            short_desc = 'description not available';
+            short_desc = 'Description not available';
         }
 
         if (typeof isbn !== 'undefined'){
@@ -141,10 +153,10 @@ function extract_display_data(xml) {
             </div>
         </div>
         <!-- style="visibility: hidden; -->
-        <div class="each-desc" id="each-desc${index}" style='visibility: hidden; text-overflow: ellipsis; '> 
+        <div class="each-desc" id="each-desc${index}" style='visibility: hidden; '> 
             <div>
                 <b>Description</b><br>
-                <span style='display: flex; height: 100px; overflow: hidden; text-overflow: ellipsis;'> ${short_desc}</span>
+                <span style='display: flex; height: 100px; overflow: hidden;'> ${short_desc}</span>
             </div>
         </div>
 
@@ -178,7 +190,8 @@ function extract_page_data(xml, genre) {
     for ( i = 1; i <= 5; i++ ) {
         var node = document.createElement('button');
         node.setAttribute('class', 'btn page m-1');
-        node.setAttribute('onclick', `call_api_genre('${genre}', ${i})`);
+        node.setAttribute('id', `page${i}`);
+        node.setAttribute('onclick', `call_api_genre('${genre}', ${i});`);
         node.innerHTML = `${i}`;
         
         // console.log(node);
@@ -187,14 +200,15 @@ function extract_page_data(xml, genre) {
 
 }
 
+
 function show_desc(id) {
     var node = document.getElementById(id);
-    node.setAttribute('style', 'visibility: visible; overflow: hidden; text-overflow: ellipsis; ');
+    node.setAttribute('style', 'visibility: visible;');
 }
 
 function hide_desc(id) {
     var node = document.getElementById(id);
-    node.setAttribute('style', 'visibility: hidden; overflow: hidden; text-overflow: ellipsis; ');
+    node.setAttribute('style', 'visibility: hidden;');
 }
 
 // function gtags() {
