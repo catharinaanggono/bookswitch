@@ -112,11 +112,11 @@
         .red {
             color:red;
         }
-
+/* 
         body {
             font-family: 'Cormorant Garamond', serif;
         }
-        
+         */
         button,input {
             font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
             "Helvetica Neue", Arial, sans-serif, 
@@ -183,6 +183,7 @@
         </nav>
     
     <!-- Modal -->
+    <br><br><br><br>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -385,6 +386,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- BookSwitch JS -->
     <script src='../js/homepage.js'></script>
+    <script src='../js/book_search.js'></script>
 
 
 </body>
