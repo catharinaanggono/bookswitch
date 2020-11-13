@@ -111,6 +111,11 @@
             font-family: 'Cormorant Garamond', serif;
         }
         
+        button,input {
+            font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+            "Helvetica Neue", Arial, sans-serif, 
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
     </style>
 
     <?php 
@@ -219,9 +224,10 @@
                         <img id = "BkImg" class="card-img-top justify-content-center" src="???" alt="Card image cap">
                         <div class="card-body">
                           <!-- Book Title -->
-                          <h5 class="card-title bookDetails" style = "font-family: 'Cormorant Garamond', serif; font-size:27px"  id = "bookTitle"></h5>
+                          <h5 class="card-title bookDetails" style = "font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                            'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 27px;"  id = "bookTitle"></h5>
                           <p class="card-text" style = "padding-top: 5px;"> 
-                            <span class='headerNames'><b>Author:</b> </span><span id = "author" class = "bookDetails" style = "font-size: 15px;"></span> <br>
+                            <span class='headerNames'><b>Author: </b> </span><span id = "author" class = "bookDetails" style = "font-size: 15px;"></span> <br>
                             <span class='headerNames'><b>Published Date:</b> </span><span id = "published_date" class = "bookDetails" style = "font-size: 15px;"></span> <br>
                             <span style = "font-size: 15px;"></span>
                             <!-- Ratings --> 
@@ -249,7 +255,9 @@
                 <div class ="card-group">
                     <div class="card-transparent">
                         <div class="card-body" >
-                          <h5 class="card-title bookDetails" style = "font-family: 'Cormorant Garamond', serif;font-size:27px;"><b>Book Description</b></h5>
+                          <h5 class="card-title bookDetails" style = "font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                            'Helvetica Neue', Arial, sans-serif, 
+                            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 27px;">Book Description</h5>
                           <p id = "bk_description" class="card-text bookDetails">
                         </p>
                         </div>

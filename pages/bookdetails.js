@@ -43,8 +43,8 @@ function call_book(id){
                 var imageLink = info.imageLinks.small;
             }
 
-            document.getElementById("author").innerHTML= author;
-            document.getElementById("published_date").innerHTML= published_date;
+            document.getElementById("author").innerHTML= "<b>"+author+"</b>";
+            document.getElementById("published_date").innerHTML= "<b>" + published_date + "</b>";
             document.getElementById("BkImg").src = imageLink;
             document.getElementById("BkImg").src = imageLink;
             document.getElementById("bookTitle").innerText= title;
@@ -66,10 +66,10 @@ function call_book(id){
                     }    
                 }
             }
-            document.getElementById("bk_description").innerHTML= desc + "<span id='dots'></span>" +
+            document.getElementById("bk_description").innerHTML= "<b>" + desc + "<span id='dots'></span>" +
             "<span id='more' style = 'padding-top: 10px;'>" + secondDesc + 
             "</span> <button onclick='myFunction()' class='btn black-background white' id='myBtn'>Read more</button>";
-            
+            + "</b>";
         }
 
     }
