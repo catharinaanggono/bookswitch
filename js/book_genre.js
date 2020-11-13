@@ -33,6 +33,8 @@ const genre_dataset = {
 };
 
 function update_header(id) {
+    const chk = document.getElementById('chk');
+    console.log(chk);
     // var genre_btns = document.getElementsByClassName('btn');
 
     // for ( i = 0; i < genre_btns.length; i++ ) {
@@ -51,7 +53,7 @@ function update_header(id) {
 
         if (genre.genre == id) {  
             console.log(id);
-            document.getElementById(`${id}`).setAttribute('style', 'background-color:red');
+            document.getElementById(`${id}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055; ');
         }   
             
     }
@@ -81,7 +83,7 @@ function call_api_genre(genre, pg_num) {
             extract_page_data(this, genre, pg_num);
             console.log(`page num: ${pg_num}`);
 
-            document.getElementById(`page${pg_num}`).setAttribute('style', 'background-color:red');
+            document.getElementById(`page${pg_num}`).setAttribute('style', 'background-color: #A94241;');
             // for (i = 0; i <= 5; i++) {
             //     document.getElementById(`page${i}`).setAttribute('style', '');
             // }
@@ -211,17 +213,102 @@ function hide_desc(id) {
     node.setAttribute('style', 'visibility: hidden;');
 }
 
-// function gtags() {
+// Autocomplete
+$("#autocomplete").autocomplete({
+    appendTo: $('#search'),
+    source: function (request, response) {
+      $.ajax({
+        url: "https://www.googleapis.com/books/v1/volumes?",
+        data: { 
+          q: request.term,
+          startIndex: 1,
+          maxResults: 15
+        },
+        success: function (data) {
+          data = data.items;
+          var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+          var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
+  
+          console.log(data);
+  
+          var primary_matches = $.map(data, function (el) {
+            let result = el.volumeInfo.title;
+            let img_link = el.volumeInfo.imageLinks;
+            let authors = el.volumeInfo.authors;
+            console.log(authors);
+            if (typeof img_link !== 'undefined'){
+              img_link = el.volumeInfo.imageLinks.thumbnail;
+            }
+            else{
+              img_link = '../images/no_image-removebg-preview.svg'
+            }
+            if (typeof authors == 'undefined'){
+              authors = "AUTHOR UNKNOWN";
+            }            
+            if (matcher1.test(result) || matcher1.test(authors)){
+              return {
+                imgLink: img_link,
+                value: result,
+                author: authors
+              };
+  
+            }
+              
+          });
+          var secondary_matches = $.map(data, function (el) {
+            let result = el.volumeInfo.title;
+            let img_link = el.volumeInfo.imageLinks;
+            let authors = el.volumeInfo.authors;
+            console.log("2" + authors);
 
-//     genres_set = genre_dataset.genres;
+            if (typeof img_link !== 'undefined'){
+              img_link = el.volumeInfo.imageLinks.thumbnail;
+            }
+            else{
+              img_link = '../images/no_image-removebg-preview.svg'
+            }
+            if (typeof authors == 'undefined'){
+              authors = "AUTHOR UNKNOWN";
+            }       
+            if (matcher2.test(result) || matcher2.test(authors)){
+              return {
+                imgLink: img_link,
+                value: result,
+                author: authors
+              };
+  
+            }
+              
+          });
+          console.log(primary_matches);
+          console.log(secondary_matches);
+          response($.merge(primary_matches, secondary_matches));
+        },
+        
+        // error: function () {
+        //   response([]);
+        // }
+      });
+    }
+  })
+  .data("ui-autocomplete")._renderItem = function( ul, item ) {
+        var titleText = String(item.value).replace(
+        new RegExp(this.term, "gi"),
+        "<span class='ui-state-highlight'><b>$&</b></span>");
+        var authorText = String(item.author).replace(
+        new RegExp(this.term, "gi"),
+        "<span class='ui-state-highlight'><b>$&</b></span>");
 
-//     for (genre_details of genres_set) {
+        return $( "<li></li>" )
+        .attr( "data-value", item)
+        .append("<div class='row'><div class='col-3'><img width='62' height='85' src='" + item.imgLink + "'></div>" + "<div class='col'><div class='row'><div class='col'><p style='font-size:15px'>" + titleText + "</p></div></div>" + "<div class='row'><div class='col'><p style='font-size:10px'>" + authorText + "</p></div></div></div>")
+        .appendTo( ul );
+    };
 
-//         var genre = genre_details.genre;
-//         var desc = genre_details.description;
-
-//         // console.log(genre, desc);
-//         document.getElementById('glist').innerHTML += `<button type="button" class="btn genre m-1" onclick='call_api(${genre})'>${genre}</button>`;
-//     //    console.table( this.call_api(`${genre}`) );
-//     }
-// }
+document.getElementById("autocomplete").onkeypress = function(event){
+  if (event.keycode == 13 || event.which == 13){
+    var query = document.getElementById("autocomplete").value;
+    var category = 'all';
+    redirect_to_book_search(query, category);
+  }
+};
