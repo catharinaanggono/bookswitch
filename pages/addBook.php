@@ -35,7 +35,7 @@
             }
 	} else { 
         $_SESSION["isbn"] = $_GET["isbn"];
-        header("location:login.html");
+        header("location:login.php");
 
     }
 ?>
