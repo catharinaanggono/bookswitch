@@ -126,6 +126,8 @@
         footer {
             padding-top: 50px;
         }
+
+       
     </style>
 
     <?php 
