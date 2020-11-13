@@ -21,10 +21,10 @@
 
         }
         
-        public function getWishlist($userid) {
+        public function getBookmark($userid) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
-            $sql = 'SELECT isbn FROM wishlist WHERE userid=:userid';
+            $sql = 'SELECT isbn FROM bookmark WHERE userid=:userid';
             $stmt = $pdo->prepare($sql);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->bindParam(':userid', $userid, PDO::PARAM_STR);
