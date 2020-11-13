@@ -1,45 +1,16 @@
-// var category = decodeURI(getUrlParam('&category', 'empty'));
-// var query = decodeURI(getUrlParam('?query', 'empty'));
-// var first_start = 0;
-// alert(`category  = ${category} query = ${query}  firstStart=${first_start}`);
-
-// function getUrlParam(parameter, defaultvalue){
-//     var urlparameter = defaultvalue;
-//     if(location.href.indexOf(parameter) > -1){
-//         urlparameter = getUrlVars()[parameter];
-//         // console.log(getUrlVars()[parameter]);
-//         }
-//     return urlparameter;
-// }
-
-// function getUrlVars() {
-//     var vars = {};
-//     var parts = location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key,value) {
-//         vars[key] = value;
-//     });
-//     // console.log(parts);
-//     // console.log(vars);
-//     return vars;
-// }
-
 // Get the value of query and category passed from homepage
 const queryString = window.location.search;
-// console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
-// console.log(urlParams);
 const query = urlParams.get('query');
-// console.log(query);
-// console.log('HI');
 const category = urlParams.get('category');
-// console.log(category);
 var first_start = 1;
 
-show_page_button(category, query, first_start);
-first_load();
+first_load(category, query, first_start);
 
-function first_load(){
+function first_load(category, query, first_start){
   // call_api_search('all', 'harry potter', 1);
   call_api_search(category, query, first_start);
+  show_page_button(category, query, first_start);
 }
 
 function extract_display_data(xml) {
@@ -63,9 +34,7 @@ function extract_display_data(xml) {
         var img = books_result[each_book].volumeInfo.imageLinks;
 
         if (typeof short_desc !== 'undefined'){
-            if(short_desc.length > 230){
-                short_desc = short_desc.slice(0,230) + '...';
-            }
+            short_desc = short_desc;
         }
         else{
             short_desc='Description not available';
@@ -103,7 +72,7 @@ function extract_display_data(xml) {
         <div class="each-book">
             <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
             <div class="main-details" style='overflow: hidden;'>
-                <span id ='title' style='font-size:15px;'><b><a class='title_link ' href='bookdetails.php?isbn=${isbn}'>${title}</a></b></span><br>
+                <span id ='title' style='font-size:15px;'><b><a class='title_link' href='bookdetails.php?isbn=${isbn}'>${title}</a></b></span><br>
                 
                 <span style='font-size:13px; overflow: hidden;'>by ${author}</span>
             </div>
@@ -131,6 +100,7 @@ function redirect(isbn){
     document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
 }
 
+// to call api
 function call_api_search(category, keyword, pg_num){
     var request = new XMLHttpRequest();
     var max = 30;
@@ -174,6 +144,7 @@ function call_api_search(category, keyword, pg_num){
     request.send();
 }
 
+// to display pagination button
 function show_page_button(category, query, first_start) {
   for ( i = 1; i <= 5; i++ ) {
       var node = document.createElement('button');
@@ -186,47 +157,6 @@ function show_page_button(category, query, first_start) {
       document.getElementById('pagination').appendChild(node);
   }
 
-}
-
-// function extract_page_data(xml, pg_num, max) {
-//     var obj = JSON.parse(xml.responseText);
-//     var book_results = obj.items;
-//     var index = 0;
-//     // var total_items = obj.totalItems;
-//     // var num_of_pages = Math.ceil(total_items / max);
-//     // console.log(total_items);
-//     // console.log(num_of_pages);
-    
-//     for ( i = 1; i <= 5; i++ ) {
-//         var node = document.createElement('button');
-//         node.setAttribute('class', 'btn genre m-1');
-//         node.setAttribute('onclick', `call_api_search('all', 'harry potter', ${i}); reset_button(${i}); select_button(${i})`);
-//         node.innerHTML = `${i}`;
-        
-//         // console.log(node);
-//         document.getElementById('pagination').appendChild(node);
-//     }
-
-// }
-
-function reset_button(i){
-    // var buttons = document.getElementsByTagName('button');
-    // for (index = 1; index < buttons.length; index++){
-    // //     if (index == i){
-    // //         buttons[index].setAttribute('class', 'btn genre m-1 active');
-    // //     }
-    // //     else{
-    //         buttons[index].setAttribute('class', 'btn genre m-1');
-    //     // }
-    //     // console.log(i);
-    //     // console.log(buttons[i]);
-    // }
-}
-
-function select_button(i){
-    // var index = i - 1
-    // var buttons = document.getElementsByTagName('button');
-    // buttons[index].setAttribute('class', 'btn genre m-1 active');
 }
 
 // to show the book description box
@@ -333,6 +263,7 @@ $("#autocomplete").autocomplete({
         .appendTo( ul );
     };
 
+//  to redirect upon clicking enter
 document.getElementById("autocomplete").onkeypress = function(event){
   if (event.keycode == 13 || event.which == 13){
     var query = document.getElementById("autocomplete").value;
@@ -341,7 +272,7 @@ document.getElementById("autocomplete").onkeypress = function(event){
   }
 };
 
-
+// for Quick Search redirect
 function redirect_to_book_search(query, category){
     location.href = `book_search.html?query=${query}&category=${category}`;
   }
