@@ -249,17 +249,19 @@
                             <!-- Ratings --> 
                             <?php
                                 $dao3 = new ratingsDAO(); 
-                                $Ratings = $dao3->getRatings($isbn);
-                                if ($Ratings>5) {
-                                    $Ratings = 5;
-                                }
-                                if ($Ratings != "Nothing") {
-                                    
-                                    for ($i=0;$i<$Ratings;$i++) {
+                                $avgRate = $dao3->getRatings($isbn);
+                              
+                                if ($avgRate != "Nothing") {
+
+                                    if ($avgRate > 5) {
+                                        $avgRate = 5;
+                                    }
+
+                                    for ($i=0;$i<$avgRate;$i++) {
                                         echo "<span class='fa fa-star checked'></span>";
                                     } 
     
-                                    $noStars = 5 - $Ratings; 
+                                    $noStars = 5 - $avgRate; 
                                     if ($noStars > 0) {
                                         for ($i=0;$i<$noStars;$i++) {
                                             echo "<span class='fa fa-star'></span>";

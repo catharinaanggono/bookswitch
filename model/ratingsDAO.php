@@ -26,7 +26,7 @@
             $stmt->closeCursor();
             $pdo = null;
             if ($listingsRecords != []) {
-                $avgRate = round($totalRatings/$numberPeople);
+                $avgRate = floor($totalRatings/$numberPeople);
             }
 
             return $avgRate;

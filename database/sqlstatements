@@ -80,3 +80,7 @@
 
     INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
     ("9780671027421", 10, 5);
+
+    INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
+    ("0593071719", 14, 3);
+
