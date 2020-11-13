@@ -55,7 +55,7 @@
     ("amy", "9780671027421", "NO");
 
     INSERT INTO listings(userid, isbn, status) VALUES
-    ("amy", "9780671027421", "YES");
+    ("amy", "0593071719", "NO");
 
 (8) Creation of Ratings Table 
     CREATE TABLE ratings
