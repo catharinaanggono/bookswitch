@@ -112,15 +112,19 @@
         .red {
             color:red;
         }
-/* 
+
         body {
-            font-family: 'Cormorant Garamond', serif;
+            color: #474E45;
         }
-         */
+        
         button,input {
             font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
             "Helvetica Neue", Arial, sans-serif, 
             "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        footer {
+            padding-top: 50px;
         }
     </style>
 
@@ -183,7 +187,7 @@
         </nav>
     
     <!-- Modal -->
-    <br><br><br><br>
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -218,8 +222,11 @@
     
 
     </div>
+    
+    <br><br><br><br>
+    <button onclick="history.go(-1);">Back </button>
 
-    <div class = "container-fluid">
+    <div class = "container-fluid" style = "padding-top: 50px;">
         <div class="row">
             
             <div class="col-sm-2">
@@ -242,14 +249,16 @@
                                 $dao3 = new ratingsDAO(); 
                                 $getRatings = $dao3->getRatings($isbn);
 
-                                for ($i=0;$i<$getRatings;$i++) {
-                                    echo "<span class='fa fa-star checked'></span>";
+                                if ($getRatings != "None") {
+                                    for ($i=0;$i<$getRatings;$i++) {
+                                        echo "<span class='fa fa-star checked'></span>";
+                                    } 
+    
+                                    $noStars = 5 - $getRatings; 
+                                    if ($noStars > 0) {
+                                        echo "<span class='fa fa-star'></span>";
+                                    }
                                 } 
-
-                                $noStars = 5 - $getRatings; 
-                                if ($noStars > 0) {
-                                    echo "<span class='fa fa-star'></span>";
-                                }
                             ?>
                           </p>
                           <!-- <a href="#" class="btn btn-outline-primary">Go somewhere</a> -->
@@ -339,40 +348,7 @@
             <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white'>";
         }
 
-
-        
-        
         echo "</form>";
-
-        // $dao = new userDAO(); 
-        // $checkWishlist = $dao->checkWishlist($userid,$isbn);
-        // $checkListings = $dao->checkListings($userid,$isbn);
-
-        // if ($checkWishlist == False && $checkListings == False ) {
-        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
-        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
-        //     class='btn black-background white'>
-        // </form>";
-        // } else if ($checkWishlist == False && $checkListings == True ) {
-        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
-        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
-        //     class='btn black-background white'>
-        // </form>";
-        // } else if ($checkWishlist == True && $checkListings == False) {
-        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' >
-        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
-        //     class='btn black-background white' disabled>
-        // </form>"; 
-        // } else { 
-        //     echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> 
-        //     <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>
-        //     <input type='submit' name = 'addWishlist' value = 'Add to Bookmark' 
-        //     class='btn black-background white' disabled>
-        // </form>"; 
-        // }
     ?>
 
             
