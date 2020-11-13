@@ -53,8 +53,8 @@
       
       #wishlist_tab, #listings_tab {
         color: #ffffff;
-
       }
+
       #wishlist_tab.active, #listings_tab.active {
         background-color: #474E45;
       }
@@ -114,7 +114,7 @@
     <!--Jess's Navbar here-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../images/bookswitch.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <ul class = "navbar-nav">
@@ -326,7 +326,7 @@
                   var node = document.createElement('div');
                   node.setAttribute('class', 'col-xl-3 col-sm-4 mb-5 my-2');
                   // node.setAttribute('onclick', `redirect(${isbn})`);
-                  node.setAttribute('style', 'display:flex; justify-content: center; align-items: center; text-align: center;')
+                  node.setAttribute('style', 'display:flex; justify-content: center; align-items: center; text-align: center;');
                   node.innerHTML += `
                   
                   <div class="mybooks rounded shadow-sm">
@@ -335,7 +335,7 @@
                         <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
                   </div>
                       
-                      <button class="btn btn-danger" style="margin-bottom:0px;">Temporary</button>
+                      <button class="btn btn-danger" style="margin-bottom:0px;" onclick="deleteBook(${isbn})">Temporary</button>
                   </div>
         
                   
@@ -410,7 +410,7 @@
                   var node = document.createElement('div');
                   node.setAttribute('class', 'col-xl-3 col-sm-4 mb-5 my-2');
                   // node.setAttribute('onclick', `redirect(${isbn})`);
-                  node.setAttribute('style', 'display:flex; justify-content: center; align-items: center; text-align: center;')
+                  node.setAttribute('style', 'display:flex; justify-content: center; align-items: center; text-align: center;');
                   node.innerHTML += `
                   
                   <div class="mybooks rounded shadow-sm">
@@ -449,8 +449,8 @@
 
   function deleteBook($isbn) {
     if (confirm("Are you sure you want to delete this book?")) {
-      alert("ya");
-      location.reload();
+      // $dao->deleteBookmark($userid, $isbn);
+      // location.reload();
       
     }
 
