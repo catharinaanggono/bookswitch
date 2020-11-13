@@ -7,12 +7,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+    <!-- jQuery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Bootstrap CSS --> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+     -->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <link href="../css/homepage.css" rel="stylesheet" />
     <link href="../css/bookswitch.css" rel="stylesheet" />
     <link href="../css/book_genre.css" rel="stylesheet" />
+
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 
     <title>My Books</title>
 
@@ -51,79 +63,32 @@
         color: #474E45;
         /* padding-top: 100px; */
         padding-bottom: 0px;
-        padding-left: 6%;
+        /* padding-left: 6%; */
 
       }
       #all_tab, #reserved_tab, #exchange_tab {
-        color: #474E45;
+        color: #D5D3BF;
       }
       #all_tab.active, #reserved_tab.active, #exchange_tab.active {
         color: #474E45;
       }
 
       .tab-content {
-        padding-left: 6%;
+        
       }
 
       #myTab {
         background-color: #a1ab85;
       }
 
-      /* taeb-switch styles */
-      /* .taeb-switch {
-        position: relative;
+      .mybooks {
+        background-image: linear-gradient(#DAE9F0, #DAE8E3);
+        padding: 20px;
+        height: 325px;
+        width: 300px;
       }
 
-      .taeb-switch:after {
-        content: "";
-        position: absolute;
-        width: 50%;
-        top: 0;
-        transition: left cubic-bezier(.88, -.35, .565, 1.35) .4s;
-        border-radius: 27.5px;
-        box-shadow: 0 2px 15px 0 rgba(0, 0, 0, .1);
-        background-color: #3d90ef;
-        height: 100%;
-        z-index: 0;
-      }
-
-      .taeb-switch.left:after {
-        left: 0;
-      }
-
-      .taeb-switch.right:after {
-        left: 50%;
-      }
-
-      .taeb-switch .taeb {
-        display: inline-block;
-        width: 50%;
-        padding: 15%;
-        z-index: 1;
-        position: relative;
-        cursor: pointer;
-        transition: color 200ms;
-        font-size: 20px;
-        font-weight: bold;
-        line-height: normal;
-      }
-
-      .taeb-switch .taeb.active {
-        color: #ffffff;
-      }
-
-      .wrapper {
-        border-radius: 37px;
-        background-color: #f4f4f4;
-        padding: 8px;
-        width: 100%;
-        /* max-width: 316px;
-        margin-left: auto;
-        margin-right: auto; */
-        height: 100px;
-        margin-left: 10px;
-        margin-right: 10px;
-      } */
+      
       
     </style>
 
@@ -203,19 +168,7 @@
                 <a data-toggle="tab" id="listings_tab" href="#listings" role="tab" aria-controls="profile" onclick="getListings('ALL')" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><img src="../images/listings_nobg.png" width="50%" height="auto"></a>
               </li>
         </ul>
-        <!-- <div class="wrapper">
-          <div class="taeb-switch left" style="text-align: center; width: 100%">
-            <div class="taeb active d-inline" taeb-direction="left" onclick="taebSwitch()" style="justify-content: center; align-items: center; display: flex;">
-              Wishlist
-            </div>
-            <div class="taeb d-inline" taeb-direction="right" onclick="taebSwitch()">
-              Listings
-            </div>
-          </div>
-        </div> -->
-      
 
-        <!--  -->
       </div>
     </div>
         
@@ -369,29 +322,33 @@
 
 
                   var node = document.createElement('div');
-                  node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
-                  node.setAttribute('onmouseout', `hide_desc('each-desc${index}')`);
-                  node.setAttribute('onmouseover', `show_desc('each-desc${index}')`);
+                  node.setAttribute('class', 'col-xl-3 col-sm-4 mb-5 my-2');
                   node.setAttribute('onclick', `redirect(${isbn})`);
+                  node.setAttribute('style', 'display:flex; justify-content: center; align-items: center; text-align: center;')
                   node.innerHTML += `
-                  <div class="each-book">
-                      <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
-                      <div class="main-details">
-                          <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span>
-                          <button class="btn btn-danger" onclick="deleteBook()" id='${isbn}' style="float: right">Delete</button>
-                          <br>
-                          <span style='font-size:13px;'>by ${author}</span>
-                          
-                      </div>
-                      
+                  
+                  <div class="mybooks rounded shadow-sm">
+                      <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
+                      <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
+                      <button name='bk' type='submit' value='bk' class ='btn black-background white' >
+            <i class='far fa-bookmark red'></i></button>
                   </div>
-                  <!-- style="visibility: hidden; -->
-                  <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
-                      <b>Description</b><br>
-                      ${desc}
-                  </div>
+        
+                  
                   
                   `;
+
+                  // <div class="each-book">
+                  //     <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
+                  //     <div class="main-details">
+                  //         <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span>
+                  //         <button class="btn btn-danger" onclick="deleteBook()" id='${isbn}' style="float: right">Delete</button>
+                  //         <br>
+                  //         <span style='font-size:13px;'>by ${author}</span>
+                          
+                  //     </div>
+                      
+                  // </div>
 
                   index += 1;
                   console.log(index);
@@ -446,25 +403,17 @@
 
 
                   var node = document.createElement('div');
-                  node.setAttribute('class', ' base col-lg-4 col-6 col-sm-6 col-md-6 my-2');
-                  node.setAttribute('onmouseout', `hide_desc('each-${x}')`);
-                  node.setAttribute('onmouseover', `show_desc('each-${x}')`);
+                  node.setAttribute('class', 'col-xl-3 col-sm-4 mb-5 my-2');
                   node.setAttribute('onclick', `redirect(${isbn})`);
+                  node.setAttribute('style', 'display:flex; justify-content: center; align-items: center; text-align: center;')
                   node.innerHTML += `
-                  <div class="each-book">
-                      <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
-                      <div class="main-details">
-                          <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span>
-                          <button class="btn btn-danger" onclick="deleteBook()" id='${isbn}' style="float:right">Delete</button>
-                          <br>
-                          <span style='font-size:13px;'>by ${author}</span>
-                      </div>
+                  
+                  <div class="mybooks rounded shadow-sm">
+                      <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
+                      <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
+                      <button class="btn btn-danger">Hi</button>
                   </div>
-                  <!-- style="visibility: hidden; -->
-                  <div class="each-desc" id="each-${x}" style="visibility: hidden;"> 
-                      <b>Description</b><br>
-                      ${desc}
-                  </div>
+
                   
                   `;
 
@@ -499,7 +448,12 @@
 
   }
 
+
+// autocomplete
+
 </script>
+
+
 
 
   
