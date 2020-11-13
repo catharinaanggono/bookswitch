@@ -44,8 +44,18 @@ function update_header(id) {
         }
     
         if (genre.genre == id) {  
-            console.log(id);
-            document.getElementById(`${id}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055; ');
+            // console.log(id);
+            // document.getElementById(`${id}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055; ');
+            console.log(localStorage.getItem('darkModeStatus'));
+
+            if(localStorage.getItem('darkModeStatus')=="true"){
+              document.getElementById(`${id}`).setAttribute("style", ""); 
+              document.getElementById(`${id}`).setAttribute("style", "border: 2px solid #267055; color:  #267055;"); 
+            } else {
+              document.getElementById(`${id}`).setAttribute("style", ""); 
+              document.getElementById(`${id}`).setAttribute("style", "border: 2px solid #A94241; color:  #A94241;");
+            }
+
         }   
             
     }
@@ -59,6 +69,34 @@ function display_default() {
     update_header('Adventure');
 }
 display_default();
+
+
+chk.addEventListener('click', () => {
+  for (genre of genre_dataset.genres) {
+
+
+    const element = document.getElementById(`${genre.genre}`);
+    const style = getComputedStyle(element);
+    
+
+    if ( (style.color == 'rgb(38, 112, 85)') || (style.color == 'rgb(169, 66, 65)') ) {
+      console.log(style.color);
+      console.log(style.color == 'rgb(38, 112, 85)');
+      console.log(style.color == 'rgb(169, 66, 65)');
+    }
+
+    if (style.color == 'rgb(38, 112, 85)') { //green
+    //  genre.genre.style.color = '#A94241';
+      console.log('change from g to r');
+      document.getElementById(`${genre.genre}`).setAttribute("style", "border: 2px solid #A94241; color:  #A94241;"); 
+    }
+    else if (style.color == 'rgb(169, 66, 65)'){
+      // genre.genre.style.color = '#267055';
+      console.log('change from r to g');
+      document.getElementById(`${genre.genre}`).setAttribute("style", "border: 2px solid #267055; color:  #267055;"); 
+    }
+  }
+});
 
 
 // pagination
@@ -93,7 +131,7 @@ function call_api_genre(genre, pg_num) {
           // set pg1 as active
           pages = document.getElementById('pagination').getElementsByTagName('button');
           for (let i = 0; i < pages.length; i++){
-            console.log(pages[i]);
+            // console.log(pages[i]);
             if (i+1 == pg_num){
               pages[i].setAttribute('class', 'btn m-1 active');
               document.getElementById(`page1`).setAttribute('style', '');
@@ -102,20 +140,20 @@ function call_api_genre(genre, pg_num) {
               pages[i].setAttribute('class', 'btn m-1');
             }
           }
-          console.log(pages);
+          // console.log(pages);
           extract_display_data(this);
-          console.log(`page num: ${pg_num}`);
+          // console.log(`page num: ${pg_num}`);
 
       
 
-          document.getElementById(`${genre}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055; ');
+          // document.getElementById(`${genre}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055; ');
               
                   
           // }
             
             extract_display_data(this);
             // extract_page_data(this, genre, pg_num);
-            console.log(`page num: ${pg_num}`);
+            // console.log(`page num: ${pg_num}`);
 
             
         }
@@ -124,9 +162,9 @@ function call_api_genre(genre, pg_num) {
     // var api_key = 'AIzaSyD3eModiXQP1JF-YgUIpOQ9TjmwQ9NQ3q8';
     // &key=${api_key}
     var start_index = pg_num*max;
-    console.log(start_index);
+    // console.log(start_index);
     var url = `https://www.googleapis.com/books/v1/volumes?q=subject:${genre}&startIndex=${start_index}&maxResults=${max}`;
-    console.log(url);
+    // console.log(url);
     request.open('GET', url, true);
     request.send();
 }
