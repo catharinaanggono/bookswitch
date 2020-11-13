@@ -44,15 +44,14 @@
 } 
 
 /* Dark version */
-.each_book .dark{
+/* .each_book .dark{
     width: 90%;
     height: 160px;
-    /* border: 2px solid #D3D3D3; */
     background-image: linear-gradient(rgb(42, 82, 64), rgb(41, 84, 109));
     margin: auto;
     position: absolute;
     border-radius: 5px;
-}
+} */
 
 h2.dark{
     color: #B5C587;
