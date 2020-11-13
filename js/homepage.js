@@ -1,3 +1,4 @@
+//Dark Mode
 const chk = document.getElementById('chk');
 
 chk.addEventListener('click', () => {
@@ -30,6 +31,12 @@ chk.addEventListener('click', () => {
   for (x of headerNames){
     chk.checked?x.classList.add("dark"):x.classList.remove("dark");
   }
+
+  header = document.getElementsByTagName('header');
+  for (x of header){
+    chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+  }
+
 
  
   localStorage.setItem('darkModeStatus', chk.checked);
@@ -65,6 +72,11 @@ window.addEventListener('load', (event) => {
     }
     headerNames = document.getElementsByClassName('headerNames');
     for (x of headerNames){
+      x.classList.add("dark");
+    }
+
+    header = document.getElementsByTagName('header');
+    for (x of header){
       x.classList.add("dark");
     }
 
@@ -316,32 +328,32 @@ $("#title_autocomplete").autocomplete({
           }
             
         });
-        // var secondary_matches = $.map(data, function (el) {
-        //   let result = el.volumeInfo.title;
-        //   let img_link = el.volumeInfo.imageLinks;
-        //   let authors = el.volumeInfo.authors;
-        //   if (typeof img_link !== 'undefined'){
-        //     img_link = el.volumeInfo.imageLinks.thumbnail;
-        //   }
-        //   else{
-        //     img_link = '../images/no_image-removebg-preview.svg'
-        //   }
-        //   if (typeof authors == 'undefined'){
-        //     authors = "AUTHOR UNKNOWN";
-        //   }       
-        //   if (matcher2.test(result)){
-        //     return {
-        //       imgLink: img_link,
-        //       value: result,
-        //       author: authors
-        //     };
+        var secondary_matches = $.map(data, function (el) {
+          let result = el.volumeInfo.title;
+          let img_link = el.volumeInfo.imageLinks;
+          let authors = el.volumeInfo.authors;
+          if (typeof img_link !== 'undefined'){
+            img_link = el.volumeInfo.imageLinks.thumbnail;
+          }
+          else{
+            img_link = '../images/no_image-removebg-preview.svg'
+          }
+          if (typeof authors == 'undefined'){
+            authors = "AUTHOR UNKNOWN";
+          }       
+          if (matcher2.test(result)){
+            return {
+              imgLink: img_link,
+              value: result,
+              author: authors
+            };
 
-        //   }
+          }
             
-        // });
+        });
         console.log(primary_matches);
-        // console.log(secondary_matches);
-        // response($.merge(primary_matches, secondary_matches));
+        console.log(secondary_matches);
+        response($.merge(primary_matches, secondary_matches));
       },
       
       // error: function () {
@@ -385,7 +397,7 @@ $("#author_autocomplete").autocomplete({
         var primary_matches = $.map(data, function (el) {
 
           let result = el.volumeInfo.authors;
-          let temp = [];
+          // let temp = [];
           
           console.log("result", result);
           if (typeof result == 'undefined'){
@@ -393,7 +405,7 @@ $("#author_autocomplete").autocomplete({
           }
 
           
-          if (matcher1.test(result) && jQuery.inArray(result[0], temp) === -1){
+          if (matcher1.test(result)){
             return {
               value: result
             };
@@ -401,24 +413,24 @@ $("#author_autocomplete").autocomplete({
           }
             
         });
-        // var secondary_matches = $.map(data, function (el) {
-        //   let authors = el.volumeInfo.authors;
-        //   if (typeof result == 'undefined'){
-        //     result = "AUTHOR UNKNOWN";
-        //   }       
-        //   if (matcher2.test(result)){
-        //     return {
-        //       value: result
-        //     };
+        var secondary_matches = $.map(data, function (el) {
+          let authors = el.volumeInfo.authors;
+          if (typeof result == 'undefined'){
+            result = "AUTHOR UNKNOWN";
+          }       
+          if (matcher2.test(result)){
+            return {
+              value: result
+            };
 
-        //   }
+          }
             
-        // });
-        // primary_matches = unique(primary_matches);
-        // secondary_matches = unique(secondary_matches);
+        });
+        primary_matches = unique(primary_matches);
         console.log(primary_matches);
         // console.log(secondary_matches);
         // response($.merge(primary_matches, secondary_matches));
+        response(primary_matches);
       },
       
       // error: function () {
