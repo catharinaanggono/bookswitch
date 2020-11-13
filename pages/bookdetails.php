@@ -250,7 +250,6 @@
                             <?php
                                 $dao3 = new ratingsDAO(); 
                                 $Ratings = $dao3->getRatings($isbn);
-                                echo($Ratings);
                                 if ($Ratings != "Nothing") {
                                     
                                     for ($i=0;$i<$Ratings;$i++) {
@@ -258,7 +257,6 @@
                                     } 
     
                                     $noStars = 5-$Ratings; 
-                                    echo ($noStars);
                                     if ($noStars > 0) {
                                         echo "<span class='fa fa-star'></span>";
                                     }

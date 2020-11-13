@@ -18,21 +18,18 @@
             if ($row = $stmt->fetch()) {
                 $totalRatings = $row['totalRate'];
                 $numberPeople = $row['noPpl'];
+                $listingsRecords[] = $totalRatings;
+                $listingsRecords[] = $numberPeople;
             }
 
-            for ($i=0;$i<count($listingsRecords);$i++) {
-                echo($listingsRecords[i]);
-            }
             $avgRate = "Nothing";
             $stmt->closeCursor();
             $pdo = null;
             if ($listingsRecords != []) {
-                echo("okay");
                 $avgRate = round($totalRatings/$numberPeople);
-                echo($totalRatings);
-                echo($numberPeople);
-                return $avgRate;
             }
+
+            return $avgRate;
             
         }
 
