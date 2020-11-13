@@ -33,14 +33,7 @@ const genre_dataset = {
 };
 
 function update_header(id) {
-    const chk = document.getElementById('chk');
-    console.log(chk);
-    // var genre_btns = document.getElementsByClassName('btn');
 
-    // for ( i = 0; i < genre_btns.length; i++ ) {
-    //     genre_btns[i].setAttribute('class', 'btn genre m-1');
-    // }
-    // console.log(selected_genre);
 
     for (genre of genre_dataset.genres) {
         // console.log(genre.genre);
@@ -53,11 +46,7 @@ function update_header(id) {
 
         if (genre.genre == id) {  
             console.log(id);
-<<<<<<< Updated upstream
             document.getElementById(`${id}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055; ');
-=======
-            document.getElementById(`${id}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055;');
->>>>>>> Stashed changes
         }   
             
     }
