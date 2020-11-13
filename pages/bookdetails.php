@@ -223,8 +223,8 @@
 
     </div>
     
-    <br><br><br><br>
-    <button onclick="history.go(-1);">Back </button>
+    <br><br>
+    <div style = "padding-left:10px;"><button class="btn black-background white chevron-left" onclick="history.go(-1);"><i class="fas fa-chevron-left"></i></button></div>
 
     <div class = "container-fluid" style = "padding-top: 50px;">
         <div class="row">
