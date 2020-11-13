@@ -66,9 +66,16 @@ function call_book(id){
                     }    
                 }
             }
-            document.getElementById("bk_description").innerHTML=  desc + "<span id='dots'></span>" +
-            "<span id='more' style = 'padding-top: 10px;'>" + secondDesc + 
-            "</span> <button onclick='myFunction()' class='btn black-background white' id='myBtn'>Read more</button>";
+
+            if (secondDesc != "") {
+              document.getElementById("bk_description").innerHTML=  desc + "<span id='dots'></span>" +
+              "<span id='more' style = 'padding-top: 10px;'>" + secondDesc + 
+              "</span> <button onclick='myFunction()' class='btn black-background white' id='myBtn'>Read more</button>";
+            } else { 
+              document.getElementById("bk_description").innerHTML=  desc + "<span id='dots'></span>" +
+              "<span id='more' style = 'padding-top: 10px;'>";
+            }
+           
          ;
         }
 
