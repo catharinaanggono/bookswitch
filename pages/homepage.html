@@ -90,10 +90,10 @@
               <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                 <div class="home_searchbar">
                   <label>
-                      <span class="screen-reader-text">Search for...</span>
-                      <input style="position: relative; z-index: 5555;" id="all_autocomplete" type="search" class="search-field" placeholder="Search all..." value="" name="s" title="" />
+                      <!-- <span class="screen-reader-text">Search for...</span> -->
+                      <input style="position: relative; z-index: 5555;" id="all_autocomplete" type="search" class="search-field" placeholder="Search all..." onChange="aliasonclick"/>
                   </label>
-                  <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="all_search('all')"/>
+                  <input name="searchbutton" id="all_searchbtn" style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="all_search('all')"/>
                 </div>
               </div>
 
@@ -101,7 +101,7 @@
                 <div class="home_searchbar">
                   <label>
                       <span class="screen-reader-text">Search for...</span>
-                      <input  style="position: relative; z-index: 5555;" id="title_autocomplete" type="search" class="search-field" placeholder="Search title..." value="" name="s" title="" />
+                      <input  style="position: relative; z-index: 5555;" id="title_autocomplete" type="search" class="search-field" placeholder="Search title..." value="" name="s" title=""/>
                   </label>
                   <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="title_search('intitle')"/>
                 </div>
@@ -171,39 +171,39 @@
           <div class="row no-gutters">
   
             <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in">
-              <span>01</span>
-              <h4>Lorem Ipsum</h4>
-              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+              <span>Step 1</span>
+              <h4>Login</h4>
+              <p>Login to your account</p>
             </div>
   
             <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="100">
-              <span>02</span>
-              <h4>Repellat Nihil</h4>
-              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+              <span>Step 2</span>
+              <h4>Upload Books for Exchange</h4>
+              <p>Upload the books you are not going to read anymore and list them for exchange</p>
             </div>
   
             <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="200">
-              <span>03</span>
-              <h4> Ad ad velit qui</h4>
-              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+              <span>Step 3</span>
+              <h4>Earn Bookens</h4>
+              <p>Earn 50 Bookens for every book you give away</p>
             </div>
   
             <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="300">
-              <span>04</span>
-              <h4>Repellendus molestiae</h4>
-              <p>Inventore quo sint a sint rerum. Distinctio blanditiis deserunt quod soluta quod nam mider lando casa</p>
+              <span>Step 4</span>
+              <h4>Browse Books</h4>
+              <p>You can browse books by title, author, isbn or genre</p>
             </div>
   
             <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="400">
-              <span>05</span>
-              <h4>Sapiente Magnam</h4>
-              <p>Vitae dolorem in deleniti ipsum omnis tempore voluptatem. Qui possimus est repellendus est quibusdam</p>
+              <span>Step 5</span>
+              <h4>Bookmark Books</h4>
+              <p>You can bookmark books that you find interesting so that you can refer back to them under your account</p>
             </div>
   
             <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="500">
-              <span>06</span>
-              <h4>Facilis Impedit</h4>
-              <p>Quis eum numquam veniam ea voluptatibus voluptas. Excepturi aut nostrum repudiandae voluptatibus corporis sequi</p>
+              <span>Step 6</span>
+              <h4>Redeem Bookens</h4>
+              <p>Pick books from the pool of uploaded books listed for exchange by other users for free by redeeming your Bookens, each book costs 50 Bookens</p>
             </div>
   
           </div>
@@ -213,7 +213,7 @@
       
         </section><!-- End Steps Section -->
 
-           
+       
         
         <!-- Bootstrap core JS-->
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
