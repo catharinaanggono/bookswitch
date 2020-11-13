@@ -35,6 +35,7 @@
     <style>
       body {
         padding-top: 0px;
+
       }
           /* Rounded tabs */
 
@@ -63,7 +64,7 @@
         color: #474E45;
         /* padding-top: 100px; */
         padding-bottom: 0px;
-        /* padding-left: 6%; */
+        padding-left: 5%;
 
       }
       #all_tab, #reserved_tab, #exchange_tab {
@@ -74,7 +75,8 @@
       }
 
       .tab-content {
-        
+        padding-left: 5%;
+        padding-right: 5%;
       }
 
       #myTab {
@@ -156,7 +158,7 @@
     <!---->
 
     
-    <div class="jumbotron jumbotron-fluid" id="mybooksHeader" style="padding-bottom: 20px;">
+    <div class="jumbotron jumbotron-fluid" id="mybooksHeader" style="padding-left: 5%; padding-right: 5%;">
     <div class="row">
       <h1 class="display-4 col-4" style="margin-bottom: 50px; margin-top:50px;">My Books</h1>
       <div class="col-8" style="display:flex; justify-content: center; align-items: center;">
@@ -293,7 +295,7 @@
     
   };
 
-
+  // calling API
 
   function get_bookmark_book(isbn) {
       var request = new XMLHttpRequest();
@@ -320,18 +322,22 @@
                     desc = 'description not available';
                   }
 
-
+                  // referenced from: https://jsfiddle.net/bootstrapious/b69yeLzj
                   var node = document.createElement('div');
                   node.setAttribute('class', 'col-xl-3 col-sm-4 mb-5 my-2');
-                  node.setAttribute('onclick', `redirect(${isbn})`);
+                  // node.setAttribute('onclick', `redirect(${isbn})`);
                   node.setAttribute('style', 'display:flex; justify-content: center; align-items: center; text-align: center;')
                   node.innerHTML += `
                   
                   <div class="mybooks rounded shadow-sm">
-                      <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
-                      <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
+                  <div onclick="redirect(${isbn})">
+                    <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
+                        <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
+                  </div>
+                      
                       <button name='bk' type='submit' value='bk' class ='btn black-background white' >
-            <i class='far fa-bookmark red'></i></button>
+                        <i class='far fa-bookmark red'></i>
+                      </button>
                   </div>
         
                   
