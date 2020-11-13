@@ -259,7 +259,7 @@
       </div>
     
 <!-- JAVASCRIPT PART -->
-<script> 
+<script>
   
 
   function get_wishlist() {
@@ -344,7 +344,7 @@
                   </div>
                   `;
 
-                  index += 1
+                  index += 1;
                   console.log(index);
 
 
@@ -374,11 +374,12 @@
           if (request.readyState == 4 && request.status == 200) {
               var json_obj = JSON.parse(request.responseText);
               var items = json_obj.items;
-              var x = 0;
+              var x = 1;
               var html_text = "";
               
 
               for (item of items) {
+                  console.log(item);
                   var image = item.volumeInfo.imageLinks.thumbnail;
                   var title = item.volumeInfo.title;
                   var desc = item.volumeInfo.description;
@@ -415,15 +416,15 @@
                   </div>
                   `;
 
-                  x += 1
-                  alert(x);
+                  x += 1;
+                  console.log(x);
 
               }
 
               document.getElementById('myListings_cards').appendChild(node);
 
 
-      }
+          }
       }
 
 
@@ -451,7 +452,7 @@
 
   function hide_desc(id) {
       var node = document.getElementById(id);
-      node.setAttribute(('style', 'visibility: hidden;');
+      node.setAttribute('style', 'visibility: hidden;');
   }
 
 </script>
