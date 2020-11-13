@@ -256,9 +256,11 @@
                                         echo "<span class='fa fa-star checked'></span>";
                                     } 
     
-                                    $noStars = 5-$Ratings; 
+                                    $noStars = 5 - $Ratings; 
                                     if ($noStars > 0) {
-                                        echo "<span class='fa fa-star'></span>";
+                                        for ($i=0;$i<$noStars;$i++) {
+                                            echo "<span class='fa fa-star'></span>";
+                                        }
                                     }
                                 } 
                             ?>
