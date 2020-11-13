@@ -104,7 +104,7 @@ function extract_display_data(xml) {
             }
         }
         else {
-            short_desc = 'description not available';
+            short_desc = 'Description not available';
         }
 
         if (typeof isbn !== 'undefined'){

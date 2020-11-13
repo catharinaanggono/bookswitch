@@ -69,45 +69,62 @@
         background-color: #a1ab85;
       }
 
-      
-      /* #wishlist_tab {
-        background-image: url("../images/bookspine.png") no-repeat center;
-        background-size: 100%;
-        height: 100px;
-      } */
-      
-      /*js stuff */
-      /* #personal {
+      /* taeb-switch styles */
+      /* .taeb-switch {
         position: relative;
-        width: 20%;
       }
-      .image {
-        opacity: 1;
-        display: block;
-        width: 10%;
-        height: auto;
-        transition: .5s ease;
-        backface-visibility: hidden;
-      }
-      .middle {
-        transition: .5s ease;
-        opacity: 0;
+
+      .taeb-switch:after {
+        content: "";
         position: absolute;
-        top: 25%;
-        text-align: center;
+        width: 50%;
+        top: 0;
+        transition: left cubic-bezier(.88, -.35, .565, 1.35) .4s;
+        border-radius: 27.5px;
+        box-shadow: 0 2px 15px 0 rgba(0, 0, 0, .1);
+        background-color: #3d90ef;
+        height: 100%;
+        z-index: 0;
       }
-      #personal:hover .image {
-        opacity: 0.3;
+
+      .taeb-switch.left:after {
+        left: 0;
       }
-      #personal:hover .middle {
-        opacity: 1;
+
+      .taeb-switch.right:after {
+        left: 50%;
       }
-      .text {
-        background-color: white;
-        color: black;
-        font-size: 10px;
-        padding: 8px 16px;
+
+      .taeb-switch .taeb {
+        display: inline-block;
+        width: 50%;
+        padding: 15%;
+        z-index: 1;
+        position: relative;
+        cursor: pointer;
+        transition: color 200ms;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: normal;
+      }
+
+      .taeb-switch .taeb.active {
+        color: #ffffff;
+      }
+
+      .wrapper {
+        border-radius: 37px;
+        background-color: #f4f4f4;
+        padding: 8px;
+        width: 100%;
+        /* max-width: 316px;
+        margin-left: auto;
+        margin-right: auto; */
+        height: 100px;
+        margin-left: 10px;
+        margin-right: 10px;
       } */
+      
     </style>
 
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -150,12 +167,12 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="book_genre.html">Genre</a></li>
                         <li class="nav-item">
                             <div class="search" id="search">
                                 <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
                             </div></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i>user1</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="mybooks.php"><i class="far fa-user"></i>user1</a></li>
                         
                     </ul>
                 </div>
@@ -176,33 +193,32 @@
     
     <div class="jumbotron jumbotron-fluid" id="mybooksHeader" style="padding-bottom: 30px;">
     <div class="row">
-      <h1 class="display-4 col" style="margin-bottom: 50px; margin-top:50px;">My Books</h1>
-      <div class="col" style="display:flex; justify-content: center; align-items: center;">
+      <h1 class="display-4 col-4" style="margin-bottom: 50px; margin-top:50px;">My Books</h1>
+      <div class="col-8" style="display:flex; justify-content: center; align-items: center;">
         <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills text-center border-0 rounded-nav" style="width: 70%;">
               <li class="nav-item " style="width: 50%">
-                <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_wishlist()" onclick="openLink(event, 'Left')" class="nav-link border-0 text-uppercase font-weight-bold active"><img src="../images/wishlistbook.png" width="50%" height="auto"></a>
+                <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_wishlist()" onclick="openLink(event, 'Left')" class="nav-link border-0 text-uppercase font-weight-bold active"><img src="../images/bookmarks_nobg.png" width="50%" height="auto"></a>
               </li>
               <li class="nav-item" style="width: 50%">
                 <a data-toggle="tab" id="listings_tab" href="#listings" role="tab" aria-controls="profile" onclick="getListings('ALL')" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><img src="../images/listingsbook.png" width="50%" height="auto"></a>
               </li>
         </ul>
+        <!-- <div class="wrapper">
+          <div class="taeb-switch left" style="text-align: center; width: 100%">
+            <div class="taeb active d-inline" taeb-direction="left" onclick="taebSwitch()" style="justify-content: center; align-items: center; display: flex;">
+              Wishlist
+            </div>
+            <div class="taeb d-inline" taeb-direction="right" onclick="taebSwitch()">
+              Listings
+            </div>
+          </div>
+        </div> -->
+      
+
+        <!--  -->
       </div>
     </div>
         
-    
-
-          
-
-
-
-        <!-- <ul class="nav nav-pills" style="padding-right: 6%;">
-        <li class="nav-item" role="presentation" style="width: 50%;">
-          <a class="nav-link active" id="wishlist_tab" data-toggle="tab" href="#wishlist" role="tab" aria-controls="wishlist" aria-selected="true" onclick="get_wishlist()" style="text-align: center;"><img src="../images/wishlistbook.png" width="100%" height="50%"></a>
-        </li>
-        <li class="nav-item" role="presentation" style="width: 50%;">
-          <a class="nav-link" id="listings_tab" data-toggle="tab" href="#listings" role="tab" aria-controls="listings" aria-selected="false" onclick="getListings('ALL')" style="text-align: center;"><img src="../images/listingsbook.png" width="100%" height="50%"></a>
-        </li>
-      </ul> -->
       
     </div>
     
@@ -359,15 +375,20 @@
                   <div class="each-book">
                       <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
                       <div class="main-details">
-                          <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
+                          <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span>
+                          <button class="btn btn-danger" onclick="deleteBook()"  style="float: right">Delete</button>
+                          <br>
                           <span style='font-size:13px;'>by ${author}</span>
+                          
                       </div>
+                      
                   </div>
                   <!-- style="visibility: hidden; -->
                   <div class="each-desc" id="each-desc${index}" style="visibility: hidden;"> 
                       <b>Description</b><br>
                       ${desc}
                   </div>
+                  
                   `;
 
                   index += 1;
@@ -418,7 +439,7 @@
                     }
                   }
                   else {
-                    desc = 'description not available';
+                    desc = 'Description not available';
                   }
 
 
@@ -431,7 +452,9 @@
                   <div class="each-book">
                       <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
                       <div class="main-details">
-                          <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
+                          <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span>
+                          <button class="btn btn-danger" onclick="deleteBook()" style="float: right">Delete</button>
+                          <br>
                           <span style='font-size:13px;'>by ${author}</span>
                       </div>
                   </div>
@@ -464,7 +487,29 @@
 
   }
 
+  function deleteBook() {
+    if (confirm("Are you sure you want to delete this book?")) {
+      alert("ya");
+    }
 
+  }
+
+
+  // taeb-switch js
+//   function taebSwitch() {
+//   var taeb = $(".taeb-switch");
+//   taeb.find(".taeb").on("click", function() {
+//     var $this = $(this);
+
+//     if ($this.hasClass("active")) return;
+
+//     var direction = $this.attr("taeb-direction");
+
+//     taeb.removeClass("left right").addClass(direction);
+//     taeb.find(".taeb.active").removeClass("active");
+//     $this.addClass("active");
+//   });
+// }
 
 
 </script>
