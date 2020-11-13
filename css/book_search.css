@@ -1,18 +1,3 @@
-/* Fonts */
-nav, h2, body{
-    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-h2{
-    font-weight: 500;
-}
-
-#main-content{
-    font-family: 'Cormorant Garamond', serif;
-}
-
 /* Autocomplete */
 .ui-autocomplete { 
     height: 400px;
@@ -66,11 +51,11 @@ h2{
 {
     color: white;
     background-color: #A94241;
-    border: solid 1px #6430b8;
+    border: solid 1px white;
 } 
 
 /* Dark version */
-.base .dark{
+.each_book .dark{
     width: 90%;
     height: 160px;
     /* border: 2px solid #D3D3D3; */
@@ -84,47 +69,36 @@ h2.dark{
     color: #B5C587;
 }
 
+
+
 @media (min-width: 600px){
-    /* each book: base, top->norm, btm->desc */
     .base {
         width: 33%;
         height: 200px;
-        /* border: 2px dotted blueviolet; */
         margin: auto;
         position: relative;
-        /* border: #8e89b2 dotted 2     px; */
     }
 
     .each-book {
         width: 90%;
         height: 160px;
-        /* border: 2px solid #D3D3D3; */
         background-image: linear-gradient(rgb(70, 138, 107), rgb(162, 205, 230)); 
         margin: auto;
         position: absolute;
         border-radius: 5px;
-
         top: 0;
         right: 6%;
-        /* background-color: #8e89b2; */
     }
 
     .each-desc {
         position: absolute;
         height: 155px;
         width: 88%;
-        /* background-image: ;  */
-        /* background-image: linear-gradient(#DAE8E3, #DAE9F0); */
-        /* background-image: linear-gradient(#CDB9A5, #CDB9A5); */
         background-color: #ecd8bf;
-        /* border: #aaaaaa solid 1.5px;  */
-        /* opacity: 80%; */
         border-radius: 5px;
-
         word-wrap: break-word;
         padding: 2%;
         font-size: 16px;
-
         bottom: 10px;
         left: 0;
     }
@@ -137,22 +111,21 @@ h2.dark{
 
     .main-details {
         background-color: white;
-        /* background-image: linear-gradient(pink yellow); */
         opacity: 80%;
-
         position: absolute;
         right: 0px;
         height: 100%;
         width: 70%;
         word-wrap: break-word;
-
         padding: 10px;
         font-size: 18px;
 
     }
 }
 
-
+a:hover{
+    text-decoration: none;
+}
 /* body {
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;

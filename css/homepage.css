@@ -228,7 +228,7 @@
     background-color: transparent;
   }
 
-  a.dark {
+  .nav-item .dark {
     color: #B5C587 ;
     text-decoration: none;
     background-color: transparent;
@@ -238,7 +238,7 @@
     color: #A94241;
   }
 
-  a.dark:hover {
+  .nav-item .dark:hover {
     color: #418b70;
   }
   
@@ -10132,11 +10132,6 @@
     }
   }
   ::-moz-selection {
-    background: #fed136;
-    text-shadow: none;
-  }
-  
-  ::selection {
     background: #fed136;
     text-shadow: none;
   }

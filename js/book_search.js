@@ -103,7 +103,7 @@ function extract_display_data(xml) {
         <div class="each-book">
             <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
             <div class="main-details" style='overflow: hidden;'>
-                <span id ='title' style='font-size:15px;'><b><a href=''>${title}</a></b></span><br>
+                <span id ='title' style='font-size:15px;'><b><a class='title_link ' href='bookdetails.php?isbn=${isbn}'>${title}</a></b></span><br>
                 
                 <span style='font-size:13px; overflow: hidden;'>by ${author}</span>
             </div>
@@ -127,6 +127,7 @@ function extract_display_data(xml) {
 // to redirect to book details page
 function redirect(isbn){
     location.href = `bookdetails.php?isbn=${isbn}`;
+    console.log('HI');
     document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
 }
 
