@@ -19,7 +19,7 @@
 (3) Insertion of records (User) 
 
     INSERT INTO person(userID,name,password,email,bookens) VALUES
-   ("aytt","Au Yong Ting Ting","aytt123", "auyongtingting@gmail.com","5000");
+   ("Amy","Amy Lim","amy123", "amylim@gmail.com","5000");
   
 (4) Creation of Bookmark Table 
     CREATE TABLE bookmark
@@ -40,26 +40,43 @@
 
 (7) Insertion of records (listings)
     INSERT INTO listings(userid, isbn, status) VALUES
-    ("aytt", "9780989311298", "NO");
+    ("amy", "9781465596178", "NO");
 
     INSERT INTO listings(userid, isbn, status) VALUES
-    ("aytt", "1107604664", "YES");
+    ("amy", "9788804584377", "NO");
+
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("amy", "9781416907121", "NO");
+
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("amy", "9788482600307", "NO");
+
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("amy", "9780671027421", "NO");
+
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("amy", "9780671027421", "YES");
 
 (8) Creation of Ratings Table 
     CREATE TABLE ratings
     (
             isbn VARCHAR(100) NOT NULL,
             totalRate INT(100) NOT NULL,
-            noPpl INT(100) NOT NULL,
+            noPpl INT(100) NOT NULL
     );
 
 (9) Insertion of records (Ratings)
     INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
-    ("9780989311298", 20, 5);
+    ("9781465596178", 20, 5);
 
-(10) Creation of  Table 
-    CREATE TABLE listings
-    (       userID VARCHAR(255) NOT NULL, 
-            isbn VARCHAR(100) NOT NULL,
-            status VARCHAR(20) NOT NULL
-    );
+    INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
+    ("9788804584377", 10, 5);
+
+    INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
+    ("9781416907121", 30, 5);
+
+    INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
+    ("9788482600307", 25, 5);
+
+    INSERT INTO ratings(isbn, totalRate, noPpl) VALUES
+    ("9780671027421", 10, 5);

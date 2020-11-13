@@ -19,14 +19,18 @@
                 $totalRatings = $row['totalRate'];
                 $numberPeople = $row['noPpl'];
             }
-            
+
+            for ($i=0;$i<count($listingsRecords);$i++) {
+                echo($listingsRecords[i]);
+            }
+            $avgRate = "Nothing";
             $stmt->closeCursor();
             $pdo = null;
-
-            if ($listingsRecords == []) {
-                return "None";
-            } else { 
-                $avgRate = floor($totalRatings/$numberPeople);
+            if ($listingsRecords != []) {
+                echo("okay");
+                $avgRate = round($totalRatings/$numberPeople);
+                echo($totalRatings);
+                echo($numberPeople);
                 return $avgRate;
             }
             
