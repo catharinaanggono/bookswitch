@@ -19,7 +19,7 @@
 (3) Insertion of records (User) 
 
     INSERT INTO person(userID,name,password,email,bookens) VALUES
-   ("Amy","Amy Lim","amy123", "amylim@gmail.com","5000");
+   ("Amy","Amy Lim","amy123", "amylim@gmail.com","800");
   
 (4) Creation of Bookmark Table 
     CREATE TABLE bookmark
