@@ -28,20 +28,12 @@ const genre_dataset = {
         "description": "The primary focus of romance fiction is on the relationship and romantic love between two people. These books have an emotionally satisfying and optimistic ending."
         // "tags" : ["contemporary romance", "historical romance", "inspirational romance"]
       }
-
-
-
-
     ]
 };
 
-// pagination
-show_page_button(category, query, first_start);
-first_load();
 
 
 function update_header(id) {
-
 
     for (genre of genre_dataset.genres) {
         // console.log(genre.genre);
@@ -51,11 +43,9 @@ function update_header(id) {
             document.getElementById('gdesc').innerText = genre.description;
         }
     
-
         if (genre.genre == id) {  
             console.log(id);
             document.getElementById(`${id}`).setAttribute('style', 'border: 2px solid #267055; color:  #267055; ');
-            
         }   
             
     }
@@ -65,8 +55,24 @@ function update_header(id) {
 
 function display_default() {
     call_api_genre('Adventure', 0);
+    show_page_button('Adventure', 0);
 }
 display_default();
+
+// pagination
+function show_page_button(genre, first_start) {
+  for ( i = 1; i <= 5; i++ ) {
+    var node = document.createElement('button');
+    node.setAttribute('class', 'btn m-1');
+    node.setAttribute('id', `page${i}`);
+    node.setAttribute('onclick', `call_api_genre('${genre}', ${i})`);
+    node.innerHTML = `${i}`;
+    
+    // console.log(node);
+    document.getElementById('pagination').appendChild(node);
+    document.getElementById(`page1`).setAttribute('style', 'background-color: #A94241');
+  }
+}
 
 
 
@@ -78,8 +84,9 @@ function call_api_genre(genre, pg_num) {
     request.onreadystatechange = function(){
         if (request.readyState==4 && request.status==200){
           document.getElementById('main-content').innerHTML = '';
-          document.getElementById('pagination').innerHTML = '';
-          // document.getElementById(`page1`).setAttribute('style', '');
+          // document.getElementById('pagination').innerHTML = '';
+          document.getElementById(`page1`).setAttribute('style', 'background-color: #A94241');
+          
 
           // set pg1 as active
           pages = document.getElementById('pagination').getElementsByTagName('button');
@@ -87,6 +94,7 @@ function call_api_genre(genre, pg_num) {
             console.log(pages[i]);
             if (i+1 == pg_num){
               pages[i].setAttribute('class', 'btn m-1 active');
+              document.getElementById(`page1`).setAttribute('style', '');
             }
             else{
               pages[i].setAttribute('class', 'btn m-1');
@@ -168,20 +176,20 @@ function extract_display_data(xml) {
         node.innerHTML = 
         `
         <div class="each-book">
-            <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
-            <div class="main-details">
-                <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span><br>
-                <span style='font-size:13px;'>by ${author}</span>
-            </div>
+        <div class="each-img"><img src="${img}" width="100%" height="100%" style="border-radius: 2%;"></div>
+        <div class="main-details" style='overflow: hidden;'>
+            <span id ='title' style='font-size:15px;'><b><a class='title_link ' href='bookdetails.php?isbn=${isbn}'>${title}</a></b></span><br>
+            
+            <span style='font-size:13px; overflow: hidden;'>by ${author}</span>
+        </div>
         </div>
         <!-- style="visibility: hidden; -->
-        <div class="each-desc" id="each-desc${index}" style='visibility: hidden; '> 
+        <div class="each-desc" id="each-desc${index}" style='visibility: hidden; text-overflow: ellipsis; '> 
             <div>
                 <b>Description</b><br>
-                <span style='display: flex; height: 100px; overflow: hidden;'> ${short_desc}</span>
+                <span style='display: flex; height: 100px; overflow: hidden; text-overflow: ellipsis;'> ${short_desc}</span>
             </div>
         </div>
-
         `;
         
         document.getElementById('main-content').appendChild(node);
