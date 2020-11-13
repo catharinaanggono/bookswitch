@@ -331,7 +331,7 @@
                   
                   <div class="mybooks rounded shadow-sm">
                   <div onclick="redirect(${isbn})">
-                    <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
+                      <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">${title}</h5><span class="small text-uppercase text-muted">by ${author}</span><br><br>
                   </div>
                       
@@ -451,7 +451,20 @@
     if (confirm("Are you sure you want to delete this book?")) {
       // $dao->deleteBookmark($userid, $isbn);
       // location.reload();
-      
+      var mysql = require('mysql');
+      var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "bookswitch"
+      });
+      con.connect(function(err) {
+        if (err) throw err;
+        con.query("DELETE FROM bookmark WHERE userid=:userid and isbn=:isbn", function (err, result, fields) {
+          if (err) throw err;
+          console.log(result);
+        });
+      });
     }
 
   }
