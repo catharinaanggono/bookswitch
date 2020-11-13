@@ -267,7 +267,26 @@
 <!-- JAVASCRIPT PART -->
 <script>
   
+  function redirect(isbn) {
+      location.href = `bookdetails.php?isbn=${isbn}`;
+      console.log(index);
+      document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
+  }
 
+  function show_desc(id) {
+      var node = document.getElementById(id);
+      node.setAttribute('style', 'visibility: visible;');
+  }
+
+  function hide_desc(id) {
+      var node = document.getElementById(id);
+      node.setAttribute('style', 'visibility: hidden;');
+  }
+
+  // tab functions
+
+  var index = 0;
+  var x = 0;
   function get_wishlist() {
     document.getElementById('wishlist_cards').innerHTML = '';
     var wishlist = <?php echo json_encode($wishlist); ?>;
@@ -283,11 +302,12 @@
     document.getElementById("myListings_cards").innerHTML = '';
     var listing = <?php echo json_encode($listing); ?>;
 
-
+    
     if (status == 'ALL') {
       for (var book of listing) {
         var isbn = book[0];
         get_listings_book(isbn);
+        
       };
     } else {
       
@@ -311,7 +331,7 @@
               var json_obj = JSON.parse(request.responseText);
               var items = json_obj.items;
               var html_text = '';
-              var index = 0;
+              // var index = 0;
 
               for (item of items) {
                   var image = item.volumeInfo.imageLinks.thumbnail;
@@ -380,7 +400,7 @@
           if (request.readyState == 4 && request.status == 200) {
               var json_obj = JSON.parse(request.responseText);
               var items = json_obj.items;
-              var x = 1;
+              // var x = 1;
               var html_text = "";
               
 
@@ -445,21 +465,7 @@
   }
 
 
-  function redirect(isbn) {
-      location.href = `bookdetails.php?isbn=${isbn}`;
-      console.log(index);
-      document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
-  }
 
-  function show_desc(id) {
-      var node = document.getElementById(id);
-      node.setAttribute('style', 'visibility: visible;');
-  }
-
-  function hide_desc(id) {
-      var node = document.getElementById(id);
-      node.setAttribute('style', 'visibility: hidden;');
-  }
 
 </script>
 
