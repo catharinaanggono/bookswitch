@@ -2,28 +2,30 @@
 <html lang="en">
 
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- jQuery -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!-- Bootstrap CSS --> 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- jQuery and JS bundle w/ Popper.js -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-     -->
+
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <!-- Custom CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
 
     <link href="../css/homepage.css" rel="stylesheet" />
     <link href="../css/bookswitch.css" rel="stylesheet" />
     <link href="../css/book_genre.css" rel="stylesheet" />
 
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Core theme JS-->
+    <script src="../js/homepage.js"></script>
+
 
     <title>My Books</title>
 
@@ -32,10 +34,19 @@
     
 
     <style>
+
+
       body {
         padding-top: 0px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        margin-bottom: 0px;
+
       }
+
+      #wishlist_cards, #myListings_cards {
+
+      }
+
           /* Rounded tabs */
 
         @media (min-width: 576px) {
@@ -65,10 +76,24 @@
         padding-bottom: 0px;
         padding-left: 5%;
 
+
       }
       #all_tab, #reserved_tab, #exchange_tab {
         color: #474E45;
       }
+
+      .black-background {
+        background-color:#0D3D54;
+      }
+
+      .white {
+        color:#ffffff;
+      }
+
+      .red {
+        color:red;
+      }
+
       /* colour of tabs when dark mode is on */
       #all_tab.dark, #reserved_tab.dark, #exchange_tab.dark {
         color: #D5D3BF;
@@ -81,6 +106,7 @@
       .tab-content {
         padding-left: 5%;
         padding-right: 5%;
+        min-height: 100px;
       }
 
       #myTab {
@@ -100,7 +126,7 @@
         display: block;
       }
 
-
+      /* footer css */
       footer{
           background-color: #6b7269;
           color: white;
@@ -132,6 +158,8 @@
   
   <!-- <body onload="getBookmark()"> -->
   <body onload="get_Bookmark()">
+
+
     <!--Jess's Navbar here-->
     <!-- Navigation-->
     <?php if (isset($_SESSION['userid']) or !empty($_SESSION['userid'])) { // or however you determine they're logged in ?>
@@ -152,9 +180,9 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.php">Genre</a></li>
 
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/logout.php">Logout</a></li>
 
                     </ul>
@@ -175,7 +203,7 @@
         <?php } else { ?>
           <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="../images/bookswitch.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <!-- <ul class = "navbar-nav">
@@ -190,7 +218,7 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="book_genre.html">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="book_genre.php">Genre</a></li>
                           <!-- <div class="search" id="search">
                             <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN" onkeypress="javascript:doit_onkeypress(event);">
                           </div></li> -->
@@ -210,7 +238,7 @@
           </nav>
           <?php } ?>
     <!---->
-
+  
     
     <div class="jumbotron jumbotron-fluid" id="mybooksHeader" style="padding-left: 5%; padding-right: 5%;">
     <div class="row">
@@ -255,7 +283,7 @@
       }
       if (isset($_POST['deletelisting'])) {
         $isbn = $_POST['deletelisting'];
-        $dao2->deleteCopy($isbn);
+        $dao2->deleteListing($isbn);
         unset($_POST['deletelisting']);
       }
 
@@ -308,7 +336,6 @@
             
         </div>
       </div>
-
 
 
 
@@ -459,14 +486,16 @@
                   node.innerHTML += `
                   
                   <div class="mybooks rounded shadow-sm">
-                  <div id="bookstuff" onclick="redirect(${isbn})">
+                  <div id="bookstuff" onclick="redirect(${isbn})" class="overflow-auto">
                       <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
                   </div>
 
-                      <form method="post" name="form" action="mybooks.php">
-                        <button class="btn btn-danger" style="margin-bottom:0px;" name="deletebookmark" value="${isbn}">Temporary</button>
-                      </form>
+                    <form method="post" name="form" action="mybooks.php" style="padding-top: 10px;">
+                      <button class ='btn black-background white' style="margin-bottom:0px;" name="deletebookmark" value="${isbn}">Remove  <i class='far fa-bookmark red'></i></button>
+                    </form>
+
+                      
                       
                       
                   </div>
@@ -580,23 +609,7 @@
 
   }
 
-  function deleteBook(isbn) {
-    if (confirm("Are you sure you want to delete this book?")) {
-      alert(isbn);
-      var userid = "<?php echo $userid ?>";
-      console.log(userid);
-
-      <?php 
-        $_SESSION['deleteisbn'] = "<script>document.writeln(isbn);</script>";
-
-      
-
-      ?>
-      // location.reload();
-      
-    }
-
-  }
+  
 
 
 // autocomplete
@@ -617,8 +630,7 @@
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- Contact form JS-->
-    <!-- Core theme JS-->
-    <script src="../js/homepage.js"></script>
+    
     
 
   </body>
