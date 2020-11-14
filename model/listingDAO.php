@@ -59,14 +59,14 @@
             return $Qty_Avail;
         }
 
-        public function deleteCopy($isbn,$nStatus) {
+        public function deleteCopy($isbn) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
-            $sql = 'DELETE FROM listings WHERE isbn=:isbn and status = :nStatus';
+            $sql = 'DELETE FROM listings WHERE isbn=:isbn';
             $stmt = $pdo->prepare($sql);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->bindParam(':isbn', $isbn, PDO::PARAM_STR);
-            $stmt->bindParam(':nStatus', $nStatus, PDO::PARAM_STR);
+
             $stmt->execute();
             $stmt->closeCursor();
             $pdo = null;
