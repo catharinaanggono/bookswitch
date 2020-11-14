@@ -211,7 +211,7 @@
         <!-- ======= Steps Section ======= -->
     <section id="steps" class="steps section-bg">
         <div class="container">
-  
+          <h2 style="color:#B5C587">How To</h2>
           <div class="row no-gutters">
   
             <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in">
