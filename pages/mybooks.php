@@ -24,7 +24,7 @@
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 
     <!-- Core theme JS-->
-    <script src="../js/homepage.js"></script>
+    <!-- <script src="../js/homepage.js"></script> -->
 
 
     <title>My Books</title>
@@ -412,6 +412,18 @@
 <!-- JAVASCRIPT PART -->
 <script>
   
+  const chk = document.getElementById('chk');
+  chk.addEventListener('click', () => {
+  chk.checked?document.body.classList.add("dark"):document.body.classList.remove("dark");
+
+  localStorage.setItem('darkModeStatus', chk.checked);
+});
+
+window.addEventListener('load', (event) => {
+  if(localStorage.getItem('darkModeStatus')=="true"){
+    document.body.classList.add("dark"); 
+  }
+});
   function redirect(isbn) {
       location.href = `bookdetails.php?isbn=${isbn}`;
       console.log(index);
