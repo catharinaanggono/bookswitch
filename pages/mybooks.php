@@ -81,6 +81,19 @@
       #all_tab, #reserved_tab, #exchange_tab {
         color: #474E45;
       }
+
+      .black-background {
+        background-color:#0D3D54;
+      }
+
+      .white {
+        color:#ffffff;
+      }
+
+      .red {
+        color:red;
+      }
+
       /* colour of tabs when dark mode is on */
       #all_tab.dark, #reserved_tab.dark, #exchange_tab.dark {
         color: #D5D3BF;
@@ -167,7 +180,7 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.php">Genre</a></li>
 
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/logout.php">Logout</a></li>
@@ -190,7 +203,7 @@
         <?php } else { ?>
           <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="../images/bookswitch.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <!-- <ul class = "navbar-nav">
@@ -205,7 +218,7 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="book_genre.html">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="book_genre.php">Genre</a></li>
                           <!-- <div class="search" id="search">
                             <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN" onkeypress="javascript:doit_onkeypress(event);">
                           </div></li> -->
@@ -479,7 +492,7 @@
                   </div>
 
                       <form method="post" name="form" action="mybooks.php">
-                        <button class="btn btn-danger" style="margin-bottom:0px;" name="deletebookmark" value="${isbn}">Temporary</button>
+                        <button class ='btn black-background white' style="margin-bottom:0px;" name="deletebookmark" value="${isbn}">Remove  <i class='far fa-bookmark red'></i></button>
                       </form>
                       
                       
