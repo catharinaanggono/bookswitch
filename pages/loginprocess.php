@@ -39,6 +39,15 @@
 
 				$_SESSION["userid"] = $userid;
 				unset($_SESSION["error"]);
+
+				
+				$bookens = $dao->getBookens($userid);
+				if (isset($bookens)) { 
+					$_SESSION["bookens"] = $bookens;
+
+				}
+
+
 				if (isset($_SESSION["isbn"])) { 
 					$isbn = $_SESSION["isbn"];
 					header("location:$page_dest?isbn=$isbn");
