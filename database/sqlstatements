@@ -56,6 +56,23 @@
 
     INSERT INTO listings(userid, isbn, status) VALUES
     ("amy", "0593071719", "NO");
+    
+    ========= DISPLAY ON LISTINGS ===================
+
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("amy", "9781491458518", "NO");
+
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("amy", "9781864718409", "NO");
+
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("amy", "1741141788", "NO");
+
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("amy", "9781616550547", "NO");
+
+    INSERT INTO listings(userid, isbn, status) VALUES
+    ("amy", "140954562", "NO");
 
 (8) Creation of Ratings Table 
     CREATE TABLE ratings
