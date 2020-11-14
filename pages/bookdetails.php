@@ -188,7 +188,7 @@
                             <div class="search" id="search">
                                 <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
                             </div></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i>User1</a></li>
                         
                     </ul>
                 </div>
@@ -207,7 +207,7 @@
     
     <!-- Modal -->
     
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" style = "padding-top: 100px;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
