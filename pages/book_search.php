@@ -37,11 +37,28 @@
       }
     </style>
 
+    <?php 
+
+    if (isset($_GET["query"])) {
+      $query = $_GET["query"]; 
+      $_SESSION["query"] = $query; 
+    }
+
+    if (isset($_GET["category"])) {
+      $category = $_GET["category"]; 
+      $_SESSION["category"] = $category; 
+    }
+
+    ?>
+
     <title>BookSwitch</title>
 
   </head>
   <body>
-
+    <?php
+    // $query = $_GET["query"];
+    // $category = $_GET["category"];
+    ?> 
     <!-- Navigation-->
     <?php if (isset($_SESSION['userid']) or !empty($_SESSION['userid'])) { // or however you determine they're logged in ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -61,7 +78,7 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="../pages/book_genre.html">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
                         <li class="nav-item">
                           <div class="search" id="search">
                             <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
@@ -82,7 +99,14 @@
                       </li> -->
                     </ul>
                 </div>
-                
+                <div>
+                  <input type="checkbox" class="checkbox" id="chk" />
+                  <label class="label" for="chk">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <div class="ball"></div>
+                  </label>
+                </div>
                 
                         
             </div>

@@ -43,6 +43,11 @@
 					$isbn = $_SESSION["isbn"];
 					header("location:$page_dest?isbn=$isbn");
 				}
+				elseif(isset($_SESSION["query"]) and isset($_SESSION["category"])){
+					$query = $_SESSION["query"];
+					$category = $_SESSION["category"];
+					header("location:$page_dest?query=$query&category=$category");
+				}
 				else {
 					header("location:$page_dest");
 				}

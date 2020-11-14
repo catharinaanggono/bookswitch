@@ -274,7 +274,7 @@ document.getElementById("autocomplete").onkeypress = function(event){
 
 // for Quick Search redirect
 function redirect_to_book_search(query, category){
-    location.href = `book_search.html?query=${query}&category=${category}`;
+    location.href = `book_search.php?query=${query}&category=${category}`;
   }
 
 // to show footer when the page is ready and also 1 sec delay
@@ -283,7 +283,6 @@ $(document).ready(function(){
 });
 
 $(window).load(function(){
-    alert('page is loaded');
     setTimeout(function () {
       $('footer').css({'opacity': 1});
     }, 1000);
