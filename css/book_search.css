@@ -124,6 +124,9 @@ footer{
     background-color: #6b7269;
     color: white;
     opacity: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 footer a{
