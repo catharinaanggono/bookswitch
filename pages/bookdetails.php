@@ -130,6 +130,9 @@
         footer{
             background-color: #6b7269;
             color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
 
         footer a{
