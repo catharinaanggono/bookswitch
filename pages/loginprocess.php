@@ -10,6 +10,8 @@
 		### Do not need to isset as the fields are required 
 		$userid = $_POST["userid"];
 		$password = $_POST["password"]; 
+		$page_dest = $_POST["page_dest"];
+
 
 		### Retrieve the details of the entered email address
 		$dao = new UserDAO(); 
@@ -39,9 +41,12 @@
 				unset($_SESSION["error"]);
 				if (isset($_SESSION["isbn"])) { 
 					$isbn = $_SESSION["isbn"];
+					header("location:$page_dest?isbn=$isbn");
+				}
+				else {
+					header("location:$page_dest");
 				}
 
-				header("location:bookdetails.php?isbn=$isbn");
 				
 				
 			}

@@ -91,11 +91,11 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="book_genre.html">Genre</a></li>
                           <!-- <div class="search" id="search">
                             <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN" onkeypress="javascript:doit_onkeypress(event);">
                           </div></li> -->
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/login.php"><i class="far fa-user"></i>Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php?redirect_to=homepage.php"><i class="far fa-user"></i>Login</a></li>
                     </ul>
                 </div>
                 <div>
