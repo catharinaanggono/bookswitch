@@ -165,14 +165,14 @@
 <body onload="display_default('<?php echo $_GET['isbn']; ?>')" >
     
      <!-- Navigation-->
-     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <?php if (isset($_SESSION['userid']) or !empty($_SESSION['userid'])) { // or however you determine they're logged in ?>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="./homepage.html"><img src="../images/bookswitch.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="../images/bookswitch.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <ul class = "navbar-nav">
-                        <li class="nav-item nav-link" id="bookens"><span style="color:#474E45;">50</span><img src="../images/bookens_circle.svg" width="17" height="17"></a></li>
-                                                
+                      <li class="nav-item nav-link" id="bookens"><span style="color:#474E45;"><?php echo $_SESSION['bookens'];?></span><img src="../images/bookens_circle.svg" width="17" height="17"></a></li>
                     </ul>
 
                     <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -185,14 +185,15 @@
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
                         <li class="nav-item">
-                            <div class="search" id="search">
-                                <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
-                            </div></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i>User1</a></li>
-                        
+                          <div class="search" id="search">
+                            <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
+                          </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/logout.php">Logout</a></li>
+
                     </ul>
                 </div>
-                
                 <div>
                   <input type="checkbox" class="checkbox" id="chk" />
                   <label class="label" for="chk">
@@ -200,10 +201,51 @@
                     <i class="fas fa-sun"></i>
                     <div class="ball"></div>
                   </label>
-                </div>        
+                </div>
+                
+                        
             </div>
-            
-        </nav>
+          </nav>
+          
+        <?php } else { ?>
+          <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="../images/bookswitch.svg" alt="" /></a>
+                <div class="d-flex flex-row order-2 order-lg-3">
+
+                    <!-- <ul class = "navbar-nav">
+                        <li class="nav-item nav-link" id="bookens"><span style="color:#474E45;">50</span><img src="../images/bookens_circle.svg" width="17" height="17"></a></li>
+                    </ul> -->
+
+                    <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <!-- Menu -->
+                        <i class="fas fa-bars ml-1"></i>
+                    </button>
+                </div>
+                
+                <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
+                        <li class="nav-item">
+                          <div class="search" id="search">
+                            <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
+                          </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php?redirect_to=book_search.php"><i class="far fa-user"></i>Login</a></li>
+                    </ul>
+                </div>
+                <div>
+                  <input type="checkbox" class="checkbox" id="chk" />
+                  <label class="label" for="chk">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <div class="ball"></div>
+                  </label>
+                </div>   
+                        
+            </div>
+          </nav>
+          <?php } ?>
     
     <!-- Modal -->
     
