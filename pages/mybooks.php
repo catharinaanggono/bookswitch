@@ -576,7 +576,7 @@
                   node.innerHTML += `
                   
                   <div class="mybooks rounded shadow-sm">
-                  <div id="bookstuff" onclick="redirect(${isbn})">
+                  <div id="bookstuff" onclick="redirect(${isbn})" class="overflow-auto">
                     <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
                   </div>
