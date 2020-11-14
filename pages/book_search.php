@@ -37,11 +37,28 @@
       }
     </style>
 
+    <?php 
+
+    if (isset($_GET["query"])) {
+      $query = $_GET["query"]; 
+      $_SESSION["query"] = $query; 
+    }
+
+    if (isset($_GET["category"])) {
+      $category = $_GET["category"]; 
+      $_SESSION["category"] = $category; 
+    }
+
+    ?>
+
     <title>BookSwitch</title>
 
   </head>
   <body>
-
+    <?php
+    // $query = $_GET["query"];
+    // $category = $_GET["category"];
+    ?> 
     <!-- Navigation-->
     <?php if (isset($_SESSION['userid']) or !empty($_SESSION['userid'])) { // or however you determine they're logged in ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
