@@ -462,26 +462,31 @@ document.getElementById("isbn_autocomplete").onkeypress = function(event){
 
 
 function redirect_to_book_search(query, category){
-    location.href = `book_search.html?query=${query}&category=${category}`;
+    location.href = `book_search.php?query=${query}&category=${category}`;
   }
 
 function all_search(category){
   var query = document.getElementById("all_autocomplete").value;
-  location.href = `book_search.html?query=${query}&category=${category}`;
+  location.href = `book_search.php?query=${query}&category=${category}`;
 }
 
 function title_search(category){
   var query = document.getElementById("title_autocomplete").value;
-  location.href = `book_search.html?query=${query}&category=${category}`;
+  location.href = `book_search.php?query=${query}&category=${category}`;
 }
 
 function author_search(category){
   var query = document.getElementById("author_autocomplete").value;
-  location.href = `book_search.html?query=${query}&category=${category}`;
+  location.href = `book_search.php?query=${query}&category=${category}`;
 }
 
 function isbn_search(category){
   var query = document.getElementById("isbn_autocomplete").value;
+<<<<<<< HEAD
   location.href = `book_search.html?query=${query}&category=${category}`;
 }
 
+=======
+  location.href = `book_search.php?query=${query}&category=${category}`;
+}
+>>>>>>> 8255915b9cf0df20e60ba9dfdc318be292c01ff0
