@@ -482,11 +482,5 @@ function author_search(category){
 
 function isbn_search(category){
   var query = document.getElementById("isbn_autocomplete").value;
-<<<<<<< HEAD
-  location.href = `book_search.html?query=${query}&category=${category}`;
-}
-
-=======
   location.href = `book_search.php?query=${query}&category=${category}`;
 }
->>>>>>> 8255915b9cf0df20e60ba9dfdc318be292c01ff0
