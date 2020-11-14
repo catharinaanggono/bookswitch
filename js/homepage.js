@@ -484,3 +484,4 @@ function isbn_search(category){
   var query = document.getElementById("isbn_autocomplete").value;
   location.href = `book_search.html?query=${query}&category=${category}`;
 }
+
