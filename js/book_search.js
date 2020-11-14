@@ -277,6 +277,7 @@ function redirect_to_book_search(query, category){
     location.href = `book_search.html?query=${query}&category=${category}`;
   }
 
+// to show footer when the page is ready and also 1 sec delay
 $(document).ready(function(){
     $('footer').css({'opacity': 0});
 });
