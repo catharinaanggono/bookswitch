@@ -55,16 +55,6 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/logout.php">Logout</a></li>
 
-                        <!-- <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i>
-                          <?php echo $_SESSION['userid'];?>
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a style="color:'red';" class="dropdown-item" href="#">MyBooks</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Logout</a>
-                          </div>
-                      </li> -->
                     </ul>
                 </div>
                 <div>
@@ -119,102 +109,104 @@
           <?php } ?>
 
 
-          <header class="masthead">
-          <div class="container">
+          <!-- Masthead-->
 
-            <h1 class="animate__animated animate__bounce animate__delay-1s	 animate__slow" style="color: #0D3D54;">Switch Your Book</h1>
-            <h1 class="animate__animated animate__bounce animate__delay-3s animate__slow" style="color: #A94241 ;">Discover More Books</h1>
+        <header class="masthead">
+            <div class="container">
 
-          <ul style="position: relative; z-index: 5555;" class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <a class="nav-link" id="home-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
-            </li>
-            <li class="nav-item" role="presentation">
-              <a class="nav-link" id="home-tab" data-toggle="tab" href="#title" role="tab" aria-controls="title" aria-selected="true">Title</a>
-            </li>
-            <li class="nav-item" role="presentation">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#author" role="tab" aria-controls="author" aria-selected="false">Author</a>
-            </li>
-            <li class="nav-item" role="presentation">
-              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#isbn" role="tab" aria-controls="isbn" aria-selected="false">ISBN</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-              <div class="home_searchbar">
-                <label>
-                    <!-- <span class="screen-reader-text">Search for...</span> -->
-                    <input style="position: relative; z-index: 5555;" id="all_autocomplete" type="search" class="search-field" placeholder="Search all..." onChange="aliasonclick"/>
-                </label>
-                <input name="searchbutton" id="all_searchbtn" style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="all_search('all')"/>
+              <h1 class="animate__animated animate__bounce animate__delay-1s	 animate__slow" style="color: #0D3D54;">Switch Your Book</h1>
+              <h1 class="animate__animated animate__bounce animate__delay-3s animate__slow" style="color: #A94241 ;">Discover More Books</h1>
+
+            <ul style="position: relative; z-index: 5555;" class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="home-tab" data-toggle="tab" href="#title" role="tab" aria-controls="title" aria-selected="true">Title</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#author" role="tab" aria-controls="author" aria-selected="false">Author</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#isbn" role="tab" aria-controls="isbn" aria-selected="false">ISBN</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                <div class="home_searchbar">
+                  <label>
+                      <!-- <span class="screen-reader-text">Search for...</span> -->
+                      <input style="position: relative; z-index: 5555;" id="all_autocomplete" type="search" class="search-field" placeholder="Search all..." onChange="aliasonclick"/>
+                  </label>
+                  <input name="searchbutton" id="all_searchbtn" style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="all_search('all')"/>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="title" role="tabpanel" aria-labelledby="title-tab">
+                <div class="home_searchbar">
+                  <label>
+                      <span class="screen-reader-text">Search for...</span>
+                      <input  style="position: relative; z-index: 5555;" id="title_autocomplete" type="search" class="search-field" placeholder="Search title..." value="" name="s" title=""/>
+                  </label>
+                  <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="title_search('intitle')"/>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="author" role="tabpanel" aria-labelledby="author-tab">
+                <div class="home_searchbar">
+                  <label>
+                      <span class="screen-reader-text">Search for...</span>
+                      <input style="position: relative; z-index: 5555;" id="author_autocomplete" type="search" class="search-field" placeholder="Search author..." value="" name="s" title="" />
+                  </label>
+                  <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="author_search('inauthor')"/>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="isbn" role="tabpanel" aria-labelledby="isbn-tab">
+                <div class="home_searchbar">
+                  <label>
+                      <span class="screen-reader-text">Search for...</span>
+                      <input style="position: relative; z-index: 5555;" id="isbn_autocomplete" type="search" class="search-field" placeholder="Search ISBN..." value="" name="s" title="" />
+                  </label>
+                  <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="isbn_search('isbn')"/>
+                </div> 
+              </div>
+              
+            </div>
+            <div class="leaf">
+              <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+                <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
+                     
+              </div>
+              
+              <div class="leaf leaf1">
+              <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+                <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
+                     
+              </div>
+              
+              <div class="leaf leaf2">
+              <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+         
+                <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
+                     
               </div>
             </div>
-
-            <div class="tab-pane fade" id="title" role="tabpanel" aria-labelledby="title-tab">
-              <div class="home_searchbar">
-                <label>
-                    <span class="screen-reader-text">Search for...</span>
-                    <input  style="position: relative; z-index: 5555;" id="title_autocomplete" type="search" class="search-field" placeholder="Search title..." value="" name="s" title=""/>
-                </label>
-                <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="title_search('intitle')"/>
-              </div>
-            </div>
-
-            <div class="tab-pane fade" id="author" role="tabpanel" aria-labelledby="author-tab">
-              <div class="home_searchbar">
-                <label>
-                    <span class="screen-reader-text">Search for...</span>
-                    <input style="position: relative; z-index: 5555;" id="author_autocomplete" type="search" class="search-field" placeholder="Search author..." value="" name="s" title="" />
-                </label>
-                <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="author_search('inauthor')"/>
-              </div>
-            </div>
-
-            <div class="tab-pane fade" id="isbn" role="tabpanel" aria-labelledby="isbn-tab">
-              <div class="home_searchbar">
-                <label>
-                    <span class="screen-reader-text">Search for...</span>
-                    <input style="position: relative; z-index: 5555;" id="isbn_autocomplete" type="search" class="search-field" placeholder="Search ISBN..." value="" name="s" title="" />
-                </label>
-                <input style="position: relative; z-index: 5555;" type="submit" class="search-submit button" value="&#xf002" onclick="isbn_search('isbn')"/>
-              </div> 
-            </div>
-            
-          </div>
-          <div class="leaf">
-            <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-              <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-              <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-              <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
-              <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-            <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-            <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
-                    
-            </div>
-            
-            <div class="leaf leaf1">
-            <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-              <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-              <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-              <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
-              <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-            <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-            <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
-                    
-            </div>
-            
-            <div class="leaf leaf2">
-            <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-              <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-              <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-              <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
-        
-              <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-            <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-            <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
-                    
-            </div>
-          </div>
 
         </header>
         
@@ -267,11 +259,7 @@
 
       
         </section><!-- End Steps Section -->
-<<<<<<< HEAD
         <!-- FOOTER -->
-=======
-          <!-- FOOTER -->
->>>>>>> e91164ed3f6e2cb6a963852ebc64d62090547e18
     <footer class="page-footer font-small blue px-4 py-5">
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
