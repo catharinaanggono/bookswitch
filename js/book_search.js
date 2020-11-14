@@ -283,7 +283,6 @@ $(document).ready(function(){
 });
 
 $(window).load(function(){
-    alert('page is loaded');
     setTimeout(function () {
       $('footer').css({'opacity': 1});
     }, 1000);
