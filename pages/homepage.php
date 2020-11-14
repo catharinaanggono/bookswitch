@@ -67,7 +67,14 @@
                       </li> -->
                     </ul>
                 </div>
-                
+                <div>
+                  <input type="checkbox" class="checkbox" id="chk" />
+                  <label class="label" for="chk">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <div class="ball"></div>
+                  </label>
+                </div>
                 
                         
             </div>
@@ -120,7 +127,7 @@
 
           <ul style="position: relative; z-index: 5555;" class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
+              <a class="nav-link" id="home-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
             </li>
             <li class="nav-item" role="presentation">
               <a class="nav-link" id="home-tab" data-toggle="tab" href="#title" role="tab" aria-controls="title" aria-selected="true">Title</a>
@@ -260,7 +267,11 @@
 
       
         </section><!-- End Steps Section -->
+<<<<<<< HEAD
         <!-- FOOTER -->
+=======
+          <!-- FOOTER -->
+>>>>>>> e91164ed3f6e2cb6a963852ebc64d62090547e18
     <footer class="page-footer font-small blue px-4 py-5">
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">

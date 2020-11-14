@@ -10709,6 +10709,7 @@ footer{
 }
 
 footer a{
+<<<<<<< HEAD
   color: #B5C587;
 }
 
@@ -10717,6 +10718,17 @@ footer a:hover{
   /* color: #267055; */
 }
 
+=======
+    color: #B5C587;
+}
+
+footer a:hover{
+    color: #B5C587;
+    /* color: #267055; */
+}
+
+
+>>>>>>> e91164ed3f6e2cb6a963852ebc64d62090547e18
 /* pagination */
 /* .pagination > .activate > a {
   background-color: #0D3D54;
