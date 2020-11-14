@@ -25,7 +25,6 @@
 
     <!-- Core theme JS-->
     <script src="../js/homepage.js"></script>
-    <script src="../js/book_genre.js"></script>
 
 
     <title>My Books</title>
