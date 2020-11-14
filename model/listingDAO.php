@@ -59,7 +59,20 @@
             return $Qty_Avail;
         }
 
-        public function deleteCopy($isbn) {
+        public function deleteCopy($isbn, $nStatus) {
+            $conn = new ConnectionManager();
+            $pdo = $conn->getConnection();
+            $sql = 'DELETE FROM listings WHERE isbn=:isbn and status = :nStatus'; # change this to update status?
+            $stmt = $pdo->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':isbn', $isbn, PDO::PARAM_STR);
+            $stmt->bindParam(':nStatus', $nStatus, PDO::PARAM_STR);
+            $stmt->execute();
+            $stmt->closeCursor();
+            $pdo = null;
+        }
+
+        public function deleteListing($isbn) {
             $conn = new ConnectionManager();
             $pdo = $conn->getConnection();
             $sql = 'DELETE FROM listings WHERE isbn=:isbn';
