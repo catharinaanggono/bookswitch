@@ -283,7 +283,7 @@
       }
       if (isset($_POST['deletelisting'])) {
         $isbn = $_POST['deletelisting'];
-        $dao2->deleteCopy($isbn);
+        $dao2->deleteListing($isbn);
         unset($_POST['deletelisting']);
       }
 
