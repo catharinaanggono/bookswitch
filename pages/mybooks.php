@@ -491,8 +491,8 @@
                         <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
                   </div>
 
-                    <form method="post" name="form" action="mybooks.php" style="padding-top: 10px;">
-                      <button class ='btn black-background white' style="margin-bottom:0px;" name="deletebookmark" value="${isbn}">Remove  <i class='far fa-bookmark red'></i></button>
+                    <form method="post" name="form" action="mybooks.php" style="padding-bottom: 10px;">
+                      <button class ='btn btn black-background white' style="margin-bottom:0px;" name="deletebookmark" value="${isbn}">Remove  <i class='far fa-bookmark red'></i></button>
                     </form>
 
                       
@@ -580,8 +580,8 @@
                     <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
                   </div>
-                      <form method="post" name="form" action="mybooks.php">
-                        <button class="btn btn-danger" style="margin-bottom:0px;" name="deletelisting" value="${isbn}">Temporary</button>
+                      <form method="post" name="form" action="mybooks.php" style="padding-bottom:10px;">
+                        <button class="btn btn black-background white" style="margin-bottom:0px;" name="deletelisting" value="${isbn}">Remove Listing</button>
                       </form>
                       
                   </div>
