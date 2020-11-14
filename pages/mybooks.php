@@ -25,6 +25,7 @@
 
     <!-- Core theme JS-->
     <script src="../js/homepage.js"></script>
+    <script src="../js/book_genre.js"></script>
 
 
     <title>My Books</title>
@@ -181,10 +182,24 @@
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.php">Genre</a></li>
-
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
+                        <li class="nav-item">
+                          <div class="search" id="search">
+                            <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
+                          </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/logout.php">Logout</a></li>
 
+                        <!-- <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i>
+                          <?php echo $_SESSION['userid'];?>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a style="color:'red';" class="dropdown-item" href="#">MyBooks</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Logout</a>
+                          </div>
+                      </li> -->
                     </ul>
                 </div>
                 <div>
@@ -218,11 +233,13 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="book_genre.php">Genre</a></li>
-                          <!-- <div class="search" id="search">
-                            <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN" onkeypress="javascript:doit_onkeypress(event);">
-                          </div></li> -->
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php?redirect_to=homepage.php"><i class="far fa-user"></i>Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.php">Genre</a></li>
+                        <li class="nav-item">
+                          <div class="search" id="search">
+                            <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
+                          </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php?redirect_to=book_search.php"><i class="far fa-user"></i>Login</a></li>
                     </ul>
                 </div>
                 <div>
@@ -460,7 +477,6 @@
               var json_obj = JSON.parse(request.responseText);
               var items = json_obj.items;
               var html_text = '';
-              // var index = 0;
 
               for (item of items) {
                   var image = item.volumeInfo.imageLinks.thumbnail;
@@ -481,7 +497,6 @@
                   // referenced from: https://jsfiddle.net/bootstrapious/b69yeLzj
                   var node = document.createElement('div');
                   node.setAttribute('class', 'col-xl-3 col-sm-4 mb-5 my-2');
-                  // node.setAttribute('onclick', `redirect(${isbn})`);
                   node.setAttribute('style', 'display:flex; justify-content: center; align-items: center; text-align: center;');
                   node.innerHTML += `
                   
@@ -491,8 +506,8 @@
                         <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
                   </div>
 
-                    <form method="post" name="form" action="mybooks.php" style="padding-top: 10px;">
-                      <button class ='btn black-background white' style="margin-bottom:0px;" name="deletebookmark" value="${isbn}">Remove  <i class='far fa-bookmark red'></i></button>
+                    <form method="post" name="form" action="mybooks.php" style="padding-bottom: 10px;">
+                      <button class ='btn btn black-background white' style="margin-bottom:0px;" name="deletebookmark" value="${isbn}">Remove  <i class='far fa-bookmark red'></i></button>
                     </form>
 
                       
@@ -504,20 +519,7 @@
                   
                   `;
 
-                  // <div class="each-book">
-                  //     <div class="each-img"><img src="${image}" width="100%" height="100%" style="border-radius: 2%;"></div>
-                  //     <div class="main-details">
-                  //         <span id ='title' style='font-size:15px;'><a href=''>${title}</a></span>
-                  //         <button class="btn btn-danger" onclick="deleteBook()" id='${isbn}' style="float: right">Delete</button>
-                  //         <br>
-                  //         <span style='font-size:13px;'>by ${author}</span>
-                          
-                  //     </div>
-                      
-                  // </div>
 
-                  index += 1;
-                  // console.log(index);
 
 
               }
@@ -551,7 +553,6 @@
               
 
               for (item of items) {
-                  console.log(item);
                   var image = item.volumeInfo.imageLinks.thumbnail;
                   var title = item.volumeInfo.title;
                   var desc = item.volumeInfo.description;
@@ -580,8 +581,8 @@
                     <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
                   </div>
-                      <form method="post" name="form" action="mybooks.php">
-                        <button class="btn btn-danger" style="margin-bottom:0px;" name="deletelisting" value="${isbn}">Temporary</button>
+                      <form method="post" name="form" action="mybooks.php" style="padding-bottom:10px;">
+                        <button class="btn btn black-background white" style="margin-bottom:0px;" name="deletelisting" value="${isbn}">Remove Listing</button>
                       </form>
                       
                   </div>
