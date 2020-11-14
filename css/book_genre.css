@@ -1,3 +1,8 @@
+/* Selected Genre */
+.selected {
+    background-color: white;
+}
+
 /* Genre Tab Border */
 .border.dark {
     border: 2px solid #267055; color:  #267055; 
