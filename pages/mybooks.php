@@ -68,8 +68,13 @@
 
       }
       #all_tab, #reserved_tab, #exchange_tab {
+        color: #474E45;
+      }
+      /* colour of tabs when dark mode is on */
+      #all_tab.dark, #reserved_tab.dark, #exchange_tab.dark {
         color: #D5D3BF;
       }
+
       #all_tab.active, #reserved_tab.active, #exchange_tab.active {
         color: #474E45;
       }
@@ -88,9 +93,28 @@
         padding: 20px;
         height: 325px;
         width: 300px;
+
       }
 
-      
+      #bookstuff {
+        height: 250px;
+        display: block;
+      }
+
+
+      footer{
+          background-color: #6b7269;
+          color: white;
+      }
+
+      footer a{
+          color: #B5C587;
+      }
+
+      footer a:hover{
+          color: #B5C587;
+          /* color: #267055; */
+      }
       
     </style>
 
@@ -176,23 +200,26 @@
     <!-- php stuff -->
     <?php
 
-            $_SESSION["userid"] = "aytt";
-            if (isset($_SESSION["userid"])) {
-              $userid = $_SESSION["userid"];
 
-              // listings
-              $dao = new bookmarkDAO();
-              $bookmark = $dao->getBookmark($userid);
-              $_SESSION["bookmark"] = $bookmark;
-              // $delete = $dao->deleteBookmark($userid,$isbn);
-              $dao2 = new ListingDAO();
-              $listing = $dao2->getListing($userid);
-              $_SESSION["listing"] = $listing;
-              
-              
-            } else { 
-              //header("Location: login.html");
-            }
+      if (isset($_SESSION["userid"])) { 
+        $userid = $_SESSION["userid"]; 
+      }else { 
+        $userid = null; 
+      }
+
+
+
+      // listings
+      $dao = new bookmarkDAO();
+      $bookmark = $dao->getBookmark($userid);
+      $_SESSION["bookmark"] = $bookmark;
+      // $delete = $dao->deleteBookmark($userid,$isbn);
+      $dao2 = new listingDAO();
+      $listing = $dao2->getListing($userid);
+      $_SESSION["listing"] = $listing;
+      
+      
+    
 
 
           ?>
@@ -231,6 +258,63 @@
             
         </div>
       </div>
+
+
+
+
+
+<!-- FOOTER -->
+    <footer class="page-footer font-small blue px-4 py-5">
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+      <!-- Grid row -->
+      <div class="row">
+        <!-- First column -->
+        <div class="col-md-6 mb-md-0 mb-3">
+          <!-- Links -->
+          <h5 class="text-uppercase">Support</h5>
+          <ul class="list-unstyled">
+            <li>
+              <a href="#">Contact Us</a>
+            </li>
+            <li>
+              <a href="#">FAQ</a>
+            </li>
+            <li>
+              <a href="#">About Us</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Second column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+          <div class='container'>
+            <!-- Content -->
+            <img src='../images/bookswitch_footer.svg' style='width: 200px; height: 80px;'>
+          </div>
+
+          <div class='container pl-4'>
+            <i class="fab fa-facebook-square" style="font-size:24px"> </i>
+            <i class="fab fa-twitter-square" style="font-size:24px"> </i>
+            <i class="fab fa-google-plus-square" style="font-size:24px"> </i>
+            <i class="fab fa-instagram-square" style="font-size:24px"> </i>
+            <i class="fas fa-envelope-square" style="font-size:24px"> </i>    
+          </div>        
+        </div>
+        <!-- <hr class="clearfix w-100 d-md-none pb-3"> -->
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright - BookSwitch
+    </div>
+    <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
     
 <!-- JAVASCRIPT PART -->
 <script>
@@ -325,12 +409,14 @@
                   node.innerHTML += `
                   
                   <div class="mybooks rounded shadow-sm">
-                  <div onclick="redirect(${isbn})">
+                  <div id="bookstuff" onclick="redirect(${isbn})">
                       <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
                   </div>
-                      
+
                       <button class="btn btn-danger" style="margin-bottom:0px;" onclick="deleteBook(${isbn})">Temporary</button>
+                      
+                      
                   </div>
         
                   
@@ -409,15 +495,13 @@
                   node.innerHTML += `
                   
                   <div class="mybooks rounded shadow-sm">
-                  <div onclick="redirect(${isbn})">
+                  <div id="bookstuff" onclick="redirect(${isbn})">
                     <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
                   </div>
                       
                       <button class="btn btn-danger" style="margin-bottom:0px;">Temporary</button>
                   </div>
-
-                  
                   `;
 
                   x += 1;
@@ -446,26 +530,16 @@
     if (confirm("Are you sure you want to delete this book?")) {
       // $dao->deleteBookmark($userid, $isbn);
       // location.reload();
-      var mysql = require('mysql');
-      var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "bookswitch"
-      });
-      con.connect(function(err) {
-        if (err) throw err;
-        con.query("DELETE FROM bookmark WHERE userid=:userid and isbn=:isbn", function (err, result, fields) {
-          if (err) throw err;
-          console.log(result);
-        });
-      });
+      
     }
 
   }
 
 
 // autocomplete
+
+
+
 
 </script>
 
