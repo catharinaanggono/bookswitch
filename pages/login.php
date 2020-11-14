@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -6,18 +7,15 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Courgette|Open+Sans&display=swap" rel="stylesheet"> 
 	<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+
 </head>
 
 <style>
 	.panel{
 		border:0;
 		background: #B5C587 ;
-		color:#ffff;
 		text-align:center;
 		padding-top:50px;
 	}
@@ -32,7 +30,6 @@
     body { 
     	margin:0;
 		padding:0; 
-		/* background-image: url("../images/image.jpg"); */
 		background-color: whitesmoke;
 		background-size: cover;
 		background-repeat:no-repeat;
@@ -41,26 +38,12 @@
     	}
 	}
 
-	.text-danger {
-    	color:#5d7db8;
-    	font-weight: bold;
-	}
-
-	
-	.black-background {
-        background-color:#0D3D54;
-    }
-
-    .white {
-        color:#ffffff;
-	}
-
 	body {
 		margin:0;
 		padding:0;
 		overflow:hidden;
 		background-color:black;
-        }
+    }
 
 	section{
 		height:100%;
@@ -180,25 +163,49 @@
 		
 	}
 
-	.backButton {
-		padding-left:50px;
-		padding-top:50px;
-		font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
-		"Helvetica Neue", Arial, sans-serif, 
-		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-		width: 50px;
-		height: 50px;
-		background-color: Transparent;
+	.submitButton:hover
+	{
+		background-color: #A94241;
+		border-color: white;
+		color: white;
+		border-color: #A94241;
+	}
+
+	button
+	{
+		border-color: white;
+		background-color: #0D3D54;
+		border-color: #0D3D54;
+		color: white;
+		text-align: center;
+		height: 30px;
+		width: 5px;
+	}
+
+	button {
+            font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+            "Helvetica Neue", Arial, sans-serif, 
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            width: 50px;
+            height: 50px;
     }
 
 	.enlarge {
 		font-size: 30px;
-		color: #D5D3BF; 
+		color: #A94241; 
+	}
+
+	.backButton {
+		background-color: Transparent;
+		margin-left: -85%;
+		margin-top: -90%;
+		border: none;
 	}
 
 </style>
 
 <body>
+
 	<div class="leaf">
 		<div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
 		 <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
@@ -234,22 +241,19 @@
 		</div>
 	  </div>
 
-
-	<div style = "padding-left:10px;"><button class="btn black-background white chevron-left backButton" onclick="history.go(-1);"><i class="fas fa-chevron-left enlarge"></i></button></div>
-
 	<!-- Display of Navbar -->
     <div class="bgded overlay" id="example"> 
-
+	
 	<div class="container">
 	<div class="row">
-	<div>
-	<div class="panel panel-default">
+
+	<div class="panel">
+	
+	<button class=" black-background white chevron-left backButton" style = "left: 20px;" onclick="history.go(-1);"><i class="fas fa-chevron-left enlarge"></i></button>
+    <br>
 	<img src="../images/bookswitch.svg" alt="" style = "width: 70%;position:relative;" />
 	<div class="panel-body">
-		
-
-	<br>
-
+	
 	<!-- Login Form : Retrieve the login email and password -->
 	<form method="post" action = "loginprocess.php">		
 		
@@ -265,6 +269,7 @@
 		<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
 		<input type="password" class="form-control" name="password" placeholder="Password" required>
 		</div>
+		
 		
 		<input type="hidden" name="page_dest" value="<?php echo $_GET['redirect_to'];?>"/>
 
@@ -287,14 +292,11 @@
 
 		<!-- Login button -->
 		<div class="form-group">
-		<button class="btn black-background white" style = "width: 50%;position:relative;" name="submit">Log In</button>
+		<button style = "width: 50%;position:relative;border-radius:5px;" id = "submitButton" name="submit">Log In</button>
 		</div>
-					 
+
+			 
 	</form>
-
-	
-
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
