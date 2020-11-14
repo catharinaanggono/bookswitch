@@ -10703,6 +10703,21 @@ display:block ;
     }
   }
 
+footer{
+  background-color: #6b7269;
+  color: white;
+}
+
+footer a{
+    color: #B5C587;
+}
+
+footer a:hover{
+    color: #B5C587;
+    /* color: #267055; */
+}
+
+
 /* pagination */
 /* .pagination > .activate > a {
   background-color: #0D3D54;
