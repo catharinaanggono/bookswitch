@@ -123,6 +123,7 @@ a:hover{
 footer{
     background-color: #6b7269;
     color: white;
+    opacity: 0;
 }
 
 footer a{
