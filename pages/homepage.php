@@ -19,10 +19,7 @@
   />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+
     <!--Search Icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
     <link href="../css/homepage.css" rel="stylesheet" />
@@ -50,7 +47,7 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.php">Genre</a></li>
 
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/logout.php">Logout</a></li>
@@ -88,7 +85,7 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="book_genre.html">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="book_genre.php">Genre</a></li>
                           <!-- <div class="search" id="search">
                             <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN" onkeypress="javascript:doit_onkeypress(event);">
                           </div></li> -->
