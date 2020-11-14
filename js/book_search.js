@@ -276,3 +276,14 @@ document.getElementById("autocomplete").onkeypress = function(event){
 function redirect_to_book_search(query, category){
     location.href = `book_search.html?query=${query}&category=${category}`;
   }
+
+$(document).ready(function(){
+    $('footer').css({'opacity': 0});
+});
+
+$(window).load(function(){
+    alert('page is loaded');
+    setTimeout(function () {
+      $('footer').css({'opacity': 1});
+    }, 1000);
+});
