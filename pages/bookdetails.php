@@ -24,6 +24,7 @@
 
 
 
+
     <style>
         #bookTitle.dark{
             color:#B5C587;
@@ -429,7 +430,7 @@
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- BookSwitch JS -->
-    <script src='../js/homepage.js'></script>
+    <!-- <script src='../js/homepage.js'></script> -->
     <script src='../js/book_search.js'></script>
 
 

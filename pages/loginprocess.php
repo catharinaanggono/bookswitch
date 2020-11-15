@@ -9,8 +9,10 @@
 
 		### Do not need to isset as the fields are required 
 		$userid = $_POST["userid"];
-		$password = $_POST["password"]; 
-		$page_dest = $_POST["page_dest"];
+		$password = $_POST["password"];
+		// if (isset($_POST["page_dest"])){
+		// 	$page_dest = $_POST["page_dest"];
+		// }
 
 
 		### Retrieve the details of the entered email address
@@ -46,11 +48,13 @@
 					$_SESSION["bookens"] = $bookens;
 
 				}
-
+				if (isset($_SESSION["redirect_to"])) { 
+					$page_dest = $_SESSION["redirect_to"];
+				}
 
 				if (isset($_SESSION["isbn"])) { 
 					$isbn = $_SESSION["isbn"];
-					header("location:$page_dest?isbn=$isbn");
+					header("location:bookdetails.php?isbn=$isbn");
 				}
 				elseif(isset($_SESSION["query"]) and isset($_SESSION["category"])){
 					$query = $_SESSION["query"];

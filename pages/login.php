@@ -271,8 +271,6 @@
 		</div>
 		
 		
-		<input type="hidden" name="page_dest" value="<?php echo $_GET['redirect_to'];?>"/>
-
 		<?php
 
 			if (isset($_GET["e"])) {

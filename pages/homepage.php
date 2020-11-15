@@ -1,5 +1,7 @@
 <?php
   session_start();
+  $_SESSION["redirect_to"] = 'homepage.php'; 
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
     <link href="../css/homepage.css" rel="stylesheet" />
   
+    
     
   </head>
     <body id="page-top">
@@ -89,7 +92,7 @@
                           <!-- <div class="search" id="search">
                             <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN" onkeypress="javascript:doit_onkeypress(event);">
                           </div></li> -->
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php?redirect_to=homepage.php"><i class="far fa-user"></i>Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php"><i class="far fa-user"></i>Login</a></li>
                     </ul>
                 </div>
                 <div>
@@ -311,13 +314,9 @@
        
         
         <!-- Bootstrap core JS-->
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Contact form JS-->
-        <!-- <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script> -->
         <script src="../js/homepage.js"></script>
 
     </body>
