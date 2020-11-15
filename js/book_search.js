@@ -8,23 +8,16 @@ var first_start = 1;
 first_load(category, query, first_start);
 
 function first_load(category, query, first_start){
-  // call_api_search('all', 'harry potter', 1);
   call_api_search(category, query, first_start);
   show_page_button(category, query, first_start);
 }
 
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
-    // console.log(xml.responseText);
-
     var books_result = obj.items;
     var index = 0;
 
-    // console.log(books_result);
-    // console.log(document.getElementById('results'));
     for (each_book in books_result){
-        // console.log(each_book);
-        // console.log(books_result[each_book].saleInfo.saleability);
         var str = '';
         var title = books_result[each_book].volumeInfo.title;
         var author = books_result[each_book].volumeInfo.authors;
@@ -172,7 +165,7 @@ function hide_desc(id) {
 }
 
 // Autocomplete
-$("#autocomplete").autocomplete({
+$("#my_autocomplete").autocomplete({
     appendTo: $('#search'),
     source: function (request, response) {
       $.ajax({
@@ -264,16 +257,16 @@ $("#autocomplete").autocomplete({
     };
 
 //  to redirect upon clicking enter
-document.getElementById("autocomplete").onkeypress = function(event){
+document.getElementById("my_autocomplete").onkeypress = function(event){
   if (event.keycode == 13 || event.which == 13){
-    var query = document.getElementById("autocomplete").value;
+    var query = document.getElementById("my_autocomplete").value;
     var category = 'all';
-    redirect_to_book_search(query, category);
+    redirect_to_book_search_personal(query, category);
   }
 };
 
 // for Quick Search redirect
-function redirect_to_book_search(query, category){
+function redirect_to_book_search_personal(query, category){
     location.href = `book_search.php?query=${query}&category=${category}`;
   }
 

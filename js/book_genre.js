@@ -283,7 +283,7 @@ function hide_desc(id) {
 }
 
 // Autocomplete
-$("#autocomplete").autocomplete({
+$("#my_autocomplete").autocomplete({
     appendTo: $('#search'),
     source: function (request, response) {
       $.ajax({
@@ -374,10 +374,14 @@ $("#autocomplete").autocomplete({
         .appendTo( ul );
     };
 
-document.getElementById("autocomplete").onkeypress = function(event){
+document.getElementById("my_autocomplete").onkeypress = function(event){
   if (event.keycode == 13 || event.which == 13){
-    var query = document.getElementById("autocomplete").value;
+    var query = document.getElementById("my_autocomplete").value;
     var category = 'all';
-    redirect_to_book_search(query, category);
+    redirect_to_book_search_personal(query, category);
   }
 };
+
+function redirect_to_book_search_personal(query, category){
+  location.href = `book_search.php?query=${query}&category=${category}`;
+}
