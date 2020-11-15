@@ -193,16 +193,6 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/logout.php">Logout</a></li>
 
-                        <!-- <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i>
-                          <?php echo $_SESSION['userid'];?>
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a style="color:'red';" class="dropdown-item" href="#">MyBooks</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Logout</a>
-                          </div>
-                      </li> -->
                     </ul>
                 </div>
                 <div>
@@ -608,7 +598,7 @@ window.addEventListener('load', (event) => {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- Contact form JS-->
 
-    <script src="../js/homepage.js"></script>
+    <!-- <script src="../js/homepage.js"></script> -->
     
     
 

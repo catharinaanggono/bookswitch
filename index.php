@@ -24,7 +24,7 @@
 
     <!--Search Icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
-    <link href="../css/homepage.css" rel="stylesheet" />
+    <link href="./css/homepage.css" rel="stylesheet" />
   
     
     
@@ -35,11 +35,11 @@
         <?php if (isset($_SESSION['userid']) or !empty($_SESSION['userid'])) { // or however you determine they're logged in ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="../images/bookswitch.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="./images/bookswitch.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <ul class = "navbar-nav">
-                        <li class="nav-item nav-link" id="bookens"><span style="color:#474E45;"><?php echo $_SESSION['bookens'];?></span><img src="../images/bookens_circle.svg" width="17" height="17"></a></li>
+                        <li class="nav-item nav-link" id="bookens"><span style="color:#474E45;"><?php echo $_SESSION['bookens'];?></span><img src="./images/bookens_circle.svg" width="17" height="17"></a></li>
                     </ul>
 
                     <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,10 +50,10 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.php">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./pages/book_genre.php">Genre</a></li>
 
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/logout.php">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./pages/logout.php">Logout</a></li>
 
                     </ul>
                 </div>
@@ -73,7 +73,7 @@
         <?php } else { ?>
           <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="../images/bookswitch.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="./images/bookswitch.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <!-- <ul class = "navbar-nav">
@@ -174,36 +174,36 @@
               
             </div>
             <div class="leaf">
-              <div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-               <div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-               <div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-               <div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
-                <div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-              <div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-              <div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
+              <div>  <img src="./images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="./images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="./images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="./images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+                <div> <img src="./images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="./images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="./images/autumn_leaves.png" height="75px" width="75px"></div>
                      
               </div>
               
               <div class="leaf leaf1">
-              <div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-               <div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-               <div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-               <div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
-                <div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-              <div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-              <div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
+              <div>  <img src="./images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="./images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="./images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="./images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+                <div> <img src="./images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="./images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="./images/autumn_leaves.png" height="75px" width="75px"></div>
                      
               </div>
               
               <div class="leaf leaf2">
-              <div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-               <div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-               <div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-               <div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+              <div>  <img src="./images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="./images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="./images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="./images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
          
-                <div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-              <div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-              <div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
+                <div> <img src="./images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="./images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="./images/autumn_leaves.png" height="75px" width="75px"></div>
                      
               </div>
             </div>
@@ -286,7 +286,7 @@
         <div class="col-md-6 mt-md-0 mt-3">
           <div class='container'>
             <!-- Content -->
-            <img src='../images/bookswitch_footer.svg' style='width: 200px; height: 80px;'>
+            <img src='./images/bookswitch_footer.svg' style='width: 200px; height: 80px;'>
           </div>
 
           <div class='container pl-4'>
@@ -317,7 +317,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <script src="../js/homepage.js"></script>
+        <script src="./js/homepage.js"></script>
 
     </body>
 </html>
