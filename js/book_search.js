@@ -89,36 +89,29 @@ function call_api_search(category, keyword, pg_num){
     var max = 30;
 
     request.onreadystatechange = function(){
-        if (request.readyState==4 && request.status==200){
-            document.getElementById('main-content').innerHTML = '';
-            // document.getElementById('pagination').innerHTML = '';
-            pages = document.getElementById('pagination').getElementsByTagName('button');
-            for (let i = 0; i < pages.length; i++){
-              console.log(pages[i]);
-              if (i+1 == pg_num){
-                pages[i].setAttribute('class', 'btn m-1 active');
-              }
-              else{
-                pages[i].setAttribute('class', 'btn m-1');
-              }
-            }
-            console.log(pages);
-            extract_display_data(this);
-            console.log(`page num: ${pg_num}`);
-
+      if (request.readyState==4 && request.status==200){
+        document.getElementById('main-content').innerHTML = '';
+        pages = document.getElementById('pagination').getElementsByTagName('button');
+        for (let i = 0; i < pages.length; i++){
+          if (i+1 == pg_num){
+            pages[i].setAttribute('class', 'btn m-1 active');
+          }
+          else{
+            pages[i].setAttribute('class', 'btn m-1');
+          }
         }
+        extract_display_data(this);
+      }
     }
 
     var start_index = (pg_num-1)*max;
-    console.log(start_index);
-
     if(category == 'all'){
-        url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
-        console.log(url);
+      url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
+      console.log(url);
     }
     else{
-        url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&startIndex=${start_index}&maxResults=${max}`;
-        console.log(url);
+      url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&startIndex=${start_index}&maxResults=${max}`;
+      console.log(url);
     }
 
     request.open('GET', url, true);
@@ -128,12 +121,12 @@ function call_api_search(category, keyword, pg_num){
 // to display pagination button
 function show_page_button(category, query, first_start) {
   for ( i = 1; i <= 5; i++ ) {
-      var node = document.createElement('button');
-      node.setAttribute('class', 'btn m-1');
-      node.setAttribute('id', `page${i}`);
-      node.setAttribute('onclick', `call_api_search('${category}', '${query}', ${i})`);
-      node.innerHTML = `${i}`;
-      document.getElementById('pagination').appendChild(node);
+    var node = document.createElement('button');
+    node.setAttribute('class', 'btn m-1');
+    node.setAttribute('id', `page${i}`);
+    node.setAttribute('onclick', `call_api_search('${category}', '${query}', ${i})`);
+    node.innerHTML = `${i}`;
+    document.getElementById('pagination').appendChild(node);
   }
 }
 
@@ -151,91 +144,82 @@ function hide_desc(id) {
 
 // Autocomplete
 $("#my_autocomplete").autocomplete({
-    appendTo: $('#search'),
-    source: function (request, response) {
-      $.ajax({
-        url: "https://www.googleapis.com/books/v1/volumes?",
-        data: { 
-          q: request.term,
-          startIndex: 1,
-          maxResults: 15
-        },
-        success: function (data) {
-          data = data.items;
-          var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
-          var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
-  
-          console.log(data);
-  
-          var primary_matches = $.map(data, function (el) {
-            let result = el.volumeInfo.title;
-            let img_link = el.volumeInfo.imageLinks;
-            let authors = el.volumeInfo.authors;
-            console.log(authors);
-            if (typeof img_link !== 'undefined'){
-              img_link = el.volumeInfo.imageLinks.thumbnail;
-            }
-            else{
-              img_link = '../images/no_image-removebg-preview.svg'
-            }
-            if (typeof authors == 'undefined'){
-              authors = "AUTHOR UNKNOWN";
-            }            
-            if (matcher1.test(result) || matcher1.test(authors)){
-              return {
-                imgLink: img_link,
-                value: result,
-                author: authors
-              };
-  
-            }
-              
-          });
-          var secondary_matches = $.map(data, function (el) {
-            let result = el.volumeInfo.title;
-            let img_link = el.volumeInfo.imageLinks;
-            let authors = el.volumeInfo.authors;
-            console.log("2" + authors);
+  appendTo: $('#search'),
+  source: function (request, response) {
+    $.ajax({
+      url: "https://www.googleapis.com/books/v1/volumes?",
+      data: { 
+        q: request.term,
+        startIndex: 1,
+        maxResults: 15
+      },
+      success: function (data) {
+        data = data.items;
+        var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+        var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
+        var primary_matches = $.map(data, function (el) {
+          let result = el.volumeInfo.title;
+          let img_link = el.volumeInfo.imageLinks;
+          let authors = el.volumeInfo.authors;
+          console.log(authors);
+          if (typeof img_link !== 'undefined'){
+            img_link = el.volumeInfo.imageLinks.thumbnail;
+          }
+          else{
+            img_link = '../images/no_image-removebg-preview.svg'
+          }
+          if (typeof authors == 'undefined'){
+            authors = "AUTHOR UNKNOWN";
+          }            
+          if (matcher1.test(result) || matcher1.test(authors)){
+            return {
+              imgLink: img_link,
+              value: result,
+              author: authors
+            };
+          }
+        });
+        var secondary_matches = $.map(data, function (el) {
+          let result = el.volumeInfo.title;
+          let img_link = el.volumeInfo.imageLinks;
+          let authors = el.volumeInfo.authors;
+          console.log("2" + authors);
 
-            if (typeof img_link !== 'undefined'){
-              img_link = el.volumeInfo.imageLinks.thumbnail;
-            }
-            else{
-              img_link = '../images/no_image-removebg-preview.svg'
-            }
-            if (typeof authors == 'undefined'){
-              authors = "AUTHOR UNKNOWN";
-            }       
-            if (matcher2.test(result) || matcher2.test(authors)){
-              return {
-                imgLink: img_link,
-                value: result,
-                author: authors
-              };
-  
-            }
-              
-          });
-          console.log(primary_matches);
-          console.log(secondary_matches);
-          response($.merge(primary_matches, secondary_matches));
-        },
-      });
-    }
-  })
-  .data("ui-autocomplete")._renderItem = function( ul, item ) {
-        var titleText = String(item.value).replace(
-        new RegExp(this.term, "gi"),
-        "<span class='ui-state-highlight'><b>$&</b></span>");
-        var authorText = String(item.author).replace(
-        new RegExp(this.term, "gi"),
-        "<span class='ui-state-highlight'><b>$&</b></span>");
+          if (typeof img_link !== 'undefined'){
+            img_link = el.volumeInfo.imageLinks.thumbnail;
+          }
+          else{
+            img_link = '../images/no_image-removebg-preview.svg'
+          }
+          if (typeof authors == 'undefined'){
+            authors = "AUTHOR UNKNOWN";
+          }       
+          if (matcher2.test(result) || matcher2.test(authors)){
+            return {
+              imgLink: img_link,
+              value: result,
+              author: authors
+            };
+          }   
+        });
+        response($.merge(primary_matches, secondary_matches));
+      },
+    });
+  }
+})
+.data("ui-autocomplete")._renderItem = function( ul, item ) {
+  var titleText = String(item.value).replace(
+  new RegExp(this.term, "gi"),
+  "<span class='ui-state-highlight'><b>$&</b></span>");
+  var authorText = String(item.author).replace(
+  new RegExp(this.term, "gi"),
+  "<span class='ui-state-highlight'><b>$&</b></span>");
 
-        return $( "<li></li>" )
-        .attr( "data-value", item)
-        .append("<div class='row'><div class='col-3'><img width='62' height='85' src='" + item.imgLink + "'></div>" + "<div class='col'><div class='row'><div class='col'><p style='font-size:15px'>" + titleText + "</p></div></div>" + "<div class='row'><div class='col'><p style='font-size:10px'>" + authorText + "</p></div></div></div>")
-        .appendTo( ul );
-    };
+  return $( "<li></li>" )
+  .attr( "data-value", item)
+  .append("<div class='row'><div class='col-3'><img width='62' height='85' src='" + item.imgLink + "'></div>" + "<div class='col'><div class='row'><div class='col'><p style='font-size:15px'>" + titleText + "</p></div></div>" + "<div class='row'><div class='col'><p style='font-size:10px'>" + authorText + "</p></div></div></div>")
+  .appendTo( ul );
+};
 
 //  to redirect upon clicking enter
 document.getElementById("my_autocomplete").onkeypress = function(event){
