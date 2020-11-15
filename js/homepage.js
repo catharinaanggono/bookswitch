@@ -161,6 +161,11 @@ var currentScrollPos = window.pageYOffset;
 // Search All Method
 $("#all_autocomplete").autocomplete({
   appendTo: $('#all'),
+  select: function( event, ui ){
+    // Redirect to the url
+    redirect(ui.item.isbn);
+
+  },
   source: function (request, response) {
     $.ajax({
       url: "https://www.googleapis.com/books/v1/volumes?",
@@ -181,6 +186,7 @@ $("#all_autocomplete").autocomplete({
           let result = el.volumeInfo.title;
           let img_link = el.volumeInfo.imageLinks;
           let authors = el.volumeInfo.authors;
+          let isbn = el.volumeInfo.industryIdentifiers;
           console.log(authors);
           if (typeof img_link !== 'undefined'){
             img_link = el.volumeInfo.imageLinks.thumbnail;
@@ -190,12 +196,21 @@ $("#all_autocomplete").autocomplete({
           }
           if (typeof authors == 'undefined'){
             authors = "AUTHOR UNKNOWN";
-          }            
+          }
+          if (typeof isbn !== 'undefined'){
+            isbn = el.volumeInfo.industryIdentifiers[0].identifier;
+          }
+          else{
+            isbn = '';
+          }
+
           if (matcher1.test(result) || matcher1.test(authors)){
             return {
               imgLink: img_link,
               value: result,
-              author: authors
+              author: authors,
+              isbn: isbn
+              
             };
 
           }
@@ -205,6 +220,7 @@ $("#all_autocomplete").autocomplete({
           let result = el.volumeInfo.title;
           let img_link = el.volumeInfo.imageLinks;
           let authors = el.volumeInfo.authors;
+          let isbn = el.volumeInfo.industryIdentifiers;
           console.log("2" + authors);
 
           if (typeof img_link !== 'undefined'){
@@ -215,12 +231,20 @@ $("#all_autocomplete").autocomplete({
           }
           if (typeof authors == 'undefined'){
             authors = "AUTHOR UNKNOWN";
-          }       
+          }
+          if (typeof isbn !== 'undefined'){
+            isbn = el.volumeInfo.industryIdentifiers[0].identifier;
+          }
+          else{
+            isbn = '';
+          }
+
           if (matcher2.test(result) || matcher2.test(authors)){
             return {
               imgLink: img_link,
               value: result,
-              author: authors
+              author: authors,
+              isbn: isbn
             };
 
           }
@@ -230,6 +254,10 @@ $("#all_autocomplete").autocomplete({
         console.log(secondary_matches);
         response($.merge(primary_matches, secondary_matches));
       },
+      select: function (event, ui) {
+        alert("Item Clicked"); //Fires Ok             
+       window.location.href("http://localhost/bookswitch/book-switch-i216/pages/book_genre.php"); // Works but totally unacceptable, browser history lost etc..          }    
+      }
       
       // error: function () {
       //   response([]);
@@ -254,6 +282,11 @@ $("#all_autocomplete").autocomplete({
 // Search Title Method
 $("#title_autocomplete").autocomplete({
   appendTo: $('#title'),
+  select: function( event, ui ){
+    // Redirect to the url
+    redirect(ui.item.isbn);
+
+  },
   source: function (request, response) {
     $.ajax({
       url: "https://www.googleapis.com/books/v1/volumes?",
@@ -273,6 +306,7 @@ $("#title_autocomplete").autocomplete({
           let result = el.volumeInfo.title;
           let img_link = el.volumeInfo.imageLinks;
           let authors = el.volumeInfo.authors;
+          let isbn = el.volumeInfo.industryIdentifiers;
           console.log(authors);
           if (typeof img_link !== 'undefined'){
             img_link = el.volumeInfo.imageLinks.thumbnail;
@@ -282,12 +316,21 @@ $("#title_autocomplete").autocomplete({
           }
           if (typeof authors == 'undefined'){
             authors = "AUTHOR UNKNOWN";
-          }            
+          }
+          if (typeof isbn !== 'undefined'){
+            isbn = el.volumeInfo.industryIdentifiers[0].identifier;
+          }
+          else{
+            isbn = '';
+          }
+
           if (matcher1.test(result)){
             return {
               imgLink: img_link,
               value: result,
-              author: authors
+              author: authors,
+              isbn: isbn
+
             };
 
           }
@@ -297,6 +340,7 @@ $("#title_autocomplete").autocomplete({
           let result = el.volumeInfo.title;
           let img_link = el.volumeInfo.imageLinks;
           let authors = el.volumeInfo.authors;
+          let isbn = el.volumeInfo.industryIdentifiers;
           if (typeof img_link !== 'undefined'){
             img_link = el.volumeInfo.imageLinks.thumbnail;
           }
@@ -305,12 +349,21 @@ $("#title_autocomplete").autocomplete({
           }
           if (typeof authors == 'undefined'){
             authors = "AUTHOR UNKNOWN";
-          }       
+          }
+          if (typeof isbn !== 'undefined'){
+            isbn = el.volumeInfo.industryIdentifiers[0].identifier;
+          }
+          else{
+            isbn = '';
+          }
+
           if (matcher2.test(result)){
             return {
               imgLink: img_link,
               value: result,
-              author: authors
+              author: authors,
+              isbn: isbn
+
             };
 
           }
@@ -426,6 +479,13 @@ function unique(list) {
     }
   });
   return result;
+}
+
+// to redirect to book details page
+function redirect(isbn){
+  location.href = `bookdetails.php?isbn=${isbn}`;
+  console.log('HI');
+  document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
 }
 
 document.getElementById("all_autocomplete").onkeypress = function(event){

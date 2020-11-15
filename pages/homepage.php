@@ -70,7 +70,7 @@
         <?php } else { ?>
           <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="../images/bookswitch.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <!-- <ul class = "navbar-nav">
@@ -171,36 +171,36 @@
               
             </div>
             <div class="leaf">
-              <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-               <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-               <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-               <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
-                <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-              <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-              <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
+              <div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+                <div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
                      
               </div>
               
               <div class="leaf leaf1">
-              <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-               <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-               <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-               <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
-                <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-              <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-              <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
+              <div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+                <div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
                      
               </div>
               
               <div class="leaf leaf2">
-              <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-               <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-               <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-               <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+              <div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+               <div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+               <div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+               <div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
          
-                <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-              <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-              <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>
+                <div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+              <div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+              <div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
                      
               </div>
             </div>
@@ -211,7 +211,7 @@
         <!-- ======= Steps Section ======= -->
     <section id="steps" class="steps section-bg">
         <div class="container">
-  
+          <h2 style="color:#B5C587">How To</h2>
           <div class="row no-gutters">
   
             <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in">

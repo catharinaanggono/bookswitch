@@ -115,7 +115,7 @@
         <?php } else { ?>
           <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="homepage.html"><img src="../images/bookswitch.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="../images/bookswitch.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <!-- <ul class = "navbar-nav">
