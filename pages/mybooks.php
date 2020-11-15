@@ -97,8 +97,9 @@
 
       /* colour of tabs when dark mode is on */
       #all_tab.dark, #reserved_tab.dark, #exchange_tab.dark {
-        color: #D5D3BF;
+        color: #dedbc1;
       }
+
 
       #all_tab.active, #reserved_tab.active, #exchange_tab.active {
         color: #474E45;
@@ -380,6 +381,10 @@
   const chk = document.getElementById('chk');
   chk.addEventListener('click', () => {
   chk.checked?document.body.classList.add("dark"):document.body.classList.remove("dark");
+  a = document.getElementsByTagName('a');
+  for (x of a){
+    chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+  }
 
   localStorage.setItem('darkModeStatus', chk.checked);
 });
