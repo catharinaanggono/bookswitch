@@ -207,47 +207,43 @@
 <body>
 
 	<div class="leaf">
-              <div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-               <div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-               <div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-               <div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
-                <div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-              <div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-              <div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
-                     
-              </div>
+				<div><img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+				<div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+				<div><img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+				<div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+				<div><img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+				<div><img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+				<div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
+						
+				</div>
               
-              <div class="leaf leaf1">
-              <div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-               <div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-               <div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-               <div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
-                <div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-              <div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-              <div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
+				<div class="leaf leaf1">
+				<div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+				<div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+				<div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+				<div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+				<div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+				<div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+				<div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
                      
-              </div>
-              
-              <div class="leaf leaf2">
-              <div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-               <div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-               <div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
-               <div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
-         
-                <div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-              <div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
-              <div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
-                     
-        </div>
+				</div>
+
+				<div class="leaf leaf2">
+				<div>  <img src="../images/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+				<div><img src="../images/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+				<div>  <img src="../images/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+				<div><img  src="../images/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+
+				<div> <img src="../images/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+				<div>   <img src="../images/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+				<div><img src="../images/autumn_leaves.png" height="75px" width="75px"></div>
+    </div>
 
 	<!-- Display of Navbar -->
     <div class="bgded overlay" id="example"> 
-	
 	<div class="container">
 	<div class="row">
-
-	<div class="panel">
-	
+	<div class="panel">	
 	<button class=" black-background white chevron-left backButton" style = "left: 20px;" onclick="history.go(-1);"><i class="fas fa-chevron-left enlarge"></i></button>
     <br>
 	<img src="../images/bookswitch.svg" alt="" style = "width: 70%;position:relative;" />
@@ -292,8 +288,12 @@
 		<button style = "width: 50%;position:relative;border-radius:5px;" id = "submitButton" name="submit">Log In</button>
 		</div>
 
-			 
 	</form>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>	 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
