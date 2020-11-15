@@ -14,7 +14,15 @@ INSTALLATION
 ------------
 
 * Setting up the application:
-    - After downloading the file, place the folder named 'app' under C:/.../www/ file directory.
+    - After downloading the file, unzip it into <webroot>.
+        <webroot>
+            |-- app
+            |-- css
+            |-- js
+            |-- database
+            |-- images
+            |
+        Documentation: http://localhost/app
 
 
 * Setting up the database:
@@ -24,7 +32,6 @@ INSTALLATION
             Username: root
             Password: 
 
-    - On the left, click 'new' to create a new database. If this is not shown, click the arrow at the top left to pull up the menu first.
     - At the top middle, click 'Import'.
     - Click 'Choose File' and look for 'bookswitch_latestver.sql' that is provided with the submitted file. Scroll down and click 'Go'.
     - BookSwitch database has been imported.
