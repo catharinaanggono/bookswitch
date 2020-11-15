@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 13, 2020 at 06:02 PM
+-- Generation Time: Nov 14, 2020 at 10:35 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -59,7 +59,12 @@ INSERT INTO `listings` (`userID`, `isbn`, `status`) VALUES
 ('amy', '9781416938156', 'NO'),
 ('amy', '9788482600307', 'NO'),
 ('amy', '9780671027421', 'NO'),
-('amy', '0593071719', 'NO');
+('amy', '0593071719', 'NO'),
+('amy', '9781491458518', 'NO'),
+('amy', '9781864718409', 'NO'),
+('amy', '1741141788', 'NO'),
+('amy', '9781616550547', 'NO'),
+('amy', '140954562', 'NO');
 
 -- --------------------------------------------------------
 

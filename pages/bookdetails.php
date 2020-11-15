@@ -94,7 +94,7 @@
         #more {
             display: none;
         }
-
+        
         .black-background {
             background-color:#0D3D54;
         }
@@ -119,6 +119,10 @@
             font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
             "Helvetica Neue", Arial, sans-serif, 
             "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        button:hover, #able_submit:hover {
+            background-color: #A94241;
         }
 
         footer {
@@ -283,7 +287,7 @@
     </div>
     
     <br><br>
-    <div style = "padding-left:10px;"><button class="btn black-background white chevron-left" onclick="history.go(-1);"><i class="fas fa-chevron-left"></i></button></div>
+    <div style = "padding-left:10px;"><button style = 'color:white;' class="btn black-background white chevron-left" onclick="history.go(-1);"><i class="fas fa-chevron-left"></i></button></div>
 
     <div class = "container-fluid" style = "padding-top: 30px; padding-bottom: 5%;">
         <div class="row">
@@ -327,7 +331,6 @@
                                 } 
                             ?>
                           </p>
-                          <!-- <a href="#" class="btn btn-outline-primary">Go somewhere</a> -->
                         </div>
                     </div>
                 </div>
@@ -397,21 +400,21 @@
         echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> ";
 
         if ($checkBookmark == []) {
-            echo "   <button type='submit'  name = 'bookmark' class='btn black-background white'>
+            echo "   <button type='submit' style = 'color:white;' name = 'bookmark' class='btn black-background white'>
             <i class='far fa-bookmark'></i>
             </button>";
             
         } else { 
-            echo "   <button name='bk' type='submit' value='bk' class ='btn black-background white' >
+            echo "   <button name='bk' type='submit' style = 'color:white;'style = 'color:white;' value='bk' class ='btn black-background white' >
             <i class='far fa-bookmark red'></i></button>";
         }
 
         if ($checkAvailQty == []) {
             echo "    
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white' disabled>";
+            <input type='submit' id = 'disabled_submit' name = 'getCopy' style = 'color:white;' value ='Get a Copy' class='btn black-background white' disabled>";
         } else { 
             echo "    
-            <input type='submit' name = 'getCopy' value ='Get a Copy' class='btn black-background white'>";
+            <input type='submit' id = 'able_submit'  name = 'getCopy' style = 'color:white;' value ='Get a Copy' class='btn black-background white'>";
         }
 
         echo "</form>";
@@ -480,8 +483,7 @@
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- BookSwitch JS -->
-    <!-- <script src='../js/homepage.js'></script> -->
-    <!-- <script src='../js/book_search.js'></script> -->
+    <script src='../js/homepage.js'></script>
     
     <script>
         $("#my_autocomplete").autocomplete({
