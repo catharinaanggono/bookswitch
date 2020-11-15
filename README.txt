@@ -26,12 +26,12 @@ INSTALLATION
 
     - On the left, click 'new' to create a new database. If this is not shown, click the arrow at the top left to pull up the menu first.
     - At the top middle, click 'Import'.
-    - Click 'Choose File' and look for 'bookswitch_latestver.sql'. Scroll down and click 'Go'.
-    - Bookswitch database has been imported.
+    - Click 'Choose File' and look for 'bookswitch_latestver.sql' that is provided with the submitted file. Scroll down and click 'Go'.
+    - BookSwitch database has been imported.
 
 USING THE APP
 -------------
-* Go to http://localhost/app to load Bookswitch's home page.
+* Go to http://localhost/app to load BookSwitch's home page.
 * Click on LOGIN at the top right corner of the homepage and enter the following login details:
 
     Username: Amy

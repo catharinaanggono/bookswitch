@@ -107,7 +107,7 @@
       .tab-content {
         padding-left: 5%;
         padding-right: 5%;
-        min-height: 250px;;
+        min-height: 250px;
       }
 
       #myTab {
@@ -357,10 +357,8 @@
       </div>
 
 
-
-
 <!-- FOOTER -->
-    <footer class="page-footer font-small blue px-4 py-5">
+<footer class="page-footer font-small blue px-4 py-5">
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
       <!-- Grid row -->
@@ -411,6 +409,8 @@
 
     </footer>
     <!-- Footer -->
+
+
     
 <!-- JAVASCRIPT PART -->
 <script>
@@ -645,8 +645,11 @@ window.addEventListener('load', (event) => {
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- Contact form JS-->
+
+    <script src="../js/homepage.js"></script>
     
     
 
   </body>
+  
 </html>
