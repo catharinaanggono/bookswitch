@@ -163,7 +163,7 @@ $("#all_autocomplete").autocomplete({
   appendTo: $('#all'),
   select: function( event, ui ){
     // Redirect to the url
-    redirect(ui.item.isbn);
+    redirect_hp(ui.item.isbn);
 
   },
   source: function (request, response) {
@@ -284,7 +284,7 @@ $("#title_autocomplete").autocomplete({
   appendTo: $('#title'),
   select: function( event, ui ){
     // Redirect to the url
-    redirect(ui.item.isbn);
+    redirect_hp(ui.item.isbn);
 
   },
   source: function (request, response) {
@@ -482,7 +482,7 @@ function unique(list) {
 }
 
 // to redirect to book details page
-function redirect(isbn){
+function redirect_hp(isbn){
   location.href = `./pages/bookdetails.php?isbn=${isbn}`;
   console.log('HI');
   document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
