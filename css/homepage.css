@@ -1,3 +1,4 @@
+  /* Template is from https://startbootstrap.com/theme/agency */
   /* default/general css style */
   :root {
     --blue: #007bff;
@@ -10402,6 +10403,8 @@
     }
   }
 
+
+/* Referenced from https://codepen.io/incrediblecast/pen/yLBmVXQ */
 .leaf{
     position:absolute ;
     width:90%;
@@ -10483,6 +10486,7 @@ display:block ;
     transform: rotateX(180deg);
 }
   
+
   header.masthead {
     position: relative;
     width: auto;
