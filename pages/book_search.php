@@ -1,5 +1,7 @@
 <?php
   session_start();
+  $_SESSION["redirect_to"] = 'book_search.php'; 
+
 ?>
 
 <!doctype html>
@@ -136,7 +138,7 @@
                             <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
                           </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php?redirect_to=book_search.php"><i class="far fa-user"></i>Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php"><i class="far fa-user"></i>Login</a></li>
                     </ul>
                 </div>
                 <div>

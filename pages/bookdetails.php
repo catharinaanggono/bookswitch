@@ -24,6 +24,7 @@
 
 
 
+
     <style>
         #bookTitle.dark{
             color:#B5C587;
@@ -183,7 +184,7 @@
                 
                 <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.html">Genre</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/book_genre.php">Genre</a></li>
                         <li class="nav-item">
                           <div class="search" id="search">
                             <input id="autocomplete" type="text" placeholder="Search Title, Author, ISBN">
@@ -429,7 +430,7 @@
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- BookSwitch JS -->
-    <script src='../js/homepage.js'></script>
+    <!-- <script src='../js/homepage.js'></script> -->
     <script src='../js/book_search.js'></script>
 
 
