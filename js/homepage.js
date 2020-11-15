@@ -79,13 +79,6 @@ window.addEventListener('load', (event) => {
     for (x of header){
       x.classList.add("dark");
     }
-
-    // document.getElementById('headerNames').classList.add("dark");
-    // document.getElementById('bookTitle').classList.add("dark");
-    // document.getElementById('author').classList.add("author");
-    // document.getElementById('published_date').classList.add("published_date");
-    // document.getElementById('bk_description').classList.add("bk_description");
-   
     document.getElementById('chk').checked = true;
   }
 });
@@ -179,15 +172,11 @@ $("#all_autocomplete").autocomplete({
         data = data.items;
         var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
         var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
-
-        console.log(data);
-
         var primary_matches = $.map(data, function (el) {
           let result = el.volumeInfo.title;
           let img_link = el.volumeInfo.imageLinks;
           let authors = el.volumeInfo.authors;
           let isbn = el.volumeInfo.industryIdentifiers;
-          console.log(authors);
           if (typeof img_link !== 'undefined'){
             img_link = el.volumeInfo.imageLinks.thumbnail;
           }
@@ -221,7 +210,6 @@ $("#all_autocomplete").autocomplete({
           let img_link = el.volumeInfo.imageLinks;
           let authors = el.volumeInfo.authors;
           let isbn = el.volumeInfo.industryIdentifiers;
-          console.log("2" + authors);
 
           if (typeof img_link !== 'undefined'){
             img_link = el.volumeInfo.imageLinks.thumbnail;
@@ -250,8 +238,7 @@ $("#all_autocomplete").autocomplete({
           }
             
         });
-        console.log(primary_matches);
-        console.log(secondary_matches);
+        
         response($.merge(primary_matches, secondary_matches));
       },
       select: function (event, ui) {
@@ -259,9 +246,6 @@ $("#all_autocomplete").autocomplete({
        window.location.href("http://localhost/bookswitch/book-switch-i216/pages/book_genre.php"); // Works but totally unacceptable, browser history lost etc..          }    
       }
       
-      // error: function () {
-      //   response([]);
-      // }
     });
   }
 })
@@ -300,14 +284,11 @@ $("#title_autocomplete").autocomplete({
         var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
         var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
 
-        console.log(data);
-
         var primary_matches = $.map(data, function (el) {
           let result = el.volumeInfo.title;
           let img_link = el.volumeInfo.imageLinks;
           let authors = el.volumeInfo.authors;
           let isbn = el.volumeInfo.industryIdentifiers;
-          console.log(authors);
           if (typeof img_link !== 'undefined'){
             img_link = el.volumeInfo.imageLinks.thumbnail;
           }
@@ -369,14 +350,8 @@ $("#title_autocomplete").autocomplete({
           }
             
         });
-        console.log(primary_matches);
-        console.log(secondary_matches);
         response($.merge(primary_matches, secondary_matches));
       },
-      
-      // error: function () {
-      //   response([]);
-      // }
     });
   }
 })
@@ -410,26 +385,19 @@ $("#author_autocomplete").autocomplete({
         var matcher1 = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
         var matcher2 = new RegExp("^.+" + $.ui.autocomplete.escapeRegex( request.term ), "i");
 
-        console.log("data", data);
-
         var primary_matches = $.map(data, function (el) {
 
           let result = el.volumeInfo.authors;
-          // let temp = [];
           
-          console.log("result", result);
           if (typeof result == 'undefined'){
             result = "AUTHOR UNKNOWN";
           }
-
           
           if (matcher1.test(result)){
             return {
               value: result
             };
-
-          }
-            
+          }   
         });
         var secondary_matches = $.map(data, function (el) {
           let authors = el.volumeInfo.authors;
@@ -445,15 +413,8 @@ $("#author_autocomplete").autocomplete({
             
         });
         primary_matches = unique(primary_matches);
-        console.log(primary_matches);
-        // console.log(secondary_matches);
-        // response($.merge(primary_matches, secondary_matches));
         response(primary_matches);
       },
-      
-      // error: function () {
-      //   response([]);
-      // }
     });
   }
 })
@@ -461,7 +422,6 @@ $("#author_autocomplete").autocomplete({
             var authorText = String(item.value).replace(
               new RegExp(this.term, "gi"),
               "<span class='ui-state-highlight'><b>$&</b></span>");
-
             return $( "<li></li>" )
             .attr( "data-value", item)
             .append("<div><a>" + authorText + "</a></div>")
@@ -484,7 +444,6 @@ function unique(list) {
 // to redirect to book details page
 function redirect_hp(isbn){
   location.href = `./pages/bookdetails.php?isbn=${isbn}`;
-  console.log('HI');
   document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
 }
 
