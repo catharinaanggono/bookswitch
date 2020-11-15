@@ -5,25 +5,26 @@ const query = urlParams.get('query');
 const category = urlParams.get('category');
 var first_start = 1;
 
+// call this when load 
 first_load(category, query, first_start);
 
+// function for first load of the page
 function first_load(category, query, first_start){
   call_api_search(category, query, first_start);
   show_page_button(category, query, first_start);
 }
 
+// to display the books
 function extract_display_data(xml) {
     var obj = JSON.parse(xml.responseText);
     var books_result = obj.items;
     var index = 0;
 
     for (each_book in books_result){
-        var str = '';
         var title = books_result[each_book].volumeInfo.title;
         var author = books_result[each_book].volumeInfo.authors;
         var isbn = books_result[each_book].volumeInfo.industryIdentifiers;
         var short_desc = books_result[each_book].volumeInfo.description;
-        var selfLink = books_result[each_book].selfLink;
         var img = books_result[each_book].volumeInfo.imageLinks;
 
         if (typeof short_desc !== 'undefined'){
@@ -46,14 +47,6 @@ function extract_display_data(xml) {
         else{
             img = '../images/no_image-removebg-preview.svg'
         }
-
-        // console.log(books_result[each_book]);
-        // console.log(title);
-        // console.log(author);
-        // console.log(isbn);
-        // console.log(shortDesc);
-        // console.log(selfLink);
-        // console.log(image);
 
         var node = document.createElement('div');
         node.setAttribute('class', ' base col-lg-4 col-md-4 col-sm-6 col-6');
@@ -79,10 +72,7 @@ function extract_display_data(xml) {
         </div>
         `;
         document.getElementById('main-content').appendChild(node);
-        // console.log(node);
-        // console.log(document.getElementById('main-content'));
         index += 1;
-        // console.log(index);
     }
 }
 
@@ -122,8 +112,6 @@ function call_api_search(category, keyword, pg_num){
     var start_index = (pg_num-1)*max;
     console.log(start_index);
 
-    // var url=`https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
-
     if(category == 'all'){
         url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
         console.log(url);
@@ -145,11 +133,8 @@ function show_page_button(category, query, first_start) {
       node.setAttribute('id', `page${i}`);
       node.setAttribute('onclick', `call_api_search('${category}', '${query}', ${i})`);
       node.innerHTML = `${i}`;
-      
-      // console.log(node);
       document.getElementById('pagination').appendChild(node);
   }
-
 }
 
 // to show the book description box
@@ -235,10 +220,6 @@ $("#my_autocomplete").autocomplete({
           console.log(secondary_matches);
           response($.merge(primary_matches, secondary_matches));
         },
-        
-        // error: function () {
-        //   response([]);
-        // }
       });
     }
   })
@@ -267,8 +248,8 @@ document.getElementById("my_autocomplete").onkeypress = function(event){
 
 // for Quick Search redirect
 function redirect_to_book_search_personal(query, category){
-    location.href = `book_search.php?query=${query}&category=${category}`;
-  }
+  location.href = `book_search.php?query=${query}&category=${category}`;
+}
 
 // to show footer when the page is ready and also 1 sec delay
 $(document).ready(function(){
