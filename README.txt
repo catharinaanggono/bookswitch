@@ -16,12 +16,15 @@ INSTALLATION
 * Setting up the application:
     - After downloading the file, unzip it into <webroot>.
         <webroot>
-            |-- app
-            |-- css
-            |-- js
-            |-- database
-            |-- images
-            |
+            | -- README.txt
+            | -- app
+            | --  | -- css
+            | --  | -- js
+            | --  | -- database
+            | --  | -- images
+            | --  | -- model
+            | --  | -- pages
+            | --  | -- index.php
         Documentation: http://localhost/app
 
 
@@ -33,7 +36,7 @@ INSTALLATION
             Password: 
 
     - At the top middle, click 'Import'.
-    - Click 'Choose File' and look for 'bookswitch_latestver.sql' that is provided with the submitted file. Scroll down and click 'Go'.
+    - Click 'Choose File' and look for 'bookswitch_latestver.sql' that is provided with the submitted file (app/database/bookswitch_latestver.sql). Scroll down and click 'Go'. 
     - BookSwitch database has been imported.
 
 USING THE APP
