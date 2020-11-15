@@ -79,6 +79,7 @@
 
 
       }
+
       #all_tab, #reserved_tab, #exchange_tab {
         color: #474E45;
       }
@@ -213,20 +214,22 @@
   
     
     <div class="jumbotron jumbotron-fluid" id="mybooksHeader" style="padding-left: 5%; padding-right: 5%;">
-    <div class="row">
-      <h1 class="display-4 col-4" style="margin-bottom: 50px; margin-top:50px;">My Books</h1>
-      <div class="col-8" style="display:flex; justify-content: center; align-items: center;">
-        <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills text-center border-0 rounded-nav" style="width: 70%;">
-              <li class="nav-item " style="width: 50%">
-                <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_Bookmark()" onclick="openLink(event, 'Left')" class="nav-link border-0 text-uppercase font-weight-bold active" style="margin-bottom:0px;"><img src="../images/bookmarks_nobg.png" width="50%" height="auto"></a>
-              </li>
-              <li class="nav-item" style="width: 50%">
-                <a data-toggle="tab" id="listings_tab" href="#listings" role="tab" aria-controls="profile" onclick="getListings('ALL')" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><img src="../images/listings_nobg.png" width="50%" height="auto"></a>
-              </li>
-        </ul>
+      <div class="row">
+        <h1 class="display-4 col-4" style="margin-bottom: 50px; margin-top:50px;">My Books</h1>
+        <div class="col-8" style="display:flex; justify-content: center; align-items: center;">
+          <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills text-center border-0 rounded-nav" style="width: 70%;">
+                <!-- Bookmarks tab -->
+                <li class="nav-item " style="width: 50%">
+                  <a data-toggle="tab" id="wishlist_tab" href="#wishlist" role="tab" aria-controls="home" aria-selected="true" onclick="get_Bookmark()" onclick="openLink(event, 'Left')" class="nav-link border-0 text-uppercase font-weight-bold active" style="margin-bottom:0px;"><img src="../images/bookmarks_nobg.png" width="50%" height="auto"></a>
+                </li>
+                <!-- Listings tab -->
+                <li class="nav-item" style="width: 50%">
+                  <a data-toggle="tab" id="listings_tab" href="#listings" role="tab" aria-controls="profile" onclick="getListings('ALL')" aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold"><img src="../images/listings_nobg.png" width="50%" height="auto"></a>
+                </li>
+          </ul>
 
+        </div>
       </div>
-    </div>
         
       
     </div>
@@ -247,12 +250,14 @@
       // listings
       $dao = new bookmarkDAO();
       $dao2 = new listingDAO();
+      // if delete bookmark button has been pressed, delete the bookmark, then remove the $_POST
       if (isset($_POST['deletebookmark'])) {
         $isbn = $_POST['deletebookmark'];
         $dao->deleteBookmark($userid,$isbn);
         unset($_POST['deletebookmark']);
-
       }
+
+      // if delete listing button has been pressed, delete the listing, then remove the $_POST
       if (isset($_POST['deletelisting'])) {
         $isbn = $_POST['deletelisting'];
         $dao2->deleteListing($isbn);
@@ -265,43 +270,44 @@
       
       $listing = $dao2->getListing($userid);
       $_SESSION["listing"] = $listing;
-      
-      
-      
-      
-    
+      ?>
 
 
-          ?>
     <!--Navbar for Bookmarks and my listings-->
     
       <!--Navbar contents-->
       <div class="tab-content" id="myTabContent">
+
         <div class="tab-pane fade show active" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
             
             <!-- Bookmark stuff here -->
 
+              <!-- bookmarks displayed here -->
               <div id="wishlist_cards" class="row"></div>
 
         
         </div>
+
         <div class="tab-pane fade" id="listings" role="tabpanel" aria-labelledby="listings-tab">
             
             <!-- My listings stuff here -->
 
             <ul class="nav nav-tabs">
+              <!-- All tab -->
               <li class="nav-item">
                 <a class="nav-link active" id="all_tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true" onclick="getListings('ALL')">All</a>
               </li>
+              <!-- Books Exchange History tab -->
               <li class="nav-item">
                 <a class="nav-link" id="reserved_tab" data-toggle="tab" href="#reserved" role="tab" aria-controls="reserved" aria-selected="true" onclick="getListings('YES')">Books Exchange History</a>
               </li>
+              <!-- Books Up for Exchange tab -->
               <li class="nav-item">
                 <a class="nav-link" id="exchange_tab" data-toggle="tab" href="#notreserved" role="tab" aria-controls="notreserved" aria-selected="true" onclick="getListings('NO')">Books Up for Exchange</a>
               </li>
             </ul>
 
-
+              <!-- Listings displayed here (depending on tab pressed) -->
               <div id="myListings_cards" class="row"></div>
 
             
@@ -311,7 +317,7 @@
 
 
 <!-- FOOTER -->
-<footer class="page-footer font-small blue px-4 py-5">
+  <footer class="page-footer font-small blue px-4 py-5">
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
       <!-- Grid row -->
@@ -360,7 +366,7 @@
     </div>
     <!-- Copyright -->
 
-    </footer>
+  </footer>
     <!-- Footer -->
 
 
@@ -368,6 +374,7 @@
 <!-- JAVASCRIPT PART -->
 <script>
   
+  // Dark mode functions
   const chk = document.getElementById('chk');
   chk.addEventListener('click', () => {
   chk.checked?document.body.classList.add("dark"):document.body.classList.remove("dark");
@@ -377,28 +384,30 @@
   }
 
   localStorage.setItem('darkModeStatus', chk.checked);
-});
+  });
 
-window.addEventListener('load', (event) => {
-  if(localStorage.getItem('darkModeStatus')=="true"){
-    document.body.classList.add("dark"); 
-  }
-});
+  window.addEventListener('load', (event) => {
+    if(localStorage.getItem('darkModeStatus')=="true"){
+      document.body.classList.add("dark"); 
+    }
+  });
+  // Dark mode functions end
+  
   function redirect(isbn) {
       location.href = `bookdetails.php?isbn=${isbn}`;
       console.log(index);
       document.getElementById('title').getElementsByTagName('a')[0].setAttribute('href', `bookdetails.php?isbn=${isbn}`);
   }
 
-  function show_desc(id) {
-      var node = document.getElementById(id);
-      node.setAttribute('style', 'visibility: visible;');
-  }
+  // function show_desc(id) {
+  //     var node = document.getElementById(id);
+  //     node.setAttribute('style', 'visibility: visible;');
+  // }
 
-  function hide_desc(id) {
-      var node = document.getElementById(id);
-      node.setAttribute('style', 'visibility: hidden;');
-  }
+  // function hide_desc(id) {
+  //     var node = document.getElementById(id);
+  //     node.setAttribute('style', 'visibility: hidden;');
+  // }
 
   // tab functions
 
@@ -472,32 +481,19 @@ window.addEventListener('load', (event) => {
                   node.innerHTML += `
                   
                   <div class="mybooks rounded shadow-sm">
-                  <div id="bookstuff" onclick="redirect(${isbn})" class="overflow-auto">
-                      <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
-                        <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
-                  </div>
+                    <div id="bookstuff" onclick="redirect(${isbn})" class="overflow-auto">
+                        <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
+                          <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
+                    </div>
 
                     <form method="post" name="form" action="mybooks.php" style="padding-bottom: 10px;">
                       <button class ='btn btn black-background white' style="margin-bottom:0px;" name="deletebookmark" value="${isbn}">Remove  <i class='far fa-bookmark red'></i></button>
                     </form>
-
-                      
-                      
-                      
                   </div>
-        
-                  
-                  
                   `;
-
-
-
-
               }
 
               document.getElementById('wishlist_cards').appendChild(node);
-
-
       }
   }
 
@@ -519,16 +515,13 @@ window.addEventListener('load', (event) => {
           if (request.readyState == 4 && request.status == 200) {
               var json_obj = JSON.parse(request.responseText);
               var items = json_obj.items;
-              // var x = 1;
               var html_text = "";
               
-
               for (item of items) {
                   var image = item.volumeInfo.imageLinks.thumbnail;
                   var title = item.volumeInfo.title;
                   var desc = item.volumeInfo.description;
                   var author = item.volumeInfo.authors;
-
                   
                   if ( typeof desc !== 'undefined' ) {
                     if (desc.length > 150) {
@@ -539,7 +532,6 @@ window.addEventListener('load', (event) => {
                     desc = 'Description not available';
                   }
 
-
                   // referenced from: https://jsfiddle.net/bootstrapious/b69yeLzj
                   var node = document.createElement('div');
                   node.setAttribute('class', 'col-xl-3 col-sm-4 mb-5 my-2');
@@ -548,25 +540,18 @@ window.addEventListener('load', (event) => {
                   node.innerHTML += `
                   
                   <div class="mybooks rounded shadow-sm">
-                  <div id="bookstuff" onclick="redirect(${isbn})" class="overflow-auto">
-                    <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
-                        <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
-                  </div>
-                      <form method="post" name="form" action="mybooks.php" style="padding-bottom:10px;">
-                        <button class="btn btn black-background white" style="margin-bottom:0px;" name="deletelisting" value="${isbn}">Remove Listing</button>
-                      </form>
-                      
+                    <div id="bookstuff" onclick="redirect(${isbn})" class="overflow-auto">
+                      <img src="${image}" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm">
+                          <h5 class="mb-0">${title}</h5><span class="small text-muted">by ${author}</span><br><br>
+                    </div>
+                    <form method="post" name="form" action="mybooks.php" style="padding-bottom:10px;">
+                      <button class="btn btn black-background white" style="margin-bottom:0px;" name="deletelisting" value="${isbn}">Remove Listing</button>
+                    </form>
                   </div>
                   `;
-
-                  x += 1;
-                  // console.log(x);
-
               }
 
               document.getElementById('myListings_cards').appendChild(node);
-
-
           }
       }
 
@@ -577,9 +562,8 @@ window.addEventListener('load', (event) => {
 
       request.send();
 
-
-
   }
+
 
   $("#my_autocomplete").autocomplete({
     appendTo: $('#search'),
@@ -652,9 +636,6 @@ window.addEventListener('load', (event) => {
           response($.merge(primary_matches, secondary_matches));
         },
         
-        // error: function () {
-        //   response([]);
-        // }
       });
     }
   })
@@ -672,25 +653,19 @@ window.addEventListener('load', (event) => {
         .appendTo( ul );
     };
 
-//  to redirect upon clicking enter
-document.getElementById("my_autocomplete").onkeypress = function(event){
-  if (event.keycode == 13 || event.which == 13){
-    var query = document.getElementById("my_autocomplete").value;
-    var category = 'all';
-    redirect_to_book_search_personal(query, category);
+  //  to redirect upon clicking enter
+  document.getElementById("my_autocomplete").onkeypress = function(event){
+    if (event.keycode == 13 || event.which == 13){
+      var query = document.getElementById("my_autocomplete").value;
+      var category = 'all';
+      redirect_to_book_search_personal(query, category);
+    }
+  };
+
+  // for Quick Search redirect
+  function redirect_to_book_search_personal(query, category){
+    location.href = `book_search.php?query=${query}&category=${category}`;
   }
-};
-
-// for Quick Search redirect
-function redirect_to_book_search_personal(query, category){
-  location.href = `book_search.php?query=${query}&category=${category}`;
-}
-
-
-// autocomplete
-
-
-
 
 </script>
 
