@@ -107,7 +107,7 @@
       .tab-content {
         padding-left: 5%;
         padding-right: 5%;
-        min-height: 100px;
+        min-height: 250px;;
       }
 
       #myTab {
