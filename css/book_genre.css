@@ -8,11 +8,6 @@
     border: 2px solid #267055; color:  #267055; 
 }
 
-/* .border {
-    border: 2px solid #A94241; color:  #A94241;
-} */
-
-
 /* Pagination Position */
 #pagination {
     margin: auto;
@@ -31,7 +26,6 @@
         left: 25%;
         z-index:1;
     }
-
 }
 
 /* Pagination colors */
@@ -69,12 +63,8 @@
 
 .genre:hover { 
     border: 2px solid #267055; 
-    /* border-radius: 15px; */
     color:  #267055;
-    /* font-weight: bold; */
     bottom: 3px;
-    
-    /* background-color: #f0a3a7; */
 }
 
 .footer-box {
@@ -84,7 +74,6 @@
     bottom:0;
     width: 100%;
     height: 30px;
-    /* position: fixed; */
     background-color: #f0a3a7;
 }
 
@@ -92,24 +81,19 @@
 .base {
     width: 33%;
     height: 200px;
-    /* border: 2px dotted blueviolet; */
     margin: auto;
     position: relative;
-    /* border: #8e89b2 dotted 2     px; */
 }
 
 .each-book{
     width: 90%;
     height: 160px;
-    /* border: 2px solid #D3D3D3; */
     background-image: linear-gradient(rgb(70, 138, 107), rgb(162, 205, 230)); 
     margin: auto;
     position: absolute;
     border-radius: 5px;
-
     top: 0;
     right: 6%;
-    /* background-color: #8e89b2; */
 }
 
 .each-desc {
@@ -118,11 +102,9 @@
     width: 88%;
     background-color: #ecd8bf;
     border-radius: 5px;
-
     word-wrap: break-word;
     padding: 4%;
     font-size: 16px;
-
     bottom: 10px;
     left: 0;
 }
@@ -136,18 +118,14 @@
 .main-details {
     background-color: white;
     opacity: 80%;
-
     position: absolute;
     right: 0px;
     height: 100%;
     width: 70%;
     word-wrap: break-word;
-
     padding: 10px;
     font-size: 18px;
-
 }
-
 
 /* light mode: button */
 .genre {
@@ -163,7 +141,6 @@
     border: 2px solid #A94241; 
     color:  #A94241;
     bottom: 3px;
-
 }
 
 /* button */
@@ -178,12 +155,8 @@
 
 #glist > button.dark:hover { 
     border: 2px solid #267055; 
-    /* border-radius: 15px; */
     color:  #267055;
-    /* font-weight: bold; */
     bottom: 3px;
-    
-    /* background-color: #f0a3a7; */
 }
 
 /* footer */
@@ -201,7 +174,6 @@ footer a{
 
 footer a:hover{
     color: #B5C587;
-    /* color: #267055; */
 }
 
 
