@@ -65,7 +65,7 @@
     <?php if (isset($_SESSION['userid']) or !empty($_SESSION['userid'])) { // or however you determine they're logged in ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="../images/bookswitch.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="../index.php"><img src="../images/bookswitch.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <ul class = "navbar-nav">
@@ -117,7 +117,7 @@
         <?php } else { ?>
           <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="homepage.php"><img src="../images/bookswitch.svg" alt="" /></a>
+                <a class="navbar-brand js-scroll-trigger" href="../index.php"><img src="../images/bookswitch.svg" alt="" /></a>
                 <div class="d-flex flex-row order-2 order-lg-3">
 
                     <!-- <ul class = "navbar-nav">
