@@ -376,22 +376,92 @@
   
   // Dark mode functions
   const chk = document.getElementById('chk');
-  chk.addEventListener('click', () => {
-  chk.checked?document.body.classList.add("dark"):document.body.classList.remove("dark");
-  a = document.getElementsByTagName('a');
-  for (x of a){
-    chk.checked?x.classList.add("dark"):x.classList.remove("dark");
-  }
 
-  localStorage.setItem('darkModeStatus', chk.checked);
+  chk.addEventListener('click', () => {
+    chk.checked?document.body.classList.add("dark"):document.body.classList.remove("dark");
+    h4 = document.getElementsByTagName('h4');
+    for (x of h4){
+      chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+    }
+    h2 = document.getElementsByTagName('h2');
+    for (x of h2){
+      chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+    }
+    a = document.getElementsByTagName('a');
+    for (x of a){
+      chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+    }
+    books = document.getElementsByClassName('each-book');
+    for (x of books){
+      chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+    }
+    genre = document.getElementsByClassName('genre');
+    for (x of genre){
+      chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+    }
+    bookDetails = document.getElementsByClassName('bookDetails');
+    for (x of bookDetails){
+      chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+    }
+    headerNames = document.getElementsByClassName('headerNames');
+    for (x of headerNames){
+      chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+    }
+
+    header = document.getElementsByTagName('header');
+    for (x of header){
+      chk.checked?x.classList.add("dark"):x.classList.remove("dark");
+    }
+
+
+  
+    localStorage.setItem('darkModeStatus', chk.checked);
   });
 
   window.addEventListener('load', (event) => {
     if(localStorage.getItem('darkModeStatus')=="true"){
       document.body.classList.add("dark"); 
+      h4 = document.getElementsByTagName('h4');
+      for (x of h4){
+        x.classList.add("dark");
+      }
+      h2 = document.getElementsByTagName('h2');
+      for (x of h2){
+        x.classList.add("dark");
+      }
+      a = document.getElementsByTagName('a');
+      for (x of a){
+        x.classList.add("dark");
+      }
+      books = document.getElementsByClassName('each-book');
+      for (x of books){
+        x.classList.add("dark");
+      }
+      genre = document.getElementsByClassName('genre');
+      for (x of genre){
+        x.classList.add("dark");
+      }
+
+      bookDetails = document.getElementsByClassName('bookDetails');
+      for (x of bookDetails){
+        x.classList.add("dark");
+      }
+      headerNames = document.getElementsByClassName('headerNames');
+      for (x of headerNames){
+        x.classList.add("dark");
+      }
+
+      header = document.getElementsByTagName('header');
+      for (x of header){
+        x.classList.add("dark");
+      }
+      document.getElementById('chk').checked = true;
     }
   });
+
   // Dark mode functions end
+
+
   
   function redirect(isbn) {
       location.href = `bookdetails.php?isbn=${isbn}`;
