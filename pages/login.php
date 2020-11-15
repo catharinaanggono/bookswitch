@@ -163,7 +163,7 @@
 		
 	}
 
-	.submitButton:hover
+	#submitButton:hover
 	{
 		background-color: #A94241;
 		border-color: white;
