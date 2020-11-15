@@ -237,11 +237,11 @@ function redirect_to_book_search_personal(query, category){
 
 // to show footer when the page is ready and also 1 sec delay
 $(document).ready(function(){
-    $('footer').css({'opacity': 0});
+  $('footer').css({'opacity': 0});
 });
 
 $(window).load(function(){
-    setTimeout(function () {
-      $('footer').css({'opacity': 1});
-    }, 1000);
+  setTimeout(function () {
+    $('footer').css({'opacity': 1});
+  }, 1000);
 });
