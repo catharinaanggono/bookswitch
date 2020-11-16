@@ -192,7 +192,7 @@
                             <input id="my_autocomplete" type="text" placeholder="Search Title, Author, ISBN">
                           </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="../pages/mybooks.php"><i class="far fa-user"></i><?php echo $_SESSION['userid'];?></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../pages/logout.php">Logout</a></li>
 
                     </ul>
