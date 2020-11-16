@@ -260,13 +260,13 @@
                 if ($_SESSION["button"] == "getCopy") { 
                     echo " Your selection has been personally added into your listings. <br> 
                     Please proceed to your profile to view your listings.";
-                }
-                
-                if (isset($_SESSION["bookmark"])) { 
-                    echo " Your selection has been bookmarked. <br> 
-                    Please proceed to your profile to view your bookmarks.";
                 } else {
-                    echo " Your selection has removed from your bookmarks."; 
+                    if (isset($_SESSION["bookmark"])) { 
+                        echo " Your selection has been bookmarked. <br> 
+                        Please proceed to your profile to view your bookmarks.";
+                    } else {
+                        echo " Your selection has removed from your bookmarks."; 
+                    }
                 }
 
             ?>
