@@ -63,7 +63,6 @@ function extract_display_data(xml) {
                 <span style='font-size:13px; overflow: hidden;'>by ${author}</span>
             </div>
         </div>
-        <!-- style="visibility: hidden; -->
         <div class="each-desc" id="each-desc${index}" style='visibility: hidden; text-overflow: ellipsis; '> 
             <div>
                 <b>Description</b><br>
@@ -87,7 +86,6 @@ function redirect(isbn){
 function call_api_search(category, keyword, pg_num){
     var request = new XMLHttpRequest();
     var max = 30;
-
     request.onreadystatechange = function(){
       if (request.readyState==4 && request.status==200){
         document.getElementById('main-content').innerHTML = '';
@@ -103,7 +101,6 @@ function call_api_search(category, keyword, pg_num){
         extract_display_data(this);
       }
     }
-
     var start_index = (pg_num-1)*max;
     if(category == 'all'){
       url = `https://www.googleapis.com/books/v1/volumes?q=${keyword}&startIndex=${start_index}&maxResults=${max}`;
@@ -113,7 +110,6 @@ function call_api_search(category, keyword, pg_num){
       url = `https://www.googleapis.com/books/v1/volumes?q=${category}:${keyword}&startIndex=${start_index}&maxResults=${max}`;
       console.log(url);
     }
-
     request.open('GET', url, true);
     request.send();
 }
