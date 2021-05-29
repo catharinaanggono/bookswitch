@@ -4,10 +4,10 @@
   class ConnectionManager {
 
     public function getConnection() {
-      $servername = 'localhost';
-      $dbname = 'bookswitch';
-      $username = 'root';
-      $password = '';
+      $servername = 'us-cdbr-east-04.cleardb.com';
+      $dbname = 'heroku_45f81d94bed0ef2';
+      $username = 'bfdda4ee641b04';
+      $password = 'b004a5a6';
       $port = 3306;
       $url  = "mysql:host=$servername;dbname=$dbname;port=$port";
 
