@@ -3,7 +3,7 @@
     ### Each time when an object is created, it direct to the file with the codes. 
     spl_autoload_register (
         function ($class) {
-            require_once "./model/$class.php";
+            require_once "./$class.php";
         }
     );
 
