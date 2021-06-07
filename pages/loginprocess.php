@@ -1,7 +1,7 @@
 <?php
 	
 	### Connecting to the file which consists codes to connect to the database (Essential for PDOStatements), start session, etc
- 	require_once "../model/common.php";
+ 	require_once $_SERVER['DOCUMENT_ROOT']."/model/common.php";
 
 
 	### When the form is filled and the login button is clicked

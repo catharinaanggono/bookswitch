@@ -159,7 +159,7 @@
   </head>
 
   <?php 
-    require_once "../model/common.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/model/common.php";
   ?>
   
   <!-- <body onload="getBookmark()"> -->

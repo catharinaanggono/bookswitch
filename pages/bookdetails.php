@@ -161,7 +161,7 @@
 </head>
 
 <?php 
-	require_once "../model/common.php";
+	require_once $_SERVER['DOCUMENT_ROOT']."/model/common.php";
 ?>
 
 <body onload="display_default('<?php echo $_GET['isbn']; ?>')" >
