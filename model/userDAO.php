@@ -3,7 +3,7 @@
     ### Connecting to the file which consists codes to connect to the database (Essential for PDOStatements)
     require_once "./common.php";
 
-    class serDAO { 
+    class UserDAO { 
  
         public function getUserDetails($userID) {
 
