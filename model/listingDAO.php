@@ -1,7 +1,7 @@
 <?php 
 
     ### Connecting to the file which consists codes to connect to the database (Essential for PDOStatements)
-    require_once "../model/common.php";
+    require_once "./common.php";
 
     class listingDAO { 
 
