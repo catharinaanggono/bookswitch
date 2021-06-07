@@ -8,7 +8,7 @@
     );
 
     ### Connect to the database 
-    require_once "/database/ConnectionManager.php"; 
+    require_once "../database/ConnectionManager.php"; 
 
     ### Starting/commencing the session 
     session_start();
