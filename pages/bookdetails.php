@@ -388,7 +388,7 @@
         ### Check the quantity in listings that are not reserved
         $dao = new listingDAO(); 
         $checkAvailQty = $dao->checkAvailQty($isbn);
-        $dao1 = new BookmarkDAO(); 
+        $dao1 = new bookmarkDAO(); 
         $checkBookmark = $dao1->checkBookmark($userid,$isbn);
         
         echo "    <form method='POST' action= 'addBook.php?isbn=$isbn'> ";
